@@ -1,0 +1,41 @@
+/* Required height of parents of the Full Page Intro and Intro itself */
+html,
+body,
+.view {
+  height: 100%; }
+
+/* Navbar animation */
+.navbar {
+  background-color: rgba(87, 34, 22, 0.2);
+ 
+
+}
+
+.top-nav-collapse {
+  background:rgb(168, 47, 6);  }
+
+/* Adding color to the Navbar on mobile */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background:rgb(168, 47, 6);  } }
+
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+  background:rgb(168, 47, 6);  }
+
+  .menu-1{
+    height: 60px;
+    background: #444;
+  }
+  .slider-1, .slider-2, .slider-3, .slider-4{
+    height: 100vh;
+    text-align: center;
+  }
+  
+
+  .footer{
+    background: #444;
+    color:#fff;
+    text-align: center;
+    padding: 10px;
+  }

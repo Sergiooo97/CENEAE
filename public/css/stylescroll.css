@@ -1,0 +1,43 @@
+body{
+	color:#fff;
+}
+.menu-1{
+	height: 60px;
+	background: rgb(255, 255, 255);
+}
+.slider-1, .slider-2, .slider-3, .slider-4{
+	height: 85vh;
+
+
+}
+.slider-1{
+
+	background: #0dce37;
+}
+.slider-2{
+	background: #b80d57;
+}
+.slider-3{
+	background: #e03e36;
+}
+.slider-4{
+	background: #ff7c38;
+}
+.footer{
+	background: rgb(255, 255, 255);
+	color:#fff;
+	padding: 10px;
+}
+div#row2{
+	width: 65%;
+	background: aquamarine;
+	float: left;
+	
+}
+div#row3{
+	width: 35%;
+	background: rgb(209, 101, 0);
+	float: left;
+	
+}
+

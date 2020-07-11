@@ -1,7 +1,102 @@
-@extends('layouts.app')
-
+@extends('layouts.login')
+@section('title', 'Iniciar sesión')
 @section('content')
-<div class="container">
+
+
+<div style="background:#00000057;">
+    <div class="limiter">
+        <div class="container-login100">
+            <div style="padding-top:5em;" class="wrap-login100">
+                <div style="padding-top:5em;" class="login100-pic js-tilt " data-tilt>
+                    <div class="notificationss bounceInDown">
+
+                    <a href="" id="link"><img src="{{asset('img/sunlogos.png')}}"></a>
+                        </br>
+                        </br>
+
+
+                        <!--<img style="width:150px; height:60px;" class="img " src="assets/img/mont.png" alt="IMG">-->
+
+                    </div>
+                    <div class="notificationss bounceInDown">
+
+
+                        <h1 class="mb-4 titleceneae wow fadeInUp">
+                            Centro Educativo Natanael
+                          </h1>                    </br></br>
+
+
+                        <!--<img style="width:150px; height:60px;" class="img " src="assets/img/mont.png" alt="IMG">-->
+
+                    </div>
+                </div>
+
+
+                <form style="padding-top:5em;" class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+                    @csrf
+                <span class="login100-form-title">
+                        Iniciar sesión
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input id="email" class="input100 @error('email') is-invalid @enderror" type="email" name="email" placeholder="Correo Institucional" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input id="password" class="input100 @error('password') is-invalid @enderror" type="password" name="password"  placeholder="Contraseña" required autocomplete="current-password" >
+                        @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn">
+                                    {{ __('Login') }}
+                                </button>
+                    </div>
+                    @if (Route::has('password.request'))
+                  
+                    <a id="register"class="btn btn-link" href="{{ route('inscripcion.index') }}"> ¿No tienes cuenta? registrate aquí</a>
+                @endif
+                    <div class="text-center p-t-12">
+                        <span class="txt1">
+                            Forgot
+                        </span>
+                        <a class="txt2" href="#">
+                            Username / Password?
+                        </a>
+
+                    </div>
+
+                    <div class="text-center p-t-136">
+                        <a href="{{ route('register') }}">Register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +164,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection

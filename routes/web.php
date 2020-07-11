@@ -17,6 +17,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+    Auth::routes();
+Route::get('home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->group(function () {
+    
+    Route::get('listaAlumnos', 'listaAlumnos@index')->name('listaAlumnos');
+    Route::get('inscripcion', 'inscripcionController@index')->name('inscripcion.index');
+    Route::post('inscripcion', 'inscripcionController@store')->name('inscripcion.store');
+  });
+  Route::prefix('Montessori')->group(function () {
+    Route::get('welcome', 'montessoriController@index')->name('montessori.index');
+  });
+
+  
+  /*
+|--------------------------------------------------------------------------
+| alumnos route
+|--------------------------------------------------------------------------
+|*/
+  Route::post('infoalumno', 'infoalgumnoController@store')->name('infoalumno.store');
+  Route::get('infoalumno', 'infoalumnoController@index')->name('infoalumno.index');
