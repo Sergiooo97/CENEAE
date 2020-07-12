@@ -4,18 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class listaAlumnos extends Controller
+class docentesController extends Controller
 {
-/**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +13,7 @@ class listaAlumnos extends Controller
      */
     public function index()
     {
-        return view('listaAlumnos.index');
-
+        return view('docentes.index');
     }
 
     /**
@@ -56,7 +45,7 @@ class listaAlumnos extends Controller
      */
     public function show($id)
     {
-        return view('listaAlumnos.show');
+        //
     }
 
     /**

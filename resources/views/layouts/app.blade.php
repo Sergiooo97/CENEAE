@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CENEAE') }}</title>
+    <title>CENEAE</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -69,6 +69,11 @@
               <li class="{{request()->is('admin/listaAlumnos') ? 'active' : '' }}">
                 <a href="{{ route('listaAlumnos') }}">
                   <p class="slider-label">Alumnos</p>
+                </a>
+              </li>
+              <li class="{{request()->is('admin/docentes') ? 'active' : '' }}">
+                <a href="{{ route('docentes.index') }}">
+                  <p class="slider-label">Docentes</p>
                 </a>
               </li>
               

@@ -309,7 +309,10 @@ h2 {
         </a>
       </div>
       <div class="mix col-lg-12 col-md-6 brand">
-        <a href="{{asset('riddle/img/portfolio/mon_pic5.jpg')}}" class="portfolio-item set-bg" data-setbg="{{asset('riddle/img/portfolio/mon_pic5.jpg')}}">
+        <a 
+        href="{{asset('riddle/img/portfolio/mon_pic5.jpg')}}" 
+        class="portfolio-item set-bg" 
+        data-setbg="{{asset('riddle/img/portfolio/mon_pic5.jpg')}}">
           <div class="pi-inner">
             <h2>ver imagen</h2>
           </div>						

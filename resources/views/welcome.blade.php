@@ -158,6 +158,8 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       </p>
       @if (Route::has('login'))
       <div style="margin-top:1em;" class="links">
+        <a class="btn btn-outline-white btn-lg font-natacad" href="{{ route('galeria') }}">Galeria</a>
+
           @auth
               <a class="btn btn-outline-white btn-lg font-natacad" href="{{ route('home') }}">Home</a>
 
