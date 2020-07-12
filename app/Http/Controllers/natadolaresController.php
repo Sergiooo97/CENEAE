@@ -3,21 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\alumno;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-class listaAlumnos extends Controller
-{
-/**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
+class natadolaresController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -25,9 +13,7 @@ class listaAlumnos extends Controller
      */
     public function index()
     {
-        $alumnos = DB::table('alumnos')->get();
-        return view('listaAlumnos.index', compact('alumnos'));
-
+        return view('ndolares.index');
     }
 
     /**
@@ -59,22 +45,7 @@ class listaAlumnos extends Controller
      */
     public function show($id)
     {
-        $alumnos = alumno::find($id);
-        if ($alumnos==null){
- 
-         return view('errors.404');
-        }else{
- 
- 
-            $alumno = alumno::find($id)
-            ->where('id', '=', $id)
-            ->first();
-
-            return view('listaAlumnos.show', compact('alumno'));
-        }
-
-
-      
+        //
     }
 
     /**

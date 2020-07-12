@@ -9,7 +9,7 @@
           <div class="col-md-12">
             <div class="card bounceInleft">
               <div class="card-header">
-                <h4 class="card-title">Alumnos del CENEAE</h4>
+                <h4 class="card-title">Banco de CENEAE</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -24,52 +24,32 @@
                         Nombres
                       </th>
                       <th>
-                        CURP
+                        $
                       </th>
                       <th>
-                        Dirección
-                      </th>
-                      <th>
-                        Grado
-                      </th>
-                      <th>
-                        Teléfono
-                      </th>
-                     
-                      <th>
-                        
+                        Última modificación
+                      </th>                    
+                      <th>                        
                       </th>
                     </thead>
-                    <tbody>
-                      @foreach ($alumnos as $alumno)
+                    <tbody>                   
                       <tr>
                         <td>
-                          {{ $alumno->matricula }}
+                          01BACY130918M1A1920
                         </td>
                         <td>
-                          {{ $alumno->nombres }}&nbsp;{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}
+                          Yesenia Naomi Balam Chan
+                        </td>                      
+                        <td>
+                          $560
                         </td>
                         <td>
-                          {{ $alumno->curp }}
-                        </td>
+                          24-11-2020
+                        </td>                      
                         <td>
-                          {{ $alumno->direccion_tutor }}
+                        <button class="btn btn-primary">Detalles</button>
                         </td>
-                        <td>
-                          {{ $alumno->grado }} {{ $alumno->grupo }}
-                        </td>
-                        <td>
-                          {{ $alumno->telefono_tutor }}
-                        </td>
-                       
-                        <td>
-                        <a  href="{{route('listaAlumnos.show',['id' => $alumno->id])}}"  class="btn btn-primary">Detalles</a>
-                        </td>
-                      </tr>
-                      @endforeach
-            
-                      
-                      
+                      </tr>                     
                     </tbody>
                   </table>
                   <!-------------------------------------------termina tabla ---------------------------------->

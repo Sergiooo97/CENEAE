@@ -156,7 +156,7 @@ body{
 	<section  style="padding-bottom: 5em; padding-top:1em;"  class="intro-section">
 	<!-- Content -->
     <div style="padding: 0;" class="text-center white-text mx-5 wow fadeIn ">
-        <h2 class="section-title mb-5 title-galeria">Galeria CENEAE</h2>
+		<h2 class="section-title mb-5">Nothing is imposible!</h2>
   
      
         <div style="margin-top:1em;" class="links">

@@ -34,22 +34,22 @@
                 <div class="col-sm">
 
                   {!!Form::label('id','id',['class'=>'label'])!!}
-                  <input id="id_al" class="form-control" placeholder="matricula" readonly>
+                  <input name="matricula"id="id_al" class="form-control" placeholder="matricula" readonly>
 
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
-                  {!!Form::text('Nombres',NULL, ['class'=>'form-control','placeholder'=>'Nombres',
+                  {!!Form::text('nombres',NULL, ['class'=>'form-control','placeholder'=>'Nombres',
                   'autocomplete'=>'off'])!!}
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Apellido_P','apellido Paterno',['class'=>'label'])!!}
-                  {!!Form::text('Apellido_P',null, ['class'=>'form-control','placeholder'=>'apellido Paterno',
+                  {!!Form::text('apellido_paterno',null, ['class'=>'form-control','placeholder'=>'apellido Paterno',
                   'autocomplete'=>'off'])!!}
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Apellido_M','apellido Materno',['class'=>'label'])!!}
-                  {!!Form::text('Apellido_M',null, ['class'=>'form-control','placeholder'=>'apellido Materno',
+                  {!!Form::text('apellido_materno',null, ['class'=>'form-control','placeholder'=>'apellido Materno',
                   'autocomplete'=>'off'])!!}
                 </div>
               </div>
@@ -57,23 +57,22 @@
               <div class="row">
                 <div class="col-sm">
                   {!!Form::label('Edad','Edad',['class'=>'label'])!!}
-                  {!!Form::text('Edad',null, ['class'=>'form-control','placeholder'=>'Edad', 'autocomplete'=>'off'])!!}
+                  {!!Form::text('edad',null, ['class'=>'form-control','placeholder'=>'Edad', 'autocomplete'=>'off'])!!}
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
-                  {!!Form::text('Fecha_de_nacimiento',NULL, ['class'=>'form-control','placeholder'=>'nombre',
-                  'autocomplete'=>'off'])!!}
+                  <input name="fecha_de_nacimiento" id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento">
                 </div>
                 <div class="col-sm">
                   {!!Form::label('CURP','CURP',['class'=>'label'])!!}
-                  <input id="curp_al" class="form-control" placeholder="CURP" autocomplete="off" maxlength="11"
+                  <input name="curp" id="curp_al" class="form-control" placeholder="CURP" autocomplete="off" maxlength="11"
                     required>
                 </div>
                 <div class="col-sm">
                   <div class="row">
                     <div class="col-sm">
                       {!!Form::label('Grado','Grado',['class'=>'label'])!!}
-                      <select class="form-control" id="grado">
+                      <select name="grado" class="form-control" id="grado">
                         <option value="">Seleccionar</option>
                         <option value="1">1°</option>
                         <option value="2">2°</option>
@@ -86,7 +85,7 @@
                     </div>
                     <div class="col-sm">
                       {!!Form::label('Grupo','Grupo',['class'=>'label'])!!}
-                      <select class="form-control" id="grupo">
+                      <select name="grupo" class="form-control" id="grupo">
                         <option value="">Seleccionar</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
@@ -105,46 +104,43 @@
 
                 <div class="col-sm">
                   {!!Form::label('id','id',['class'=>'label'])!!}
-                  {!!Form::text('id_tu',null, ['class'=>'form-control','placeholder'=>'id', 'autocomplete'=>'off',
-                  'id'=>'id_tu', 'readonly'])!!}
+                  <input name="id_tutor"id="id_tu" class="form-control" placeholder="id tutor" readonly>
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
-                  {!!Form::text('Nombres_tutor',NULL, ['class'=>'form-control','placeholder'=>'Nombres',
-                  'autocomplete'=>'off'])!!}
+                  <input name="nombres_tutor"id="nombres_tutor" class="form-control" placeholder="nombres" >
                 </div>
                 <div class="col-sm">
-                  {!!Form::label('Apellido_P','apellido Paterno',['class'=>'label'])!!}
-                  {!!Form::text('Apellido_P_tutor',null, ['class'=>'form-control','placeholder'=>'apellido Paterno',
-                  'autocomplete'=>'off'])!!}
+                  {!!Form::label('apellido_paterno_tutor','apellido Paterno',['class'=>'label'])!!}
+                  <input name="apellido_paterno_tutor"id="apellido_paterno_tutor" class="form-control" placeholder="apellido paterno_tutor" > 
+                 
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Apellido_M','apellido Materno',['class'=>'label'])!!}
-                  {!!Form::text('Apellido_M_tutor',null, ['class'=>'form-control','placeholder'=>'apellido Materno',
-                  'autocomplete'=>'off'])!!}
+                  <input name="apellido_materno_tutor"id="apellido_materno_tutor" class="form-control" placeholder="apellido paterno_tutor" > 
+
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-sm">
                   {!!Form::label('Direccion','Direccion',['class'=>'label'])!!}
-                  {!!Form::text('Direccion_tutor',null, ['class'=>'form-control','placeholder'=>'Edad',
-                  'autocomplete'=>'off'])!!}
+                  <input name="direccion_tutor" id="direccion_tutor" class="form-control" placeholder="direccion del tutor" > 
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Escolaridad','Escolaridad',['class'=>'label'])!!}
-                  {!!Form::text('Escolaridad_tutor',NULL, ['class'=>'form-control','placeholder'=>'nombre',
-                  'autocomplete'=>'off'])!!}
+                  <input name="escolaridad_tutor" id="escolaridad_tutor" class="form-control" placeholder="escolaridad del tutor" > 
                 </div>
                 <div class="col-sm">
                   {!!Form::label('CURP','CURP',['class'=>'label'])!!}
-                  {!!Form::text('CURP_tutor',null, ['class'=>'form-control','placeholder'=>'CURP',
-                  'autocomplete'=>'off'])!!}
+                  <input name="curp_tutor" id="curp_tutor" class="form-control" placeholder="curp del tutor" > 
+
+                  
                 </div>
                 <div class="col-sm">
                   {!!Form::label('telefono','telefono',['class'=>'label'])!!}
-                  {!!Form::text('telefono_tutor',null, ['class'=>'form-control','placeholder'=>'CURP',
-                  'autocomplete'=>'off'])!!}
+                  <input name="telefono_tutor" id="telefono_tutor" class="form-control" placeholder="telefono del tutor" > 
+
                 </div>
               </div>
             </div>

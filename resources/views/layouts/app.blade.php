@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>CENEAE</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -82,9 +82,9 @@
                   <p class="slider-label">info</p>
                 </a>
               </li>
-              <li class="{{request()->is('') ? 'active' : '' }}">
-                <a href="#">
-                  <p class="slider-label">Docentes</p>
+              <li class="{{request()->is('admin/ndolares') ? 'active' : '' }}">
+              <a href="{{route('ndolares.index')}}">
+                  <p class="slider-label">Nata-Dolares</p>
                 </a>
               </li>
               <li class="{{request()->is('admin/inscripcion') ? 'active' : '' }}" >
@@ -142,23 +142,11 @@
                           <div class="collapse navbar-collapse justify-content-end show" id="navigation">
                             <form>
                               <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <div class="input-group-append">
-                                  <div class="input-group-text">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                  </div>
-                                </div>
+                               
                               </div>
                             </form>
                             <ul class="navbar-nav">
-                              <li class="nav-item">
-                                <a class="nav-link btn-magnify" href="#pablo">
-                                  <i class="nc-icon nc-layout-11"></i>
-                                  <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                  </p>
-                                </a>
-                              </li>
+                            
                               <li class="nav-item btn-rotate dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   <i class="nc-icon nc-bell-55"></i>
