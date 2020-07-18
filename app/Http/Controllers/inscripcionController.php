@@ -46,15 +46,21 @@ class inscripcionController extends Controller
     {      
        
             $users = new alumno();
-            $users ->matricula       = $request->input('matricula');
+            $users ->matricula = $request->input('matricula');
             $users ->nombres   = $request->input('nombres');
             $users ->apellido_paterno        = $request->input('apellido_paterno');
             $users ->apellido_materno        = $request->input('apellido_materno');
-            $users ->edad    = $request->input('edad');
-            $users ->fecha_de_nacimiento    = $request->input('fecha_de_nacimiento');
+            $users ->edad    = $request->input('age');
+            $users ->fecha_de_nacimiento    = $request->input('birthday');
             $users ->curp  = $request->input('curp');
             $users ->grado = $request->input('grado');
             $users ->grupo = $request->input('grupo');
+            $users ->direccion = $request->input('direccion');
+            $users ->municipio = $request->input('municipio');
+            $users ->cp = $request->input('cp');
+            $users ->ndolares = '0';
+            $users ->quiero_ser = $request->input('quiero_ser');
+
             $users ->nombres_tutor = $request->input('nombres_tutor');
             $users ->apellido_paterno_tutor = $request->input('apellido_paterno_tutor');
             $users ->apellido_materno_tutor = $request->input('apellido_materno_tutor');

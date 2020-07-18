@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlumnosTable extends Migration
+class CreateDocentesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,20 @@ class CreateAlumnosTable extends Migration
      */
     public function up()
     {
-        Schema::create('alumnos', function (Blueprint $table) {
+        Schema::create('docentes', function (Blueprint $table) {
             $table->id();
             $table->string('matricula');
+            $table->string('RFC');
             $table->string('nombres');
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
             $table->integer('edad');
             $table->date('fecha_de_nacimiento');
             $table->string('curp');
-            $table->integer('grado');
-            $table->string('grupo');
             $table->string('municipio');
             $table->string('cp');
             $table->string('direccion');
-            $table->string('quiero_ser');
-            $table->integer('ndolares');
-            $table->string('nombres_tutor');
-            $table->string('apellido_paterno_tutor');
-            $table->string('apellido_materno_tutor');
-            $table->string('direccion_tutor');
-            $table->string('escolaridad_tutor');
-            $table->string('curp_tutor');
-            $table->string('telefono_tutor');
+            $table->string('telefono');
             $table->timestamps();
         });
     }
@@ -47,6 +38,6 @@ class CreateAlumnosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alumnos');
+        Schema::dropIfExists('docentes');
     }
 }

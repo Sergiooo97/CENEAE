@@ -32,24 +32,26 @@
                       <th>                        
                       </th>
                     </thead>
-                    <tbody>                   
+                    <tbody>        
+                      @foreach ($alumnos as $alumno)           
                       <tr>
                         <td>
-                          01BACY130918M1A1920
+                          {{ $alumno->matricula }}
                         </td>
                         <td>
-                          Yesenia Naomi Balam Chan
+                          {{ $alumno->nombre }}
                         </td>                      
                         <td>
-                          $560
+                         {{$alumno->accion}} - {{$alumno->cantidad}}
                         </td>
                         <td>
-                          24-11-2020
+                          {{$alumno->created_at}}
                         </td>                      
                         <td>
                         <button class="btn btn-primary">Detalles</button>
                         </td>
-                      </tr>                     
+                      </tr>       
+                      @endforeach              
                     </tbody>
                   </table>
                   <!-------------------------------------------termina tabla ---------------------------------->

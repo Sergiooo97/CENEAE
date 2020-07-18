@@ -24,32 +24,34 @@
                         Nombres
                       </th>
                       <th>
-                        $
+                        Grado|Grupo
                       </th>
                       <th>
-                        Última modificación
+                        $
                       </th>                    
                       <th>                        
                       </th>
                     </thead>
-                    <tbody>                   
+                    <tbody>   
+                      @foreach ($alumnos as $alumno)                 
                       <tr>
                         <td>
-                          01BACY130918M1A1920
+                          {{ $alumno->matricula }}
                         </td>
                         <td>
-                          Yesenia Naomi Balam Chan
+                          {{ $alumno->nombres }}
                         </td>                      
                         <td>
-                          $560
+                          {{ $alumno->grado}}{{ $alumno->grupo }}
                         </td>
                         <td>
-                          24-11-2020
-                        </td>                      
+                          {{ $alumno->cantidad }}                        </td>                      
                         <td>
-                        <button class="btn btn-primary">Detalles</button>
-                        </td>
-                      </tr>                     
+                          <a href="{{route('ndolares.show',['id' => $alumno->matricula])}}" style="font-size: 14px;" class="btn btn-primary" >
+                            detalles
+                        </a>                        </td>
+                      </tr>     
+                      @endforeach                  
                     </tbody>
                   </table>
                   <!-------------------------------------------termina tabla ---------------------------------->

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\alumno;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class docentesController extends Controller
 {
@@ -13,7 +15,9 @@ class docentesController extends Controller
      */
     public function index()
     {
-        return view('docentes.index');
+        $docentes = DB::table('docentes')->get();
+        return view('docentes.index', compact('docentes'));
+
     }
 
     /**

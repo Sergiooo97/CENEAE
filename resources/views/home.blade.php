@@ -16,7 +16,10 @@
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Alumnos</p>
-                <p class="card-title">18
+                @foreach ($results as $result)                 
+
+                <p class="card-title">{{$result->Total}}
+                  @endforeach
                   <p>
               </div>
             </div>

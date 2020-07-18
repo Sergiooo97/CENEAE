@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\alumno;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $results = alumno::selectRaw('count(*) as Total')
+            
+             ->get();
+
+
+        return view('home', compact('results'));    
+
     }
 }

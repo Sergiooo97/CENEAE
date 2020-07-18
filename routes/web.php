@@ -21,21 +21,29 @@ Route::get('/', function () {
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('galeria', 'galeriaController@index')->name('galeria');
 
-
+/*          Rutas para el administrador                    */
 Route::prefix('admin')->group(function () {
-    //ALUMNOS
+  //ALUMNOS
     Route::get('listaAlumnos', 'listaAlumnos@index')->name('listaAlumnos');
-    route::get('listaAlumnos/{id}', 'listaAlumnos@show')
+    route::get('infoAlumnos/{id}', 'listaAlumnos@show')
 ->where('id','[0-9]+')
 ->name('listaAlumnos.show');
-    //BANCO
+
+route::get('ndolares/{id}', 'ndolaresController@show')
+->name('ndolares.show');
+  //BANCO
     Route::get('ndolares', 'natadolaresController@index')->name('ndolares.index');
-    //DOCENTES
+  //DOCENTES
     Route::get('docentes', 'docentesController@index')->name('docentes.index');
-    //REGISTRO DE ALUMNOS
+  //REGISTRO DE ALUMNOS
     Route::get('inscripcion', 'inscripcionController@index')->name('inscripcion.index');
     Route::post('inscripcion', 'inscripcionController@store')->name('inscripcion.store');
+
+    Route::post('ndolares', 'ndolaresController@store')->name('ndolares.store');
+
   });
+
+
   Route::prefix('Montessori')->group(function () {
     Route::get('welcome', 'montessoriController@index')->name('montessori.index');
   });

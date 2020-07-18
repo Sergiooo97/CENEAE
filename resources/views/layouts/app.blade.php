@@ -77,11 +77,7 @@
                 </a>
               </li>
               
-              <li class="{{request()->is('infoalumno') ? 'active' : '' }}">
-              <a href="{{route('infoalumno.index')}}">
-                  <p class="slider-label">info</p>
-                </a>
-              </li>
+             
               <li class="{{request()->is('admin/ndolares') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
                   <p class="slider-label">Nata-Dolares</p>

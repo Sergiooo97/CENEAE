@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\ndolar_lista;
+use App\ndolar;
+use App\alumno;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Http\Request;
 
-
-class natadolaresController extends Controller
+class ndolaresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,8 @@ class natadolaresController extends Controller
      */
     public function index()
     {
-
-        $alumnos = DB::table('ndolar_listas')
-        ->orderBy('grado', 'ASC')->orderBy('grupo', 'ASC')->get();
-        return view('ndolares.index', compact('alumnos'));    }
+       
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +37,18 @@ class natadolaresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $users = new ndolar();
+        $users ->matricula       = $request->input('matricula');
+        $users ->nombre   = $request->input('nombre');
+        $users ->accion        = $request->input('accion');
+        $users ->cantidad        = $request->input('cantidad');
+        $users ->antes        = $request->input('antes');
+        $users ->nuevo        = $request->input('actual');
+        $users ->comentario = $request->input('comentario');
+        $users->save();
+        return back();
+
     }
 
     /**
@@ -51,7 +59,21 @@ class natadolaresController extends Controller
      */
     public function show($id)
     {
-        //
+        $alumnos = alumno::find($id);
+        if ($alumnos==null){
+ 
+         return view('errors.404');
+        }else{
+ 
+            $alumnos = DB::table('ndolars')
+            ->where('matricula', '=', $id)
+            ->orderBy('created_at','desc')
+            ->get();
+
+            
+
+            return view('ndolares.show', compact('alumnos'));
+        }
     }
 
     /**

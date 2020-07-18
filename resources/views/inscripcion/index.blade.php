@@ -39,8 +39,9 @@
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
-                  {!!Form::text('nombres',NULL, ['class'=>'form-control','placeholder'=>'Nombres',
-                  'autocomplete'=>'off'])!!}
+                  <input name="nombres"id="nombres" class="form-control" placeholder="nombres" >
+
+                 
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Apellido_P','apellido Paterno',['class'=>'label'])!!}
@@ -55,13 +56,33 @@
               </div>
 
               <div class="row">
-                <div class="col-sm">
-                  {!!Form::label('Edad','Edad',['class'=>'label'])!!}
-                  {!!Form::text('edad',null, ['class'=>'form-control','placeholder'=>'Edad', 'autocomplete'=>'off'])!!}
-                </div>
+              
                 <div class="col-sm">
                   {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
-                  <input name="fecha_de_nacimiento" id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento">
+                  <input type="date" name="birthday" id="birthday" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento">
+                <script>
+                  $(function(){
+            $('#birthday').on('change', calcularEdad);
+        });
+        
+        function calcularEdad() {
+            
+            fecha = $(this).val();
+            var hoy = new Date();
+            var cumpleanos = new Date(fecha);
+            var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+            var m = hoy.getMonth() - cumpleanos.getMonth();
+
+            if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+                edad--;
+            }
+            $('#age').val(edad);
+        }
+                </script>
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('Edad','Edad',['class'=>'label'])!!}
+                  <input type="text" name="age" id="age" value="" class="form-control" placeholder="Edad" autocomplete="off">
                 </div>
                 <div class="col-sm">
                   {!!Form::label('CURP','CURP',['class'=>'label'])!!}
@@ -93,6 +114,25 @@
                       </select>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  {!!Form::label('direccion','Dirección',['class'=>'label'])!!}
+                  {!!Form::text('direccion',null, ['class'=>'form-control','placeholder'=>'direccion', 'autocomplete'=>'off'])!!}
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
+                  <input name="cp" id="cp" type="number" class="form-control" placeholder="Código postal" maxlength="5">
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('municipio','Municipio',['class'=>'label'])!!}
+                  <input name="municipio" id="municipio" class="form-control" placeholder="Municipio" autocomplete="off" maxlength="11"
+                    required>
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('quiero_ser','De grande quiero ser...',['class'=>'label'])!!}
+                  <input name="quiero_ser" id="quiero_ser" class="form-control" placeholder="De grande quiero ser" autocomplete="off">
                 </div>
               </div>
               <div class="row">
