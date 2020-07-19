@@ -130,7 +130,7 @@ thead{
                   
               
               <img class="avatar border-gray" src="{{asset('img/yo.jpg')}}" alt="...">
-              <h5 class="title">{{$alumno->nombres}}</h5>
+              <h5 class="title">{{$alumno->nombres}} <span class="mrEK_ Szr5J coreSpriteVerifiedBadge " title="Verificado">Verificado</span></h5>
             </a>
            
             <p class="description">

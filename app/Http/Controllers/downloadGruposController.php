@@ -3,39 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\alumno;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-class listaAlumnos extends Controller
+use Barryvdh\DomPDF\Facade as PDF;
+class downloadGruposController extends Controller
 {
-/**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $nombres = $request->get('nombres');
-        $grado = $request->get('grado');
-        $grupo = $request->get('grupo');
-
-        $alumnos = \App\alumno::orderBy('grado', 'ASC')
-        ->nombres($nombres)
-        ->grado($grado)
-        ->grupo($grupo)
-        ->paginate(5);
-        
-        return view('listaAlumnos.index', compact('alumnos'));
+        $pdf = PDF::loadView('download.pdf.listaGrupos');
+        return $pdf->stream('invoice.pdf'); 
     }
 
     /**
@@ -67,22 +46,7 @@ class listaAlumnos extends Controller
      */
     public function show($id)
     {
-        $alumnos = alumno::find($id);
-        if ($alumnos==null){
- 
-         return view('errors.404');
-        }else{
- 
- 
-            $alumno = alumno::find($id)
-            ->where('id', '=', $id)
-            ->first();
-
-            return view('listaAlumnos.show', compact('alumno'));
-        }
-
-
-      
+        //
     }
 
     /**

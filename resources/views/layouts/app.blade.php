@@ -38,6 +38,13 @@
       <style>
        
 
+        .act{
+          background: #b72207;
+          border-radius: 6px;
+          color: #ffffff;
+          font-size: 15px; 
+          padding-left: 5px;
+          display: block !important;
         }
         </style>
 </head>
@@ -68,7 +75,7 @@
               </li>
               <li class="{{request()->is('admin/listaAlumnos') ? 'active' : '' }}">
                 <a href="{{ route('listaAlumnos') }}">
-                  <p class="slider-label">Alumnos</p>
+                  <span><p class="slider-label">Alumnos <p style="display: none;" >INFO DE ALUMNO</p></p>
                 </a>
               </li>
               <li class="{{request()->is('admin/docentes') ? 'active' : '' }}">
