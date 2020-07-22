@@ -1,32 +1,7 @@
 @extends('layouts.app')
 
 @section('title', "info | {$alumno->nombres}")
-<style>
-  table {
-   width: 100%;
-  border-radius: 15px;
-}
-th, td {
-   width: 10%;
-   text-align: left;
-   vertical-align: top;
-   border: 1px solid rgba(82, 82, 82, 0.455);
-   padding: 0.3em;
-}
-thead{
-  background: rgb(149, 149, 149);
-  color: #ffffff;
-}
-.deposito {
-    background: rgb(0, 141, 45);
-    color: #ffffff;
-  }
 
-  .retiro {
-    background: rgb(141, 5, 0);
-    color: #ffffff;
-  }
-</style>
 
 @section('content') 
 <!-- Button trigger modal -->
@@ -50,7 +25,7 @@ thead{
                 <div class="col-sm">
 
                   {!!Form::label('accion','se realiza...',['class'=>'label'])!!}
-                  <input name="accion" type="text" class="form-control accion" id="accion" id="recipient-name" readonly>
+                  <input name="accion" type="text" class="form-control accion" id="accion" id="recipient-name" >
 
                 </div>
                 <div class="col-sm">
@@ -62,7 +37,9 @@ thead{
               <label for="accion-para" class="col-form-label ">Para...</label>
             <input name="nombre" type="text" class="form-control" id="accion-para" value="{{$alumno->nombres}}&nbsp;{{$alumno->apellido_paterno}}&nbsp;{{$alumno->apellido_materno}}" readonly>
             <input name="antes" type="text" class="form-control" id="antes" value="{{$alumno->ndolares}}" hidden >
-            <input name="actual" type="text" class="form-control" id="actual" hidden>
+            <input name="id_alumno" type="text" class="form-control" id="id_alumno" value="{{$alumno->id}}" hidden >
+
+            <input name="actual" type="text" class="form-control" id="actual" hidden >
 
             <label for="recipient-name" class="col-form-label titulo-accion">Desposito/Retiro</label>
             <input name="cantidad" type="text" class="form-control" id="cantidad" id="recipient-name" >
@@ -120,7 +97,7 @@ thead{
     <div class="col-md-4">
       <div class="card card-user">
         <div class="image">
-          <img src="{{asset('img/nat.jpg')}}" width="" alt="...">
+          <img src="{{asset('img/ntcd.jpg')}}" width="" alt="...">
         </div>
        
         <div class="card-body">
@@ -130,17 +107,22 @@ thead{
                   
               
               <img class="avatar border-gray" src="{{asset('img/yo.jpg')}}" alt="...">
-              <h5 class="title">{{$alumno->nombres}} <span class="mrEK_ Szr5J coreSpriteVerifiedBadge " title="Verificado">Verificado</span></h5>
+              <h5 class="title">{{ $alumno->nombres }}&nbsp;{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }} </h5>
             </a>
            
             <p class="description">
               @ {{$alumno->matricula}}
             </p>
           </div>
+          <p  class="description text-center">
+            "{{$alumno->grado}}°{{$alumno->grupo}}"
+           
+          </p>
           <p class="description text-center">
             "De grande quiero ser {{$alumno->quiero_ser}}"
            
           </p>
+        </br>
         </div>
         <div class="card-footer">
           <hr>
@@ -153,18 +135,16 @@ thead{
                 </h5>
               </div>
              
-              <div class="col-sm-9 mr-auto" >
-                <button style="font-size: 14px;" type="button" class="btn btn-success" data-toggle="modal"
+              <div  class="col-sm-9 mr-auto" >
+                <button style="font-size: 23px; padding: 10px;" type="button" class="btn btn-success" data-toggle="modal"
                 data-target="#depositoRetiro" data-whatever="deposito">
                 +$
               </button>
-              <button style="font-size: 14px;" type="button" class="btn btn-danger" data-toggle="modal"
+              <button style="font-size: 23px; padding: 10px;" type="button" class="btn btn-danger" data-toggle="modal"
               data-target="#depositoRetiro" data-whatever="retiro">
               -$
             </button>
-            <a href="{{route('ndolares.show',['id' => $alumno->matricula])}}" style="font-size: 14px;" class="btn btn-primary" >
-              detalles
-          </a>
+            <a href="{{route('ndolares.show',['id' => $alumno->id])}}" style="font-size: 23px; padding: 10px;" class="btn btn-primary" > <i style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></a>
               </div>
             </div>
           </div>
@@ -174,31 +154,31 @@ thead{
     </div>
 
     <div class="col-md-8">
-      {!! Form::open(['route' => 'inscripcion.store', 'method'=>'POST']) !!}
-
+    <form  method="POST" action="{{route('inscripcion.update', $alumno->id)}}">
+       @csrf @method('PATCH')
       <div class="card card-user">
         <div class="card-header">
           <h5 class="card-title">información de alumno</h5>
         </div>
         <div class="card-body">
-          <form>
+         
             <div class="row">
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label>Matricula (disabled)</label>
-                  <input type="text" class="form-control" disabled="" placeholder="Company" value="{{$alumno->matricula}}">
+                  <input name="matricula" type="text" class="form-control" disabled="" placeholder="Company" value="{{$alumno->matricula}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Usuario</label>
-                  <input id="nombres" type="text" class="form-control" placeholder="Username" value="{{$alumno->nombres}}">
+                  <input  id="nombres" type="text" class="form-control" placeholder="Username" value="{{$alumno->nombres}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">CURP</label>
-                  <input type="email" class="form-control" placeholder="{{$alumno->curp}}">
+                  <input name="curp" type="email" class="form-control" placeholder="{{$alumno->curp}}">
                 </div>
               </div>
             </div>
@@ -207,19 +187,19 @@ thead{
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label>Nombres</label>
-                  <input type="text" class="form-control"  placeholder="Company" value="{{$alumno->nombres}}">
+                  <input name="nombres" type="text" class="form-control"  placeholder="Company" value="{{$alumno->nombres}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Apellido paterno</label>
-                  <input type="text" class="form-control" placeholder="apellido1" value="{{$alumno->apellido_paterno}}">
+                  <input name="apellido_paterno" type="text" class="form-control" placeholder="apellido1" value="{{$alumno->apellido_paterno}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Apellido paterno</label>
-                  <input type="text" class="form-control" placeholder="Apellido paterno" value="{{$alumno->apellido_materno}}">
+                  <input name="apellido_materno" type="text" class="form-control" placeholder="Apellido paterno" value="{{$alumno->apellido_materno}}">
                 </div>
               </div>
             </div>
@@ -227,19 +207,59 @@ thead{
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Fecha de nacimiento</label>
-                  <input type="date" class="form-control" placeholder="Fecha de nacimiento" value="{{$alumno->fecha_de_nacimiento}}">
+                  <input name="fecha_de_nacimiento" type="date" class="form-control" placeholder="Fecha de nacimiento" value="{{$alumno->fecha_de_nacimiento}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Municipio</label>
-                  <input type="text" class="form-control" placeholder="Municipio" value="{{$alumno->municipio}}">
+                  <input name="municipio" type="text" class="form-control" placeholder="Municipio" value="{{$alumno->municipio}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Dirección</label>
-                  <input type="text" class="form-control" placeholder="Dirección" value="{{$alumno->direccion}}">
+                  <input name="direccion" type="text" class="form-control" placeholder="Dirección" value="{{$alumno->direccion}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nombres de tutor</label>
+                  <input name="nombres_tutor" type="text" class="form-control" placeholder="Nombres de tutor" value="{{$alumno->nombres_tutor}}">
+                </div>
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                  <label>Apellido paterno de tutor</label>
+                  <input name="apellido_paterno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_paterno_tutor}}">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Apellido materno de tutor</label>
+                  <input  name="apellido_materno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_materno_tutor}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Teléfono del tutor</label>
+                  <input name="telefono_tutor" type="number" class="form-control" placeholder="Teléfono del tutor" value="{{$alumno->telefono_tutor}}">
+                </div>
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                  <label>E-mail de tutor</label>
+                  <input type="email" class="form-control" placeholder="correo del tutor" value="sergio.16070021@itsmotul.edu.mx">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Dirección del tutor</label>
+                  <input name="direccion_tutor" type="text" class="form-control" placeholder="Dirección de tutor" value="{{$alumno->direccion_tutor}}">
                 </div>
               </div>
             </div>
@@ -255,206 +275,13 @@ thead{
           </form>
         </div>
       </div>
-      {!! Form::close() !!}
+      
 
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Calificaciones</h4>
-        </div>
-        <div class="card-body">
-          <!------------------- TABLA DE CALIFICACIONES------------------------------------->
-          <div class="table-responsive">
-            <table class="col-md-12" class="table-bordered">
-                <thead >
-                <th scope="row">UNIDADES CURRICULARES</th>
-                <th>PERIODOS DE
-                  EVALUACIÓN</th>
-                <th>1er</th>
-                <th>2°</th>
-                <th>3er</th>
-                <th>PROMEDIO FINAL</th>
+  <a href="{{route('calificacion.show', ['id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-hat-3"></i> Calificaciones</a>
+  <a href="{{route('calificacion.show', ['id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-bullet-list-67"></i> Asistencia</a>
 
-                </thead>
-              <tr>
-                <th  rowspan="2">ESPAÑOL</th>
-                <td>Nivel de desempeño</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <td>Calificación</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <th rowspan="2">Matemáticas</th>
-                <td>Nivel de desempeño</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <td>Calificación</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-
-              <tr>
-                <th rowspan="2">Inglés</th>
-                <td>Nivel de desempeño</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <td>Calificación</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <th rowspan="2">Conocimiento del medio</th>
-                <td>Nivel de desempeño</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <td>Calificación</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <th rowspan="2">PROMEDIO FINAL</th>
-                <td>Nivel de desempeño</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <td>Calificación</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-              </tr>
-            </table>
-            <!------------------- FIN TABLA DE CALIFICACIONES------------------------------------->
-            <table style="margin-top:1em !important;" class="col-md-12" class="table-bordered">
-
-              
-            
-            <tr>
-              <th>ARTES</th>
-              <td>Nivel de desempeño</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-
-            </tr>
-            <tr>
-              <th>EDUCACIÓN  SOCIOEMOCIONAL</th>
-              <td>Nivel de desempeño</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-
-            </tr>
-            <tr>
-              <th>EDUCACIÓN FÍSICA</th>
-              <td>Nivel de desempeño</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-
-            </tr>
-        
-            <tr>
-              <th rowspan="2">PROMEDIO FINAL</th>
-              <td>Nivel de desempeño</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-
-            </tr>
-            <tr>
-              <td>Calificación</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-            </tr>
-          </table>
-          <!-------____-------------------------------------------->
-            <!------------------- FIN TABLA DE CALIFICACIONES------------------------------------->
-            <table style="margin-top:1em !important;" class="col-md-12" class="table-bordered">
-
-              
-            
-              <tr>
-                <th>AUTONOMÍA CURRICULAR</th>
-                <td>Nivel de desempeño</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-          
-              <tr>
-                <th rowspan="2">PROMEDIO FINAL</th>
-                <td>Nivel de desempeño</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-
-              </tr>
-              <tr>
-                <td>Calificación</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-              </tr>
-            </table>
-            <!-------____-------------------------------------------->
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
 </div>
 @endsection

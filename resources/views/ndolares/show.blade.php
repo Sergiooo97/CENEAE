@@ -1,7 +1,32 @@
 @extends('layouts.app')
 
-@section('title', 'Alumnos | CENEAE')
+@section('title', "N-dolares | CENEAE")
+<style>
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #007B8D !important;
+    border-color: #007B8D !important;
+  }
 
+  .page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007B8D !important;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+  }
+
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff !important;
+    background-color: #007B8D;
+    border-color: #007B8D;
+  }
+  </style>
 @section('content')
 <div class="notificationsss bounce ">
       <div  class="container  ">
@@ -29,8 +54,7 @@
                       <th>
                         Última modificación
                       </th>                    
-                      <th>                        
-                      </th>
+                    
                     </thead>
                     <tbody>        
                       @foreach ($alumnos as $alumno)           
@@ -42,24 +66,26 @@
                           {{ $alumno->nombre }}
                         </td>                      
                         <td>
-                         {{$alumno->accion}} - {{$alumno->cantidad}}
+                         {{$alumno->accion}} de ${{$alumno->cantidad}}
                         </td>
                         <td>
                           {{$alumno->created_at}}
                         </td>                      
-                        <td>
-                        <button class="btn btn-primary">Detalles</button>
-                        </td>
+                        
                       </tr>       
                       @endforeach              
                     </tbody>
                   </table>
+                  {{ $alumnos->appends($_GET)->links() }}
+
                   <!-------------------------------------------termina tabla ---------------------------------->
 
                   
                 </div>
               </div>
             </div>
+            <a href="{{route('listaAlumnos.show',['id' => $alumno->id_alumno])}}" class="btn btn-info"> info del alumno <i  class="nc-icon nc-alert-circle-i"></i></a>
+
           </div>     
         </div>          
      

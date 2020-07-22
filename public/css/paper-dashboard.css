@@ -5047,7 +5047,7 @@ License - nucleoapp.com/license/
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"] i,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active .sidebar-mini-icon,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active>a {
-  color: #be2207;    Route::get('/home', 'HomeController@index')->name('home');
+  color: #ffffff;    
 
   opacity: 1;
 }

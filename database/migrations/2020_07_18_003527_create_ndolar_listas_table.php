@@ -20,7 +20,6 @@ class CreateNdolarListasTable extends Migration
             $table->string('grado');
             $table->string('grupo');
             $table->integer('cantidad');
-            $table->timestamps();
         });
     }
 

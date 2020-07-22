@@ -106,7 +106,25 @@ class inscripcionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $users = new alumno();
+        $users ->matricula = $request->input('matricula');
+        $users ->nombres   = $request->input('nombres');
+        $users ->apellido_paterno        = $request->input('apellido_paterno');
+        $users ->apellido_materno        = $request->input('apellido_materno');
+        $users ->fecha_de_nacimiento    = $request->input('fecha_de_nacimiento');
+        $users ->curp  = $request->input('curp');
+        $users ->direccion = $request->input('direccion');
+        $users ->municipio = $request->input('municipio');
+        $users ->nombres_tutor = $request->input('nombres_tutor');
+        $users ->apellido_paterno_tutor = $request->input('apellido_paterno_tutor');
+        $users ->apellido_materno_tutor = $request->input('apellido_materno_tutor');
+        $users ->direccion_tutor = $request->input('direccion_tutor');
+        $users ->telefono_tutor = $request->input('telefono_tutor');
+        $users->update();
+
+
+        return redirect()->route('listaAlumnos.show', $id);
     }
 
     /**

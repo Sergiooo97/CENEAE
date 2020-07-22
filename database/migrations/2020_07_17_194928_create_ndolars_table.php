@@ -15,6 +15,7 @@ class CreateNdolarsTable extends Migration
     {
         Schema::create('ndolars', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_alumno');
             $table->string('matricula');
             $table->string('nombre');
             $table->string('accion');

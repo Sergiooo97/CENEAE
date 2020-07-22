@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\sheets\asistencia;
 
 use App\alumno;
 use Illuminate\Contracts\View\View;
@@ -10,9 +10,13 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
-use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class segundoAExport implements FromView, WithDrawings
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
+
+class A2AExport implements FromView, WithDrawings, WithTitle,  WithEvents,ShouldAutoSize
 {
     public function drawings()
     {
@@ -29,7 +33,7 @@ class segundoAExport implements FromView, WithDrawings
         $draw_segey->setDescription('This is my logo');
         $draw_segey->setPath(public_path('/img/segeey.png'));
         $draw_segey->setHeight(100);
-        $draw_segey->setCoordinates('G2');
+        $draw_segey->setCoordinates('P2');
     
         return [$draw_ceneae, $draw_segey];
        
@@ -42,11 +46,26 @@ class segundoAExport implements FromView, WithDrawings
         public function view(): View
         {
             
-            return view('download.pdf.listaGrupos', [
+            return view('download.asistencia.listaAsistencia', [
                 'alumnos' => DB::table('alumnos')->where('grado', '=', '2')
                 ->where('grupo', '=', 'A')
                 ->get(),
                
             ]);
         }
+        public function title(): string
+    {
+        return 'primer grado ';
+    }
+    public function registerEvents(): array
+{
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+
+                // Landscope orientation
+                $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+            }
+        ];
 }
+}
+

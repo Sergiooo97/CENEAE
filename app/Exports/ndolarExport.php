@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Exports;
-use App\Exports\UsersExport;
-use App\Exports\sheets\alumnosPerMonthSheet;
 
+use App\ndolar_lista;
+use App\Exports;
+
+use App\Exports\sheets\ndolarPerGrupo;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
-use App\alumno;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithTitle;
@@ -16,8 +17,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 Use \Maatwebsite\Excel\Sheet;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-
-class UsersExport implements WithMultipleSheets, WithHeadings
+class ndolarExport  implements WithMultipleSheets, WithHeadings
 {
 
     use Exportable;
@@ -49,8 +49,9 @@ class UsersExport implements WithMultipleSheets, WithHeadings
         $sheets = [];
 
         for ($grado = 1; $grado <= 6; $grado++) {
-            $sheets[] = new alumnosPerMonthSheet($this->year, $grado);
+            $sheets[] = new ndolarPerGrupo($this->year, $grado);
         }
         return $sheets;
     }
 }
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\sheets\listas;
 
 use App\alumno;
 use Illuminate\Contracts\View\View;
@@ -11,8 +11,9 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
-
-class primeroBExport implements FromView, WithDrawings
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
+class terceroBExport implements FromView, WithDrawings,  WithEvents
 {
     public function drawings()
     {
@@ -43,10 +44,20 @@ class primeroBExport implements FromView, WithDrawings
         {
             
             return view('download.pdf.listaGrupos', [
-                'alumnos' => DB::table('alumnos')->where('grado', '=', '1')
+                'alumnos' => DB::table('alumnos')->where('grado', '=', '3')
                 ->where('grupo', '=', 'B')
                 ->get(),
                
             ]);
+        }
+        public function registerEvents(): array
+        {
+                return [
+                    AfterSheet::class => function (AfterSheet $event) {
+        
+                        // Landscope orientation
+                        $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+                    }
+                ];
         }
 }

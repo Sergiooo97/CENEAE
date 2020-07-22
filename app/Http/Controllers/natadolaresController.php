@@ -15,11 +15,19 @@ class natadolaresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $nombres = $request->get('nombres');
+        $grado = $request->get('grado');
+        $grupo = $request->get('grupo');
 
-        $alumnos = DB::table('ndolar_listas')
-        ->orderBy('grado', 'ASC')->orderBy('grupo', 'ASC')->get();
+
+        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
+        ->orderBy('grado', 'ASC')->orderBy('grupo', 'ASC')
+        ->nombres($nombres)
+        ->grado($grado)
+        ->grupo($grupo)
+        ->paginate(5);
         return view('ndolares.index', compact('alumnos'));    }
 
     /**

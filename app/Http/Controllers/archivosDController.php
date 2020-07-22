@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\ndolar;
-use App\alumno;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+
 use Illuminate\Http\Request;
 
-class ndolaresController extends Controller
+class archivosDController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +13,7 @@ class ndolaresController extends Controller
      */
     public function index()
     {
-       
+        return view('download.archivos.index');
     }
 
     /**
@@ -37,19 +34,7 @@ class ndolaresController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $users = new ndolar();
-        $users ->id_alumno       = $request->input('id_alumno');
-        $users ->matricula       = $request->input('matricula');
-        $users ->nombre   = $request->input('nombre');
-        $users ->accion        = $request->input('accion');
-        $users ->cantidad        = $request->input('cantidad');
-        $users ->antes        = $request->input('antes');
-        $users ->nuevo        = $request->input('actual');
-        $users ->comentario = $request->input('comentario');
-        $users->save();
-        return back();
-
+        //
     }
 
     /**
@@ -60,18 +45,7 @@ class ndolaresController extends Controller
      */
     public function show($id)
     {
-        $alumnos = alumno::find($id);
-        //if ($alumnos==null){
- 
-        // return view('errors.404');
-        //}else{
-            $alumnos = \App\ndolar::orderBy('created_at','desc')
-            ->where('id_alumno', '=', $id)
-            ->paginate(5);
-            
-
-            return view('ndolares.show', compact('alumnos'));
-       // }
+        //
     }
 
     /**
