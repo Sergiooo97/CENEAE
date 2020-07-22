@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <a href="{{route('listaAlumnos')}}">
+        <a href="{{route('alumnos.index')}}">
           <div class="card-footer ">
             <hr>
             <div class="stats">

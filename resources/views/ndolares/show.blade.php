@@ -84,7 +84,7 @@
                 </div>
               </div>
             </div>
-            <a href="{{route('listaAlumnos.show',['id' => $alumno->id_alumno])}}" class="btn btn-info"> info del alumno <i  class="nc-icon nc-alert-circle-i"></i></a>
+            <a href="{{route('alumnos.show',['id' => $alumno->id_alumno])}}" class="btn btn-info"> info del alumno <i  class="nc-icon nc-alert-circle-i"></i></a>
 
           </div>     
         </div>          

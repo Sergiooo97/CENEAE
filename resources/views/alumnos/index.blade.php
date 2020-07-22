@@ -41,7 +41,7 @@
           <div class="card-body">
             <div class="table-responsive">
               <!-------------------------------------------empieza tabla ---------------------------------->
-              <form action="{{route('listaAlumnos')}}" method="GET" class="form-inline pull-right" role="search">
+              <form action="{{route('alumnos.index')}}" method="GET" class="form-inline pull-right" role="search">
                 <label for="grado"> Grado: </label>
                 <select name="grado" class="form-control" id="grado" onchange="this.form.submit()">
                   <option value="{{request('grado')}}">{{request('grado')}}</option>
@@ -118,7 +118,7 @@
                     </td>
 
                     <td>
-                      <a href="{{route('listaAlumnos.show',['id' => $alumno->id])}}" class="btn btn-info"> info <i  class="nc-icon nc-alert-circle-i"></i></a>
+                      <a href="{{route('alumnos.show',['id' => $alumno->id])}}" class="btn btn-info"> info <i  class="nc-icon nc-alert-circle-i"></i></a>
 
 
 

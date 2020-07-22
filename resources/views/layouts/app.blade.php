@@ -78,7 +78,7 @@
               </a>
             </li>
             <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}">
-              <a href="{{ route('listaAlumnos') }}">
+              <a href="{{ route('alumnos.index') }}">
                 <p class="slider-label"><i class="nc-icon nc-satisfied"></i>Alumnos</p>
               </a>
             </li>
@@ -99,7 +99,7 @@
               </a>
             </li>
             <li class="{{request()->is('admin/alumno/inscripcion') ? 'active' : '' }}">
-              <a href="{{ route('inscripcion.index') }}">
+              <a href="{{ route('alumnos.create') }}">
                 <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Registro</p>
               </a>
             </li>

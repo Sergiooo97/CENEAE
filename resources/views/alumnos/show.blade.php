@@ -110,15 +110,15 @@
               <h5 class="title">{{ $alumno->nombres }}&nbsp;{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }} </h5>
             </a>
            
-            <p class="description">
+            <p class="description slider-label">
               @ {{$alumno->matricula}}
             </p>
           </div>
-          <p  class="description text-center">
+          <p  class="description text-center slider-label">
             "{{$alumno->grado}}°{{$alumno->grupo}}"
            
           </p>
-          <p class="description text-center">
+          <p class="description text-center slider-label">
             "De grande quiero ser {{$alumno->quiero_ser}}"
            
           </p>
@@ -153,9 +153,7 @@
     
     </div>
 
-    <div class="col-md-8">
-    <form  method="POST" action="{{route('inscripcion.update', $alumno->id)}}">
-       @csrf @method('PATCH')
+    <div class="col-md-8"> 
       <div class="card card-user">
         <div class="card-header">
           <h5 class="card-title">información de alumno</h5>
@@ -172,13 +170,13 @@
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Usuario</label>
-                  <input  id="nombres" type="text" class="form-control" placeholder="Username" value="{{$alumno->nombres}}">
+                  <input disabled="" id="nombres" type="text" class="form-control" placeholder="Username" value="{{$alumno->nombres}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">CURP</label>
-                  <input name="curp" type="email" class="form-control" placeholder="{{$alumno->curp}}">
+                  <input disabled="" name="curp" type="email" class="form-control" placeholder="{{$alumno->curp}}">
                 </div>
               </div>
             </div>
@@ -187,19 +185,19 @@
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label>Nombres</label>
-                  <input name="nombres" type="text" class="form-control"  placeholder="Company" value="{{$alumno->nombres}}">
+                  <input disabled="" name="nombres" type="text" class="form-control"  placeholder="Company" value="{{$alumno->nombres}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Apellido paterno</label>
-                  <input name="apellido_paterno" type="text" class="form-control" placeholder="apellido1" value="{{$alumno->apellido_paterno}}">
+                  <input disabled="" name="apellido_paterno" type="text" class="form-control" placeholder="apellido1" value="{{$alumno->apellido_paterno}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Apellido paterno</label>
-                  <input name="apellido_materno" type="text" class="form-control" placeholder="Apellido paterno" value="{{$alumno->apellido_materno}}">
+                  <input disabled="" name="apellido_materno" type="text" class="form-control" placeholder="Apellido paterno" value="{{$alumno->apellido_materno}}">
                 </div>
               </div>
             </div>
@@ -207,19 +205,19 @@
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Fecha de nacimiento</label>
-                  <input name="fecha_de_nacimiento" type="date" class="form-control" placeholder="Fecha de nacimiento" value="{{$alumno->fecha_de_nacimiento}}">
+                  <input disabled="" name="fecha_de_nacimiento" type="date" class="form-control" placeholder="Fecha de nacimiento" value="{{$alumno->fecha_de_nacimiento}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Municipio</label>
-                  <input name="municipio" type="text" class="form-control" placeholder="Municipio" value="{{$alumno->municipio}}">
+                  <input disabled="" name="municipio" type="text" class="form-control" placeholder="Municipio" value="{{$alumno->municipio}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Dirección</label>
-                  <input name="direccion" type="text" class="form-control" placeholder="Dirección" value="{{$alumno->direccion}}">
+                  <input disabled="" name="direccion" type="text" class="form-control" placeholder="Dirección" value="{{$alumno->direccion}}">
                 </div>
               </div>
             </div>
@@ -227,19 +225,19 @@
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nombres de tutor</label>
-                  <input name="nombres_tutor" type="text" class="form-control" placeholder="Nombres de tutor" value="{{$alumno->nombres_tutor}}">
+                  <input disabled="" name="nombres_tutor" type="text" class="form-control" placeholder="Nombres de tutor" value="{{$alumno->nombres_tutor}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Apellido paterno de tutor</label>
-                  <input name="apellido_paterno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_paterno_tutor}}">
+                  <input disabled="" name="apellido_paterno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_paterno_tutor}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Apellido materno de tutor</label>
-                  <input  name="apellido_materno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_materno_tutor}}">
+                  <input disabled=""  name="apellido_materno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_materno_tutor}}">
                 </div>
               </div>
             </div>
@@ -247,36 +245,30 @@
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Teléfono del tutor</label>
-                  <input name="telefono_tutor" type="number" class="form-control" placeholder="Teléfono del tutor" value="{{$alumno->telefono_tutor}}">
+                  <input disabled="" name="telefono_tutor" type="number" class="form-control" placeholder="Teléfono del tutor" value="{{$alumno->telefono_tutor}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>E-mail de tutor</label>
-                  <input type="email" class="form-control" placeholder="correo del tutor" value="sergio.16070021@itsmotul.edu.mx">
+                  <input disabled="" type="email" class="form-control" placeholder="correo del tutor" value="sergio.16070021@itsmotul.edu.mx">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Dirección del tutor</label>
-                  <input name="direccion_tutor" type="text" class="form-control" placeholder="Dirección de tutor" value="{{$alumno->direccion_tutor}}">
+                  <input disabled="" name="direccion_tutor" type="text" class="form-control" placeholder="Dirección de tutor" value="{{$alumno->direccion_tutor}}">
                 </div>
               </div>
             </div>
-
-
-
-
             <div class="row">
               <div class="update ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary btn-round">Actualizar perfil</button>
+                <a href="{{route('alumnos.edit', $alumno->id)}}"  class="btn btn-primary btn-round">Actualizar datos</a>
               </div>
             </div>
-          </form>
+          
         </div>
       </div>
-      
-
     </div>
   </div>
   <a href="{{route('calificacion.show', ['id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-hat-3"></i> Calificaciones</a>

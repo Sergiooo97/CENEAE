@@ -33,32 +33,34 @@ Route::get('galeria', 'galeriaController@index')->name('galeria');
 |--------------------------------------------------------------------------
 |*/
 Route::prefix('admin')->group(function () {
-
   /* <------------------------------------------------RUTAS DEL ALUMNO ------------------------------------>*/
   Route::prefix('alumno')->group(function () {
-    Route::get('lista', 'listaAlumnos@index')->name('listaAlumnos');
+    Route::get('lista', 'alumnosController@index')->name('alumnos.index'); //LISTA DE ALUMNOS
+    Route::get('inscripcion', 'alumnosController@create')->name('alumnos.create'); //REGISTRO
+    Route::get('{id}/info', 'alumnosController@show')->where('id','[0-9]+')->name('alumnos.show'); //INFORMACIÓN DE ALUMNO
+    Route::post('inscripcion', 'alumnosController@store')->name('alumnos.store'); //GUARDAR DATOS EN LA BASE DE DATOS
+    Route::get('{id}/edit', 'alumnosController@edit')->name('alumnos.edit'); //VENTANA DE ACTUALIZACIÓN DE DATOS
+    Route::patch('{id}/actualizar', 'alumnosController@update')->name('alumnos.update'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
 
-  //ALUMNOS
-    Route::get('{id}/info', 'listaAlumnos@show')->where('id','[0-9]+')->name('listaAlumnos.show');
-  //REGISTRO DE ALUMNOS
-    Route::get('inscripcion', 'inscripcionController@index')->name('inscripcion.index');
-    Route::post('inscripcion', 'inscripcionController@store')->name('inscripcion.store');
-    Route::patch('{id}/update', 'inscripcionController@update')->where('id','[0-9]+')->name('inscripcion.update');
+    Route::get('{id}/calificacion', 'calificacionesController@show')
+    ->where('id','[0-9]+')->name('calificacion.show'); //CALIFICACIÓN DE ALUMNOS
 
-    //CALIFICACIÓN DE ALUMNOS
-    Route::get('{id}/calificacion', 'calificacionesController@show')->where('id','[0-9]+')->name('calificacion.show');
-
-  //REGISTRO DE Nata-dolares
-    Route::post('ndolares', 'ndolaresController@store')->name('ndolares.store');
-    Route::get('{id}/ndolares', 'ndolaresController@show')->name('ndolares.show');
-    
+  //Nata-dolares
+    Route::post('ndolares', 'ndolaresController@store')->name('ndolares.store'); //ALMACENAR DATOS EN LA BASE DE DATOS
+    Route::get('{id}/ndolares', 'ndolaresController@show')->name('ndolares.show'); //MOSTRAR LISTA DE NDOLARES
   });
 
     /* <------------------------------------------------RUTAS DEL DOCENTE ------------------------------------>*/
     Route::prefix('docente')->group(function () {
       //DOCENTES
         Route::get('lista', 'docentesController@index')->name('docentes.index');
-        });
+        Route::get('registro', 'docentesController@create')->name('docentes.create');
+        Route::get('{id}/info', 'docentesController@show')->name('docentes.show');
+        Route::post('registro', 'docentesController@store')->name('docentes.store');
+        Route::get('{id}/edit', 'docentesController@edit')->name('docentes.edit');
+        Route::patch('{id}/actualizar', 'docentesController@update')->name('docentes.update');
+
+      });
   /* <------------------------------------------------RUTAS DE DESCARGAS (ADMIN) ------------------------------------>*/
   Route::prefix('download')->group(function () { 
     //DESCARGAS DE ARCHIVOS
