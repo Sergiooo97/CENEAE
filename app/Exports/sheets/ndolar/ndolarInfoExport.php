@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exports\sheets\asistencia;
+namespace App\Exports\sheets\ndolar;
 
-use App\alumno;
+use App\ndolar;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +15,19 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-class A1BExport implements FromView, WithDrawings, WithTitle,  WithEvents,ShouldAutoSize
+
+class ndolarInfoExport implements FromView, WithDrawings, WithTitle,  WithEvents,ShouldAutoSize
 {
+    protected $alumnos;
+  public function __construct($alumnos=null)
+  {
+      $this->alumnos=$alumnos;
+  }
+  public function view(): View {
+      $alumnos=$this->alumnos;
+      return view("download.ndolar.info",compact("alumnos"));
+  }
+
     public function drawings()
     {
         $draw_ceneae = new Drawing();
@@ -32,38 +43,40 @@ class A1BExport implements FromView, WithDrawings, WithTitle,  WithEvents,Should
         $draw_segey->setDescription('This is my logo');
         $draw_segey->setPath(public_path('/img/segeey.png'));
         $draw_segey->setHeight(100);
-        $draw_segey->setCoordinates('P2');
+        $draw_segey->setCoordinates('F2');
     
         return [$draw_ceneae, $draw_segey];
        
     
         
     }
+
         /**
         * @return \Illuminate\Support\Collection
         */
-        public function view(): View
-        {
-            
-            return view('download.asistencia.listaAsistencia', [
-                'alumnos' => DB::table('alumnos')->where('grado', '=', '1')
-                ->where('grupo', '=', 'B')
-                ->get(),
-               
-            ]);
-        }
+
+       
+    
         public function title(): string
     {
         return 'primer grado ';
     }
     public function registerEvents(): array
-{
+    {
         return [
-            AfterSheet::class => function (AfterSheet $event) {
-
-                // Landscope orientation
+            AfterSheet::class    => function(AfterSheet $event) {
+                $cellRange = 'A1:W1'; // All headers             
                 $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-            }
+                $event->sheet->getStyle('D2:F1000')->applyFromArray([       
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                    ]
+                ]);
+              
+            },
+            
+            
         ];
-}
+    }
+
 }

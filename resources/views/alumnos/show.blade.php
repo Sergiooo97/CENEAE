@@ -61,6 +61,8 @@
 
               }                
             });
+           
+
         });
  
 </script>
@@ -122,7 +124,9 @@
             "De grande quiero ser {{$alumno->quiero_ser}}"
            
           </p>
+          <input id="ndolar-d" value="{{$alumno->ndolares}}" hidden/>
         </br>
+       
         </div>
         <div class="card-footer">
           <hr>
@@ -140,12 +144,22 @@
                 data-target="#depositoRetiro" data-whatever="deposito">
                 +$
               </button>
-              <button style="font-size: 23px; padding: 10px;" type="button" class="btn btn-danger" data-toggle="modal"
+              <button id="retiro" style="font-size: 23px; padding: 10px;" type="button" class="btn btn-danger" data-toggle="modal"
               data-target="#depositoRetiro" data-whatever="retiro">
               -$
             </button>
-            <a href="{{route('ndolares.show',['id' => $alumno->id])}}" style="font-size: 23px; padding: 10px;" class="btn btn-primary" > <i style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></a>
-              </div>
+            <a data-role="button" id="detalles" href="{{route('ndolares.show',['id' => $alumno->id , 'nombres' => $alumno->nombres])}}" style="font-size: 23px; padding: 10px;" class="btn btn-primary" hidden > <i style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></a>
+            <button id="boton" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres' => $alumno->nombres])}}'" style="font-size: 23px; padding: 10px;"><i style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></button>
+
+            <script>
+                  if(document.getElementById('ndolar-d').value <=0){
+                    document.getElementById('boton').disabled=true;
+                    document.getElementById('retiro').disabled=true;
+
+                  }
+              </script>
+
+          </div>
             </div>
           </div>
         </div>

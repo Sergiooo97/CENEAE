@@ -150,18 +150,18 @@
                 </button>
               </div>
               <div class="modal-body">
-                <a href="{{url('admin/download/asistencia-1A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
-                <a href="{{url('admin/download/asistencia-1B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
-                <a href="{{url('admin/download/asistencia-2A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°A</a>
-                <a href="{{url('admin/download/asistencia-2B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°B</a>
-                <a href="{{url('admin/download/asistencia-3A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°A</a>
-                <a href="{{url('admin/download/asistencia-3B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°B</a>
-                <a href="{{url('admin/download/asistencia-4A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°A</a>
-                <a href="{{url('admin/download/asistencia-4B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°B</a>
-                <a href="{{url('admin/download/asistencia-5A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°A</a>
-                <a href="{{url('admin/download/asistencia-5B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°B</a>
-                <a href="{{url('admin/download/asistencia-6A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
-                <a href="{{url('admin/download/asistencia-6B')}}" class="btn btn-danger"><<i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '1', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '1', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '2', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°A</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '2', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°B</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '3', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°A</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '3', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°B</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '4', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°A</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '4', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°B</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '5', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°A</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '5', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°B</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '6', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
+                <a href ="{{route('exportar_asistencia',['grado' => '6', 'grupo' => 'B'])}}" class="btn btn-danger"><<i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
                 <a href="{{url('admin/download/lista-todos')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> Todos (Sin formato)</a>
               </div>
               <div class="modal-footer">
@@ -182,18 +182,18 @@
                 </button>
               </div>
               <div class="modal-body">
-                <a href="{{url('admin/download/lista-1A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
-                <a href="{{url('admin/download/lista-1B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
-                <a href="{{url('admin/download/lista-2A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°A</a>
-                <a href="{{url('admin/download/lista-2B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°B</a>
-                <a href="{{url('admin/download/lista-3A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°A</a>
-                <a href="{{url('admin/download/lista-3B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°B</a>
-                <a href="{{url('admin/download/lista-4A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°A</a>
-                <a href="{{url('admin/download/lista-4B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°B</a>
-                <a href="{{url('admin/download/lista-5A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°A</a>
-                <a href="{{url('admin/download/lista-5B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°B</a>
-                <a href="{{url('admin/download/lista-6A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
-                <a href="{{url('admin/download/lista-6B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
+                <a href ="{{route('exportar_lista',['grado' => '1', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
+                <a href ="{{route('exportar_lista',['grado' => '1', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
+                <a href ="{{route('exportar_lista',['grado' => '2', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°A</a>
+                <a href ="{{route('exportar_lista',['grado' => '2', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 2°B</a>
+                <a href ="{{route('exportar_lista',['grado' => '3', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°A</a>
+                <a href ="{{route('exportar_lista',['grado' => '3', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 3°B</a>
+                <a href ="{{route('exportar_lista',['grado' => '4', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°A</a>
+                <a href ="{{route('exportar_lista',['grado' => '4', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 4°B</a>
+                <a href ="{{route('exportar_lista',['grado' => '5', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°A</a>
+                <a href ="{{route('exportar_lista',['grado' => '5', 'grupo' => 'B'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 5°B</a>
+                <a href ="{{route('exportar_lista',['grado' => '6', 'grupo' => 'A'])}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
+                <a href ="{{route('exportar_lista',['grado' => '6', 'grupo' => 'B'])}}" class="btn btn-danger"><<i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
                 <a href="{{url('admin/download/lista-todos')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> Todos (Sin formato)</a>
               </div>
               <div class="modal-footer">

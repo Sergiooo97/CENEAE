@@ -34,7 +34,7 @@
           <div class="col-md-12">
             <div class="card bounceInleft">
               <div class="card-header">
-                <h4 class="card-title">Banco de CENEAE</h4>
+                <h4 class="card-title">Banco de CENEAE </h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -57,10 +57,10 @@
                     
                     </thead>
                     <tbody>        
-                      @foreach ($alumnos as $alumno)           
+                      @foreach ($alumnos  as $alumno)           
                       <tr>
                         <td>
-                          {{ $alumno->matricula }}
+                          {{ $alumno->id_alumno }}
                         </td>
                         <td>
                           {{ $alumno->nombre }}
@@ -78,14 +78,12 @@
                   </table>
                   {{ $alumnos->appends($_GET)->links() }}
 
-                  <!-------------------------------------------termina tabla ---------------------------------->
-
-                  
+                  <!-------------------------------------------termina tabla ---------------------------------->                 
                 </div>
               </div>
             </div>
-            <a href="{{route('alumnos.show',['id' => $alumno->id_alumno])}}" class="btn btn-info"> info del alumno <i  class="nc-icon nc-alert-circle-i"></i></a>
-
+            <a href="{{route('alumnos.show',['id' => $id_alumno->id])}}" class="btn btn-info"> info del alumno<i  class="nc-icon nc-alert-circle-i"></i></a>
+            <a href="{{route('exportar_ndolar_info',['id' => $id_alumno->id, 'nombre'=>$id_alumno->nombres])}}" class="btn btn-danger">Descargar historial de {{$id_alumno->nombres}} <i  class="nc-icon nc-alert-circle-i"></i></a>
           </div>     
         </div>          
      

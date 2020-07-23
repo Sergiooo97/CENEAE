@@ -71,7 +71,7 @@
                     </div>
                     @if (Route::has('password.request'))
                   
-                    <a id="register"class="btn btn-link" href="{{ route('inscripcion.index') }}"> ¿No tienes cuenta? registrate aquí</a>
+                    <a id="register"class="btn btn-link" href="{{ route('alumnos.create') }}"> ¿No tienes cuenta? registrate aquí</a>
                 @endif
                     <div class="text-center p-t-12">
                         <span class="txt1">

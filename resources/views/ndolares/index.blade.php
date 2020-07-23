@@ -81,7 +81,14 @@
                       </th>
                     </thead>
                     <tbody>   
-                      @foreach ($alumnos as $alumno)                 
+                      
+                      @foreach ($alumnos as $alumno)  
+                      <script>
+                        if(document.getElementById('-i').value >=0){
+                          document.getElementById('-b').disabled=true;
+                          document.getElementById('retiro').disabled=true;
+                        }
+                    </script>                 
                       <tr>
                         <td>
                           {{ $alumno->matricula }}
@@ -93,17 +100,19 @@
                           {{ $alumno->grado}}{{ $alumno->grupo }}
                         </td>
                         <td>
+                          <input id="-i" value="0" hidden/>
                           {{ $alumno->cantidad }}                        </td>                      
                         <td>
-                          <a href="{{route('ndolares.show',['id' => $alumno->id])}}" style="font-size: 14px;" class="btn btn-info" >
-                            detalles
-                        </a>                        </td>
-                      </tr>     
-                      @endforeach                  
+                             
+                        <button id="-b" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres'=>$alumno->nombres])}}'"  style="font-size: 14px;">Detalles</button>
+                      </tr>    
+                           
+                      @endforeach  
+                                
                     </tbody>
                   </table>
                   {{ $alumnos->appends($_GET)->links() }}
-
+                 
                   <!-------------------------------------------termina tabla ---------------------------------->
                   <a href="{{url('admin/download/lista-ndolar')}}" class="btn btn-danger"><i class="fa fa-file-excel-o"
                     aria-hidden="true"></i> Descargar lISTAS (Sin formato)</a>

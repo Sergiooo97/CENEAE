@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\ndolar;
+use App\ndolar_lista;
 use App\alumno;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +17,20 @@ class ndolaresController extends Controller
      */
     public function index()
     {
-       
+        $nombres = $request->get('nombres');
+        $grado = $request->get('grado');
+        $grupo = $request->get('grupo');
+
+
+        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
+        ->orderBy('grado', 'ASC')->orderBy('grupo', 'ASC')
+        ->nombres($nombres)
+        ->grado($grado)
+        ->grupo($grupo)
+        ->paginate(5);
+        return view('ndolares.index', compact('alumnos'));    
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -61,6 +74,8 @@ class ndolaresController extends Controller
     public function show($id)
     {
         $alumnos = alumno::find($id);
+        $id_alumno = alumno::find($id);
+
         //if ($alumnos==null){
  
         // return view('errors.404');
@@ -70,7 +85,7 @@ class ndolaresController extends Controller
             ->paginate(5);
             
 
-            return view('ndolares.show', compact('alumnos'));
+            return view('ndolares.show', compact('alumnos', 'id_alumno'));
        // }
     }
 
