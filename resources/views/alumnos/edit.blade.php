@@ -35,7 +35,7 @@
                 <div class="col-sm">
 
                   {!!Form::label('id','id',['class'=>'label'])!!}
-                <input name="matricula"id="id_al" class="form-control" value="{{$alumno->matricula}}"  readonly>
+                <input name="matricula"id="id_al" class="form-control" value="{{$alumno->matricula}}"  >
 
                 </div>
                 <div class="col-sm">

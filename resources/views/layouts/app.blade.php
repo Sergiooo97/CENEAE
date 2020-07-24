@@ -13,7 +13,9 @@
   <title>@yield('title')</title>
 
   <!--Styler  -->
+  
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
   <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
@@ -39,14 +41,17 @@
 
     
   <style>
-    .act {
-      background: #b72207;
-      border-radius: 6px;
-      color: #ffffff;
-      font-size: 15px;
-      padding-left: 5px;
+    .alumno-label-block {
       display: block !important;
     }
+    .alumno-label-none {
+      display: none !important;
+    }
+    .btn-volver-container a { font-size: 14px; 
+  text-decoration: none;
+  margin: 0px;
+   }
+   
   </style>
 </head>
 
@@ -77,9 +82,11 @@
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
               </a>
             </li>
-            <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}">
+            <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}{{request()->is('admin/alumno/*/info') ? 'active act' : '' }}">
               <a href="{{ route('alumnos.index') }}">
-                <p class="slider-label"><i class="nc-icon nc-satisfied"></i>Alumnos</p>
+                <p class="slider-label "><i class="nc-icon nc-satisfied"></i>Alumnos 
+                  {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
+                </p>
               </a>
             </li>
             <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
@@ -87,15 +94,28 @@
                 <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
               </a>
             </li>
+            <li class="{{request()->is('admin/grupos') ? 'active' : ''}}{{request()->is('admin/grupos/*/*/edit') ? 'active' : ''}}">
+              <a href="{{ route('grupos.index') }}">
+                <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos 
+                  {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                </p>
+              </a>
+            </li>
+
             <li class="{{request()->is('admin/calificaciones') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
                 <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Calificaciones</p>
               </a>
             </li>
 
-            <li class="{{request()->is('admin/ndolares') ? 'active' : '' }}">
+            <li class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/*') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
-                <p class="slider-label"><i class="nc-icon nc-money-coins"></i>Nata-Dolares</p>
+                <p class="slider-label"><i class="nc-icon nc-money-coins"></i>Dolares
+                  {{request()->is('admin/alumno/*/*/ndolares') ? '>historial' : ''}}
+                  {{request()->is('admin/alumno/ndolares/deposito') ? '>Deposito' : ''}}
+                  {{request()->is('admin/alumno/ndolares/retiro') ? '>retiro' : ''}}
+
+                </p>
               </a>
             </li>
             <li class="{{request()->is('admin/alumno/inscripcion') ? 'active' : '' }}">
@@ -108,7 +128,7 @@
                 <p class="slider-label"><i class="nc-icon nc-cloud-download-93"></i>Archivos</p>
               </a>
             </li>
-
+           
           </ul>
 
         </div>

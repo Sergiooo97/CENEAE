@@ -34,7 +34,8 @@
           <div class="col-md-12">
             <div class="card bounceInleft">
               <div class="card-header">
-                <h4 class="card-title">Banco de CENEAE </h4>
+                <h4 class="card-title btn-volver-container">Banco de CENEAE<a class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
+                  <i class="nc-icon nc-minimal-left"></i> Volver atrás</a> </h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -60,7 +61,7 @@
                       @foreach ($alumnos  as $alumno)           
                       <tr>
                         <td>
-                          {{ $alumno->id_alumno }}
+                          {{ $alumno->matricula }}
                         </td>
                         <td>
                           {{ $alumno->nombre }}
@@ -83,7 +84,7 @@
               </div>
             </div>
             <a href="{{route('alumnos.show',['id' => $id_alumno->id])}}" class="btn btn-info"> info del alumno<i  class="nc-icon nc-alert-circle-i"></i></a>
-            <a href="{{route('exportar_ndolar_info',['id' => $id_alumno->id, 'nombre'=>$id_alumno->nombres])}}" class="btn btn-danger">Descargar historial de {{$id_alumno->nombres}} <i  class="nc-icon nc-alert-circle-i"></i></a>
+            <a href="{{route('exportar_ndolar_info',['id' => $id_alumno->id, 'nombre'=>$id_alumno->nombres])}}" class="btn btn-warning">Descargar historial de {{$id_alumno->nombres}} <i  class="nc-icon nc-alert-circle-i"></i></a>
           </div>     
         </div>          
      

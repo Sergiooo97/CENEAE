@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\alumno;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 class alumnosController extends Controller
 {
     /**
@@ -22,6 +24,18 @@ class alumnosController extends Controller
         ->grupo($grupo)
         ->paginate(5);       
         return view('alumnos.index', compact('alumnos'));
+    }
+
+    public function orden(Request $request){
+        $nombres = $request->get('nombres');
+        $grado = $request->get('grado');
+        $grupo = $request->get('grupo');
+        $alumnos = \App\alumno::orderBy('apellido_paterno', 'ASC')
+        ->nombres($nombres)
+        ->grado('1')
+        ->grupo($grupo)
+        ->paginate(5);       
+        return view('alumnos.listaOrden', compact('alumnos'));
     }
     /**
      * Show the form for creating a new resource.
@@ -114,6 +128,17 @@ class alumnosController extends Controller
         $alumnos = alumno::find($id);
         $alumnos->update($request->all());
         return redirect(route('alumnos.show', $id));
+    }
+
+    public function updateOrden(Request $request, $id)
+    {
+        foreach ($request->get('orden') as $key => $value) {
+            $alumnos = alumno::find($id);
+            $asistencia = alumno::find($request->get('id')[$key]);
+            $asistencia->matricula = $value.$request->get('matricula')[$key];
+            $asistencia->update();
+        }
+        return redirect(route('alumnos.index'));
     }
 
     /**

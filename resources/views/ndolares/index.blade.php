@@ -28,6 +28,7 @@
   }
   </style>
 @section('content')
+
 <div class="notificationsss bounce ">
       <div  class="container  ">
         <div class="row">
@@ -83,12 +84,7 @@
                     <tbody>   
                       
                       @foreach ($alumnos as $alumno)  
-                      <script>
-                        if(document.getElementById('-i').value >=0){
-                          document.getElementById('-b').disabled=true;
-                          document.getElementById('retiro').disabled=true;
-                        }
-                    </script>                 
+                                 
                       <tr>
                         <td>
                           {{ $alumno->matricula }}
@@ -100,11 +96,20 @@
                           {{ $alumno->grado}}{{ $alumno->grupo }}
                         </td>
                         <td>
-                          <input id="-i" value="0" hidden/>
+                          <input id="ndolar-d" value="{{ $alumno->cantidad }} " hidden/>
                           {{ $alumno->cantidad }}                        </td>                      
                         <td>
-                             
-                        <button id="-b" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres'=>$alumno->nombres])}}'"  style="font-size: 14px;">Detalles</button>
+                             <td>
+                        <button id="-b" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres'=>$alumno->nombres])}}'"  style="font-size: 14px;">Historial</button>
+                        
+                    <script>
+                      if(document.getElementById('ndolar-d').value <=0){
+                        document.getElementById('boton').disabled=true;
+                        document.getElementById('retiro').disabled=true;
+    
+                      }
+                  </script>
+                      </td>
                       </tr>    
                            
                       @endforeach  
@@ -114,12 +119,21 @@
                   {{ $alumnos->appends($_GET)->links() }}
                  
                   <!-------------------------------------------termina tabla ---------------------------------->
-                  <a href="{{url('admin/download/lista-ndolar')}}" class="btn btn-danger"><i class="fa fa-file-excel-o"
-                    aria-hidden="true"></i> Descargar lISTAS (Sin formato)</a>
-                  
+                  <div style="margin-right: 1em;" class="form-group pull-right">
+                    <a href="{{route('ndolares.deposito')}}" class="btn btn-danger"><i class="nc-icon nc-money-coins"
+                      aria-hidden="true"></i>Retirar</a>
+                    <a href="{{route('ndolares.deposito')}}" class="btn btn-success"><i class="nc-icon nc-money-coins"
+                      aria-hidden="true"></i>Depositar</a>
+                
+                  </div>
+
+                 
                 </div>
               </div>
             </div>
+            <a href="{{url('admin/download/lista-ndolar')}}" class="btn btn-warning"><i class="fa fa-file-excel-o"
+              aria-hidden="true"></i> Descargar lISTAS (Sin formato)</a>
+            
           </div>     
         </div>          
      

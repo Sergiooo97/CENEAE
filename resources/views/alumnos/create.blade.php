@@ -16,20 +16,7 @@
             <h3>Datos del Alumno</h3>
             <div class="container">
 
-              <div class="row">
-                <div class="col-sm">
-                  {!!Form::label('periodo','periodo',['class'=>'label'])!!}
-                  <input id="periodo" class="form-control" placeholder="ejemplo: 1920">
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('lista','#lista',['class'=>'label'])!!}
-                  <input id="nLista" class="form-control" placeholder="ejemplo: 01">
-                </div>
-                <div class="col-sm">
-                </div>
-                <div class="col-sm">
-                </div>
-              </div>
+           
               <div class="row">
                 <div class="col-sm">
 

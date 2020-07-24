@@ -7,6 +7,7 @@ use App\alumno;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ndolaresController extends Controller
 {
@@ -15,8 +16,9 @@ class ndolaresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $nombres = $request->get('nombres');
         $grado = $request->get('grado');
         $grupo = $request->get('grupo');
@@ -37,9 +39,59 @@ class ndolaresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function deposito(Request $request)
     {
-        //
+        $nombres = $request->get('nombres');
+        $grado = $request->get('grado');
+        $grupo = $request->get('grupo');
+        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
+        ->nombres($nombres)
+        ->grado($grado)
+        ->grupo($grupo)
+        ->paginate(5);       
+        return view('ndolares.deposito', compact('alumnos'));
+    }
+    public function retiro(Request $request)
+    {
+        $nombres = $request->get('nombres');
+        $grado = $request->get('grado');
+        $grupo = $request->get('grupo');
+        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
+        ->nombres($nombres)
+        ->grado($grado)
+        ->grupo($grupo)
+        ->paginate(5);       
+        return view('ndolares.retiro', compact('alumnos'));
+    }
+ public function insertarDeposito(Request $request)
+    {
+        foreach ($request->get('cantidad') as $key => $value) {
+            $asistencia = new ndolar;
+            $asistencia->id_alumno =  $request->get('id_alumno')[$key];
+            $asistencia->matricula= $request->get('matricula')[$key];
+            $asistencia->nombre= $request->get('nombre')[$key];
+            $asistencia->accion= 'deposito';
+            $asistencia->antes= '0';
+            $asistencia->nuevo= '0';
+            $asistencia->cantidad = $value;
+            $asistencia->save();
+        }
+        return redirect(route('ndolares.deposito'));
+    }
+    public function insertarRetiro(Request $request)
+    {
+        foreach ($request->get('cantidad') as $key => $value) {
+            $asistencia = new ndolar;
+            $asistencia->id_alumno =  $request->get('id_alumno')[$key];
+            $asistencia->matricula= $request->get('matricula')[$key];
+            $asistencia->nombre= $request->get('nombre')[$key];
+            $asistencia->accion= 'retiro';
+            $asistencia->antes= '0';
+            $asistencia->nuevo= '0';
+            $asistencia->cantidad = $value;
+            $asistencia->save();
+        }
+        return redirect(route('ndolares.retiro'));
     }
 
     /**

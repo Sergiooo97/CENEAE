@@ -2,7 +2,6 @@
 
 @section('title', "info | {$alumno->nombres}")
 
-
 @section('content') 
 <!-- Button trigger modal -->
 <!-- Button trigger modal -->
@@ -76,10 +75,12 @@
   </div>
 </div>
 <script>
+  
   $('#depositoRetiro').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var recipient = button.data('whatever')
   var nombre =  $("#nombres").val(); 
+
 
   // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -141,7 +142,7 @@
              
               <div  class="col-sm-9 mr-auto" >
                 <button style="font-size: 23px; padding: 10px;" type="button" class="btn btn-success" data-toggle="modal"
-                data-target="#depositoRetiro" data-whatever="deposito">
+                data-target="#depositoRetiro" data-whatever="deposito" >
                 +$
               </button>
               <button id="retiro" style="font-size: 23px; padding: 10px;" type="button" class="btn btn-danger" data-toggle="modal"
@@ -152,6 +153,7 @@
             <button id="boton" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres' => $alumno->nombres])}}'" style="font-size: 23px; padding: 10px;"><i style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></button>
 
             <script>
+             
                   if(document.getElementById('ndolar-d').value <=0){
                     document.getElementById('boton').disabled=true;
                     document.getElementById('retiro').disabled=true;
@@ -169,8 +171,11 @@
 
     <div class="col-md-8"> 
       <div class="card card-user">
-        <div class="card-header">
-          <h5 class="card-title">información de alumno</h5>
+        <div class="card-header btn-volver-container">
+          <h5 class="card-title">información de alumno<a class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
+                                                     <i class="nc-icon nc-minimal-left"></i> Volver atrás</a>
+          </h5>
+          
         </div>
         <div class="card-body">
          
