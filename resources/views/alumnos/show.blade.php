@@ -19,17 +19,7 @@
       <div class="modal-body">
       <form id="form" action="{{route('ndolares.store')}}" method="POST">
         @csrf
-        @if (count($errors)>0))
-        <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
-          @foreach ($errors->all() as $error)
-          <ul>
-            <li>
-              {{ $error }}
-            </li>
-          </ul>
-          @endforeach
-        </div>
-    @endif
+        
           <div class="form-group">
             <div class="row">
                 <div class="col-sm">
@@ -308,24 +298,31 @@
 </div>
 @include('sweetalert::alert')
 <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 <script>
 
-
-  var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
-
-  if( has_errors ){
-    Swal.fire({
-        title: '<strong>Error :(</br> <ul style="font-size:16px; margin-right: 1.7em;"><li>Solo se permite numeros</li><li>Maximo 4 numeros</li><li>No puede quedar campo vacio</li></ul>',
-        type: 'errors',
-        icon: 'error',
-        html:jQuery("#ERROR_COPY").html(),
-        showCloseButton: true,
+/*
+  
       
-      })
-  }
-      
+  $('#btn-submit').on('click',function(e){
+    e.preventDefault();
+    var form = $(this).parents('form');
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function(isConfirm){
+        if (isConfirm) 
+        document.getElementById("form").submit();
+    });
+});
+
 
 function confirmAlert() {
  var accion =  document.getElementById("accion").value;
@@ -343,6 +340,7 @@ event.preventDefault();
             }).then((result) => {
               if (result.value) {
                 document.getElementById("form").submit();
+                
                 if(form.submit()){
                   Swal.fire(
                   'Retiro con éxito!',
@@ -353,6 +351,6 @@ event.preventDefault();
                 
               }
             })         
-   }
+   } */
 </script>
 @endsection

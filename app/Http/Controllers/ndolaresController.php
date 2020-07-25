@@ -94,7 +94,7 @@ class ndolaresController extends Controller
             $asistencia->cantidad = $value;
             $asistencia->save();
         }
-                return redirect(route('ndolares.deposito'));
+        return redirect(route('ndolares.index'))->withSuccess('Se realizó el deposito correctamente!');
     }
     public function insertarRetiro(Request $request)
     {      
@@ -117,7 +117,7 @@ class ndolaresController extends Controller
             $asistencia->cantidad = $value;
             $asistencia->save();
         }
-        return redirect(route('ndolares.index'))->withToastType('bien');
+        return redirect(route('ndolares.index'))->withSuccess('Se realizó el retiro correctamente!');
     }
 
     /**
@@ -128,16 +128,22 @@ class ndolaresController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'cantidad' => 'required|integer'
+        ],['cantidad.required' => 'Debe ingresar una cantidad',
+           'cantidad.integer' => 'Solo se permite numeros como cantidad']);
+    
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
                     //validation
-                    $request->validate([
+                  /*  $request->validate([
                         'cantidad' => 'required|integer'
                     ],
                     [
                     'cantidad.required' => 'Es necesario escribir una cantidad',
                     'cantidad.integer' => 'solo es posible escribir numeros para la cantiad',
-            
-
-                    ]);  
+                    ]); */
         
         $users = new ndolar();
         $users ->id_alumno       = $request->input('id_alumno');
@@ -149,8 +155,7 @@ class ndolaresController extends Controller
         $users ->nuevo        = $request->input('actual');
         $users ->comentario = $request->input('comentario');
         $users->save();
-        return back();
-
+        return redirect(route('alumnos.show',['id'=> $request->input('id_alumno')]))->with('success', 'el '. $request->input('accion').' se realizó con éxito');
     }
 
     /**

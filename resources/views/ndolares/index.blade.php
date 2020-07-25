@@ -137,4 +137,8 @@
           </div>     
         </div>          
      
+        @include('sweetalert::alert')
+    <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
 @endsection

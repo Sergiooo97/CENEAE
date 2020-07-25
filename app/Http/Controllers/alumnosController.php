@@ -142,7 +142,7 @@ class alumnosController extends Controller
     public function show($id)
     {
         $alumnos = alumno::find($id);
-        toast('información de '.$alumnos->nombres,'info');
+        //toast('información de '.$alumnos->nombres,'info');
 
 
         
