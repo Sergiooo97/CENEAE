@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\alumno;
+use ToSweetAlert;
+
 class grposController extends Controller
 {
     /**
@@ -13,6 +16,7 @@ class grposController extends Controller
      */
     public function index()
     {
+        
         return view('grupos.index');
     }
 
@@ -56,6 +60,8 @@ class grposController extends Controller
      */
     public function edit(Request $request, $grado, $grupo)
     {
+        toast('Asigna un número de lista y periodo a los alumnos :)','info');
+
         $grad = alumno::where('grado', $grado)->first();
         if (! $grad) {
             return \Redirect::back()->with('flash_error', 'No se ha encontrado');
@@ -80,6 +86,16 @@ class grposController extends Controller
      */
     public function update(Request $request, $id)
     {
+                    //validation
+                    $request->validate([
+                        'orden.*' => 'required|numeric'
+                    ],
+                    [
+                    'orden.*.required' => 'Estas dejando un campo vacio',
+                    'numeric' => 'solo es posible escribir numeros',
+        
+                    ]);  
+                    
         foreach ($request->get('orden') as $key => $value) {
             $alumnos = alumno::find($id);
             $alumno = alumno::find($request->get('id')[$key]);

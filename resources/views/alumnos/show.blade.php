@@ -17,14 +17,25 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="{{route('ndolares.store')}}" method="POST">
+      <form id="form" action="{{route('ndolares.store')}}" method="POST">
         @csrf
+        @if (count($errors)>0))
+        <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+          @foreach ($errors->all() as $error)
+          <ul>
+            <li>
+              {{ $error }}
+            </li>
+          </ul>
+          @endforeach
+        </div>
+    @endif
           <div class="form-group">
             <div class="row">
                 <div class="col-sm">
 
                   {!!Form::label('accion','se realiza...',['class'=>'label'])!!}
-                  <input name="accion" type="text" class="form-control accion" id="accion" id="recipient-name" >
+                  <input name="accion" type="text" class="form-control accion" id="accion" id="recipient-name" readonly>
 
                 </div>
                 <div class="col-sm">
@@ -68,7 +79,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button id="enviar" type="submit" class="btn btn-primary">Enviar</button>
+        <button id="enviar" type="submit" class="btn btn-primary" onclick="confirmAlert()">Enviar</button>
       </div>
     </form>
     </div>
@@ -295,4 +306,53 @@
 
 </div>
 </div>
+@include('sweetalert::alert')
+<script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
+<script>
+
+
+  var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
+
+  if( has_errors ){
+    Swal.fire({
+        title: '<strong>Error :(</br> <ul style="font-size:16px; margin-right: 1.7em;"><li>Solo se permite numeros</li><li>Maximo 4 numeros</li><li>No puede quedar campo vacio</li></ul>',
+        type: 'errors',
+        icon: 'error',
+        html:jQuery("#ERROR_COPY").html(),
+        showCloseButton: true,
+      
+      })
+  }
+      
+
+function confirmAlert() {
+ var accion =  document.getElementById("accion").value;
+  
+event.preventDefault();
+ let form = event.target;
+        Swal.fire({
+              title: '¿Realizar el '+ accion + ' para {{$alumno->nombres}}?',
+              text: "Estás a tiempo de cancelar!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si!'
+            }).then((result) => {
+              if (result.value) {
+                document.getElementById("form").submit();
+                if(form.submit()){
+                  Swal.fire(
+                  'Retiro con éxito!',
+                  'Ahora te mandaré a la lista :).',
+                  'success'
+                )
+                }
+                
+              }
+            })         
+   }
+</script>
 @endsection

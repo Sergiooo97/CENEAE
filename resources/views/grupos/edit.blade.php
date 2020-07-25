@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <form method="POST" action="{{route('grupos.update',$grad->grado)}}">
+                <form id="form" method="POST" action="{{route('grupos.update',$grad->grado)}}">
                   <div class="form-group form-inline pull-right">
                    
                   </div>
@@ -40,6 +40,13 @@
                     @foreach ($alumnos as $count=>$alumno)
                     @csrf @method('PATCH')
                     
+                    @if ($errors->has('orden.*'))
+                    <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+                      
+                      {{ $errors->first('orden.*') }}
+                    </div>
+                @endif
+
                     <input id="id[]" value="{{$alumno->id}}" name="id[]" class="form-control" hidden/>
                     <input  value="{{$alumno->matricula}}" name="matricula[]" class="form-control" hidden/>
                    
@@ -48,7 +55,7 @@
                       
                       <tr>
                         <td style="width: 3em;">
-                        <input id="orden[]"  value="{{++$count}}" name="orden[]" class="form-control"/>
+                        <input id="orden[]"  value="{{++$count}}" name="orden[]" class="form-control" required maxlength="2"/>
                         </td>
                         <td>
                           {{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}
@@ -90,7 +97,7 @@
           
   
           <!-- Button trigger modal -->
-          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#listas-infoModal">
+          <button type="submit" class="btn btn-primary" onclick="confirmAlert()">
             <i class="nc-icon nc-cloud-download-93"></i>
             ordenar
           </button>
@@ -103,5 +110,51 @@
   
         </div>
       </div>
+      @include('sweetalert::alert')
       <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+      @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+  
+      <script>
+  
+  
+        var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
+  
+        if( has_errors ){
+          Swal.fire({
+              title: '<strong>Error :(</br> <ul style="font-size:16px; margin-right: 1.7em;"><li>Solo se permite numeros</li><li>Maximo 2 numeros</li><li>No puede quedar campo vacio</li></ul>',
+              type: 'errors',
+              icon: 'error',
+              html:jQuery("#ERROR_COPY").html(),
+              showCloseButton: true,
+            
+            })
+        }
+            
+  
+     function confirmAlert() {
+      event.preventDefault();
+       let form = event.target;
+              Swal.fire({
+                    title: '¡Está seguro?',
+                    text: "Estás a tiempo de cancelar!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, ordenar grupo!'
+                  }).then((result) => {
+                    if (result.value) {
+                      document.getElementById("form").submit();
+                      if(form.submit()){
+                        Swal.fire(
+                        'Retiro con éxito!',
+                        'Ahora te mandaré a la lista :).',
+                        'success'
+                      )
+                      }
+                      
+                    }
+                  })         
+         }
+  </script>
 @endsection

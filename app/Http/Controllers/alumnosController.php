@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\alumno;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +43,7 @@ class alumnosController extends Controller
      */
     public function create()
     {
+        toast('Registro de alumnos :)','info');
         return view('alumnos.create');
     }
     /**
@@ -54,6 +54,60 @@ class alumnosController extends Controller
      */
     public function store(Request $request)
     {
+            //validation
+            $request->validate([
+                'nombres' => 'required|max:25|string',
+                'apellido_paterno' => 'required|max:10|string',
+                'apellido_materno' => 'required|max:10|string',
+                'age' => 'required|integer|max:2',
+                'birthday' => 'required|date',
+                'curp' => 'required|max:18|string',
+                'grado' => 'required|max:1|integer',
+                'grupo' => 'required|max:1|string',
+                'direccion' => 'required|max:10|string',
+                'municipio' => 'required|max:10|string',
+                'cp' => 'required|max:6|integer',
+                'nombres_tutor' => 'required|max:15|string',
+                'apellido_paterno_tutor' => 'required|max:10|string',
+                'apellido_materno_tutor' => 'required|max:10|string',
+                'telefono_tutor' => 'required|max:10|integer',
+
+            ],
+            [
+            'nombres.required' => 'Nombres del alumno vacio :(',
+            'nombres.max' => 'Nombres del alumno demaciado largo',
+            'apellido_paterno.required' => 'Apellido paterno del alumno vacio :(',
+            'apellido_paterno.max' => 'Apellido paterno excede número de caractares :(',
+            'apellido_materno.required' => 'Apellido materno del alumno vacio :(',
+            'apellido_materno.max' => 'Apellido materno excede número de caractares :(',
+            'age.integer' => 'solo es posible escribir numeros para la edad',
+            'age.required' => 'Campo edad vacio',
+            'age.max' => 'Solo es posible usar dos numeros para el campo de edad',
+            'birthday.required' => 'Es necesario escribir la fecha de nacimiento',
+            'birthday.date' => 'Solo el formato dd/mm/aaaa para la fecha de nacimiento',
+            'curp.required' => 'Es necesario escribir curp',
+            'curp.max' => 'El curp excede número maximo de caracteres',
+            'grado.required' => 'Es necesario escribir grado',
+            'grado.max' => 'Solo un caracter',
+            'grupo.required' => 'Es necesario escribir grupo',
+            'grupo.max' => 'Solo un caracter',
+            'direccion.max' => 'Direccion excede numero de caracteres',
+            'direccion.required' => 'Es necesario escribir la dirección',
+            'municipio.max' => 'municipio excede numero de caracteres',
+            'municipio.required' => 'Es necesario escribir la municipio',
+            'cp.max' => 'El código postal excede número maximo de caracteres',
+            'cp.required' => 'El código postal es necesario',
+            'cp.integer' => 'El código postal solo puede ser numeros',
+            'nombres_tutor.required' => 'Nombres del tutor vacio :(',
+            'nombres_tutor.max' => 'Nombres del tutor demaciado largo',
+            'apellido_paterno_tutor.required' => 'Apellido paterno del tutor vacio :(',
+            'apellido_paterno_tutor.max' => 'Apellido paterno del tutor excede número de caractares :(',
+            'apellido_materno_tutor.required' => 'Apellido materno del tutor vacio :(',
+            'apellido_materno_tutor.max' => 'Apellido materno del tutor excede número de caractares :(',
+            'telefono_tutor.integer' => 'solo es posible escribir numeros para el telefono',
+            'telefono_tutor.required' => 'Es importante registrar el teléfono del tutor',
+            'telefono_tutor.max' => 'Máximo 10 digitos para el teléfono del tutor',
+            ]);  
         $users = new alumno();
         $users ->matricula = $request->input('matricula');
         $users ->nombres   = $request->input('nombres');
@@ -88,6 +142,10 @@ class alumnosController extends Controller
     public function show($id)
     {
         $alumnos = alumno::find($id);
+        toast('información de '.$alumnos->nombres,'info');
+
+
+        
         if ($alumnos==null){
          return view('errors.404');
         }else{

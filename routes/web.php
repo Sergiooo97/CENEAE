@@ -4,8 +4,7 @@
 //use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Exports\ndolarExport;
-
-
+use RealRashid\SweetAlert\Facades\Alert;
 //use App\Exports;
 
 /*
@@ -110,7 +109,7 @@ Route::prefix('admin')->group(function () {
   });
 
   
-  /*
+  
 
     
   

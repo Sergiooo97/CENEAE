@@ -11,7 +11,20 @@
         </div>
         <div class="card-body">
           <script src="{{asset('js/generarMatricula.js')}}" type="text/javascript"> </script>
-          {!! Form::open(['route' => 'alumnos.store', 'method'=>'POST']) !!}
+          
+          {!! Form::open(['route' => 'alumnos.store', 'method'=>'POST', 'id'=>'form']) !!}
+         
+          @if (count($errors)>0))
+          <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            <ul>
+              <li>
+                {{ $error }}
+              </li>
+            </ul>
+            @endforeach
+          </div>
+      @endif
           <div class="form-group">
             <h3>Datos del Alumno</h3>
             <div class="container">
@@ -175,7 +188,8 @@
         </div>
 
         <div class="form-group container">
-          {!!Form::submit('Registrar',['class'=>'btn btn-primary', 'onclick' => 'ConfirmDemo()'])!!}
+
+          {!!Form::submit('Registrar',['class'=>'btn btn-primary', 'onclick' => 'confirmAlert()'])!!}
         </div>
       </div>
 
@@ -189,6 +203,52 @@
 {!! Form::close() !!}
 
 
+@include('sweetalert::alert')
+<script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
+<script>
+
+
+  var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
+
+  if( has_errors ){
+    Swal.fire({
+        title: '<strong>Oops.. :(</br> <p style="font-size: 20px;">Corregir los siguientes errores: </p>',
+        type: 'errors',
+        icon: 'error',
+        html:jQuery("#ERROR_COPY").html(),
+        showCloseButton: true,
+      
+      })
+  }
+      
+
+function confirmAlert() {
+event.preventDefault();
+ let form = event.target;
+        Swal.fire({
+              title: '¡Está seguro de realizar el retiro?',
+              text: "Estás a tiempo de cancelar!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, retirar!'
+            }).then((result) => {
+              if (result.value) {
+                document.getElementById("form").submit();
+                if(form.submit()){
+                  Swal.fire(
+                  'Retiro con éxito!',
+                  'Ahora te mandaré a la lista :).',
+                  'success'
+                )
+                }
+                
+              }
+            })         
+   }
+</script>
 
 @endsection

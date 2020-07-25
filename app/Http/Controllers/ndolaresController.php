@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use RealRashid\SweetAlert\Facades\Alert;
+
 use App\ndolar;
 use App\ndolar_lista;
 use App\alumno;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-
+use ToSweetAlert;
 class ndolaresController extends Controller
 {
     /**
@@ -30,6 +34,7 @@ class ndolaresController extends Controller
         ->grado($grado)
         ->grupo($grupo)
         ->paginate(5);
+        
         return view('ndolares.index', compact('alumnos'));    
     }
     
@@ -41,6 +46,7 @@ class ndolaresController extends Controller
      */
     public function deposito(Request $request)
     {
+        toast('Puedes depositar a un alumno o un grupo completo','info');
         $nombres = $request->get('nombres');
         $grado = $request->get('grado');
         $grupo = $request->get('grupo');
@@ -49,22 +55,34 @@ class ndolaresController extends Controller
         ->grado($grado)
         ->grupo($grupo)
         ->paginate(5);       
+        
         return view('ndolares.deposito', compact('alumnos'));
     }
     public function retiro(Request $request)
     {
-        $nombres = $request->get('nombres');
+        toast('Puedes retirar a un alumno o un grupo completo','info');
+                $nombres = $request->get('nombres');
         $grado = $request->get('grado');
         $grupo = $request->get('grupo');
         $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
         ->nombres($nombres)
         ->grado($grado)
         ->grupo($grupo)
-        ->paginate(5);       
+        ->paginate(5);     
         return view('ndolares.retiro', compact('alumnos'));
     }
  public function insertarDeposito(Request $request)
     {
+                        //validation
+            $request->validate([
+                'cantidad.*' => 'required|integer'
+            ],
+            [
+            'cantidad.*.required' => 'Estas dejando un campo vacio',
+            'integer' => 'solo es posible escribir numeros',
+
+            ]);  
+
         foreach ($request->get('cantidad') as $key => $value) {
             $asistencia = new ndolar;
             $asistencia->id_alumno =  $request->get('id_alumno')[$key];
@@ -76,10 +94,18 @@ class ndolaresController extends Controller
             $asistencia->cantidad = $value;
             $asistencia->save();
         }
-        return redirect(route('ndolares.deposito'));
+                return redirect(route('ndolares.deposito'));
     }
     public function insertarRetiro(Request $request)
-    {
+    {      
+        //validation
+  $request->validate([
+        'cantidad.*' => 'required|integer'
+  ],
+  [
+    'cantidad.*.required' => 'Estas dejando un campo vacio',
+    'integer' => 'solo es posible escribir numeros',
+  ]);    
         foreach ($request->get('cantidad') as $key => $value) {
             $asistencia = new ndolar;
             $asistencia->id_alumno =  $request->get('id_alumno')[$key];
@@ -91,7 +117,7 @@ class ndolaresController extends Controller
             $asistencia->cantidad = $value;
             $asistencia->save();
         }
-        return redirect(route('ndolares.retiro'));
+        return redirect(route('ndolares.index'))->withToastType('bien');
     }
 
     /**
@@ -102,6 +128,16 @@ class ndolaresController extends Controller
      */
     public function store(Request $request)
     {
+                    //validation
+                    $request->validate([
+                        'cantidad' => 'required|integer'
+                    ],
+                    [
+                    'cantidad.required' => 'Es necesario escribir una cantidad',
+                    'cantidad.integer' => 'solo es posible escribir numeros para la cantiad',
+            
+
+                    ]);  
         
         $users = new ndolar();
         $users ->id_alumno       = $request->input('id_alumno');

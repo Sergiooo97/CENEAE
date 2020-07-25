@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Banco | CENEAE')
+<script src="{{ asset('js/app.js') }}"></script>
 @section('content')
 
 <div class="notificationsss bounce ">
@@ -37,7 +38,7 @@
 
                 <button type="submit" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i> Buscar</button>
               </form>
-              <form method="POST" action="{{route('ndolares.deposito.store')}}">
+              <form id="form" method="POST" action="{{route('ndolares.deposito.store')}}">
                 <div class="form-group form-inline pull-right">
 
                 </div>
@@ -58,35 +59,50 @@
                       cantidad
                     </th>
                     <th></th>
-                  </thead>
-                  @foreach ($alumnos as $count=>$alumno)
-                  @csrf @method('PATCH')
-
-
-
-                  <tbody>
-
-                    <tr>
-                      <td>
-                        {{ $alumno->nombres }}
-                        <input id="nombre[]" value="{{$alumno->nombres}}" name="nombre[]" class="form-control" hidden />
-                        <input id="id_alumno[]" value="{{$alumno->id}}" name="id_alumno[]" class="form-control"
-                          hidden />
-                        <input value="{{$alumno->matricula}}" name="matricula[]" id="matricula[]" class="form-control"
-                          hidden />
-                      </td>
-                      <td>
-                        {{ $alumno->grado }}&nbsp;{{ $alumno->grupo }} </td>
-
-                      <td>
-                        {{ $alumno->cantidad }}
-                      </td>
-                      <td style="width: 3em;">
-                        <input id="cantidad[]" name="cantidad[]" class="form-control" required/>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
+                    @foreach ($alumnos as $count=>$alumno)
+                    @csrf @method('PATCH')
+  
+  
+                    
+                    @if ($errors->has('cantidad.*'))
+                    <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+                      
+                      {{ $errors->first('cantidad.*') }}
+                    </div>
+                @endif
+  
+  
+                    <tbody>
+  
+                      <tr>
+                        <td>
+                          {{ $alumno->nombres }}
+                          <input id="nombre[]" value="{{$alumno->nombres}}" name="nombre[]" class="form-control" hidden />
+                          <input id="id_alumno[]" value="{{$alumno->id}}" name="id_alumno[]" class="form-control"
+                            hidden />
+                          <input value="{{$alumno->matricula}}" name="matricula[]" id="matricula[]" class="form-control"
+                            hidden />
+                        </td>
+                        <td>
+                          {{ $alumno->grado }}&nbsp;{{ $alumno->grupo }} </td>
+  
+                        <td>
+                          {{ $alumno->cantidad }}
+                        </td>
+                        <td style="width: 3em;">
+                          <input class="required form-control" id="field" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" id="cantidad[]" name="cantidad[]" onkeyup="limpiarNumero(this)" required/>
+                          <script>
+                            function limpiarNumero(obj) {
+                              /* El evento "change" sólo saltará si son diferentes */
+                              obj.value = obj.value.replace(/\D/g, '');
+                            }
+                              $("#myField").keyup(function() {
+                                  $("#myField").val(this.value.match(/[0-9]*/));
+                              });
+                            </script>                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
                 </table>
 
                 <!-------------------------------------------termina tabla ---------------------------------->
@@ -109,7 +125,7 @@
         <div class="form-group pull-right">
           
           <!-- Button trigger modal -->
-          <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#listas-infoModal">
+          <button  type="submit" class="btn btn-success" onclick="confirmAlert()">
             <i class="nc-icon nc-money-coins"></i>
             Depositar
           </button>
@@ -122,5 +138,47 @@
 
       </div>
     </div>
+    @include('sweetalert::alert')
     <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
+    <script>
+
+      var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
+      if( has_errors ){
+        Swal.fire({
+            title: '<strong>Error!</br> <ul style="font-size:16px; margin-right: 1.7em;"><li>Solo se permite numeros</li><li>Maximo 4 numeros</li><li>No puede quedar campo vacio</li></ul>',
+            type: 'errors',
+            icon: 'error',
+            html:jQuery("#ERROR_COPY").html(),
+            showCloseButton: true,
+          
+          })
+      }
+   function confirmAlert() {
+    event.preventDefault();
+     let form = event.target;
+            Swal.fire({
+                  title: '¡Está seguro de realizar el deposito?',
+                  text: "Estás a tiempo de cancelar!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, depositar!'
+                }).then((result) => {
+                  if (result.value) {
+                    document.getElementById("form").submit();
+                    if(form.submit()){
+                      Swal.fire(
+                      'Retiro con éxito!',
+                      'Ahora te mandaré a la lista :).',
+                      'success'
+                    )
+                    }
+                    
+                  }
+                })         
+       }
+</script>
     @endsection

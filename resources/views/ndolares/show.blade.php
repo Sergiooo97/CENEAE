@@ -58,7 +58,7 @@
                     
                     </thead>
                     <tbody>        
-                      @foreach ($alumnos  as $alumno)           
+                      @forelse ($alumnos  as $alumno)           
                       <tr>
                         <td>
                           {{ $alumno->matricula }}
@@ -71,10 +71,13 @@
                         </td>
                         <td>
                           {{$alumno->created_at}}
-                        </td>                      
-                        
-                      </tr>       
-                      @endforeach              
+                        </td>      
+                        @empty                
+                        <p style="font-size: 20px;">No hay registros</p>  
+
+                      </tr> 
+                          
+                      @endforelse              
                     </tbody>
                   </table>
                   {{ $alumnos->appends($_GET)->links() }}
@@ -83,7 +86,7 @@
                 </div>
               </div>
             </div>
-            <a href="{{route('alumnos.show',['id' => $id_alumno->id])}}" class="btn btn-info"> info del alumno<i  class="nc-icon nc-alert-circle-i"></i></a>
+            <a href="{{route('alumnos.show',['id' => $id_alumno->id,])}}" class="btn btn-info"> info del alumno<i  class="nc-icon nc-alert-circle-i"></i></a>
             <a href="{{route('exportar_ndolar_info',['id' => $id_alumno->id, 'nombre'=>$id_alumno->nombres])}}" class="btn btn-warning">Descargar historial de {{$id_alumno->nombres}} <i  class="nc-icon nc-alert-circle-i"></i></a>
           </div>     
         </div>          

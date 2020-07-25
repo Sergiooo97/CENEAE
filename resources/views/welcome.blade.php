@@ -71,6 +71,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 </head>
 
 <body>
+  @include('sweetalert::alert')
   <!-- Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
@@ -546,8 +547,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
     <!--/.Copyright-->
 
   </footer>
-  
-  <!--/.Footer-->
+  @include('sweetalert::alert')  <!--/.Footer-->
   <!-- SCRIPTS -->
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>

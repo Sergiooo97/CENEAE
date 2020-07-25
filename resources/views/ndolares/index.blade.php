@@ -120,7 +120,7 @@
                  
                   <!-------------------------------------------termina tabla ---------------------------------->
                   <div style="margin-right: 1em;" class="form-group pull-right">
-                    <a href="{{route('ndolares.deposito')}}" class="btn btn-danger"><i class="nc-icon nc-money-coins"
+                    <a href="{{route('ndolares.retiro')}}" class="btn btn-danger"><i class="nc-icon nc-money-coins"
                       aria-hidden="true"></i>Retirar</a>
                     <a href="{{route('ndolares.deposito')}}" class="btn btn-success"><i class="nc-icon nc-money-coins"
                       aria-hidden="true"></i>Depositar</a>

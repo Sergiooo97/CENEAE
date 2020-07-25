@@ -11,6 +11,7 @@
             <h4 class="card-title btn-volver-container">Seleccione grupo o alumno a depositar <a
                 class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
                 <i class="nc-icon nc-minimal-left"></i> Volver atrás</a></h4>
+                
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -37,7 +38,7 @@
 
                 <button type="submit" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i> Buscar</button>
               </form>
-              <form method="POST" action="{{route('ndolares.retiro.store')}}">
+              <form id="form" method="POST" action="{{route('ndolares.retiro.store')}}" onsubmit="message_success()">
                 <div class="form-group form-inline pull-right">
 
                 </div>
@@ -63,6 +64,14 @@
                   @csrf @method('PATCH')
 
 
+                  
+                  @if ($errors->has('cantidad.*'))
+                  <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+                    
+                    {{ $errors->first('cantidad.*') }}
+                  </div>
+              @endif
+
 
                   <tbody>
 
@@ -82,7 +91,16 @@
                         {{ $alumno->cantidad }}
                       </td>
                       <td style="width: 3em;">
-                        <input id="cantidad[]" name="cantidad[]" class="form-control" required/>
+                        <input class="required form-control" id="field" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" id="cantidad[]" name="cantidad[]" onkeyup="limpiarNumero(this)" required/>
+                    <script>
+                      function limpiarNumero(obj) {
+                        /* El evento "change" sólo saltará si son diferentes */
+                        obj.value = obj.value.replace(/\D/g, '');
+                      }
+                        $("#myField").keyup(function() {
+                            $("#myField").val(this.value.match(/[0-9]*/));
+                        });
+                      </script>
                       </td>
                     </tr>
                     @endforeach
@@ -92,14 +110,14 @@
                 <!-------------------------------------------termina tabla ---------------------------------->
 
                 {{ $alumnos->appends($_GET)->links() }}
-             
+
 
             </div>
           </div>
         </div>
 
         <div class="form-group pull-left">
-          
+
           <!-- Button trigger modal -->
           <a href="{{route('ndolares.deposito')}}" class="btn btn-success">
             <i class="nc-icon nc-money-coins"></i>
@@ -107,20 +125,64 @@
           </a>
         </div>
         <div class="form-group pull-right">
-          
+
           <!-- Button trigger modal -->
-          <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#listas-infoModal">
+          <button id="retiro" type="button" class="btn btn-danger" onclick="confirmAlert()">
             <i class="nc-icon nc-money-coins"></i>
             Retirar
           </button>
+
         </div>
-
-
-
+    
         </form>
-
-
       </div>
+     
     </div>
+    @include('sweetalert::alert')
     <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
+    <script>
+
+
+      var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
+
+      if( has_errors ){
+        Swal.fire({
+            title: '<strong>Error :(</br> <ul style="font-size:16px; margin-right: 1.7em;"><li>Solo se permite numeros</li><li>Maximo 4 numeros</li><li>No puede quedar campo vacio</li></ul>',
+            type: 'errors',
+            icon: 'error',
+            html:jQuery("#ERROR_COPY").html(),
+            showCloseButton: true,
+          
+          })
+      }
+          
+
+   function confirmAlert() {
+    event.preventDefault();
+     let form = event.target;
+            Swal.fire({
+                  title: '¡Está seguro de realizar el retiro?',
+                  text: "Estás a tiempo de cancelar!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, retirar!'
+                }).then((result) => {
+                  if (result.value) {
+                    document.getElementById("form").submit();
+                    if(form.submit()){
+                      Swal.fire(
+                      'Retiro con éxito!',
+                      'Ahora te mandaré a la lista :).',
+                      'success'
+                    )
+                    }
+                    
+                  }
+                })         
+       }
+</script>
     @endsection

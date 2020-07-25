@@ -108,7 +108,7 @@
               </a>
             </li>
 
-            <li class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/*') ? 'active' : '' }}">
+            <li class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/ndolares') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
                 <p class="slider-label"><i class="nc-icon nc-money-coins"></i>Dolares
                   {{request()->is('admin/alumno/*/*/ndolares') ? '>historial' : ''}}
