@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 use App\alumno;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
-class docentesController extends Controller
+use Illuminate\Http\Request;
+
+class calificacionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class docentesController extends Controller
      */
     public function index()
     {
-        $docentes = DB::table('docentes')->get();
-        return view('docentes.index', compact('docentes'));
-
+        //
     }
 
     /**
@@ -49,7 +46,19 @@ class docentesController extends Controller
      */
     public function show($id)
     {
-        //
+        $alumnos = alumno::find($id);
+        if ($alumnos==null){
+ 
+         return view('errors.404');
+        }else{
+ 
+ 
+            $alumno = alumno::find($id)
+            ->where('id', '=', $id)
+            ->first();
+
+            return view('calificaciones.show', compact('alumno'));
+        }
     }
 
     /**

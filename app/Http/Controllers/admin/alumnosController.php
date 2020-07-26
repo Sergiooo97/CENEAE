@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\alumno;
 use Illuminate\Support\Facades\DB;
@@ -59,18 +59,18 @@ class alumnosController extends Controller
                 'nombres' => 'required|max:25|string',
                 'apellido_paterno' => 'required|max:10|string',
                 'apellido_materno' => 'required|max:10|string',
-                'age' => 'required|integer|max:2',
+                'age' => 'required|integer',
                 'birthday' => 'required|date',
                 'curp' => 'required|max:18|string',
                 'grado' => 'required|max:1|integer',
                 'grupo' => 'required|max:1|string',
-                'direccion' => 'required|max:10|string',
+                'direccion' => 'required|max:25|string',
                 'municipio' => 'required|max:10|string',
-                'cp' => 'required|max:6|integer',
+                'cp' => 'required|integer',
                 'nombres_tutor' => 'required|max:15|string',
                 'apellido_paterno_tutor' => 'required|max:10|string',
                 'apellido_materno_tutor' => 'required|max:10|string',
-                'telefono_tutor' => 'required|max:10|integer',
+                'telefono_tutor' => 'required|integer',
 
             ],
             [
@@ -82,7 +82,6 @@ class alumnosController extends Controller
             'apellido_materno.max' => 'Apellido materno excede número de caractares :(',
             'age.integer' => 'solo es posible escribir numeros para la edad',
             'age.required' => 'Campo edad vacio',
-            'age.max' => 'Solo es posible usar dos numeros para el campo de edad',
             'birthday.required' => 'Es necesario escribir la fecha de nacimiento',
             'birthday.date' => 'Solo el formato dd/mm/aaaa para la fecha de nacimiento',
             'curp.required' => 'Es necesario escribir curp',
@@ -95,7 +94,6 @@ class alumnosController extends Controller
             'direccion.required' => 'Es necesario escribir la dirección',
             'municipio.max' => 'municipio excede numero de caracteres',
             'municipio.required' => 'Es necesario escribir la municipio',
-            'cp.max' => 'El código postal excede número maximo de caracteres',
             'cp.required' => 'El código postal es necesario',
             'cp.integer' => 'El código postal solo puede ser numeros',
             'nombres_tutor.required' => 'Nombres del tutor vacio :(',
@@ -106,7 +104,6 @@ class alumnosController extends Controller
             'apellido_materno_tutor.max' => 'Apellido materno del tutor excede número de caractares :(',
             'telefono_tutor.integer' => 'solo es posible escribir numeros para el telefono',
             'telefono_tutor.required' => 'Es importante registrar el teléfono del tutor',
-            'telefono_tutor.max' => 'Máximo 10 digitos para el teléfono del tutor',
             ]);  
         $users = new alumno();
         $users ->matricula = $request->input('matricula');

@@ -1,21 +1,34 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\alumno;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
+use App\ndolar_lista;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
-class calificacionesController extends Controller
+
+class natadolaresController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $nombres = $request->get('nombres');
+        $grado = $request->get('grado');
+        $grupo = $request->get('grupo');
+
+
+        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
+        ->orderBy('grado', 'ASC')->orderBy('grupo', 'ASC')
+        ->nombres($nombres)
+        ->grado($grado)
+        ->grupo($grupo)
+        ->paginate(5);
+        return view('ndolares.index', compact('alumnos'));    }
 
     /**
      * Show the form for creating a new resource.
@@ -46,19 +59,7 @@ class calificacionesController extends Controller
      */
     public function show($id)
     {
-        $alumnos = alumno::find($id);
-        if ($alumnos==null){
- 
-         return view('errors.404');
-        }else{
- 
- 
-            $alumno = alumno::find($id)
-            ->where('id', '=', $id)
-            ->first();
-
-            return view('calificaciones.show', compact('alumno'));
-        }
+        //
     }
 
     /**

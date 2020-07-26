@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.register')
 
 @section('content')
 <div class="container">
@@ -10,6 +10,20 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+
+                        <div class="form-group row">
+                            <label for="matricula" class="col-md-4 col-form-label text-md-right">{{ __('matricula') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('matricula')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>

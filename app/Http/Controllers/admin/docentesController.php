@@ -1,34 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\admin;
+use App\alumno;
 use Illuminate\Http\Request;
-use App\ndolar_lista;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-
-class natadolaresController extends Controller
+class docentesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $nombres = $request->get('nombres');
-        $grado = $request->get('grado');
-        $grupo = $request->get('grupo');
+        $docentes = DB::table('docentes')->get();
+        return view('docentes.index', compact('docentes'));
 
-
-        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
-        ->orderBy('grado', 'ASC')->orderBy('grupo', 'ASC')
-        ->nombres($nombres)
-        ->grado($grado)
-        ->grupo($grupo)
-        ->paginate(5);
-        return view('ndolares.index', compact('alumnos'));    }
+    }
 
     /**
      * Show the form for creating a new resource.

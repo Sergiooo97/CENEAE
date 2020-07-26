@@ -77,6 +77,7 @@
 
         <div class="sidebar-wrapper">
           <ul class="nav">
+            @if(Auth::user()->hasRole('admin'))
             <li class="{{request()->is('home') ? 'active' : '' }}">
               <a href="{{ route('home') }}">
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
@@ -128,7 +129,15 @@
                 <p class="slider-label"><i class="nc-icon nc-cloud-download-93"></i>Archivos</p>
               </a>
             </li>
-           
+            @endif
+
+            @if(Auth::user()->hasRole('user'))
+            <li class="{{request()->is('alumno/*/home') ? 'active' : '' }}">
+              <a href="{{ route('alumno.home.index',['id' => Auth::user()->id]) }}">
+                <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
+              </a>
+            </li>        
+            @endif
           </ul>
 
         </div>
