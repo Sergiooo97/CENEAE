@@ -31,7 +31,7 @@
                         <div class="stats">
 
                             <img src="{!! asset('img/002-medal.svg') !!}" height="30px" width="30px">
-                            <p style="font-size:18px; float:right;">Ver lista</p>
+                            <p style="font-size:18px; float:right;">Ver detalles</p>
 
                         </div>
 
