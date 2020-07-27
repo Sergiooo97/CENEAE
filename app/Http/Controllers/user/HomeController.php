@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\alumno;
+namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $alumnos = \App\alumno::where('matricula', auth()->user()->matricula)
         ->get();
-    
+
         return view('role.user.home', compact('alumnos'));
     }
 

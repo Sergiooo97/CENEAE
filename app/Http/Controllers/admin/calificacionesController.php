@@ -48,16 +48,16 @@ class calificacionesController extends Controller
     {
         $alumnos = alumno::find($id);
         if ($alumnos==null){
- 
+
          return view('errors.404');
         }else{
- 
- 
+
+
             $alumno = alumno::find($id)
             ->where('id', '=', $id)
             ->first();
 
-            return view('calificaciones.show', compact('alumno'));
+            return view('role.admin.calificaciones.show', compact('alumno'));
         }
     }
 

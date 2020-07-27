@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class alumno extends Model
 {
     protected $fillable = [
-        'id','matricula','nombres','apellido_paterno', 
+        'matricula','nombres','apellido_paterno', 
         'apellido_materno','edad','fecha_de_nacimiento',
         'curp','grado','municipio','cp','direccion','grupo',
         'quiero_ser','ndolares', 'nombres_tutor','apellido_paterno_tutor',
@@ -15,6 +15,11 @@ class alumno extends Model
         'curp_tutor','telefono_tutor',
     ];
     //Query Scope
+    /**
+     * @var mixed|string
+     */
+    private $ndolares;
+
     public function scopeNombres($query, $nombres){
         if($nombres)
         return $query->where('nombres', 'LIKE', "%$nombres%" );

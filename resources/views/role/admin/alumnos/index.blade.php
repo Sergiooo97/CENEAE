@@ -84,9 +84,6 @@
                   <th>
                     Teléfono
                   </th>
-                  <th>
-                    $
-                  </th>
 
                   <th>
 
@@ -113,9 +110,7 @@
                     <td>
                       {{ $alumno->telefono_tutor }}
                     </td>
-                    <td>
-                      {{ $alumno->ndolares}}
-                    </td>
+
 
                     <td>
                       <a href="{{route('alumnos.show',['id' => $alumno->id])}}" class="btn btn-info"> info <i  class="nc-icon nc-alert-circle-i"></i></a>
@@ -148,7 +143,7 @@
         </button>
 
           </div>
-          
+
         </div>
         <!-- Modal assistencias -->
         <div class="modal fade" id="asistencias-Modal" tabindex="-1" role="dialog" aria-labelledby="asistencias-Modal"
@@ -214,7 +209,7 @@
           </div>
         </div>
 
-      
+
 
 
       </div>

@@ -61,19 +61,19 @@
                     <th></th>
                     @foreach ($alumnos as $count=>$alumno)
                     @csrf @method('PATCH')
-  
-  
-                    
+
+
+
                     @if ($errors->has('cantidad.*'))
                     <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
-                      
+
                       {{ $errors->first('cantidad.*') }}
                     </div>
                 @endif
-  
-  
+
+
                     <tbody>
-  
+
                       <tr>
                         <td>
                           {{ $alumno->nombres }}
@@ -85,9 +85,10 @@
                         </td>
                         <td>
                           {{ $alumno->grado }}&nbsp;{{ $alumno->grupo }} </td>
-  
+
                         <td>
-                          {{ $alumno->cantidad }}
+                            <input id="actual[]" value="{{ $alumno->cantidad }}" name="actual[]" class="form-control" hidden />
+                            {{ $alumno->cantidad }}
                         </td>
                         <td style="width: 3em;">
                           <input class="required form-control" id="field" type="text" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" id="cantidad[]" name="cantidad[]" onkeyup="limpiarNumero(this)" required/>
@@ -108,14 +109,14 @@
                 <!-------------------------------------------termina tabla ---------------------------------->
 
                 {{ $alumnos->appends($_GET)->links() }}
-             
+
 
             </div>
           </div>
         </div>
 
         <div class="form-group pull-left">
-          
+
           <!-- Button trigger modal -->
         <a href="{{route('ndolares.retiro')}}" class="btn btn-danger">
             <i class="nc-icon nc-money-coins"></i>
@@ -123,7 +124,7 @@
           </a>
         </div>
         <div class="form-group pull-right">
-          
+
           <!-- Button trigger modal -->
           <button  type="submit" class="btn btn-success" onclick="confirmAlert()">
             <i class="nc-icon nc-money-coins"></i>
@@ -152,7 +153,7 @@
             icon: 'error',
             html:jQuery("#ERROR_COPY").html(),
             showCloseButton: true,
-          
+
           })
       }
    function confirmAlert() {
@@ -176,9 +177,9 @@
                       'success'
                     )
                     }
-                    
+
                   }
-                })         
+                })
        }
 </script>
     @endsection

@@ -16,8 +16,8 @@ class grposController extends Controller
      */
     public function index()
     {
-        
-        return view('grupos.index');
+
+        return view('role.admin.grupos.index');
     }
 
     /**
@@ -72,7 +72,7 @@ class grposController extends Controller
         $alumnos = \App\alumno::orderBy('apellido_paterno', 'ASC')
         ->grado($grado)
         ->grupo($grupo)
-        ->paginate(5);       
+        ->paginate(5);
         return view('grupos.edit', compact('alumnos', 'grad'));
 
     }
@@ -93,9 +93,9 @@ class grposController extends Controller
                     [
                     'orden.*.required' => 'Estas dejando un campo vacio',
                     'numeric' => 'solo es posible escribir numeros',
-        
-                    ]);  
-                    
+
+                    ]);
+
         foreach ($request->get('orden') as $key => $value) {
             $alumnos = alumno::find($id);
             $alumno = alumno::find($request->get('id')[$key]);

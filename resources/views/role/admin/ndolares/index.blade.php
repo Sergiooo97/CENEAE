@@ -54,12 +54,12 @@
                       <option value="{{request('grupo')}}">{{request('grupo')}}</option>
                       <option value="A">A</option>
                       <option value="B">B</option>
-    
+
                     </select>
                     <label for="nombres">Nombre:</label>
                     <input value="{{ request('nombres')}}" name="nombres" id="nombres" class="form-control"
                       onkeydown="document.ready = document.getElementById('grado').value = '0';document.ready = document.getElementById('grupo').value = '0';" />
-    
+
                     <button type="submit" class="btn btn-info">Buscar</button>
                   </form>
                                     <!-------------------------------------------empieza tabla ---------------------------------->
@@ -77,66 +77,68 @@
                       </th>
                       <th>
                         $
-                      </th>                    
-                      <th>                        
+                      </th>
+                      <th>
                       </th>
                     </thead>
-                    <tbody>   
-                      
-                      @foreach ($alumnos as $alumno)  
-                                 
+                    <tbody>
+
+                      @foreach ($alumnos as $alumno)
+
                       <tr>
                         <td>
                           {{ $alumno->matricula }}
                         </td>
                         <td>
-                          {{ $alumno->nombres }}
-                        </td>                      
+                            <a href="{{route('alumnos.show',['id' => $alumno->alumno_id])}}" >
+                            {{ $alumno->nombres }}
+                            </a>
+                        </td>
                         <td>
                           {{ $alumno->grado}}{{ $alumno->grupo }}
                         </td>
                         <td>
                           <input id="ndolar-d" value="{{ $alumno->cantidad }} " hidden/>
-                          {{ $alumno->cantidad }}                        </td>                      
+                          {{ $alumno->cantidad }}                        </td>
                         <td>
                              <td>
                         <button id="-b" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres'=>$alumno->nombres])}}'"  style="font-size: 14px;">Historial</button>
-                        
+
                     <script>
-                      if(document.getElementById('ndolar-d').value <=0){
+                      if(document.getElementById('ndolarTransacciones-d').value <=0){
                         document.getElementById('boton').disabled=true;
                         document.getElementById('retiro').disabled=true;
-    
+
                       }
                   </script>
                       </td>
-                      </tr>    
-                           
-                      @endforeach  
-                                
+                      </tr>
+
+                      @endforeach
+
                     </tbody>
                   </table>
                   {{ $alumnos->appends($_GET)->links() }}
-                 
+
                   <!-------------------------------------------termina tabla ---------------------------------->
                   <div style="margin-right: 1em;" class="form-group pull-right">
                     <a href="{{route('ndolares.retiro')}}" class="btn btn-danger"><i class="nc-icon nc-money-coins"
                       aria-hidden="true"></i>Retirar</a>
                     <a href="{{route('ndolares.deposito')}}" class="btn btn-success"><i class="nc-icon nc-money-coins"
                       aria-hidden="true"></i>Depositar</a>
-                
+
                   </div>
 
-                 
+
                 </div>
               </div>
             </div>
-            <a href="{{url('admin/download/lista-ndolar')}}" class="btn btn-warning"><i class="fa fa-file-excel-o"
+            <a href="{{url('admin/download/lista-ndolarTransacciones')}}" class="btn btn-warning"><i class="fa fa-file-excel-o"
               aria-hidden="true"></i> Descargar lISTAS (Sin formato)</a>
-            
-          </div>     
-        </div>          
-     
+
+          </div>
+        </div>
+
         @include('sweetalert::alert')
     <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])

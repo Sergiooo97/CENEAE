@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\alumno;
+namespace App\Http\Controllers\user;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

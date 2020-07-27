@@ -27,15 +27,6 @@ class CreateAlumnosTable extends Migration
             $table->string('municipio');
             $table->string('cp');
             $table->string('direccion');
-            $table->string('quiero_ser');
-            $table->integer('ndolares');
-            $table->string('nombres_tutor');
-            $table->string('apellido_paterno_tutor');
-            $table->string('apellido_materno_tutor');
-            $table->string('direccion_tutor');
-            $table->string('escolaridad_tutor');
-            $table->string('curp_tutor');
-            $table->string('telefono_tutor');
             $table->timestamps();
         });
     }

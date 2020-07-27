@@ -11,9 +11,9 @@
         </div>
         <div class="card-body">
           <script src="{{asset('js/generarMatricula.js')}}" type="text/javascript"> </script>
-          
+
           {!! Form::open(['route' => 'alumnos.store', 'method'=>'POST', 'id'=>'form']) !!}
-         
+
           @if (count($errors)>0))
           <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -29,7 +29,7 @@
             <h3>Datos del Alumno</h3>
             <div class="container">
 
-           
+
               <div class="row">
                 <div class="col-sm">
 
@@ -41,7 +41,7 @@
                   {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
                   <input name="nombres"id="nombres" class="form-control" placeholder="nombres" >
 
-                 
+
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Apellido_P','apellido Paterno',['class'=>'label'])!!}
@@ -56,7 +56,7 @@
               </div>
 
               <div class="row">
-              
+
                 <div class="col-sm">
                   {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
                   <input type="date" name="birthday" id="birthday" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento">
@@ -64,9 +64,9 @@
                   $(function(){
             $('#birthday').on('change', calcularEdad);
         });
-        
+
         function calcularEdad() {
-            
+
             fecha = $(this).val();
             var hoy = new Date();
             var cumpleanos = new Date(fecha);
@@ -135,60 +135,11 @@
                   <input name="quiero_ser" id="quiero_ser" class="form-control" placeholder="De grande quiero ser" autocomplete="off">
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm">
-                  <h3>Datos del tutor</h3>
-                </div>
-              </div>
-              <div class="row">
-
-                <div class="col-sm">
-                  {!!Form::label('id','id',['class'=>'label'])!!}
-                  <input name="id_tutor"id="id_tu" class="form-control" placeholder="id tutor" readonly>
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
-                  <input name="nombres_tutor"id="nombres_tutor" class="form-control" placeholder="nombres" >
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('apellido_paterno_tutor','apellido Paterno',['class'=>'label'])!!}
-                  <input name="apellido_paterno_tutor"id="apellido_paterno_tutor" class="form-control" placeholder="apellido paterno_tutor" > 
-                 
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('Apellido_M','apellido Materno',['class'=>'label'])!!}
-                  <input name="apellido_materno_tutor"id="apellido_materno_tutor" class="form-control" placeholder="apellido paterno_tutor" > 
-
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm">
-                  {!!Form::label('Direccion','Direccion',['class'=>'label'])!!}
-                  <input name="direccion_tutor" id="direccion_tutor" class="form-control" placeholder="direccion del tutor" > 
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('Escolaridad','Escolaridad',['class'=>'label'])!!}
-                  <input name="escolaridad_tutor" id="escolaridad_tutor" class="form-control" placeholder="escolaridad del tutor" > 
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('CURP','CURP',['class'=>'label'])!!}
-                  <input name="curp_tutor" id="curp_tutor" class="form-control" placeholder="curp del tutor" > 
-
-                  
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('telefono','telefono',['class'=>'label'])!!}
-                  <input name="telefono_tutor" id="telefono_tutor" class="form-control" placeholder="telefono del tutor" > 
-
-                </div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="form-group container">
-
           {!!Form::submit('Registrar',['class'=>'btn btn-primary', 'onclick' => 'confirmAlert()'])!!}
         </div>
       </div>
@@ -219,10 +170,10 @@
         icon: 'error',
         html:jQuery("#ERROR_COPY").html(),
         showCloseButton: true,
-      
+
       })
   }
-      
+
 
 function confirmAlert() {
 event.preventDefault();
@@ -245,9 +196,9 @@ event.preventDefault();
                   'success'
                 )
                 }
-                
+
               }
-            })         
+            })
    }
 </script>
 

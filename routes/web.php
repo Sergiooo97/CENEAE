@@ -25,7 +25,7 @@ Route::get('home', 'HomeController@index')->name('home')->middleware('auth', 'ro
 Route::get('galeria', 'galeriaController@index')->name('galeria');
 
 Route::get('/', function () {
-  
+
   return view('welcome');
   });
 /*
@@ -37,7 +37,7 @@ Route::get('/', function () {
 Route::group([
   'middleware' =>  ['auth', 'role:user'],
   'prefix'     =>   'alumno',
-  'namespace'  =>   'alumno'], function () {
+  'namespace'  =>   'user'], function () {
 
   Route::get('{id}/home', 'HomeController@index')->name('alumno.home.index'); //LISTA DE ALUMNOS
 
@@ -48,7 +48,7 @@ Route::group([
   'middleware' =>  ['auth', 'role:admin'],
   'prefix'     =>   'admin',
   'namespace'  =>   'admin'], function () {
-  
+
     /*
 |--------------------------------------------------------------------------
 | Rutas de alumno
@@ -109,25 +109,24 @@ Route::group([
 |--------------------------------------------------------------------------
 |*/
 
-  Route::prefix('download')->group(function () { 
-    Route::get('ndolar/{id}', 'infoNdolarController@export')->name('info_ndolar.export');
+  Route::prefix('download')->group(function () {
+    Route::get('ndolarTransacciones/{id}', 'infoNdolarController@export')->name('info_ndolar.export');
     Route::get("exportar_asistencia/{grado}/{grupo}","archivosController@export_asistencia")->name("exportar_asistencia");
     Route::get("exportar_lista/{grado}/{grupo}","archivosController@export_lista")->name("exportar_lista");
     Route::get("exportar_ndolar_info/{id}/{nombre}","archivosController@export_ndolar_info")->name("exportar_ndolar_info");
     //DESCARGAS DE ARCHIVOS
     Route::get('archivos', 'archivosController@index')->name('archivosD.index');
-    Route::get('lista-ndolar', function () {
+    Route::get('lista-ndolarTransacciones', function () {
       return (new ndolarExport(2020))->download('LISTA_DOLARES.xlsx');
       });
     Route::get('lista-todos', function () {
       return (new UsersExport(2020))->download('lista2020.xlsx');
       });
-  }); 
+  });
   });
 
- 
-  
-  
 
-    
-  
+
+
+
+

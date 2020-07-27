@@ -33,15 +33,13 @@ class RegisterController extends Controller
     //protected $redirectTo = RouteServiceProvider::HOME;
     public function redirectTo()
     {
-        
         if(Auth::user()->hasRole('admin')){
                 $this->redirectTo = route('alumnos.index');
                 return $this->redirectTo;
         }
         $this->redirectTo = route('alumno.home.index', ['id' => Auth::user()->id]);
                 return $this->redirectTo;
-
-    } 
+    }
     /**
      * Create a new controller instance.
      *
@@ -82,7 +80,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $user->roles()->attach(Role::where('name', 'user')->first());        
+        $user->roles()->attach(Role::where('name', 'admin')->first());
         return $user;
     }
 }

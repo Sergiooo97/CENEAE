@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use App\ndolar_lista;
+use App\Role;
+use App\tutor;
+use App\User;
 use Illuminate\Http\Request;
 use App\alumno;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 class alumnosController extends Controller
@@ -10,7 +15,7 @@ class alumnosController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -21,10 +26,9 @@ class alumnosController extends Controller
         ->nombres($nombres)
         ->grado($grado)
         ->grupo($grupo)
-        ->paginate(5);       
-        return view('alumnos.index', compact('alumnos'));
+        ->paginate(5);
+        return view('role.admin.alumnos.index', compact('alumnos'));
     }
-
     public function orden(Request $request){
         $nombres = $request->get('nombres');
         $grado = $request->get('grado');
@@ -33,24 +37,24 @@ class alumnosController extends Controller
         ->nombres($nombres)
         ->grado('1')
         ->grupo($grupo)
-        ->paginate(5);       
-        return view('alumnos.listaOrden', compact('alumnos'));
+        ->paginate(5);
+        return view('role.admin.alumnos.listaOrden', compact('alumnos'));
     }
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
         toast('Registro de alumnos :)','info');
-        return view('alumnos.create');
+        return view('role.admin.alumnos.create');
     }
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -62,15 +66,12 @@ class alumnosController extends Controller
                 'age' => 'required|integer',
                 'birthday' => 'required|date',
                 'curp' => 'required|max:18|string',
-                'grado' => 'required|max:1|integer',
-                'grupo' => 'required|max:1|string',
+                'grado' => 'required|integer',
+                'grupo' => 'required|string',
                 'direccion' => 'required|max:25|string',
                 'municipio' => 'required|max:10|string',
                 'cp' => 'required|integer',
-                'nombres_tutor' => 'required|max:15|string',
-                'apellido_paterno_tutor' => 'required|max:10|string',
-                'apellido_materno_tutor' => 'required|max:10|string',
-                'telefono_tutor' => 'required|integer',
+
 
             ],
             [
@@ -87,70 +88,51 @@ class alumnosController extends Controller
             'curp.required' => 'Es necesario escribir curp',
             'curp.max' => 'El curp excede número maximo de caracteres',
             'grado.required' => 'Es necesario escribir grado',
-            'grado.max' => 'Solo un caracter',
             'grupo.required' => 'Es necesario escribir grupo',
-            'grupo.max' => 'Solo un caracter',
             'direccion.max' => 'Direccion excede numero de caracteres',
             'direccion.required' => 'Es necesario escribir la dirección',
             'municipio.max' => 'municipio excede numero de caracteres',
             'municipio.required' => 'Es necesario escribir la municipio',
             'cp.required' => 'El código postal es necesario',
             'cp.integer' => 'El código postal solo puede ser numeros',
-            'nombres_tutor.required' => 'Nombres del tutor vacio :(',
-            'nombres_tutor.max' => 'Nombres del tutor demaciado largo',
-            'apellido_paterno_tutor.required' => 'Apellido paterno del tutor vacio :(',
-            'apellido_paterno_tutor.max' => 'Apellido paterno del tutor excede número de caractares :(',
-            'apellido_materno_tutor.required' => 'Apellido materno del tutor vacio :(',
-            'apellido_materno_tutor.max' => 'Apellido materno del tutor excede número de caractares :(',
-            'telefono_tutor.integer' => 'solo es posible escribir numeros para el telefono',
-            'telefono_tutor.required' => 'Es importante registrar el teléfono del tutor',
-            ]);  
-        $users = new alumno();
-        $users ->matricula = $request->input('matricula');
-        $users ->nombres   = $request->input('nombres');
-        $users ->apellido_paterno        = $request->input('apellido_paterno');
-        $users ->apellido_materno        = $request->input('apellido_materno');
-        $users ->edad    = $request->input('age');
-        $users ->fecha_de_nacimiento    = $request->input('birthday');
-        $users ->curp  = $request->input('curp');
-        $users ->grado = $request->input('grado');
-        $users ->grupo = $request->input('grupo');
-        $users ->direccion = $request->input('direccion');
-        $users ->municipio = $request->input('municipio');
-        $users ->cp = $request->input('cp');
-        $users ->ndolares = '0';
-        $users ->quiero_ser = $request->input('quiero_ser');
-        $users ->nombres_tutor = $request->input('nombres_tutor');
-        $users ->apellido_paterno_tutor = $request->input('apellido_paterno_tutor');
-        $users ->apellido_materno_tutor = $request->input('apellido_materno_tutor');
-        $users ->direccion_tutor = $request->input('direccion_tutor');
-        $users ->escolaridad_tutor = $request->input('escolaridad_tutor');
-        $users ->curp_tutor = $request->input('curp_tutor');
-        $users ->telefono_tutor = $request->input('telefono_tutor');
-        $users->save();
+
+            ]);
+        $alumno = new alumno();
+        $alumno ->matricula = $request->input('matricula');
+        $alumno ->nombres   = $request->input('nombres');
+        $alumno ->apellido_paterno        = $request->input('apellido_paterno');
+        $alumno ->apellido_materno        = $request->input('apellido_materno');
+        $alumno ->edad    = $request->input('age');
+        $alumno ->fecha_de_nacimiento    = $request->input('birthday');
+        $alumno ->curp  = $request->input('curp');
+        $alumno ->grado = $request->input('grado');
+        $alumno ->grupo = $request->input('grupo');
+        $alumno ->direccion = $request->input('direccion');
+        $alumno ->municipio = $request->input('municipio');
+        $alumno ->cp = $request->input('cp');
+        $alumno->save();
+
+
         return redirect()->route('home');
     }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
         $alumnos = alumno::find($id);
-        //toast('información de '.$alumnos->nombres,'info');
-
-
-        
+        $ndolar_lista = ndolar_lista::where('alumno_id', $id)->first();
+        $tutor = tutor::where('alumno_id', $id)->first();
         if ($alumnos==null){
          return view('errors.404');
         }else{
             $alumno = alumno::find($id)
             ->where('id', '=', $id)
             ->first();
-
-            return view('alumnos.show', compact('alumno'));
+            return view('role.admin.alumnos.show', compact('alumno', 'ndolar_lista', 'tutor'));
         }
     }
 
@@ -158,7 +140,7 @@ class alumnosController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -169,20 +151,20 @@ class alumnosController extends Controller
             $alumno = alumno::find($id)
             ->where('id', '=', $id)
             ->first();
-            return view('alumnos.edit', compact('alumno'));
+            return view('role.admin.alumnos.edit', compact('alumno'));
         }    }
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
         $alumnos = alumno::find($id);
         $alumnos->update($request->all());
-        return redirect(route('alumnos.show', $id));
+        return redirect(route('role.admin.alumnos.show', $id));
     }
 
     public function updateOrden(Request $request, $id)
@@ -193,14 +175,14 @@ class alumnosController extends Controller
             $asistencia->matricula = $value.$request->get('matricula')[$key];
             $asistencia->update();
         }
-        return redirect(route('alumnos.index'));
+        return redirect(route('role.admin.alumnos.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

@@ -54,41 +54,41 @@
                       </th>
                       <th>
                         Última modificación
-                      </th>                    
-                    
+                      </th>
+
                     </thead>
-                    <tbody>        
-                      @forelse ($alumnos  as $alumno)           
+                    <tbody>
+                      @forelse ($alumnos  as $alumno)
                       <tr>
                         <td>
                           {{ $alumno->matricula }}
                         </td>
                         <td>
                           {{ $alumno->nombre }}
-                        </td>                      
+                        </td>
                         <td>
                          {{$alumno->accion}} de ${{$alumno->cantidad}}
                         </td>
                         <td>
                           {{$alumno->created_at}}
-                        </td>      
-                        @empty                
-                        <p style="font-size: 20px;">No hay registros</p>  
+                        </td>
+                        @empty
+                        <p style="font-size: 20px;">No hay registros</p>
 
-                      </tr> 
-                          
-                      @endforelse              
+                      </tr>
+
+                      @endforelse
                     </tbody>
                   </table>
                   {{ $alumnos->appends($_GET)->links() }}
 
-                  <!-------------------------------------------termina tabla ---------------------------------->                 
+                  <!-------------------------------------------termina tabla ---------------------------------->
                 </div>
               </div>
             </div>
             <a href="{{route('alumnos.show',['id' => $id_alumno->id,])}}" class="btn btn-info"> info del alumno<i  class="nc-icon nc-alert-circle-i"></i></a>
             <a href="{{route('exportar_ndolar_info',['id' => $id_alumno->id, 'nombre'=>$id_alumno->nombres])}}" class="btn btn-warning">Descargar historial de {{$id_alumno->nombres}} <i  class="nc-icon nc-alert-circle-i"></i></a>
-          </div>     
-        </div>          
-     
+          </div>
+        </div>
+
 @endsection

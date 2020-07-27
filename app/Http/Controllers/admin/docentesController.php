@@ -16,7 +16,7 @@ class docentesController extends Controller
     public function index()
     {
         $docentes = DB::table('docentes')->get();
-        return view('docentes.index', compact('docentes'));
+        return view('role.admin.docentes.index', compact('docentes'));
 
     }
 

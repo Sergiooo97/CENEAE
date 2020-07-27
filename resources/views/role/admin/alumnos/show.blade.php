@@ -2,7 +2,7 @@
 
 @section('title', "info | {$alumno->nombres}")
 
-@section('content') 
+@section('content')
 <!-- Button trigger modal -->
 <!-- Button trigger modal -->
 
@@ -19,7 +19,7 @@
       <div class="modal-body">
       <form id="form" action="{{route('ndolares.store')}}" method="POST">
         @csrf
-        
+
           <div class="form-group">
             <div class="row">
                 <div class="col-sm">
@@ -39,7 +39,6 @@
             <input name="antes" type="text" class="form-control" id="antes" value="{{$alumno->ndolares}}" hidden >
             <input name="id_alumno" type="text" class="form-control" id="id_alumno" value="{{$alumno->id}}" hidden >
 
-            <input name="actual" type="text" class="form-control" id="actual" hidden >
 
             <label for="recipient-name" class="col-form-label titulo-accion">Desposito/Retiro</label>
             <input name="cantidad" type="text" class="form-control" id="cantidad" id="recipient-name" >
@@ -48,7 +47,7 @@
             <label for="message-text" class="col-form-label">comentario (opcional):</label>
             <textarea name="comentario" class="form-control" id="message-text"></textarea>
           </div>
-   
+
 <script>
   $('document').ready(function(){
             $('#enviar').click(function(){
@@ -59,12 +58,12 @@
               }else if(accion == "retiro"){
                 $("#actual").val(parseFloat($('#antes').val()) - parseFloat($('#cantidad').val()));
 
-              }                
+              }
             });
-           
+
 
         });
- 
+
 </script>
       </div>
       <div class="modal-footer">
@@ -76,11 +75,11 @@
   </div>
 </div>
 <script>
-  
+
   $('#depositoRetiro').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var recipient = button.data('whatever')
-  var nombre =  $("#nombres").val(); 
+  var nombre =  $("#nombres").val();
 
 
   // Extract info from data-* attributes
@@ -103,44 +102,44 @@
         <div class="image">
           <img src="{{asset('img/ntcd.jpg')}}" width="" alt="...">
         </div>
-       
+
         <div class="card-body">
           <div class="author">
             <a href="#">
-           
-                  
-              
+
+
+
               <img class="avatar border-gray" src="{{asset('img/yo.jpg')}}" alt="...">
               <h5 class="title">{{ $alumno->nombres }}&nbsp;{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }} </h5>
             </a>
-           
+
             <p class="description slider-label">
               @ {{$alumno->matricula}}
             </p>
           </div>
           <p  class="description text-center slider-label">
             "{{$alumno->grado}}°{{$alumno->grupo}}"
-           
+
           </p>
           <p class="description text-center slider-label">
             "De grande quiero ser {{$alumno->quiero_ser}}"
-           
+
           </p>
           <input id="ndolar-d" value="{{$alumno->ndolares}}" hidden/>
         </br>
-       
+
         </div>
         <div class="card-footer">
           <hr>
           <div class="button-container">
             <div class="row">
               <div class="col-sm-3 mr-auto">
-                <h5>{{$alumno->ndolares}} $
+                <h5>{{$ndolar_lista->cantidad}} $
                   <br>
                   <small style="font-size: 14px;">dolares</small>
                 </h5>
               </div>
-             
+
               <div  class="col-sm-9 mr-auto" >
                 <button style="font-size: 23px; padding: 10px;" type="button" class="btn btn-success" data-toggle="modal"
                 data-target="#depositoRetiro" data-whatever="deposito" >
@@ -154,8 +153,8 @@
             <button id="boton" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres' => $alumno->nombres])}}'" style="font-size: 23px; padding: 10px;"><i style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></button>
 
             <script>
-             
-                  if(document.getElementById('ndolar-d').value <=0){
+
+                  if(document.getElementById('ndolarTransacciones-d').value <=0){
                     document.getElementById('boton').disabled=true;
                     document.getElementById('retiro').disabled=true;
 
@@ -167,19 +166,19 @@
           </div>
         </div>
       </div>
-    
+
     </div>
 
-    <div class="col-md-8"> 
+    <div class="col-md-8">
       <div class="card card-user">
         <div class="card-header btn-volver-container">
           <h5 class="card-title">información de alumno<a class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
                                                      <i class="nc-icon nc-minimal-left"></i> Volver atrás</a>
           </h5>
-          
+
         </div>
         <div class="card-body">
-         
+
             <div class="row">
               <div class="col-md-5 pr-1">
                 <div class="form-group">
@@ -200,7 +199,7 @@
                 </div>
               </div>
             </div>
-            
+
              <div class="row">
               <div class="col-md-5 pr-1">
                 <div class="form-group">
@@ -245,19 +244,19 @@
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nombres de tutor</label>
-                  <input disabled="" name="nombres_tutor" type="text" class="form-control" placeholder="Nombres de tutor" value="{{$alumno->nombres_tutor}}">
+                  <input disabled="" name="nombres_tutor" type="text" class="form-control" placeholder="Nombres de tutor" value="{{$tutor->nombres}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>Apellido paterno de tutor</label>
-                  <input disabled="" name="apellido_paterno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_paterno_tutor}}">
+                  <input disabled="" name="apellido_paterno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$tutor->apellido_paterno}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Apellido materno de tutor</label>
-                  <input disabled=""  name="apellido_materno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$alumno->apellido_materno_tutor}}">
+                  <input disabled=""  name="apellido_materno_tutor" type="text" class="form-control" placeholder="Apellido paterno de tutor" value="{{$tutor->apellido_materno}}">
                 </div>
               </div>
             </div>
@@ -265,19 +264,19 @@
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Teléfono del tutor</label>
-                  <input disabled="" name="telefono_tutor" type="number" class="form-control" placeholder="Teléfono del tutor" value="{{$alumno->telefono_tutor}}">
+                  <input disabled="" name="telefono_tutor" type="number" class="form-control" placeholder="Teléfono del tutor" value="{{$tutor->telefono}}">
                 </div>
               </div>
               <div class="col-md-3 px-1">
                 <div class="form-group">
                   <label>E-mail de tutor</label>
-                  <input disabled="" type="email" class="form-control" placeholder="correo del tutor" value="sergio.16070021@itsmotul.edu.mx">
+                  <input disabled="" type="email" class="form-control" placeholder="correo del tutor" value="{{$tutor->correo}}">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Dirección del tutor</label>
-                  <input disabled="" name="direccion_tutor" type="text" class="form-control" placeholder="Dirección de tutor" value="{{$alumno->direccion_tutor}}">
+                  <input disabled="" name="direccion_tutor" type="text" class="form-control" placeholder="Dirección de tutor" value="{{$tutor->direccion}}">
                 </div>
               </div>
             </div>
@@ -286,7 +285,7 @@
                 <a href="{{route('alumnos.edit', $alumno->id)}}"  class="btn btn-primary btn-round">Actualizar datos</a>
               </div>
             </div>
-          
+
         </div>
       </div>
     </div>
@@ -304,8 +303,8 @@
 <script>
 
 /*
-  
-      
+
+
   $('#btn-submit').on('click',function(e){
     e.preventDefault();
     var form = $(this).parents('form');
@@ -318,7 +317,7 @@
         confirmButtonText: "Yes, delete it!",
         closeOnConfirm: false
     }, function(isConfirm){
-        if (isConfirm) 
+        if (isConfirm)
         document.getElementById("form").submit();
     });
 });
@@ -326,7 +325,7 @@
 
 function confirmAlert() {
  var accion =  document.getElementById("accion").value;
-  
+
 event.preventDefault();
  let form = event.target;
         Swal.fire({
@@ -340,7 +339,7 @@ event.preventDefault();
             }).then((result) => {
               if (result.value) {
                 document.getElementById("form").submit();
-                
+
                 if(form.submit()){
                   Swal.fire(
                   'Retiro con éxito!',
@@ -348,9 +347,9 @@ event.preventDefault();
                   'success'
                 )
                 }
-                
+
               }
-            })         
+            })
    } */
 </script>
 @endsection

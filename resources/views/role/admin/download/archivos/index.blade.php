@@ -51,7 +51,7 @@
           </button>
           <h5>Listas de información</h3>
 
-          <a href="{{url('admin/download/lista-ndolar')}}" class="btn btn-danger"><i class="fa fa-file-excel-o"
+          <a href="{{url('admin/download/lista-ndolarTransacciones')}}" class="btn btn-danger"><i class="fa fa-file-excel-o"
             aria-hidden="true"></i> Descargar listas de nata-dolares (Sin formato)</a>
             <a href="{{url('admin/download/asistencia-1A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
             <a href="{{url('admin/download/asistencia-1B')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
@@ -66,7 +66,7 @@
             <a href="{{url('admin/download/asistencia-6A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
             <a href="{{url('admin/download/asistencia-6B')}}" class="btn btn-danger"><<i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
             <a href="{{url('admin/download/lista-todos')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> Todos (Sin formato)</a>
-          
+
             <h5>Formatos de lista de asistencias</h3>
 
                 <a href="{{url('admin/download/lista-1A')}}" class="btn btn-danger"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
@@ -96,7 +96,7 @@
                 </button>
               </div>
               <div class="modal-body">
-               
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -137,7 +137,7 @@
           </div>
         </div>
 
-   
+
 
       </div>
     </div>

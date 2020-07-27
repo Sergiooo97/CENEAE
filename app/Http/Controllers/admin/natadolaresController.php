@@ -28,7 +28,7 @@ class natadolaresController extends Controller
         ->grado($grado)
         ->grupo($grupo)
         ->paginate(5);
-        return view('ndolares.index', compact('alumnos'));    }
+        return view('role.admin.ndolares.index', compact('alumnos'));    }
 
     /**
      * Show the form for creating a new resource.

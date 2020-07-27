@@ -16,7 +16,7 @@
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Alumnos</p>
-                @foreach ($results as $result)                 
+                @foreach ($results as $result)
 
                 <p class="card-title">{{$result->Total}}
                   @endforeach
@@ -29,12 +29,9 @@
           <div class="card-footer ">
             <hr>
             <div class="stats">
-
               <img src="{!! asset('img/Alumnos-lista.svg') !!}" height="30px" width="30px">
               <p style="font-size:18px; float:right;">Ver lista</p>
-
             </div>
-
           </div>
         </a>
       </div>
@@ -446,7 +443,7 @@
           <div style="background: transparent" class="main card-header">
             <section  class="row">
               <div class="card card-stats">
-                
+
                 <h2 class="hidden">Calendario escolar 2019-2020</h2>
                 <div class="calendar">
                   <div class="month ">
