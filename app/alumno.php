@@ -1,13 +1,25 @@
 <?php
 
 namespace App;
-
+use App\curso;
 use Illuminate\Database\Eloquent\Model;
 
 class alumno extends Model
 {
+
+    public function courses()
+    {
+        return $this->belongsToMany(\App\curso::class, cursos_alumnos::class)->withTimestamps();
+
+    }
+
+    public function grades_values()
+    {
+        return $this->hasMany('App\notas_values');
+    }
+
     protected $fillable = [
-        'matricula','nombres','apellido_paterno', 
+        'matricula','nombres','apellido_paterno',
         'apellido_materno','edad','fecha_de_nacimiento',
         'curp','grado','municipio','cp','direccion','grupo',
         'quiero_ser','ndolares', 'nombres_tutor','apellido_paterno_tutor',
@@ -32,4 +44,5 @@ class alumno extends Model
         if($grupo)
         return $query->where('grupo', 'LIKE', "%$grupo%" );
     }
+
 }

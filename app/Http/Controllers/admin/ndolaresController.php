@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Response;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use ToSweetAlert;
 use App\ndolarTransacciones;
 use App\ndolar_lista;
 use App\alumno;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use ToSweetAlert;
+
 class ndolaresController extends Controller
 {
     /**

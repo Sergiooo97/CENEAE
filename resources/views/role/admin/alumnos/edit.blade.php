@@ -118,8 +118,7 @@
                     required>
                 </div>
                 <div class="col-sm">
-                  {!!Form::label('quiero_ser','De grande quiero ser...',['class'=>'label'])!!}
-                  <input name="quiero_ser" id="quiero_ser" class="form-control" placeholder="De grande quiero ser" value="{{$alumno->quiero_ser}}" autocomplete="off">
+
                 </div>
               </div>
             </div>

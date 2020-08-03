@@ -73,7 +73,7 @@ class grposController extends Controller
         ->grado($grado)
         ->grupo($grupo)
         ->paginate(5);
-        return view('grupos.edit', compact('alumnos', 'grad'));
+        return view('role.admin.grupos.edit', compact('alumnos', 'grad'));
 
     }
 

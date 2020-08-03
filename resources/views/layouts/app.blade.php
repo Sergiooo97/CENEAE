@@ -13,18 +13,19 @@
   <title>@yield('title')</title>
 
   <!--Styler  -->
-  
+
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
   <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
   <!--Scripts  -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}" ></script>
-  <script src="{{ asset('js/popper.min.js') }}" ></script> 
-  <script src="{{ asset('js/popper.min.js.map') }}" ></script> 
-  <script src="{{ asset('js/bootstrap.min.js') }}" ></script> 
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}" ></script>
+    <script src="{{ asset('js/popper.min.js') }}" ></script>
+    <script src="{{ asset('js/popper.min.js.map') }}" ></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
 
     <!--Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -39,19 +40,90 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"> -->
 
-    
+
   <style>
+      li{
+          list-style:none;
+      }
     .alumno-label-block {
       display: block !important;
     }
     .alumno-label-none {
       display: none !important;
     }
-    .btn-volver-container a { font-size: 14px; 
+    .btn-volver-container a { font-size: 14px;
   text-decoration: none;
   margin: 0px;
    }
-   
+      .periodo-cont>a{
+          color: #0b0b0b;
+      }
+    /* Fixed sidenav, full height */
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    /* Style the sidenav links and the dropdown button */
+    .sidenav a, .dropdown-btn {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        border: none;
+        background: none;
+        width:100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+    }
+
+    /* On mouse-over */
+    .sidenav a:hover, .dropdown-btn:hover {
+        color: #f1f1f1;
+    }
+
+    /* Main content */
+    .main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    /* Add an active class to the active dropdown button */
+    .active .dropdown-btn {
+        background-color: rgb(168, 47, 6);
+        color: white;
+    }
+      .active-sub  {
+
+
+          color: #ffffff !important;
+      }
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+        display: none;
+        background-color: #e9e9e9;
+
+        margin: 1em !important;
+        border-radius: 10px;
+    }
+
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+
+
   </style>
 </head>
 
@@ -83,32 +155,113 @@
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
               </a>
             </li>
-            <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}{{request()->is('admin/alumno/*/info') ? 'active act' : '' }}">
-              <a href="{{ route('alumnos.index') }}">
-                <p class="slider-label "><i class="nc-icon nc-satisfied"></i>Alumnos 
-                  {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
-                </p>
-              </a>
-            </li>
-            <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
-              <a href="{{ route('docentes.index') }}">
-                <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
-              </a>
-            </li>
-            <li class="{{request()->is('admin/grupos') ? 'active' : ''}}{{request()->is('admin/grupos/*/*/edit') ? 'active' : ''}}">
-              <a href="{{ route('grupos.index') }}">
-                <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos 
-                  {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
-                </p>
-              </a>
-            </li>
+                  <li class="{{request()->is('periodo') ? 'active' : '' }}">
+                      <a  class="dropdown-btn">
+                          <p class="slider-label "><i class="nc-icon nc-icon nc-calendar-60"></i>Periodos
+                              {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
+                          </p>
+                      </a>
+                      <div class="dropdown-container">
+                          <ul style="padding-left: 20px !important;">
+                              <li><a href="{{ route('app.period.page') }}">
+                                      <p class="slider-label"><i class="nc-icon nc-calendar-60"></i>Configurar
+                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                                      </p>
+                                  </a></li>
+                              <li><a href="{{ route('rangos.index') }}">
+                                      <p class="slider-label"><i class="nc-icon nc-calendar-60"></i>Rangos
+                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                                      </p>
+                                  </a></li>
+                          </ul>
+                      </div>
+                  </li>
+                  <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}
+                             {{request()->is('admin/alumno/*/info') ? 'active act' : '' }}">
+                      <a  class="dropdown-btn">
+                          <p class="slider-label "><i class="nc-icon nc-icon nc-satisfied"></i>Alumnos
+                              {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
+                          </p>
+                      </a>
+                      <div class="dropdown-container">
+                          <ul style="padding-left: 20px !important;">
+                              <li>
+                                  <a href="{{ route('alumnos.index') }}">
+                                      <p class="slider-label "><i class="nc-icon nc-bullet-list-67"></i>Listas
+                                          {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
+                                      </p>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="{{ route('alumnos.create') }}">
+                                      <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Registro</p>
+                                  </a>
+                              </li>
 
-            <li class="{{request()->is('admin/calificaciones') ? 'active' : '' }}">
-              <a href="{{route('ndolares.index')}}">
-                <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Calificaciones</p>
-              </a>
-            </li>
+                          </ul>
+                      </div>
+                  </li>
+                  <li class="{{request()->is('alumnos') ? 'active' : '' }}">
+                      <a  class="dropdown-btn">
+                          <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos
+                              {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                          </p>
+                      </a>
+                      <div class="dropdown-container">
+                          <ul style="padding-left: 20px !important;">
+                              <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
+                                  <a href="{{ route('grupos.index') }}">
+                                      <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos
+                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                                      </p>                                  </a>
+                              </li>
+                              <li class="{{request()->is('curso') ? 'active' : ''}}">
+                                  <a href="{{ route('curso.index') }}">
+                                      <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Asignaturas
+                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                                      </p>
+                                  </a>
+                              </li>
+                              <li class="{{request()->is('admin/alumno/Act') ? 'active-sub' : '' }}">
+                                  <a href="{{route('calificaciones.index')}}">
+                                      <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Calificación</p>
+                                  </a>
+                              </li>
+                              <li class="{{request()->is('admin/alumno/Act') ? 'active-sub' : '' }}">
+                                  <a href="{{route('asignar.calificaciones.index')}}">
+                                      <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Asignar Calificación</p>
+                                  </a>
+                              </li>
 
+
+                          </ul>
+                      </div>
+                  </li>
+
+
+                  <script>
+                      var dropdown = document.getElementsByClassName("dropdown-btn");
+                      var i;
+
+                      for (i = 0; i < dropdown.length; i++) {
+                          dropdown[i].addEventListener("click", function() {
+                              this.classList.toggle("active");
+                              var dropdownContent = this.nextElementSibling;
+                              if (dropdownContent.style.display === "block") {
+                                  dropdownContent.style.display = "none";
+                              } else {
+                                  dropdownContent.style.display = "block";
+                              }
+                          });
+                      }
+                  </script>
+
+
+                  <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
+                      <a href="{{ route('docentes.index') }}">
+                          <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
+                      </a>
+                  </li>
             <li class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/ndolares') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
                 <p class="slider-label"><i class="nc-icon nc-money-coins"></i>Dolares
@@ -119,11 +272,7 @@
                 </p>
               </a>
             </li>
-            <li class="{{request()->is('admin/alumno/inscripcion') ? 'active' : '' }}">
-              <a href="{{ route('alumnos.create') }}">
-                <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Registro</p>
-              </a>
-            </li>
+
             <li class="{{request()->is('admin/download/archivos') ? 'active' : '' }}">
               <a href="{{ route('archivosD.index') }}">
                 <p class="slider-label"><i class="nc-icon nc-cloud-download-93"></i>Archivos</p>
@@ -136,7 +285,7 @@
               <a href="{{ route('alumno.home.index',['id' => Auth::user()->id]) }}">
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
               </a>
-            </li>        
+            </li>
             @endif
           </ul>
 
@@ -191,7 +340,32 @@
                       </div>
                     </form>
                     <ul class="navbar-nav">
-
+                        <div class=" nav-item btn-rotate dropdown">
+                            <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="periodo-cont" id="NombrePeriodo" style="font-weight: bold;">
+                                                                                  @if(\Session::has('periodo'))
+                                        {{ \Session::get('periodo') }}
+                                    @else
+                                        <?php
+                                        $defecto = App\periodo::select('nombre')->where('id',
+                                            \Session::get('idPeriodo'))->first();
+                                        ?>
+                                        @if(is_null($defecto))
+                                            Registre periódos
+                                        @else
+                                            {{ $defecto->nombre }}
+                                        @endif
+                                    @endif
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @foreach(App\periodo::orderBy('año','DESC')->get() as $periodo)
+                                    <a href="{{ route('app.set.periodo',$periodo->id) }}">
+                                        {{ $periodo->nombre }}
+                                    </a> </br>
+                                @endforeach
+                            </div>
+                        </div>
                       <li class="nav-item btn-rotate dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -267,15 +441,79 @@
     </div>
   </div>
   @include('sweetalert::alert')
-  <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
-  @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
-  <!--   Core JS Files   -->
+  <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
   <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')  }}"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   <script src="{{ asset('js/core/popper.min.js')  }}"></script>
   <script src="{{ asset('js/plugins/bootstrap-notify.js')  }}"></script>
-  <script src="{{ asset('js/paper-dashboard.min.js')  }}" type="text/javascript"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+  <!--   Core JS Files   -->
+
+
+  <script src="{{ asset('js/paper-dashboard.min.js')  }}" type="text/javascript"></script>
+  @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
+  <script>
+      $('#sel').select2({theme: 'bootstrap4'});
+
+      getLicences(function(array){
+          $('#sel').val(array);
+          $('#sel').trigger('change');
+      })
+
+      function getLicences(cb){
+          fetch("https://api.myjson.com/bins/7irpm")
+              .then(res => res.json())
+              .then(json => {
+                  console.log(json)
+                  for (var i=0; i<json.length;i++) {
+                      var o = new Option(json[i], json[i]);
+                      $(o).html(json[i]);
+                      $("#sel").append(o);
+                  }
+                  return cb(json);
+              })
+      }
+      $('#tags').select2({
+          tags: true,
+
+          tokenSeparators: [','],
+          placeholder: "Seleccione un grupo",
+          /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
+          selectOnClose: true,
+          closeOnSelect: false
+      });
+      // In your Javascript (external .js resource or <script> tag)
+      $(document).ready(function() {
+          $('.js-example-basic-single').select2();
+      });s
+
+      $(".js-example-basic-multiple-limit").select2({
+          maximumSelectionLength: 2
+      });
+      $('select').select2({
+          createTag: function (params) {
+              var term = $.trim(params.term);
+
+              if (term === '') {
+                  return null;
+              }
+
+              return {
+                  id: term,
+                  text: term,
+                  newTag: true // add additional parameters
+              }
+          }
+      });
+
+</script>
 
   <!--  Google Maps Plugin    -->
   <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->

@@ -2,24 +2,24 @@
   font-family: "Northern";
   src: url("../fonts/NorthernTerritories.ttf") format("truetype");
   }
-  
+
   .titleceneae{
                 font-family:Northern;
                 font-size: 30px
               }
      .font-natacad{
       font-family:Northern;
-  
+
       }
 .card .card-footer {
   margin-top: 1em;
-  border: 0;  
+  border: 0;
 }
 
 
 
 .logos{
-  background:rgb(168, 47, 6);   
+  background:rgb(168, 47, 6);
   color: #ffffff;
 
 
@@ -34,15 +34,15 @@
 
 li.active > a> p {
   color: #ffffff;
-    
+
 
 }
 
 li.active > a {
   color: #5a5a5a;
   opacity: 1;
-  background:rgb(168, 47, 6);   
-  border-radius: 5px;   
+  background:rgb(168, 47, 6);
+  border-radius: 5px;
 
 }
 
@@ -2872,7 +2872,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar a:not(.btn):not(.dropdown-item) {
-  color: #FFFFFF;
+  color: #0b0b0b;
 }
 
 .navbar a.dropdown-item {
@@ -5047,7 +5047,7 @@ License - nucleoapp.com/license/
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"] i,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active .sidebar-mini-icon,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active>a {
-  color: #ffffff;    
+  color: #ffffff;
 
   opacity: 1;
 }

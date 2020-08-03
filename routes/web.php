@@ -60,11 +60,21 @@ Route::group([
     Route::get('lista/orden', 'alumnosController@orden')->name('alumnos.orden'); //LISTA DE ALUMNOS
     Route::get('inscripcion', 'alumnosController@create')->name('alumnos.create'); //REGISTRO
     Route::post('inscripcion', 'alumnosController@store')->name('alumnos.store'); //GUARDAR DATOS EN LA BASE DE DATOS
-    Route::get('{id}/info', 'alumnosController@show')->where('id','[0-9]+')->name('alumnos.show'); //INFORMACIÓN DE ALUMNO
+      Route::post('asignar', 'alumnosController@asignarCursos')->name('alumnos.asignarCursos'); //GUARDAR DATOS EN LA BASE DE DATOS
+
+      Route::get('{id}/info', 'alumnosController@show')->where('id','[0-9]+')->name('alumnos.show'); //INFORMACIÓN DE ALUMNO
     Route::get('{id}/edit', 'alumnosController@edit')->name('alumnos.edit'); //VENTANA DE ACTUALIZACIÓN DE DATOS
     Route::patch('{id}/actualizar', 'alumnosController@update')->name('alumnos.update'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
     Route::patch('{id}/orden', 'alumnosController@updateOrden')->name('alumnos.updateOrden'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
-    Route::get('{id}/calificacion', 'calificacionesController@show')->name('calificacion.show'); //CALIFICACIÓN DE ALUMNOS
+
+    Route::get('{curso_id}/calificacion/registrar', 'calificacionesController@show')->name('calificaciones.show'); //CALIFICACIÓN DE ALUMNOS
+      Route::get('/calificacion', 'calificacionesController@index')->name('calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
+      Route::get('calificacion/asignaturas', 'calificacionesController@asignarIndex')->name('asignar.calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
+      Route::get('{curso_id}/{nota_id}/{curso_grado}/{curso_grupo}/calificacion', 'calificacionesController@asignar')->name('asignar.create'); //CALIFICACIÓN DE ALUMNOS
+      Route::get('calificaciones/{id}/detalles', 'calificacionesController@detalles')->name('calificaciones.detalles'); //CALIFICACIÓN DE ALUMNOS
+      Route::post('/value', 'calificacionesController@valueStore')->name('calificaciones.value.store'); //CALIFICACIÓN DE ALUMNOS
+      Route::post('/calificacion/registro', 'calificacionesController@store')->name('calificaciones.store'); //CALIFICACIÓN DE ALUMNOS
+      Route::post('/actividad/registro', 'calificacionesController@actividadStore')->name('actividad.store'); //CALIFICACIÓN DE ALUMNOS
 
   //Nata-dolares
   Route::get('ndolares', 'natadolaresController@index')->name('ndolares.index');
@@ -125,7 +135,28 @@ Route::group([
   });
   });
 
+    Route::get('setperiodo/{id}','IndexController@setPeriodo')->name('app.set.periodo');
 
+   //Periodos
+    Route::get('periodo','periodoController@index')->name('app.period.page');
+    Route::get('periodo/listar','periodoController@listAll')->name('app.period.list');
+    Route::post('periodo/insertar','periodoController@save')->name('app.period.save');
+    Route::post('periodo/sesion','periodoController@setSession')->name('app.period.sesion');
+    Route::post('periodo/eliminar','periodoController@delete')->name('app.period.delete');
+//raqngos
+
+    Route::get('rango','periodoRangoController@index')->name('rangos.index');
+    Route::get('rango/listar','periodoRangoController@listAll')->name('app.range.list');
+    Route::post('rango/insertar','periodoRangoController@save')->name('app.range.save');
+    Route::post('rango/sesion','periodoRangoController@setSession')->name('app.range.sesion');
+    Route::post('rango/eliminar','periodoRangoController@delete')->name('app.range.delete');
+
+    //Cursos
+    Route::get('curso','cursoController@index')->name('curso.index');
+    Route::get('curso/listar','CourseController@listAll')->name('app.course.list');
+    Route::post('curso/insertar','cursoController@store')->name('curso.store');
+    Route::post('curso/sesion','CourseController@setSession')->name('app.course.sesion');
+    Route::post('curso/eliminar','CourseController@delete')->name('app.course.delete');
 
 
 

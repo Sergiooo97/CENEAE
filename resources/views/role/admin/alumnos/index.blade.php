@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+<style>
+    #tags {
+        width:100%
+    }
+</style>
 @section('title', 'Alumnos | CENEAE')
 <style>
   .page-item.active .page-link {
@@ -90,6 +94,9 @@
                   </th>
                 </thead>
                 <tbody>
+                <form action="{{route('alumnos.asignarCursos')}}" role="form" method="POST" enctype="multipart/form-data">
+                @csrf
+
                   @foreach ($alumnos as $alumno)
                   <tr>
                     <td>
@@ -108,10 +115,8 @@
                       {{ $alumno->grado }} {{ $alumno->grupo }}
                     </td>
                     <td>
-                      {{ $alumno->telefono_tutor }}
+
                     </td>
-
-
                     <td>
                       <a href="{{route('alumnos.show',['id' => $alumno->id])}}" class="btn btn-info"> info <i  class="nc-icon nc-alert-circle-i"></i></a>
 
@@ -120,6 +125,8 @@
                     </td>
 
                   </tr>
+                        <input id="id_alumno[]" value="{{$alumno->id}}" name="id_alumno[]" class="form-control" hidden>
+
                   @endforeach
 
 
@@ -128,7 +135,24 @@
               </table>
               {{ $alumnos->appends($_GET)->links() }}
               <!-------------------------------------------termina tabla ---------------------------------->
+                <div class="form-group">
+                    <label>Seleccione los cursos</label>
 
+                </div>
+                <select name="curso[]" id="tags" multiple="multiple" multiple>
+                    @if(count($cursos))
+                        @foreach ($cursos as $curso)
+                            <option value="{{ $curso->id }}">{{ $curso->nombre }}</option>
+                        @endforeach
+                    @else
+                        <option value="">No existen cursos registrados</option>
+                    @endif
+                </select>
+
+                <div class="box-footer">
+                    <button type="submit" id="Enviar" class="btn btn-primary pull-right">Enviar</button>
+                </div>
+                </form>
 
             </div>
               <!-- Button trigger modal -->
@@ -210,12 +234,93 @@
         </div>
 
 
+                  </div>
+              </div>
+          </div>
+          <!-- /.tab-pane -->
+
 
 
       </div>
     </div>
     @include('sweetalert::alert')
-    <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
+
+      <script>
+          $('#FormAlumno').bootstrapValidator({
+              message: 'Este valor no es valido',
+              feedbackIcons: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+              },
+              fields: {
+                  Nombre: {
+                      message: 'El Nombre no es valido',
+                      validators: {
+                          notEmpty: {
+                              message: 'No ha ingresado el Nombre'
+                          },
+                          stringLength: {
+                              max: 191,
+                              message: 'El Nombre no debe ser mayor de 191 caracteres'
+                          }
+                      }
+                  },
+                  Apellidos: {
+                      message: 'Los apellidos no son validos',
+                      validators: {
+                          notEmpty: {
+                              message: 'No ha ingresado los Apellidos'
+                          },
+                          stringLength: {
+                              max: 191,
+                              message: 'Los apellidos no deben ser mayor de 191 caracteres'
+                          }
+                      }
+                  },
+                  Direccion: {
+                      message: 'La Dirección no es valida',
+                      validators: {
+                          notEmpty: {
+                              message: 'No ha ingresado la Dirección'
+                          },
+                          stringLength: {
+                              max: 191,
+                              message: 'La Dirección no debe ser mayor de 191 caracteres'
+                          }
+                      }
+                  },
+                  Email: {
+                      message: 'El Email no es valido',
+                      validators: {
+                          notEmpty: {
+                              message: 'No ha ingresado el Email'
+                          },
+                          emailAddress: {
+                              message: 'No es un Email valido'
+                          }
+                      }
+                  }
+              }
+          })
+              .on('success.form.bv', function(e) {
+                  // Prevent form submission
+                  e.preventDefault();
+                  insertar();
+                  $("#FormAlumno").data('bootstrapValidator').resetForm();
+              });
+
+          $(".select2").select2();
+          configurarTabla();
+
+          //insertar();
+          viewData();
+          eliminar();
+          subirFoto();
+          mostrarConfiguracion();
+          guardarRelacion();
+
+      </script>
     @endsection
