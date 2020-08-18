@@ -12,10 +12,34 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use \Maatwebsite\Excel\Sheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+use Maatwebsite\Excel\Concerns\WithDrawings;
 
-class ndolarPerGrupo implements FromQuery, WithTitle, WithHeadings,ShouldAutoSize, WithEvents
+class ndolarPerGrupo implements FromQuery, WithTitle, WithHeadings,ShouldAutoSize, WithEvents, WithDrawings
 {
-   
+
+    public function drawings()
+    {
+        $draw_ceneae = new Drawing();
+        $draw_ceneae->setName('Logo');
+        $draw_ceneae->setDescription('This is my logo');
+        $draw_ceneae->setPath(public_path('/img/logo_centro_educativo.png'));
+        $draw_ceneae->setHeight(100);
+        $draw_ceneae->setCoordinates('A2');
+
+
+        $draw_segey = new Drawing();
+        $draw_segey->setName('Logo');
+        $draw_segey->setDescription('This is my logo');
+        $draw_segey->setPath(public_path('/img/segeey.png'));
+        $draw_segey->setHeight(100);
+        $draw_segey->setCoordinates('G2');
+
+        return [$draw_ceneae, $draw_segey];
+
+
+
+    }
     private $grado;
     private $year;
 
@@ -31,7 +55,13 @@ class ndolarPerGrupo implements FromQuery, WithTitle, WithHeadings,ShouldAutoSiz
     public function query()
     {
         return ndolar_lista
-            ::query()
+            ::select(
+                'id',
+                'matricula',
+                'nombres',
+                'grado',
+                'grupo',
+                'cantidad')
             ->OrderBy('grupo')
             ->where('grado', $this->grado);
     }
@@ -46,29 +76,99 @@ class ndolarPerGrupo implements FromQuery, WithTitle, WithHeadings,ShouldAutoSiz
     public function headings(): array
     {
         return [
-            '#',
-            'Matricula',
-            'Nombres',
-            'Grado',
-            'Grupo',
-            'Cantidad $'
-        ];
+        [' '],
+        ['SECRETARÍA DE EDUCACIÓN DEL ESTADO DE YUCATÁN'],
+        ['"CENTRO EDUCATIVO NATANAEL"'],
+        ['C.C.T 31PPR0032N, ZONA 029'],
+        ['ACUERDO 2285, 2 DE JULIO DEL 2019'],
+        ['C.C.T 31PPR0032N, ZONA 029'],
+        ['CACALCHÉN, YUCATÁN'],
+        [' '],
+        ['#',
+        'Matricula',
+        'Nombres',
+        'Grado',
+        'Grupo',
+        'Cantidad $',
+        '          '],
+    ];
+
     }
     public function registerEvents(): array
     {
+
         return [
             AfterSheet::class    => function(AfterSheet $event) {
-                $cellRange = 'A1:W1'; // All headers             
-                $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-                $event->sheet->getStyle('D2:F1000')->applyFromArray([       
+                $event->sheet->getDelegate()->mergeCells('A1:G1');
+                $event->sheet->getDelegate()->mergeCells('A2:G2');
+                $event->sheet->getDelegate()->mergeCells('A3:G3');
+                $event->sheet->getDelegate()->mergeCells('A4:G4');
+                $event->sheet->getDelegate()->mergeCells('A5:G5');
+                $event->sheet->getDelegate()->mergeCells('A6:G6');
+                $event->sheet->getDelegate()->mergeCells('A7:G7');
+
+                $event->sheet->getStyle('A1:G8')->applyFromArray([
+                    'fill' => [
+                        'fillType' => 'linear', //线性填充，类似渐变
+                        'rotation' => 45, //渐变角度
+                        'startColor' => [
+                            'rgb' => 'ffffff' //初始颜色
+                        ],
+                        //结束颜色，如果需要单一背景色，请和初始颜色保持一致
+                        'endColor' => [
+                            'argb' => 'ffffff'
+                        ]
+                    ]
+                ]);
+
+
+
+                $cellRange = 'A1:W1'; // All headers
+                $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
+                $event->sheet->freezePane('A2', 'A2');
+                $event->sheet->getStyle('A9:G9')->applyFromArray([
+                    'fill' => [
+                        'fillType' => 'linear', //线性填充，类似渐变
+                        'rotation' => 45, //渐变角度
+                        'startColor' => [
+                            'rgb' => 'c4eee7' //初始颜色
+                        ],
+                        //结束颜色，如果需要单一背景色，请和初始颜色保持一致
+                        'endColor' => [
+                            'argb' => 'c4eee7'
+                        ]
+                    ]
+                ]);
+                $event->sheet->getStyle('A10:B1000')->applyFromArray([
+                    'fill' => [
+                        'fillType' => 'linear', //线性填充，类似渐变
+                        'rotation' => 45, //渐变角度
+                        'startColor' => [
+                            'rgb' => 'c4eee7' //初始颜色
+                        ],
+                        //结束颜色，如果需要单一背景色，请和初始颜色保持一致
+                        'endColor' => [
+                            'argb' => 'c4eee7'
+                        ]
+                    ]
+                ]);
+
+                    $event->sheet->getStyle('D2:F1000')->applyFromArray([
                     'alignment' => [
                         'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
                     ]
+
                 ]);
-              
+                $event->sheet->getStyle('A1:F8')->applyFromArray([
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    ]
+
+                ]);
+
             },
-            
-            
+
+
         ];
     }
 }

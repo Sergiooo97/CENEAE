@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
 @section('title', "calificacion | ")
-<style>
-    .curso-asignar a{
-        font-size: 30px;
-        color: #ffffff;
-    }
-</style>
-
 @section('content')
     <div class="notificationsss bounce ">
         <div style="width: 90%;" class="container  ">
@@ -83,17 +76,17 @@
                                                 @endif
                                                 <input id="id[]" value="{{$alumno->id}}" name="alumno_id[]" class="form-control" hidden/>
                                                 <tbody>
-                                                <tr>
-                                                    <td>
+                                                <tr >
+                                                    <td url="{{route('alumnos.show', ['id' => $alumno->id])}}">
                                                         {{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}
                                                     </td>
-                                                    <td>
-                                                        {{ $alumno->nombres }}                      </td>
-
-                                                    <td>
+                                                    <td url="{{route('alumnos.show', ['id' => $alumno->id])}}">
+                                                            {{ $alumno->nombres }}
+                                                    </td>
+                                                    <td url="{{route('alumnos.show', ['id' => $alumno->id])}}">
                                                         {{ $alumno->grado }}
                                                     </td>
-                                                    <td>
+                                                    <td url="{{route('alumnos.show', ['id' => $alumno->id])}}">
                                                         {{ $alumno->grupo }}
                                                     </td>
                                                     <td style="width: 3em;">
@@ -106,7 +99,6 @@
 
                                                 </tbody>
                                         </table>
-
                                     <button type="submit">Enviar</button>
                                         <!-------------------------------------------termina tabla ---------------------------------->
                                 </form >
@@ -119,14 +111,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
+    <script src="{{ asset('js/td_href.js')  }}" type="text/javascript"></script>
 
 @endsection

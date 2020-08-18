@@ -7,13 +7,13 @@
       <!-- CSS Files -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-      
+
     </head>
 <body>
- 
+
   <table>
     <thead>
-      
+
       <tr>
         <th style="background-color: #ffffff;"   colspan="23" ></th>
         <th style="background-color: #ffffff; text-align:center;"></th>
@@ -50,85 +50,94 @@
         <th style="background-color: #ffffff; text-align:center;"></th>
 
       </tr>
-      
-     
+
+
     <tr >
         <th style="background-color: #c4eee7;" >Nombres</th>
         <th style="background-color: #c4eee7;" >No. Tutor</th>
 
-        <th style="background-color: #c4eee7;">L</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">J</th>
-        <th style="background-color: #c4eee7;">V</th>
-        <th style="background-color: #c4eee7;">L</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">J</th>
-        <th style="background-color: #c4eee7;">V</th>
-        <th style="background-color: #c4eee7;">L</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">J</th>
-        <th style="background-color: #c4eee7;">V</th>
-        <th style="background-color: #c4eee7;">L</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">M</th>
-        <th style="background-color: #c4eee7;">J</th>
-        <th style="background-color: #c4eee7;">V</th>
-      
-        
-      
+        <th style="background-color: #c4eee7; width:3px">L</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">J</th>
+        <th style="background-color: #c4eee7; width:3px">V</th>
+
+        <th style="background-color: #c4eee7; width:3px">L</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">J</th>
+        <th style="background-color: #c4eee7; width:3px">V</th>
+
+        <th style="background-color: #c4eee7; width:3px">L</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">J</th>
+        <th style="background-color: #c4eee7; width:3px">V</th>
+
+        <th style="background-color: #c4eee7; width:3px">L</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">M</th>
+        <th style="background-color: #c4eee7; width:3px">J</th>
+        <th style="background-color: #c4eee7; width:3px">V</th>
+
+
+
+
+
+
 
     </tr>
     </thead>
     <tbody>
     @foreach($alumnos as $alumno)
         <tr>
-            
-            <td style="border:1px dashed #ccc;  width:15px;  font-size: 10px;" >
+
+            <td style="border:1px dashed #ccc;" >
               {{ $alumno->nombres }}&nbsp;{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}
             </td>
-            <td style="border:1px dashed #ccc; width:18px; " >
+            <td style="border:1px dashed #ccc;" >
               {{ $alumno->telefono_tutor }}
             </td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
-            <td style="border:1px dashed #ccc; width:18px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
+            <td style="border:1px dashed #ccc; width:3px; " ></td>
 
 
 
-          </tr>
+        </tr>
           @endforeach
           <tr>
             <td style="background-color: #ffffff; text-align:center;"  colspan="22"></td>
             <th style="background-color: #ffffff; text-align:center;"></th>
 
           </tr>
-          
+
           <tr>
             <td style="background-color: #ffffff; text-align:center;"  colspan="22"></td>
             <th style="background-color: #ffffff; text-align:center;"></th>
 
           </tr>
-   
+
     </tbody>
 </table>
 </body>

@@ -2,15 +2,6 @@
 
 @section('title', "info | {$alumno->nombres}")
 
-<style>
-    .tbl{
-      overflow:hidden;
-    }
-    .table-responsive:hover{
-        overflow:scroll !important;
-    }
-
-</style>
 @section('content')
 <!-- Button trigger modal -->
 <!-- Button trigger modal -->
@@ -178,7 +169,7 @@
 
     </div>
 
-    <div class="col-md-8">
+      <div class="col-md-8">
       <div class="card card-user">
         <div class="card-header btn-volver-container">
           <h5 class="card-title">información de alumno<a class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
@@ -306,18 +297,7 @@
 
         <div class="col-md-8">
             <div class="card card-user">
-                <div class="card-header btn-volver-container">
-                    <h5 class="card-title">Rendimiento de {{$alumno->nombres}} en
-                        @isset($promedio_curso)
-                            {{$promedio_curso->nombre}}
-                        @endisset
-                        <div class="form-group forom-inline pull-right">
 
-                        </div>
-
-                    </h5>
-
-                </div>
                 <div class="card-body">
                     <div id="chart_alumno"></div>
                     <div class="table-responsive">
@@ -411,7 +391,9 @@
 </div>
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
-
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script type="text/javascript">
 
     var categoria =  <?php echo json_encode($subcomponentes) ?>;
@@ -419,13 +401,14 @@
     var notas =  <?php echo json_encode($notas) ?>;
     var users =  <?php echo json_encode($users) ?>;
     var ns =  <?php echo json_encode($ns) ?>;
+    var curso =  <?php echo json_encode($curso_grafica) ?>;
 
     Highcharts.chart('chart_alumno', {
         chart: {
             type: 'line'
         },
         title: {
-            text: "Rendimiento de: " + users
+            text: "Rendimiento de: " + users + " en " + curso
         },/*,
 	    subtitle: {
 	        text: 'Source: WorldClimate.com'

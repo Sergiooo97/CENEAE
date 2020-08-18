@@ -11,7 +11,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>@yield('title')</title>
-
+    <link rel="icon" type="image/ico" href="{{ asset('amorLogo.ico') }}">
   <!--Styler  -->
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -40,8 +40,25 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"> -->
 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        .curso-asignar a{
+            font-size: 30px;
+            color: #ffffff;
+        }
 
-  <style>
+
+        tr:hover td {
+            background: rgba(199, 212, 221, 0.6) !important;
+            cursor:pointer !important;
+
+        }
+        .tbl{
+            overflow:hidden;
+        }
+        .table-responsive:hover{
+            overflow:scroll !important;
+        }
       li{
           list-style:none;
       }
@@ -122,6 +139,9 @@
         float: right;
         padding-right: 8px;
     }
+        .slider-label{
+            font-family: 'Open Sans', sans-serif;
+        }
 
 
   </style>
@@ -341,7 +361,7 @@
                     </form>
                     <ul class="navbar-nav">
                         <div class=" nav-item btn-rotate dropdown">
-                            <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a title="Seleccione un periodo" class="nav-link dropdown-toggle btn-periodo" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="periodo-cont" id="NombrePeriodo" style="font-weight: bold;">
                                                                                   @if(\Session::has('periodo'))
                                         {{ \Session::get('periodo') }}
@@ -358,7 +378,7 @@
                                     @endif
                                 </span>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div style="width: min-content" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach(App\periodo::orderBy('año','DESC')->get() as $periodo)
                                     <a href="{{ route('app.set.periodo',$periodo->id) }}">
                                         {{ $periodo->nombre }}
@@ -366,38 +386,19 @@
                                 @endforeach
                             </div>
                         </div>
-                      <li class="nav-item btn-rotate dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="nc-icon nc-bell-55"></i>
-                          <p>
-                            <span class="d-lg-none d-md-block">Some Actions</span>
-                          </p>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </li>
+
                       <li class="nav-item">
 
-                        <a class="nav-link" href="#"><i class="fas fa-grin-tongue"></i>{{ Auth::user()->name }} <span
+                        <a title="Ir a información de usuario" class="nav-link btn-periodo pull-left" href="#"><i class="fas fa-grin-tongue"></i>{{ Auth::user()->name }} <span
                             class="caret"></span></a>
                       </li>
-                      <li class="nav-item">
 
-                        <span class="d-lg-none d-md-block">Account</span>
+                      <li id="btn-per" class="nav-item">
 
-                        </p>
-                        </a>
+                        <a title="Cerrar sesión" class="nav-link " href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();" alt="Cerrar sesión"><i class="nc-icon nc-button-power">
+                          </i> {{ __('') }}</a>
                       </li>
-                      <li class="nav-item">
-
-                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"><i class="nc-icon nc-button-power">
-                          </i> {{ __('Cerrar sesión') }}</a>
-                      </li></a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                       </form>
@@ -450,70 +451,12 @@
   <script src="{{ asset('js/core/popper.min.js')  }}"></script>
   <script src="{{ asset('js/plugins/bootstrap-notify.js')  }}"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
-
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
   <!--   Core JS Files   -->
-
-
   <script src="{{ asset('js/paper-dashboard.min.js')  }}" type="text/javascript"></script>
   @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
-  <script>
-      $('#sel').select2({theme: 'bootstrap4'});
 
-      getLicences(function(array){
-          $('#sel').val(array);
-          $('#sel').trigger('change');
-      })
-
-      function getLicences(cb){
-          fetch("https://api.myjson.com/bins/7irpm")
-              .then(res => res.json())
-              .then(json => {
-                  console.log(json)
-                  for (var i=0; i<json.length;i++) {
-                      var o = new Option(json[i], json[i]);
-                      $(o).html(json[i]);
-                      $("#sel").append(o);
-                  }
-                  return cb(json);
-              })
-      }
-      $('#tags').select2({
-          tags: true,
-
-          tokenSeparators: [','],
-          placeholder: "Seleccione un grupo",
-          /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
-          selectOnClose: true,
-          closeOnSelect: false
-      });
-      // In your Javascript (external .js resource or <script> tag)
-      $(document).ready(function() {
-          $('.js-example-basic-single').select2();
-      });s
-
-      $(".js-example-basic-multiple-limit").select2({
-          maximumSelectionLength: 2
-      });
-      $('select').select2({
-          createTag: function (params) {
-              var term = $.trim(params.term);
-
-              if (term === '') {
-                  return null;
-              }
-
-              return {
-                  id: term,
-                  text: term,
-                  newTag: true // add additional parameters
-              }
-          }
-      });
-
-</script>
 
   <!--  Google Maps Plugin    -->
   <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->

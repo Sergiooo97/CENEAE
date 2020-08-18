@@ -7,13 +7,13 @@
       <!-- CSS Files -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-      
+
     </head>
 <body>
- 
+
   <table>
     <thead>
-      
+
       <tr>
         <th style="background-color: #ffffff;"   colspan="7" ></th>
 
@@ -43,11 +43,11 @@
         <th style="background-color: #ffffff; "  colspan="15" ></th>
 
       </tr>
-      
-     
+
+
     <tr >
-        <th style="background-color: #c4eee7; width:15px;" >Matricula</th>
-        <th style="background-color: #c4eee7;  width:20px;" >Nombres</th>
+        <th style="background-color: #c4eee7; " >Matricula</th>
+        <th style="background-color: #c4eee7; " >Nombres</th>
         <th style="background-color: #c4eee7; width:23px;" >curp</th>
         <th style="background-color: #c4eee7; width:5px;">grupo</th>
         <th style="background-color: #c4eee7; width:15%;" >direccion</th>
@@ -70,8 +70,8 @@
 
           </tr>
           @endforeach
-         
-   
+
+
     </tbody>
 </table>
 </body>

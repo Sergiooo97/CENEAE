@@ -120,10 +120,12 @@ Route::group([
 |*/
 
   Route::prefix('download')->group(function () {
+
     Route::get('ndolarTransacciones/{id}', 'infoNdolarController@export')->name('info_ndolar.export');
     Route::get("exportar_asistencia/{grado}/{grupo}","archivosController@export_asistencia")->name("exportar_asistencia");
     Route::get("exportar_lista/{grado}/{grupo}","archivosController@export_lista")->name("exportar_lista");
     Route::get("exportar_ndolar_info/{id}/{nombre}","archivosController@export_ndolar_info")->name("exportar_ndolar_info");
+    Route::get("exportar_calificacion/{id}","archivosController@export_calificacion")->name("exportar_calificacion");
     //DESCARGAS DE ARCHIVOS
     Route::get('archivos', 'archivosController@index')->name('archivosD.index');
     Route::get('lista-ndolarTransacciones', function () {

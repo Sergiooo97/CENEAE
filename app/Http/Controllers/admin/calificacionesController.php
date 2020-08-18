@@ -60,10 +60,10 @@ class calificacionesController extends Controller
 
         $notas = notas::where('id' ,'>' ,0)
             ->pluck('id')->toArray();
-        $bimestres_total = notas_structures::selectRaw('count(*) as Total')
-            ->join('notas', 'notas_structures.nota_id', '=', 'notas.id')
-            ->where('nota_id', $notas)
-            ->first();
+        $bimestres_total = notas_structures::select('notas.curso_id as curso_id',\DB::raw('count(*) as Total'))
+            ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
+            ->groupBy('curso_id')
+            ->get();
         $alumno = alumno::where('id', $id)->first();
         $cursos = curso::where('grado', $alumno->grado)
             ->where('grupo', $alumno->grupo)
@@ -72,8 +72,8 @@ class calificacionesController extends Controller
             ->where('grupo', $alumno->grupo)
             ->get();
         $ns = notas_structures::select('notas_structures.nombre as structure_nombre')
-            ->join('notas', 'notas_structures.nota_id', '=', 'notas.id')
-            ->join('cursos', 'notas.curso_id', '=', 'cursos.id')
+            ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
+            ->leftJoin('cursos', 'notas.curso_id', '=', 'cursos.id')
             ->groupBy('structure_nombre')->orderBy('structure_nombre','ASC')
             ->get();
 
@@ -84,9 +84,9 @@ class calificacionesController extends Controller
                 'notas_values.periodos_rangos_id as per.id',
                 'notas_structures.nombre as ns_nombre',
                 'cursos.id as curso_id')
-                ->join('notas', 'cursos.id', '=', 'notas.curso_id')
-                ->join('notas_structures', 'notas.id', '=', 'notas_structures.nota_id')
-                ->join('notas_values', 'notas_structures.id', '=', 'notas_values.nota_structures_id')
+                ->leftJoin('notas', 'cursos.id', '=', 'notas.curso_id')
+                ->leftJoin('notas_structures', 'notas.id', '=', 'notas_structures.nota_id')
+                ->leftJoin('notas_values', 'notas_structures.id', '=', 'notas_values.nota_structures_id')
                 ->orderBy('notas_values.periodos_rangos_id','ASC')
                 ->orderBy('notas_structures.id','ASC')
                 ->groupBy('crs_nombre')
@@ -95,14 +95,14 @@ class calificacionesController extends Controller
                 ->get();
 
         $promedioFIN = notas_values::select('periodos_rangos_id', 'notas.curso_id', \DB::raw('AVG(nota) as prom'))
-            ->join('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
-            ->join('notas', 'notas_structures.nota_id', '=', 'notas.id')
+            ->leftJoin('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
+            ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
             ->where('alumno_id', $id)
             ->groupBy('periodos_rangos_id', 'curso_id')->orderBy('periodos_rangos_id','ASC')
             ->get();
         $promedioFINAL = notas_values::select('alumno_id','notas.curso_id as curso_id', \DB::raw('AVG(nota) as prom'))
-            ->join('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
-            ->join('notas', 'notas_structures.nota_id', '=', 'notas.id')
+            ->leftJoin('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
+            ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
             ->where('alumno_id', $id)
             ->groupBy('alumno_id', 'curso_id')->orderBy('alumno_id','ASC')
             ->get();

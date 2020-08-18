@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-class listaAlumnoExport implements FromView, WithDrawings, WithTitle,  WithEvents,ShouldAutoSize
+class listaAlumnoExport implements FromView, WithDrawings, WithTitle,  WithEvents, ShouldAutoSize
 {
     protected $alumnos;
     public function __construct($alumnos=null)
@@ -63,7 +63,7 @@ class listaAlumnoExport implements FromView, WithDrawings, WithTitle,  WithEvent
             AfterSheet::class    => function(AfterSheet $event) {
                 $cellRange = 'A8:W1000'; // All headers
                 $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(11);
+                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(9);
                 $event->sheet->getStyle('A8:G1000')->applyFromArray([
                     'alignment' => [
                         'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,

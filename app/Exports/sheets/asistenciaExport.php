@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class asistenciaExport implements FromView, WithDrawings, WithTitle,  WithEvents,ShouldAutoSize
+class asistenciaExport implements FromView, WithDrawings, WithTitle,  WithEvents, ShouldAutoSize
 {
     protected $alumnos;
   public function __construct($alumnos=null)
@@ -43,7 +43,7 @@ class asistenciaExport implements FromView, WithDrawings, WithTitle,  WithEvents
         $draw_segey->setDescription('This is my logo');
         $draw_segey->setPath(public_path('/img/segeey.png'));
         $draw_segey->setHeight(100);
-        $draw_segey->setCoordinates('P2');
+        $draw_segey->setCoordinates('Q2');
 
         return [$draw_ceneae, $draw_segey];
 
@@ -65,10 +65,16 @@ class asistenciaExport implements FromView, WithDrawings, WithTitle,  WithEvents
 {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-
+                $cellRange = 'A8:W1000';
                 // Landscope orientation
                 $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-            }
+                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(11);
+                $event->sheet->getStyle('A8:G1000')->applyFromArray([
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                    ]
+                ]);
+        }
         ];
 }
 }

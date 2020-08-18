@@ -7,15 +7,15 @@
       <!-- CSS Files -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-      
+
     </head>
 <body>
- 
+
   <table>
     <thead>
-      
+
       <tr>
-        <th style="background-color: #ffffff;"   colspan="6" ></th>
+        <th style="background-color: #ffffff;"   colspan="5" ></th>
 
       </tr>
       <tr>
@@ -43,34 +43,37 @@
         <th style="background-color: #ffffff; "  colspan="6" ></th>
 
       </tr>
-      
-     
+      <tr>
+          <th style="background-color: #ffffff; text-align:center;"  colspan="6" >Historial de: {{$alumno_n->nombres}}</th>
+      </tr>
+      <tr>
+          <th style="background-color: #ffffff; text-align:center;"  colspan="6" >Matricula: {{$alumno_n->matricula}}</th>
+      </tr>
+
     <tr >
       <th>#ID</th>
-        <th style="background-color: #c4eee7; width:15px;" >Matricula</th>
-        <th style="background-color: #c4eee7;  width:20px;" >Nombres</th>
-        <th style="background-color: #c4eee7; width:23px;" >accion</th>
-        <th style="background-color: #c4eee7; width:5px;">cantidad $</th>
-        <th style="background-color: #c4eee7; width:15%;" >fecha de modificación</th>
-
+        <th style="background-color: #c4eee7; " >accion</th>
+        <th style="background-color: #c4eee7; ">$</th>
+        <th style="background-color: #c4eee7; ">Comentario</th>
+        <th style="background-color: #c4eee7;" >Fecha</th>
+        <th style="background-color: #c4eee7;" >Hora</th>
     </tr>
     </thead>
     <tbody>
     @foreach($alumnos as $i=>$alumno)
         <tr>
-          <td style="background-color: #c4eee7;  width:15px;">{{ ++$i }}</td>
-
-            <td style="background-color: #c4eee7;  width:15px;">{{ $alumno->matricula }}</td>
-            <td style="border:1px dashed #ccc;  width:15px;  font-size: 10px;" >{{ $alumno->nombre }}</td>
+          <td style="background-color: #c4eee7;">{{ ++$i }}</td>
             <td style="border:1px dashed #ccc; width:18px;  font-size: 10px;" >{{ $alumno->accion }}</td>
-            <td style="border:1px dashed #ccc; width:15px;  font-size: 10px;" >{{ $alumno->cantidad }}</td>
-            <td style="border:1px dashed #ccc; width:15px; font-size: 10px;" >{{ $alumno->created_at }}</td>
-
-
+            <td style="border:1px dashed #ccc; font-size: 10px;" >{{ $alumno->cantidad }}</td>
+            <td style="border:1px dashed #ccc; width:15px;  font-size: 10px;" >{{ $alumno->comentario }}</td>
+            <td style="border:1px dashed #ccc; width:15px; font-size: 10px;" >{{ $alumno->created_at->isoFormat('D-M-Y') }}</td>
+            <td style="border:1px dashed #ccc; width:15px; font-size: 10px;" >{{ $alumno->created_at->isoFormat('H:mm A') }}</td>
           </tr>
           @endforeach
-         
-   
+    <tr>
+        <th style="background-color: #c4eee7; " colspan="5"></th>
+        <th style="background-color: #c4eee7; ">Actual: ${{$alumno_n->total}}</th>
+    </tr>
     </tbody>
 </table>
 </body>

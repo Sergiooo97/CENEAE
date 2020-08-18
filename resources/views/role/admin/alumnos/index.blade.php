@@ -6,6 +6,7 @@
 </style>
 @section('title', 'Alumnos | CENEAE')
 <style>
+
   .page-item.active .page-link {
     z-index: 3;
     color: #fff;
@@ -43,7 +44,7 @@
             <h4 class="card-title">Alumnos del CENEAE</h4>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive ">
               <!-------------------------------------------empieza tabla ---------------------------------->
               <form action="{{route('alumnos.index')}}" method="GET" class="form-inline pull-right" role="search">
                 <label for="grado"> Grado: </label>
@@ -88,22 +89,15 @@
                   <th>
                     Teléfono
                   </th>
-
-                  <th>
-
-                  </th>
                 </thead>
                 <tbody>
-                <form action="{{route('alumnos.asignarCursos')}}" role="form" method="POST" enctype="multipart/form-data">
-                @csrf
-
                   @foreach ($alumnos as $alumno)
-                  <tr>
+                  <tr url="{{route('alumnos.show', ['id' => $alumno->id])}}">
                     <td>
                       {{ $alumno->matricula }}
                     </td>
                     <td>
-                      {{ $alumno->nombres }}&nbsp;{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}
+                      {{ $alumno->nombres }}&nbsp
                     </td>
                     <td>
                       {{ $alumno->curp }}
@@ -112,48 +106,20 @@
                       {{ $alumno->direccion }}
                     </td>
                     <td>
-                      {{ $alumno->grado }} {{ $alumno->grupo }}
+                      {{ $alumno->grado_grupo }}
                     </td>
                     <td>
-
-                    </td>
-                    <td>
-                      <a href="{{route('alumnos.show',['id' => $alumno->id])}}" class="btn btn-info"> info <i  class="nc-icon nc-alert-circle-i"></i></a>
-
-
-
+                        {{$alumno->telefono}}
                     </td>
 
                   </tr>
                         <input id="id_alumno[]" value="{{$alumno->id}}" name="id_alumno[]" class="form-control" hidden>
-
                   @endforeach
-
-
 
                 </tbody>
               </table>
-              {{ $alumnos->appends($_GET)->links() }}
+            {{ $alumnos->appends($_GET)->links() }}
               <!-------------------------------------------termina tabla ---------------------------------->
-                <div class="form-group">
-                    <label>Seleccione los cursos</label>
-
-                </div>
-                <select name="curso[]" id="tags" multiple="multiple" multiple>
-                    @if(count($cursos))
-                        @foreach ($cursos as $curso)
-                            <option value="{{ $curso->id }}">{{ $curso->nombre }}</option>
-                        @endforeach
-                    @else
-                        <option value="">No existen cursos registrados</option>
-                    @endif
-                </select>
-
-                <div class="box-footer">
-                    <button type="submit" id="Enviar" class="btn btn-primary pull-right">Enviar</button>
-                </div>
-                </form>
-
             </div>
               <!-- Button trigger modal -->
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#listas-infoModal">
@@ -323,4 +289,6 @@
           guardarRelacion();
 
       </script>
-    @endsection
+<script src="{{ asset('js/tr_href.js')  }}" type="text/javascript"></script>
+
+@endsection

@@ -44,11 +44,21 @@ class alumnosController extends Controller
         $nombres = $request->get('nombres');
         $grado = $request->get('grado');
         $grupo = $request->get('grupo');
-        $alumnos = \App\alumno::orderBy('grado', 'ASC')
+        $alumnos = \App\alumno::select(
+            'alumnos.id as id',
+            'alumnos.matricula as matricula',
+            DB::raw("CONCAT(alumnos.nombres, ' ', alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as nombres"),
+            DB::raw("CONCAT(alumnos.grado, '°', alumnos.grupo) as grado_grupo"),
+            'alumnos.curp as curp',
+            'alumnos.direccion as direccion',
+            'tutores.telefono as telefono')
+        ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+        ->orderBy('grado', 'ASC')
         ->nombres($nombres)
         ->grado($grado)
         ->grupo($grupo)
-        ->paginate(5);
+        ->paginate(2);
+
         return view('role.admin.alumnos.index', compact('alumnos', 'cursos'));
     }
     public function orden(Request $request){
@@ -168,7 +178,6 @@ class alumnosController extends Controller
             ->where('periodo_id',\Session::get('idPeriodo'))
             ->orderBy('abreviacion','ASC')->get();
 
-
         $promedio_curso = curso::where('id', $request->input('n_id') )->first();
         $promedio = notas_values::select('periodos_rangos_id', \DB::raw('AVG(nota) as prom'))
             ->join('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
@@ -224,8 +233,8 @@ class alumnosController extends Controller
         }else{
             $ns = notas_structures::select('nombre')->where('nota_id', $nota_id->id)->pluck('nombre');
         }
+        $curso_grafica  = curso::where('id', $request->input('n_id') )->pluck('nombre');
         $users = alumno::select('nombres')->where('id', $id)->pluck('nombres');//Select a la base de datos para el alumno en la gráfica
-
         /* --------------------select para la información de los alumnos con su tutor---------------------------*/
         $alumno = alumno::find($id)->first();
         if ($alumno==null){
@@ -258,7 +267,7 @@ class alumnosController extends Controller
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
             ->where('alumnos.id', $id)
             ->first();
-            return view('role.admin.alumnos.show', compact('alumno','users','cal','promedio', 'promedio_curso','promedioFIN','periodos', 'subcomponentes','nota_id', 'series', 'notas', 'ns', 'cursos','promedioCount'));
+            return view('role.admin.alumnos.show', compact('alumno','users','cal','promedio', 'promedio_curso','promedioFIN','periodos', 'subcomponentes','nota_id', 'series', 'notas', 'ns', 'cursos','promedioCount', 'curso_grafica'));
         }
 
 
@@ -270,70 +279,6 @@ class alumnosController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function getTableroDos(Request $request)
-    {
-        $cal = new Calculos;
-        $resultados = array();
-        $array = $cal->getAlumnosDestacados($request->id);
-
-        if(!is_null($array))
-        {
-            foreach ($array as $key => $value) {
-                $resultados['promedio'][$key] = $value['promedio'];
-            }
-
-            array_multisort($resultados['promedio'],SORT_DESC,$array);
-
-            $array = array_slice($array,0,6);
-        }
-
-
-        $periodos = periodos_rangos::select('id','nombre')
-            ->where('periodo_id',\Session::get('idPeriodo'))
-            ->orderBy('nombre','ASC')->get();
-
-        $tabla = '<table class="table no-margin" id="TableroDos">
-                  <thead>
-                    <th>Alumno</th>';
-
-        foreach ($periodos as $item) {
-            $tabla.= "<th>".$item->nombre."</th>";
-        }
-
-        $tabla.= "<th>PROM FINAL</th>
-                    </thead>
-                        <tbody>";
-
-        if(!is_null($array))
-        {
-            foreach ($array as $item0)
-            {
-                $alumno = alumno::select('id',
-                    DB::raw("CONCAT(apellido_paterno,' ',nombres) AS alumno"))
-                    ->orderBy('apellido_paterno','ASC')->where('id',$item0['idAlumno'])
-                    ->first();
-
-                $tabla.= "<tr>
-                        <td>".$alumno->alumno."</td>";
-
-                foreach ($periodos as $item) {
-                    $promedio = $cal->getPromedioPeriodoRango('1','1','1');
-                    $tabla.= "<td style='color:".$cal->getColorNota($promedio)."'>".
-                        $promedio."</td>";
-                }
-
-                $tabla.= "<td style='color:".$cal->getColorNota($item0['promedio'])."'>".round($item0['promedio'])."</td>";
-
-                $tabla.= "</tr>";
-            }
-        }
-
-        $tabla .= '</tbody>
-                </table>';
-
-        return $tabla;
-    }
-
     public function edit($id)
     {
         $alumnos = alumno::find($id);
@@ -372,10 +317,7 @@ class alumnosController extends Controller
     }
     public function asignarCursos(Request $request)
     {
-
-
         return redirect()->back();
-
     }
     /**
      * Remove the specified resource from storage.
@@ -388,3 +330,4 @@ class alumnosController extends Controller
         //
     }
 }
+

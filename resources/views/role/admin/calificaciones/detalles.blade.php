@@ -21,17 +21,24 @@
                         <div class="card-body">
                             <div style="overflow:hidden;"  class="table-responsive tbl">
                                 <table id="example" class="table table-striped table-hover " style="width:100%">
+                                    @forelse($cursos as $crs)
+
                                <tr style="background-color: #e0f3ef; border:1px dashed #ccc;" class="text-primary">
                                    <td style="border:1px dashed #ccc;" colspan="2"></td>
-                           <!--================= Mostrar la fina de los bimestres ================================-->
-                               @forelse($periodos as $periodo)
-                                   <td style="border:1px dashed #ccc; padding-bottom: 0px; padding-top: 0px; font-size: 28px;"  colspan="{{$bimestres_total->Total}}">{{$periodo->nombre}}</td>
-                                   @empty
+                                   <!--================= Mostrar la fina de los bimestres ================================-->
+                           @forelse($periodos as $periodo)
+                               @foreach($bimestres_total as $bi)
+                                   @if($bi->curso_id == $crs)
+                                       <td style="border:1px dashed #ccc; padding-bottom: 0px; padding-top: 0px; font-size: 28px;"  colspan="{{$bi->Total}}">{{$periodo->nombre}}</td>
+                                   @endif
+                               @endforeach
+                           @empty
                                    <p>sin bimestres</p>
-                                   @endforelse
+                           @endforelse
                                </tr>
+
                                <tbody>
-                       @forelse($cursos as $crs) <!-- forelese para obtener el id de los cursos -->
+                        <!-- forelese para obtener el id de los cursos -->
                            <tr style="border:1px dashed #ccc;" class="">
                            <!--================= Mostrar la columna de los nombre de los cursos ================================-->
                            @forelse($cursos_nombre as $curso)
@@ -128,18 +135,16 @@
                                         @empty
                                             <p>No hay registros</p>
                                         @endforelse
-
-
                                     </tr>
                                     @empty
                                         <p>No hay registros</p>
                                     @endforelse
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                    <a href="{{route('exportar_calificacion', ['id'=>$alumno->id])}}" class="btn btn-warning">Descargar calificación</a>
                 </div>
             </div>
         </div>
