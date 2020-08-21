@@ -163,6 +163,7 @@ class alumnosController extends Controller
      */
     public function show($id, Request $request)
     {
+       
         $promedioCount = notas_values::select('notas.id as nota_idd', 'notas.nombre as nota_nombre', \DB::raw('AVG(nota) as prom'))
             ->join('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
             ->join('notas', 'notas_structures.nota_id', '=', 'notas.id')
@@ -173,7 +174,6 @@ class alumnosController extends Controller
 
         $alumno = alumno::find($id)->first();
         $cal = new Calculos;
-
         $periodos = periodos_rangos::select('id','nombre', 'abreviacion')
             ->where('periodo_id',\Session::get('idPeriodo'))
             ->orderBy('abreviacion','ASC')->get();
@@ -279,6 +279,10 @@ class alumnosController extends Controller
      * @param  int  $id
      * @return Response
      */
+    public function promedio (){
+     
+
+    }
     public function edit($id)
     {
         $alumnos = alumno::find($id);
@@ -297,6 +301,7 @@ class alumnosController extends Controller
      * @param  int  $id
      * @return Response
      */
+   
     public function update(Request $request, $id)
     {
         $alumnos = alumno::find($id);

@@ -3,9 +3,20 @@
 namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
-
+use App\alumno;
+use App\curso;
+use App\periodo;
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $period = periodo::select('id')->orderBy('año','DESC')->take(1)->first();
+        if(!is_null($period))
+            if(!(\Session::has('idPeriodo')))
+                \Session::put('idPeriodo',$period->id);
+    }
+    protected $layout = 'layouts.app';
     /**
      * Display a listing of the resource.
      *
@@ -13,10 +24,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $alumnos = \App\alumno::where('matricula', auth()->user()->matricula)
-        ->get();
-
-        return view('role.user.home', compact('alumnos'));
+        $alumnos = alumno::select(
+            'alumnos.nombres as nombres',
+            'alumnos.grado as grado',
+            'ndolar_listas.cantidad as ndolar_cantidad'
+        )
+        ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
+        ->where('alumnos.id', auth()->user()->alumno_id)
+        ->first();
+        
+        $cursos = curso::select(
+            'cursos.nombre as curso_nombre',
+            'cursos.id as curso_id'
+        )
+        ->join('cursos_alumnos', 'cursos.id', '=', 'cursos_alumnos.curso_id')
+        ->where('cursos_alumnos.alumno_id', auth()->user()->alumno_id)
+        ->first();
+        return view('role.user.home', compact('alumnos', 'cursos'));
     }
 
     /**
@@ -51,7 +75,7 @@ class HomeController extends Controller
         //
     }
 
-    /**
+/**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

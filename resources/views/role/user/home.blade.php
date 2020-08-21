@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app', ['cursos' => $cursos->curso_id])
 @section('title', 'Ceneae alumno')
 @section('content')
 <div style="padding:1em;" class="content">
+    <h5>Hola {{ $alumnos->nombres}}</h5>
 
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
@@ -16,11 +17,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">Ndolares</p>
-                                @foreach ($alumnos as $alumno)
-                                <p class="card-title">{{$alumno->ndolares}}
-
-                                    @endforeach
-                                    <p>
+                            <p class="card-title">{{ $alumnos->ndolar_cantidad}}<p>
                             </div>
                         </div>
                     </div>
@@ -31,7 +28,7 @@
                         <div class="stats">
 
                             <img src="{!! asset('img/002-medal.svg') !!}" height="30px" width="30px">
-                            <p style="font-size:18px; float:right;">Ver detalles</p>
+                        <p style="font-size:18px; float:right;"><a href="{{ route('alumno.rendimiento.user', ['n_id'=>$cursos->curso_id])}}">Ver detalles </a></p>
 
                         </div>
 

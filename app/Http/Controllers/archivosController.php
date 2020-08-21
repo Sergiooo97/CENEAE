@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\curso;
 use App\Exports\sheets\calificacionesExport;

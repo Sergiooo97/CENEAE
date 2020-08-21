@@ -247,13 +247,12 @@
                                       <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Calificación</p>
                                   </a>
                               </li>
+
                               <li class="{{request()->is('admin/alumno/Act') ? 'active-sub' : '' }}">
                                   <a href="{{route('asignar.calificaciones.index')}}">
                                       <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Asignar Calificación</p>
                                   </a>
                               </li>
-
-
                           </ul>
                       </div>
                   </li>
@@ -275,13 +274,11 @@
                           });
                       }
                   </script>
-
-
-                  <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
-                      <a href="{{ route('docentes.index') }}">
-                          <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
-                      </a>
-                  </li>
+            <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
+                <a href="{{ route('docentes.index') }}">
+                    <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
+                </a>
+            </li>
             <li class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/ndolares') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
                 <p class="slider-label"><i class="nc-icon nc-money-coins"></i>Dolares
@@ -301,9 +298,25 @@
             @endif
 
             @if(Auth::user()->hasRole('user'))
-            <li class="{{request()->is('alumno/*/home') ? 'active' : '' }}">
-              <a href="{{ route('alumno.home.index',['id' => Auth::user()->id]) }}">
+            <li class="{{request()->is('alumno/home') ? 'active' : '' }}">
+
+              <a href="{{ route('alumno.home.index') }}">
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
+              </a>
+            </li>
+            <li class="{{request()->is('alumno/rendimiento') ? 'active' : '' }}">
+              <a href="{{ route('alumno.rendimiento.user')}}">
+                <p class="slider-label"><i class="nc-icon nc-chart-bar-32"></i>Rendimiento</p>
+              </a>
+            </li>
+            <li class="{{request()->is('alumno/calificaciones') ? 'active' : '' }}">
+              <a href="{{ route('alumno.rendimiento.user') }}">
+                <p class="slider-label"><i class="nc-icon nc-trophy"></i>Calificaciones</p>
+              </a>
+            </li>
+            <li class="{{request()->is('alumno/ndolar') ? 'active' : '' }}">
+              <a href="{{ route('ndolar.detalle.user') }}">
+                <p class="slider-label"><i class="nc-icon nc-money-coins"></i>ndolar detalles</p>
               </a>
             </li>
             @endif
@@ -360,6 +373,7 @@
                       </div>
                     </form>
                     <ul class="navbar-nav">
+                      @if(Auth::user()->hasRole('admin'))
                         <div class=" nav-item btn-rotate dropdown">
                             <a title="Seleccione un periodo" class="nav-link dropdown-toggle btn-periodo" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="periodo-cont" id="NombrePeriodo" style="font-weight: bold;">
@@ -386,6 +400,8 @@
                                 @endforeach
                             </div>
                         </div>
+                        @endif
+
 
                       <li class="nav-item">
 

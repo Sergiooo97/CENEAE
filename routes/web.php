@@ -38,10 +38,12 @@ Route::group([
   'middleware' =>  ['auth', 'role:user'],
   'prefix'     =>   'alumno',
   'namespace'  =>   'user'], function () {
-
-  Route::get('{id}/home', 'HomeController@index')->name('alumno.home.index'); //LISTA DE ALUMNOS
-
+  Route::get('home', 'HomeController@index')->name('alumno.home.index'); //LISTA DE ALUMNOS
+  Route::get('rendimiento', 'alumnoUserController@show')->name('alumno.rendimiento.user');
+  Route::get('ndolar', 'alumnoUserController@ndolarDetalles')->name('ndolar.detalle.user');
 });
+
+
 
 
 Route::group([
@@ -71,7 +73,7 @@ Route::group([
       Route::get('/calificacion', 'calificacionesController@index')->name('calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
       Route::get('calificacion/asignaturas', 'calificacionesController@asignarIndex')->name('asignar.calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
       Route::get('{curso_id}/{nota_id}/{curso_grado}/{curso_grupo}/calificacion', 'calificacionesController@asignar')->name('asignar.create'); //CALIFICACIÓN DE ALUMNOS
-      Route::get('calificaciones/{id}/detalles', 'calificacionesController@detalles')->name('calificaciones.detalles'); //CALIFICACIÓN DE ALUMNOS
+      Route::get('{id}/calificaciones/detalles', 'calificacionesController@detalles')->name('calificaciones.detalles'); //CALIFICACIÓN DE ALUMNOS
       Route::post('/value', 'calificacionesController@valueStore')->name('calificaciones.value.store'); //CALIFICACIÓN DE ALUMNOS
       Route::post('/calificacion/registro', 'calificacionesController@store')->name('calificaciones.store'); //CALIFICACIÓN DE ALUMNOS
       Route::post('/actividad/registro', 'calificacionesController@actividadStore')->name('actividad.store'); //CALIFICACIÓN DE ALUMNOS
@@ -79,7 +81,7 @@ Route::group([
   //Nata-dolares
   Route::get('ndolares', 'natadolaresController@index')->name('ndolares.index');
     Route::post('ndolares', 'ndolaresController@store')->name('ndolares.store'); //ALMACENAR DATOS EN LA BASE DE DATOS
-    Route::get('{id}/{nombres}/ndolares', 'ndolaresController@show')->name('ndolares.show'); //MOSTRAR LISTA DE NDOLARES
+    Route::get('{id}/ndolares', 'ndolaresController@show')->name('ndolares.show'); //MOSTRAR LISTA DE NDOLARES
     Route::get('ndolares/lista', 'ndolaresController@index')->name('ndolares.index');
     Route::get('ndolares/deposito', 'ndolaresController@deposito')->name('ndolares.deposito');
     Route::patch('ndolares/deposito', 'ndolaresController@insertarDeposito')->name('ndolares.deposito.store');
@@ -119,22 +121,6 @@ Route::group([
 |--------------------------------------------------------------------------
 |*/
 
-  Route::prefix('download')->group(function () {
-
-    Route::get('ndolarTransacciones/{id}', 'infoNdolarController@export')->name('info_ndolar.export');
-    Route::get("exportar_asistencia/{grado}/{grupo}","archivosController@export_asistencia")->name("exportar_asistencia");
-    Route::get("exportar_lista/{grado}/{grupo}","archivosController@export_lista")->name("exportar_lista");
-    Route::get("exportar_ndolar_info/{id}/{nombre}","archivosController@export_ndolar_info")->name("exportar_ndolar_info");
-    Route::get("exportar_calificacion/{id}","archivosController@export_calificacion")->name("exportar_calificacion");
-    //DESCARGAS DE ARCHIVOS
-    Route::get('archivos', 'archivosController@index')->name('archivosD.index');
-    Route::get('lista-ndolarTransacciones', function () {
-      return (new ndolarExport(2020))->download('LISTA_DOLARES.xlsx');
-      });
-    Route::get('lista-todos', function () {
-      return (new UsersExport(2020))->download('lista2020.xlsx');
-      });
-  });
   });
 
     Route::get('setperiodo/{id}','IndexController@setPeriodo')->name('app.set.periodo');
@@ -160,6 +146,22 @@ Route::group([
     Route::post('curso/sesion','CourseController@setSession')->name('app.course.sesion');
     Route::post('curso/eliminar','CourseController@delete')->name('app.course.delete');
 
+    Route::prefix('download')->group(function () {
+
+      Route::get('ndolarTransacciones/{id}', 'infoNdolarController@export')->name('info_ndolar.export');
+      Route::get("exportar_asistencia/{grado}/{grupo}","archivosController@export_asistencia")->name("exportar_asistencia");
+      Route::get("exportar_lista/{grado}/{grupo}","archivosController@export_lista")->name("exportar_lista");
+      Route::get("exportar_ndolar_info/{id}/{nombre}","archivosController@export_ndolar_info")->name("exportar_ndolar_info");
+      Route::get("exportar_calificacion/{id}","archivosController@export_calificacion")->name("exportar_calificacion");
+      //DESCARGAS DE ARCHIVOS
+      Route::get('archivos', 'archivosController@index')->name('archivosD.index');
+      Route::get('lista-ndolarTransacciones', function () {
+        return (new ndolarExport(2020))->download('LISTA_DOLARES.xlsx');
+        });
+      Route::get('lista-todos', function () {
+        return (new UsersExport(2020))->download('lista2020.xlsx');
+        });
+    });
 
 
 

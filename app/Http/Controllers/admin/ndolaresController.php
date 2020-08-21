@@ -29,8 +29,16 @@ class ndolaresController extends Controller
         $grupo = $request->get('grupo');
 
 
-        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
-        ->orderBy('grado', 'ASC')->orderBy('grupo', 'ASC')
+        $alumnos = \App\ndolar_lista::select(
+            'alumnos.matricula as matricula',
+            'alumnos.id as alumno_id',
+             'ndolar_listas.nombres as nombres',
+             DB::raw("CONCAT(alumnos.grado, '°', alumnos.grupo) as grado_grupo"),
+             'ndolar_listas.cantidad as cantidad'
+             )
+             ->join('alumnos', 'ndolar_listas.alumno_id', '=', 'alumnos.id')
+        ->orderBy('ndolar_listas.grado', 'ASC')
+        ->orderBy('ndolar_listas.grupo', 'ASC')
         ->nombres($nombres)
         ->grado($grado)
         ->grupo($grupo)
@@ -81,8 +89,8 @@ class ndolaresController extends Controller
             [
             'cantidad.*.required' => 'Estas dejando un campo vacio',
             'integer' => 'solo es posible escribir numeros',
-
             ]);
+            
         foreach ($request->get('cantidad') as $key => $value) {
             $ndolarActual = ndolar_lista::where('alumno_id', $request->input('id_alumno'))->first();
             $asistencia = new ndolarTransacciones;
@@ -170,19 +178,13 @@ class ndolaresController extends Controller
     public function show($id)
     {
         $alumnos = alumno::find($id);
-
         $id_alumno = alumno::find($id);
-
-        //if ($alumnos==null){
-
-        // return view('errors.404');
-        //}else{
             $alumnos = \App\ndolarTransacciones::orderBy('created_at','desc')
             ->where('lista_id', '=', $id)
             ->paginate(5);
+        $alumno_matricula = alumno::find($id)->first();
 
-
-            return view('role.admin.ndolares.show', compact('alumnos', 'id_alumno'));
+            return view('role.admin.ndolares.show', compact('alumnos', 'id_alumno', 'alumno_matricula'));
        // }
     }
 

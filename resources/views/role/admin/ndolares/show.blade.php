@@ -34,49 +34,28 @@
           <div class="col-md-12">
             <div class="card bounceInleft">
               <div class="card-header">
-                <h4 class="card-title btn-volver-container">Banco de CENEAE<a class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
-                  <i class="nc-icon nc-minimal-left"></i> Volver atrás</a> </h4>
+                <h4 class="card-title btn-volver-container">Banco de CENEAE</h4>
+                <h5>Historial ndolares de {{ $alumno_matricula->nombres }}</h5>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                                     <!-------------------------------------------empieza tabla ---------------------------------->
 
                   <table class="table ">
-                    <thead class=" text-primary">
-                      <th>
-                        Clave
-                      </th>
-                      <th>
-                        Nombres
-                      </th>
-                      <th>
-                        $
-                      </th>
-                      <th>
-                        Última modificación
-                      </th>
-
+                    <thead class=" text-primary">                  
+                      <th>$</th>
+                      <th>Fecha</th>
+                      <th>Hora</th>
                     </thead>
                     <tbody>
                       @forelse ($alumnos  as $alumno)
-                      <tr>
-                        <td>
-                          {{ $alumno->matricula }}
-                        </td>
-                        <td>
-                          {{ $alumno->nombre }}
-                        </td>
-                        <td>
-                         {{$alumno->accion}} de ${{$alumno->cantidad}}
-                        </td>
-                        <td>
-                          {{$alumno->created_at}}
-                        </td>
+                      <tr>                                        
+                        <td>{{$alumno->accion}} de ${{$alumno->cantidad}}</td>
+                        <td>{{ $alumno->created_at->isoFormat('D-M-Y') }}</td>
+                        <td>{{ $alumno->created_at->isoFormat('H:mm A') }}</td>
                         @empty
                         <p style="font-size: 20px;">No hay registros</p>
-
-                      </tr>
-
+                      </tr>                   
                       @endforelse
                     </tbody>
                   </table>
@@ -86,7 +65,9 @@
                 </div>
               </div>
             </div>
+            @if(Auth::user()->hasRole('admin'))
             <a href="{{route('alumnos.show',['id' => $id_alumno->id,])}}" class="btn btn-info"> info del alumno<i  class="nc-icon nc-alert-circle-i"></i></a>
+            @endif
             <a href="{{route('exportar_ndolar_info',['id' => $id_alumno->id, 'nombre'=>$id_alumno->nombres])}}" class="btn btn-warning">Descargar historial de {{$id_alumno->nombres}} <i  class="nc-icon nc-alert-circle-i"></i></a>
           </div>
         </div>

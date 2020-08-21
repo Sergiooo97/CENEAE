@@ -225,10 +225,10 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
             <!-- CTA -->
             
-            <a target="_blank" href="https://www.facebook.com/centroeducativonatanael/" class="btn btn-grey btn-md">
+           <!-- <a target="_blank" href="https://www.facebook.com/centroeducativonatanael/" class="btn btn-grey btn-md">
               ceneae
               <i class="fab fa-facebook-f ml-1"></i>
-            </a>
+            </a> -->
 
           </div>
           <!--Grid column-->
@@ -259,11 +259,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
            
 
             <!-- CTA -->
-            
-            <a target="_blank" href="https://www.facebook.com/centroeducativonatanael/" class="btn btn-grey btn-md">
-              ceneae
-              <i class="fab fa-facebook-f ml-1"></i>
-            </a>
+       
 
           </div>
           <!--Grid column-->

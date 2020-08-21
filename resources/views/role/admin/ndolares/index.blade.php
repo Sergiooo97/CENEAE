@@ -85,24 +85,22 @@
 
                       @foreach ($alumnos as $alumno)
 
-                      <tr>
+                      <tr url="{{route('ndolares.show',['id' => $alumno->alumno_id])}}">
                         <td>
                           {{ $alumno->matricula }}
                         </td>
                         <td>
-                            <a href="{{route('alumnos.show',['id' => $alumno->alumno_id])}}" >
                             {{ $alumno->nombres }}
-                            </a>
+
                         </td>
                         <td>
-                          {{ $alumno->grado}}{{ $alumno->grupo }}
+                          {{ $alumno->grado}}{{ $alumno->grado_grupo }}
                         </td>
                         <td>
                           <input id="ndolar-d" value="{{ $alumno->cantidad }} " hidden/>
                           {{ $alumno->cantidad }}                        </td>
                         <td>
                              <td>
-                        <button id="-b" class="enlace btn btn-primary" role="link" onclick="window.location='{{route('ndolares.show',['id' => $alumno->id, 'nombres'=>$alumno->nombres])}}'"  style="font-size: 14px;">Historial</button>
 
                     <script>
                       if(document.getElementById('ndolarTransacciones-d').value <=0){
@@ -141,6 +139,7 @@
 
         @include('sweetalert::alert')
     <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
+    <script src="{{ asset('js/tr_href.js')  }}" type="text/javascript"></script>
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 @endsection
