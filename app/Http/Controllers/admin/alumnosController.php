@@ -168,7 +168,9 @@ class alumnosController extends Controller
             ->join('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
             ->join('notas', 'notas_structures.nota_id', '=', 'notas.id')
             ->where('alumno_id', $id)
-            ->groupBy('nota_idd')->orderBy('prom','ASC')
+            ->groupBy('nota_idd')
+            ->groupBy('notas.nombre')
+            ->orderBy('prom','ASC')
             ->take(3)
             ->get();
 
