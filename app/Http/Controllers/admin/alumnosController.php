@@ -178,8 +178,7 @@ class alumnosController extends Controller
         $cal = new Calculos;
         $periodos = periodos_rangos::select('id','nombre', 'abreviacion')
             ->where('periodo_id',\Session::get('idPeriodo'))
-            ->orderBy('abreviacion','ASC')->get();
-
+            ->orderBy('abreviacion','ASC')->get();  
         $promedio_curso = curso::where('id', $request->input('n_id') )->first();
         $promedio = notas_values::select('periodos_rangos_id', \DB::raw('AVG(nota) as prom'))
             ->join('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')

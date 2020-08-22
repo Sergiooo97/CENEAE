@@ -10,6 +10,7 @@
             <div class="card-header">
               <h4 class="card-title btn-volver-container">Grupos del CENEAE <a class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
                 <i class="nc-icon nc-minimal-left"></i> Volver atrás</a></h4>
+                <h5>Generar matricula y usuario para plataforma.</h5>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -49,8 +50,8 @@
 
                     <input id="id[]" value="{{$alumno->id}}" name="id[]" class="form-control" hidden/>
                     <input  value="{{$alumno->matricula}}" name="matricula[]" class="form-control" hidden/>
-                   
-                   
+                    <input  value="{{$alumno->nombres}}" name="nombres[]" class="form-control" hidden/>
+
                     <tbody>
                       
                       <tr>
@@ -99,7 +100,7 @@
           <!-- Button trigger modal -->
           <button type="submit" class="btn btn-primary" onclick="confirmAlert()">
             <i class="nc-icon nc-cloud-download-93"></i>
-            ordenar
+            Generar matricula y correos
           </button>
          
           <a class="btn btn-info" href="{{ URL::previous() }}"><i class="nc-icon nc-minimal-left"></i> Volver atrás</a>

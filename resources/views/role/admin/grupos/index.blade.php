@@ -15,7 +15,7 @@
               
                 <button style="font-size: 18px;" type="button" class="btn btn-success" data-toggle="modal" data-target="#asistencias-Modal">
                     <i  class="nc-icon nc-single-copy-04"></i>
-                    Orden de lista y periodo
+                    Generar matriculas y correos 
                   </button>
           
                 <!-------------------------------------------termina tabla ---------------------------------->

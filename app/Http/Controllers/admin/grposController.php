@@ -5,6 +5,11 @@ namespace App\Http\Controllers\admin;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\alumno;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use App\Role;
+use Illuminate\Support\Str;
+
 use ToSweetAlert;
 
 class grposController extends Controller
@@ -101,6 +106,17 @@ class grposController extends Controller
             $alumno = alumno::find($request->get('id')[$key]);
             $alumno->matricula = $value.$request->get('matricula')[$key].$request->get('periodo')[$key];
             $alumno->update();
+
+            $user = new User();
+            $user->matricula = $value.$request->get('matricula')[$key];
+            $user->name =$request->get('nombres')[$key];
+            $user->email = $request->get('nombres')[$key].".".Str::substr($value.$request->get('matricula')[$key], -9, 6)."@ceneae.com";
+            $user->password = Hash::make('12345678');
+            $user->alumno_id = $request->get('id')[$key];
+            $user->save();
+            $user->roles()->attach(Role::where('name', 'user')->first());
+
+
         }
         return redirect(route('alumnos.index'));
     }
