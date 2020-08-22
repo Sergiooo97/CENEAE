@@ -15,6 +15,8 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.scss" rel="stylesheet/scss">
+
   <!-- Scroll -->
   <script src="js/smooth-scroll.min.js"></script>
   <script>
@@ -183,7 +185,11 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
     </div>
     <!-- Content -->
 
-   
+    <div class="container">
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
    
   </div>
 
