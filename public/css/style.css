@@ -39,3 +39,31 @@ body,
     text-align: center;
     padding: 10px;
   }
+
+  @media screen and (max-width: 990px) {
+    .titleceneae{
+      font-family:Northern;
+      color: rgb(0, 251, 255);
+      font-size: 20px !important;
+    }
+    
+    .btn-galery{
+      width: 200px;
+    }
+    .btn-login{
+      width: 200px;
+    }
+    .btn-home{
+      width: 200px;
+    }
+    .sun{
+      width: 250px !important;
+      height: 150px !important;
+    }
+    .EAE{
+      display: block !important;
+      font-size: 15px !important;
+      font-weight: bold;
+    }
+  
+  }

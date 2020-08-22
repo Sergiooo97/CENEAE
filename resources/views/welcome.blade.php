@@ -152,6 +152,10 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
         Centro Educativo Natanael
       </h1>
 
+      <p style="display: none;" class="mb-4 wow fadeInUp EAE">
+        <strong class="EAE" >Esperanza, Amor y Educación.</strong>
+      </p>
+
       <p class="mb-4 d-none d-md-block wow fadeInUp">
         <strong >Somos una institución que empodera a sus estudiantes
         para que persistan en su pasión por el arendizaje, 
@@ -159,18 +163,19 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       </p>
       @if (Route::has('login'))
       <div style="margin-top:1em;" class="links">
-        <a class="btn btn-outline-white btn-lg font-natacad" href="{{ route('galeria') }}">Galeria</a>
 
           @auth
-              <a class="btn btn-outline-white btn-lg font-natacad" href="{{ route('home') }}">Home</a>
+              <a class="btn btn-outline-white btn-lg font-natacad btn-home" href="{{ route('home') }}">Home</a>
 
           @else
-          <a class="btn btn-outline-white btn-lg" href="{{ route('login') }}">Iniciar sesion</a>
+          <a class="btn btn-outline-white btn-lg btn-login" href="{{ route('login') }}">Iniciar sesion</a>
 
               <!--@if (Route::has('register'))
                   <a class="btn btn-outline-white btn-lg" href="{{ route('register') }}">Registrar</a>
               @endif --->
           @endauth
+          <a class="btn btn-outline-white btn-lg font-natacad btn-galery" href="{{ route('galeria') }}"> Galeria </a>
+
       </div>
   @endif
 
