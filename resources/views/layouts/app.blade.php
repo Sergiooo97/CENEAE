@@ -248,11 +248,7 @@
                                   </a>
                               </li>
 
-                              <li class="{{request()->is('admin/alumno/Act') ? 'active-sub' : '' }}">
-                                  <a href="{{route('asignar.calificaciones.index')}}">
-                                      <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Asignar Calificación</p>
-                                  </a>
-                              </li>
+                              
                           </ul>
                       </div>
                   </li>
@@ -393,7 +389,7 @@
                                 </span>
                             </a>
                             <div style="width: min-content" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                @foreach(App\periodo::orderBy('año','DESC')->get() as $periodo)
+                                @foreach(App\periodo::orderBy('año_inicio','DESC')->get() as $periodo)
                                     <a href="{{ route('app.set.periodo',$periodo->id) }}">
                                         {{ $periodo->nombre }}
                                     </a> </br>

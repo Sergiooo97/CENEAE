@@ -12,15 +12,15 @@
             <div class="card-body">
               <div class="table-responsive">
                 <!-------------------------------------------empieza tabla ---------------------------------->
-              
+             
                 <button style="font-size: 18px;" type="button" class="btn btn-success" data-toggle="modal" data-target="#asistencias-Modal">
                     <i  class="nc-icon nc-single-copy-04"></i>
                     Generar matriculas y correos 
                   </button>
-          
+                    <a style="font-size: 18px;" class="btn btn-success" href="{{route('asignar.calificaciones.index')}}">
+                        <i class="nc-icon nc-hat-3"></i>Asignar Calificación
+                    </a>                
                 <!-------------------------------------------termina tabla ---------------------------------->
-  
-  
               </div>
             </div>
           </div>

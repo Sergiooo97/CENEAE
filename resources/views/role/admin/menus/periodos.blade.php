@@ -36,22 +36,21 @@
                                                                 <tr>
                                                                     <th></th>
                                                                     <th>Nombre</th>
-                                                                    <th>Duración</th>
-                                                                    <th>Año</th>
-                                                                    <th>Descripción</th>
+                                                                    <th>Año incio</th>
+                                                                    <th>Año fin</th>
                                                                     <th></th>
                                                                 </tr>
 
                                                                 </thead>
                                                                 <tbody>
                                                                 @forelse($periodos as $periodo)
+                                                                {{-- <th>{{}}</th> --}}
 
                                                                     <tr>
                                                                         <th></th>
                                                                         <th>{{$periodo->nombre}}</th>
-                                                                        <th>{{$periodo->duracion}}</th>
-                                                                        <th>{{$periodo->año}}</th>
-                                                                        <th>{{$periodo->descripcion}}</th>
+                                                                        <th>{{$periodo->año_inicio}}</th>
+                                                                        <th>{{$periodo->año_fin}}</th>
                                                                         <th><button type='button' id='Editar' class='btn btn-success' style='padding: 4px 10px;margin: 2px;' ><i class='fa fa-pencil-square-o'></i></button><button type='button' id='Eliminar' style='padding: 4px 10px;' class='btn btn-danger'><i class='fa fa-trash-o'></i></button></th>
                                                                     </tr>
                                                                 @empty
@@ -78,21 +77,55 @@
                                                                     <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Ingrese Nombre">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="Duracion">Duración (en semanas)</label>
-                                                                    <input type="text" class="form-control" id="Duracion" name="Duracion" placeholder="Ingrese Duración en semanas">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="Anio">Año</label>
-                                                                    <select class="form-control" style="width:100%;" id="Anio" name="Anio">
-                                                                        <option value="">Seleccione Año</option>
-                                                                        <option value="2017">2017</option>
-                                                                        <option value="2018">2018</option>
-                                                                        <option value="2019">2019</option>
-                                                                        <option value="2020">2020</option>
-                                                                        <option value="2021">2021</option>
-                                                                        <option value="2022">2022</option>
-                                                                        <option value="2023">2023</option>
-                                                                    </select>
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <label for="Duracion">Año de inicio</label>
+                                                                            <select class="form-control" style="width:100%;" id="Anio" name="año_inicio">
+                                                                                <option value="2019">2019</option>
+                                                                                <option value="2020">2020</option>
+                                                                                <option value="2021">2021</option>
+                                                                                <option value="2022">2022</option>
+                                                                                <option value="2023">2023</option>
+                                                                                <option value="2024">2023</option>
+                                                                                <option value="2025">2023</option>
+                                                                                <option value="2026">2023</option>
+                                                                                <option value="2027">2023</option>
+                                                                                <option value="2028">2023</option>
+                                                                                <option value="2029">2023</option>
+                                                                                <option value="2030">2023</option>
+                                                                                <option value="2031">2023</option>
+                                                                                <option value="2032">2023</option>
+                                                                                <option value="2033">2023</option>
+                                                                                <option value="2034">2023</option>
+                                                                                <option value="2035">2023</option>
+                                                                                <option value="2036">2023</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <label for="Duracion">Año final</label>
+                                                                            <select class="form-control" style="width:100%;" id="Anio" name="año_fin">
+                                                                                <option value="2019">2019</option>
+                                                                                <option value="2020">2020</option>
+                                                                                <option value="2021">2021</option>
+                                                                                <option value="2022">2022</option>
+                                                                                <option value="2023">2023</option>
+                                                                                <option value="2024">2023</option>
+                                                                                <option value="2025">2023</option>
+                                                                                <option value="2026">2023</option>
+                                                                                <option value="2027">2023</option>
+                                                                                <option value="2028">2023</option>
+                                                                                <option value="2029">2023</option>
+                                                                                <option value="2030">2023</option>
+                                                                                <option value="2031">2023</option>
+                                                                                <option value="2032">2023</option>
+                                                                                <option value="2033">2023</option>
+                                                                                <option value="2034">2023</option>
+                                                                                <option value="2035">2023</option>
+                                                                                <option value="2036">2023</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        
+                                                                    </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="descripcion">Descripción</label>

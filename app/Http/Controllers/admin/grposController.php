@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Role;
 use Illuminate\Support\Str;
+use App\periodo;
 
 use ToSweetAlert;
 
@@ -91,6 +92,7 @@ class grposController extends Controller
      */
     public function update(Request $request, $id)
     {
+
                     //validation
                     $request->validate([
                         'orden.*' => 'required|numeric'
@@ -102,13 +104,22 @@ class grposController extends Controller
                     ]);
 
         foreach ($request->get('orden') as $key => $value) {
+            $periodos = periodo::where('id', \Session::get('idPeriodo'))->first();
             $alumnos = alumno::find($id);
             $alumno = alumno::find($request->get('id')[$key]);
-            $alumno->matricula = $value.$request->get('matricula')[$key].$request->get('periodo')[$key];
+            if($value <=9){
+                $alumno->matricula = "0".$value.$request->get('matricula')[$key].Str::substr($periodos->año_inicio, -2, 2).Str::substr($periodos->año_fin, -2, 2);
+            }else {
+                $alumno->matricula = $value.$request->get('matricula')[$key].Str::substr($periodos->año_inicio, -2, 2).Str::substr($periodos->año_fin, -2, 2);
+            }
             $alumno->update();
 
             $user = new User();
-            $user->matricula = $value.$request->get('matricula')[$key];
+            if($value <=9){
+            $user->matricula = "0".$value.$request->get('matricula')[$key];
+            }else {
+                $user->matricula = $value.$request->get('matricula')[$key];
+            }
             $user->name =$request->get('nombres')[$key];
             $user->email = $request->get('nombres')[$key].".".Str::substr($value.$request->get('matricula')[$key], -9, 6)."@ceneae.com";
             $user->password = Hash::make('12345678');

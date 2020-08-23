@@ -16,15 +16,16 @@ class periodoController extends Controller
      */
     public function index()
     {
-        $periodos = periodo::orderBy('año','DESC')
+        $periodos = periodo::orderBy('año_inicio','DESC')
             ->get();
         return view('role.admin.menus.periodos', compact('periodos'));
 
     }
     public function listAll()
     {
-        return Datatables::of(periodo::select('id','nombre','duracion','año','descripcion')
-            ->orderBy('año','DESC')
+        return Datatables::of(periodo::select('id','nombre','año_inicio','año_fin','descripcion')
+            ->orderBy('año_incio
+            ','DESC')
             ->get())->make(true);
     }
 
@@ -41,8 +42,8 @@ class periodoController extends Controller
 
                 $per = new periodo();
                 $per->nombre = $request->input('Nombre');
-                $per->duracion = $request->input('Duracion');
-                $per->año = $request->input('Anio');
+                $per->año_inicio = $request->input('año_inicio');
+                $per->año_fin = $request->input('año_fin');
                 $per->descripcion = $request->input('Descripcion');
                 $per->save();
 

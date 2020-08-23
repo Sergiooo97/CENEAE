@@ -12,10 +12,10 @@ class peridodoSeeder extends Seeder
     public function run()
     {
         $periodo = new periodo();
-        $periodo->nombre = '2020';
-        $periodo->duracion  = '40';
-        $periodo->año  = '2020';
-        $periodo->descripcion  = 'gg';
+        $periodo->nombre = '2019-2020';
+        $periodo->año_inicio  = '2019';
+        $periodo->año_fin  = '2020';
+        $periodo->descripcion  = '1920';
         $periodo->save();
     }
 }

@@ -43,6 +43,13 @@ Route::group([
   Route::get('ndolar', 'alumnoUserController@ndolarDetalles')->name('ndolar.detalle.user');
 });
 
+Route::group([
+  'middleware' =>  ['auth', 'role:maestro'],
+  'prefix'     =>   'm',
+  'namespace'  =>   'maestro'], function () {
+  Route::get('home', 'HomeController@index')->name('maestro.index'); //LISTA DE ALUMNOS
+});
+
 
 
 

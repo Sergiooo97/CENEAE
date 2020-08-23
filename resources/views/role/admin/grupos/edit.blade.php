@@ -56,7 +56,7 @@
                       
                       <tr>
                         <td style="width: 3em;">
-                        <input id="orden[]"  value="{{++$count}}" name="orden[]" class="form-control" required maxlength="2"/>
+                        <input id="orden[]"  value="{{++$count}}" name="orden[]" class="form-control" required maxlength="2" readonly/>
                         </td>
                         <td>
                           {{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}
@@ -72,13 +72,6 @@
                             {{ $alumno->grupo }} 
                         </td>
                         <td>
-                          <select name="periodo[]" class="form-control" id="periodo[]">
-                            <option value="1920">Periodo 2019-2020</option>
-                            <option value="2021">Periodo 2020-2021</option>
-                            <option value="2122">Periodo 2021-2022</option>
-                            <option value="2223">Periodo 2022-2023</option>
-                            <option value="2324">Periodo 2023-2024</option>
-                          </select>
                         </td>
                    
                       </tr>

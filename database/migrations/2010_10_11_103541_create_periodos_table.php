@@ -16,8 +16,8 @@ class CreatePeriodosTable extends Migration
         Schema::create('periodos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->integer('duracion');
-            $table->integer('año');
+            $table->integer('año_inicio');
+            $table->integer('año_fin');
             $table->string('descripcion')->nullable();
             $table->timestamps();
         });

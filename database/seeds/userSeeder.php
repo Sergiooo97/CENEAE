@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+
 class userSeeder extends Seeder
 {
     /**
@@ -14,10 +16,18 @@ class userSeeder extends Seeder
         $user = new User();
         $user->id ='1';
         $user->matricula = 'EXGS971124H1A';
-        $user->name = 'Sergio Rafael Eb Gallegos';
+        $user->name = 'Rafael Eb Gallegos';
         $user->email = 'sergio@admin.com';
-        $user->password = '$2y$10$X1QXH.vTlkGrktzKnKB7wOJ2HjzUhWLRxi4ee94dnmf7bQmXmpJQO';
+        $user->password = Hash::make('12345678');;
         $user->rol_id = '1';
+        $user->save();
+        $user = new User();
+        $user->id ='2';
+        $user->matricula = 'GSGS971124H1A';
+        $user->name = 'Rafael Eb Gallegos';
+        $user->email = 'sergio@maestro.com';
+        $user->password = Hash::make('12345678');;
+        $user->rol_id = '3';
         $user->save();
     }
 }
