@@ -40,7 +40,7 @@ class alumnosController extends Controller
      */
     public function index(Request $request)
     {
-        $cursos = curso::all();
+    
         $nombres = $request->get('nombres');
         $grado = $request->get('grado');
         $grupo = $request->get('grupo');
@@ -57,9 +57,9 @@ class alumnosController extends Controller
         ->nombres($nombres)
         ->grado($grado)
         ->grupo($grupo)
-        ->paginate(2);
-
-        return view('role.admin.alumnos.index', compact('alumnos', 'cursos'));
+        ->paginate(6);
+       
+        return view('role.admin.alumnos.index', compact('alumnos'));
     }
     public function orden(Request $request){
         $nombres = $request->get('nombres');
@@ -331,9 +331,64 @@ class alumnosController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function calificacionDetalles($id)
     {
-        //
+               //Muestra la tabla de caLificaciones
+               $notas = notas::where('id' ,'>' ,0)
+               ->pluck('id')->toArray();
+           $bimestres_total = notas_structures::select('notas.curso_id as curso_id',\DB::raw('count(*) as Total'))
+               ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
+               ->groupBy('curso_id')
+               ->get();
+           $alumno = alumno::where('id', $id)->first();
+           $cursos = curso::where('grado', $alumno->grado)
+               ->where('grupo', $alumno->grupo)
+               ->pluck('id', 'nombre')->toArray();
+           $cursos_nombre = curso::where('grado', $alumno->grado)
+               ->where('grupo', $alumno->grupo)
+               ->get();
+           $ns = notas_structures::select('notas_structures.nombre as structure_nombre')
+               ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
+               ->leftJoin('cursos', 'notas.curso_id', '=', 'cursos.id')
+               ->groupBy('structure_nombre')->orderBy('structure_nombre','ASC')
+               ->get();
+   
+               $promedio = curso::select(
+                   'cursos.nombre as crs_nombre',
+                   'nota',
+                   'notas_structures.id as ns_id',
+                   'notas_values.periodos_rangos_id as per.id',
+                   'notas_structures.nombre as ns_nombre',
+                   'cursos.id as curso_id')
+                   ->leftJoin('notas', 'cursos.id', '=', 'notas.curso_id')
+                   ->leftJoin('notas_structures', 'notas.id', '=', 'notas_structures.nota_id')
+                   ->leftJoin('notas_values', 'notas_structures.id', '=', 'notas_values.nota_structures_id')
+                   ->orderBy('notas_values.periodos_rangos_id','ASC')
+                   ->orderBy('notas_structures.id','ASC')
+                   ->groupBy('crs_nombre')
+                   ->groupBy('cursos.id', 'nota','ns_id', 'notas_values.periodos_rangos_id','ns_nombre' )
+                   ->where('alumno_id', $id)
+                   ->get();
+   
+           $promedioFIN = notas_values::select('periodos_rangos_id', 'notas.curso_id', \DB::raw('AVG(nota) as prom'))
+               ->leftJoin('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
+               ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
+               ->where('alumno_id', $id)
+               ->groupBy('periodos_rangos_id', 'curso_id')->orderBy('periodos_rangos_id','ASC')
+               ->get();
+           $promedioFINAL = notas_values::select('alumno_id','notas.curso_id as curso_id', \DB::raw('AVG(nota) as prom'))
+               ->leftJoin('notas_structures', 'notas_values.nota_structures_id', '=', 'notas_structures.id')
+               ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
+               ->where('alumno_id', $id)
+               ->groupBy('alumno_id', 'curso_id')->orderBy('alumno_id','ASC')
+               ->get();
+   
+   
+           $periodos = periodos_rangos::select('id','nombre', 'abreviacion')
+               ->where('periodo_id',\Session::get('idPeriodo'))
+               ->orderBy('abreviacion','ASC')->get();
+           return view('role.admin.calificaciones.detalles', compact('periodos','promedioFIN','bimestres_total', 'promedioFINAL', 'ns', 'promedio','cursos', 'cursos_nombre', 'alumno'));
+    
     }
 }
 

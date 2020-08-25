@@ -34,8 +34,6 @@
 
     <script type="text/javascript">
 
-        var categoria =  <?php echo json_encode($subcomponentes) ?>;
-        var series =  <?php echo json_encode($series) ?>;
         var notas =  <?php echo json_encode($notas) ?>;
         var users =  <?php echo json_encode($users) ?>;
         var ns =  <?php echo json_encode($ns) ?>;

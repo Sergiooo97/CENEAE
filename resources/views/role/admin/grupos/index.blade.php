@@ -17,9 +17,7 @@
                     <i  class="nc-icon nc-single-copy-04"></i>
                     Generar matriculas y correos 
                   </button>
-                    <a style="font-size: 18px;" class="btn btn-success" href="{{route('asignar.calificaciones.index')}}">
-                        <i class="nc-icon nc-hat-3"></i>Asignar Calificación
-                    </a>                
+                                    
                 <!-------------------------------------------termina tabla ---------------------------------->
               </div>
             </div>

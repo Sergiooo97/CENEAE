@@ -70,16 +70,30 @@
                                                             <input type="hidden" name="Accion" id="Accion" value="Registrar">
 
                                                             <div class="box-body">
-                                                                <div class="form-group">
-                                                                    <label for="Nombre">Nombre</label>
-                                                                    <input type="text" class="form-control" id="Nombre"
-                                                                           name="Nombre" placeholder="Ejemplo: ESPAÑOL" required>
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <div class="form-group">
+                                                                            <label for="Nombre">Nombre</label>
+                                                                            <input type="text" class="form-control" id="Nombre"
+                                                                                   name="Nombre" placeholder="Ejemplo: ESPAÑOL" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <label for="clave">Clave</label>
+                                                                        <input name="clave" id="clave" class="form-control" placeholder="ejemplo: ESPAÑOL6A">
+                                                                    </div>
                                                                 </div>
+                                                               
                                                                 <div class="form-group">
                                                                     <div class="row">
                                                                         <div class="col-4">
-                                                                            <label for="clave">Clave</label>
-                                                                            <input name="clave" id="clave" class="form-control" placeholder="ejemplo: ESPAÑOL6A">
+                                                                            <label for="docente">Docente</label>
+                                                                            <select id="docente" name="docente" class="form-control" id="grado">
+                                                                                <option value="">Seleccionar</option>
+                                                                            @foreach ($docentes as $docente)
+                                                                            <option value="{{ $docente->id }}">{{ $docente->nombres}}</option>
+                                                                            @endforeach
+                                                                            </select>
                                                                         </div>
                                                                         <div class="col-4">
                                                                             <label for="grado">Grado</label>

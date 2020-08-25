@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\maestro;
 use App\alumno;
 
 use App\curso;
@@ -10,9 +10,16 @@ use App\notas_values;
 use App\periodos_rangos;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-class calificacionesController extends Controller
+use App\periodo;
+class calificacionesController 
 {
+    public function __construct()
+    {
+        $period = periodo::select('id')->orderBy('año_inicio','DESC')->take(1)->first();
+        if(!is_null($period))
+            if(!(\Session::has('idPeriodo')))
+                \Session::put('idPeriodo',$period->id);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +27,7 @@ class calificacionesController extends Controller
      */
     public function index()
     {
+        //View para mostrar las opciones de las asignaturas a calificar
         $notas = notas::select(
             'notas.id as nota_id',
             'notas.nombre as nota_nombre',
@@ -28,19 +36,24 @@ class calificacionesController extends Controller
             'cursos.nombre as curso_nombre')
             ->join('cursos', 'cursos.id', '=', 'notas.curso_id')
             ->where('periodo_id',\Session::get('idPeriodo'))
+            ->where('docente_id', Auth()->user()->docente_id)
             ->get();
 
         $cursosConfigurables = curso::select('id','nombre')
             ->where('periodo_id',\Session::get('idPeriodo'))
+            ->where('docente_id', Auth()->user()->docente_id)
             ->get();
         $cursos = curso::select('id','nombre')->orderBy('nombre','ASC')
             ->where('periodo_id',\Session::get('idPeriodo'))
+            ->where('docente_id', Auth()->user()->docente_id)
             ->get();
 
         return view('role.admin.calificaciones.index', compact('cursos', 'cursosConfigurables', 'notas'));
     }
     public function asignarIndex()
     {
+        //View que muestra las asignaturas listas para asignar calificacion.
+
         $cursos = notas::select(
             'notas.id as nota_id',
             'notas.nombre as nota_nombre',
@@ -50,6 +63,7 @@ class calificacionesController extends Controller
             'cursos.nombre as curso_nombre')
             ->join('cursos', 'cursos.id', '=', 'notas.curso_id')
             ->where('periodo_id',\Session::get('idPeriodo'))
+            ->where('docente_id', Auth()->user()->docente_id)
             ->get();
         $periodos = periodos_rangos::where('periodo_id',\Session::get('idPeriodo'))
             ->orderBy('nombre','ASC')
@@ -57,7 +71,7 @@ class calificacionesController extends Controller
         return view('role.admin.calificaciones.asignarIndex', compact('cursos', 'periodos'));
     }
     public function detalles($id){
-
+        //Muestra la tabla de caLificaciones
         $notas = notas::where('id' ,'>' ,0)
             ->pluck('id')->toArray();
         $bimestres_total = notas_structures::select('notas.curso_id as curso_id',\DB::raw('count(*) as Total'))
@@ -115,6 +129,7 @@ class calificacionesController extends Controller
     }
     public function asignar($curso_id,  $nota_id, $curso_grado, $curso_grupo)
     {
+        //View en la que se asigna la calificación a una actividad por bimestre.
         $cursos = curso::where('id', $curso_id)->get();
         $alumnos = \App\alumno::orderBy('apellido_paterno', 'ASC')
             ->where('grado', $curso_grado)
@@ -134,6 +149,7 @@ class calificacionesController extends Controller
     }
     public function store(Request $request)
     {
+        //Función para almacenar los datos de las nuevas notas.
         $notas = new notas();
         $notas->nombre = $request->input('Nombre');
         $notas->descripcion = $request->input('Descripcion');
@@ -144,6 +160,7 @@ class calificacionesController extends Controller
     }
     public function valueStore(Request $request)
     {
+            //Función para almacenar los datos de las calificaciones asignadas.
         foreach ($request->get('alumno_id') as $key => $value) {
             $notas_value = new notas_values();
             $notas_value->nota = $request->input('calificacion_value')[$key];
@@ -172,6 +189,7 @@ class calificacionesController extends Controller
         }
     }
     public function actividadStore(Request $request){
+        //Función para almcacenar los datos de las actividades por materia.
         $notas_structures = new notas_structures();
         $notas_structures->nombre = $request->input('nombre');
         $notas_structures->nota_id = $request->input('nota_id');
@@ -179,16 +197,5 @@ class calificacionesController extends Controller
 
         return redirect()->back();
     }
-    public function edit($id)
-    {
-        //
-    }
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    public function destroy($id)
-    {
-        //
-    }
+
 }

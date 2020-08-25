@@ -6,23 +6,21 @@ use App\alumno;
 use App\curso;
 use App\periodo;
 use App\periodos_rangos;
+use App\docente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class cursoController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $period = periodo::select('id')->orderBy('año','DESC')->take(1)->first();
+        $period = periodo::select('id')->orderBy('año_inicio','DESC')->take(1)->first();
         if(!is_null($period))
             if(!(\Session::has('idPeriodo')))
                 \Session::put('idPeriodo',$period->id);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $cursos = curso::select(
@@ -32,26 +30,15 @@ class cursoController extends Controller
             ->join('periodos', 'cursos.periodo_id', '=', 'periodos.id')
             ->where('periodo_id',\Session::get('idPeriodo'))
             ->get();
-        return view('role.admin.menus.cursos', compact('cursos'));
-
+            $docentes = docente::select(
+                'docentes.id as id',
+                DB::raw("CONCAT(docentes.nombres, ' ', docentes.apellido_paterno, ' ', docentes.apellido_materno) as nombres")
+            )
+            ->orderBy('apellido_paterno', 'ASC')
+            ->get();
+        return view('role.admin.menus.cursos', compact('cursos', 'docentes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $per = new curso();
@@ -59,6 +46,7 @@ class cursoController extends Controller
         $per->clave = $request->input('clave');
         $per->grado = $request->input('grado');
         $per->grupo = $request->input('grupo');
+        $per->docente_id = $request->input('docente');
         $per->periodo_id = \Session::get('idPeriodo');
         $per->save();
 
@@ -72,52 +60,7 @@ class cursoController extends Controller
         $periodo = periodo::find(\Session::get('idPeriodo'));
 
         $request->session()->forget('idPeriodo');
-        return redirect(route('app.period.page'));
+        return redirect(route('curso.index'));
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

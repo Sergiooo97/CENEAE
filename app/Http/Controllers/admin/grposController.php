@@ -92,7 +92,6 @@ class grposController extends Controller
      */
     public function update(Request $request, $id)
     {
-
                     //validation
                     $request->validate([
                         'orden.*' => 'required|numeric'
@@ -100,23 +99,28 @@ class grposController extends Controller
                     [
                     'orden.*.required' => 'Estas dejando un campo vacio',
                     'numeric' => 'solo es posible escribir numeros',
-
                     ]);
-
         foreach ($request->get('orden') as $key => $value) {
             $periodos = periodo::where('id', \Session::get('idPeriodo'))->first();
-            $alumnos = alumno::find($id);
+            //
             $alumno = alumno::find($request->get('id')[$key]);
             if($value <=9){
-                $alumno->matricula = "0".$value.$request->get('matricula')[$key].Str::substr($periodos->año_inicio, -2, 2).Str::substr($periodos->año_fin, -2, 2);
+                $alumno->matricula = "0".$value.$request
+                ->get('matricula')[$key].
+                Str::substr($periodos->año_inicio, -2, 2).
+                Str::substr($periodos->año_fin, -2, 2);
             }else {
-                $alumno->matricula = $value.$request->get('matricula')[$key].Str::substr($periodos->año_inicio, -2, 2).Str::substr($periodos->año_fin, -2, 2);
+                $alumno->matricula = $value.$request
+                ->get('matricula')[$key].
+                Str::substr($periodos->año_inicio, -2, 2).
+                Str::substr($periodos->año_fin, -2, 2);
             }
             $alumno->update();
-
+            
+            //User para inicio de sesión de los alumnos.
             $user = new User();
             if($value <=9){
-            $user->matricula = "0".$value.$request->get('matricula')[$key];
+                $user->matricula = "0".$value.$request->get('matricula')[$key];
             }else {
                 $user->matricula = $value.$request->get('matricula')[$key];
             }
@@ -126,12 +130,9 @@ class grposController extends Controller
             $user->alumno_id = $request->get('id')[$key];
             $user->save();
             $user->roles()->attach(Role::where('name', 'user')->first());
-
-
         }
         return redirect(route('alumnos.index'));
     }
-
     /**
      * Remove the specified resource from storage.
      *

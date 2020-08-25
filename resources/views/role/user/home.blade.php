@@ -11,13 +11,13 @@
                     <div class="row">
                         <div class="col-5 col-md-4">
                             <div class="icon-big text-center icon-warning">
-                                <img src="{!! asset('img/002-medal.svg') !!}">
+                                <img src="{!! asset('img/034-locker.svg') !!}">
                             </div>
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">Ndolares</p>
-                            <p class="card-title">{{ $alumnos->ndolar_cantidad}}<p>
+                                <p class="card-title">{{ $alumnos->ndolar_cantidad}}<p>
                             </div>
                         </div>
                     </div>
@@ -26,12 +26,14 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-
-                            <img src="{!! asset('img/002-medal.svg') !!}" height="30px" width="30px">
-                        <p style="font-size:18px; float:right;"><a href="{{ route('alumno.rendimiento.user', ['n_id'=>$cursos->curso_id])}}">Ver detalles </a></p>
-
+                            <img src="{!! asset('img/034-locker.svg') !!}" height="30px" width="30px">
+                            <p style="font-size:18px; float:right;">
+                                <a
+                                    href="{{ route('alumno.rendimiento.user', ['n_id'=>$cursos->curso_id])}}">Ver
+                                    detalles 
+                                </a>
+                            </p>
                         </div>
-
                     </div>
                 </a>
             </div>
@@ -42,13 +44,16 @@
                     <div class="row">
                         <div class="col-5 col-md-4">
                             <div class="icon-big text-center icon-warning">
+                                <img src="{!! asset('img/002-medal.svg') !!}">
+
                             </div>
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category">Aún nada</p>
-                                <p class="card-title">404
-                                    <p>
+                                <p class="card-category">Rendimiento</p>
+                                <p class="card-title text-success">
+                                    Bueno
+                                <p>
                             </div>
                         </div>
                     </div>
@@ -56,7 +61,13 @@
                 <div class="card-footer ">
                     <hr>
                     <div class="stats">
-                        <i class="fa fa-refresh"></i> nada aún
+                        <img src="{!! asset('img/002-medal.svg') !!}" height="30px" width="30px">
+                        <p style="font-size:18px; float:right;">
+                            <a
+                                href="{{ route('alumno.rendimiento.user', ['n_id'=>$cursos->curso_id])}}">Ver
+                                detalles 
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>

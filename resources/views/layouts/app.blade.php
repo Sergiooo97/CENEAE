@@ -11,28 +11,28 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>@yield('title')</title>
-    <link rel="icon" type="image/ico" href="{{ asset('amorLogo.ico') }}">
+  <link rel="icon" type="image/ico" href="{{ asset('amorLogo.ico') }}">
   <!--Styler  -->
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
   <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
   <!--Scripts  -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}" ></script>
-    <script src="{{ asset('js/popper.min.js') }}" ></script>
-    <script src="{{ asset('js/popper.min.js.map') }}" ></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js.map') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-    <!--Fonts  -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <!--Fonts  -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-      <!-- web -->
-      <!--<link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <!-- web -->
+  <!--<link rel="dns-prefetch" href="//fonts.gstatic.com">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -40,110 +40,124 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"> -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <style>
-        .curso-asignar a{
-            font-size: 30px;
-            color: #ffffff;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    .curso-asignar a {
+      font-size: 30px;
+      color: #ffffff;
+    }
 
 
-        tr:hover td {
-            background: rgba(199, 212, 221, 0.6) !important;
-            cursor:pointer !important;
+    tr:hover td {
+      background: rgba(199, 212, 221, 0.6) !important;
+      cursor: pointer !important;
 
-        }
-        .tbl{
-            overflow:hidden;
-        }
-        .table-responsive:hover{
-            overflow:scroll !important;
-        }
-      li{
-          list-style:none;
-      }
+    }
+
+    .tbl {
+      overflow: hidden;
+    }
+
+    .table-responsive:hover {
+      overflow: scroll !important;
+    }
+
+    li {
+      list-style: none;
+    }
+
     .alumno-label-block {
       display: block !important;
     }
+
     .alumno-label-none {
       display: none !important;
     }
-    .btn-volver-container a { font-size: 14px;
-  text-decoration: none;
-  margin: 0px;
-   }
-      .periodo-cont>a{
-          color: #0b0b0b;
-      }
+
+    .btn-volver-container a {
+      font-size: 14px;
+      text-decoration: none;
+      margin: 0px;
+    }
+
+    .periodo-cont>a {
+      color: #0b0b0b;
+    }
+
     /* Fixed sidenav, full height */
     .sidenav {
-        height: 100%;
-        width: 200px;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        padding-top: 20px;
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 20px;
     }
 
     /* Style the sidenav links and the dropdown button */
-    .sidenav a, .dropdown-btn {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #818181;
-        display: block;
-        border: none;
-        background: none;
-        width:100%;
-        text-align: left;
-        cursor: pointer;
-        outline: none;
+    .sidenav a,
+    .dropdown-btn {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #818181;
+      display: block;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
     }
 
     /* On mouse-over */
-    .sidenav a:hover, .dropdown-btn:hover {
-        color: #f1f1f1;
+    .sidenav a:hover,
+    .dropdown-btn:hover {
+      color: #f1f1f1;
     }
 
     /* Main content */
     .main {
-        margin-left: 200px; /* Same as the width of the sidenav */
-        font-size: 20px; /* Increased text to enable scrolling */
-        padding: 0px 10px;
+      margin-left: 200px;
+      /* Same as the width of the sidenav */
+      font-size: 20px;
+      /* Increased text to enable scrolling */
+      padding: 0px 10px;
     }
 
     /* Add an active class to the active dropdown button */
     .active .dropdown-btn {
-        background-color: rgb(168, 47, 6);
-        color: white;
+      background-color: rgb(168, 47, 6);
+      color: white;
     }
-      .active-sub  {
+
+    .active-sub {
 
 
-          color: #ffffff !important;
-      }
+      color: #ffffff !important;
+    }
+
     /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
     .dropdown-container {
-        display: none;
-        background-color: #e9e9e9;
+      display: none;
+      background-color: #e9e9e9;
 
-        margin: 1em !important;
-        border-radius: 10px;
+      margin: 1em !important;
+      border-radius: 10px;
     }
 
     /* Optional: Style the caret down icon */
     .fa-caret-down {
-        float: right;
-        padding-right: 8px;
+      float: right;
+      padding-right: 8px;
     }
-        .slider-label{
-            font-family: 'Open Sans', sans-serif;
-        }
 
-
+    .slider-label {
+      font-family: 'Open Sans', sans-serif;
+    }
   </style>
 </head>
 
@@ -175,107 +189,89 @@
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
               </a>
             </li>
-                  <li class="{{request()->is('periodo') ? 'active' : '' }}">
-                      <a  class="dropdown-btn">
-                          <p class="slider-label "><i class="nc-icon nc-icon nc-calendar-60"></i>Periodos
-                              {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
-                          </p>
-                      </a>
-                      <div class="dropdown-container">
-                          <ul style="padding-left: 20px !important;">
-                              <li><a href="{{ route('app.period.page') }}">
-                                      <p class="slider-label"><i class="nc-icon nc-calendar-60"></i>Configurar
-                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
-                                      </p>
-                                  </a></li>
-                              <li><a href="{{ route('rangos.index') }}">
-                                      <p class="slider-label"><i class="nc-icon nc-calendar-60"></i>Rangos
-                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
-                                      </p>
-                                  </a></li>
-                          </ul>
-                      </div>
-                  </li>
-                  <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}
-                             {{request()->is('admin/alumno/*/info') ? 'active act' : '' }}">
-                      <a  class="dropdown-btn">
-                          <p class="slider-label "><i class="nc-icon nc-icon nc-satisfied"></i>Alumnos
-                              {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
-                          </p>
-                      </a>
-                      <div class="dropdown-container">
-                          <ul style="padding-left: 20px !important;">
-                              <li>
-                                  <a href="{{ route('alumnos.index') }}">
-                                      <p class="slider-label "><i class="nc-icon nc-bullet-list-67"></i>Listas
-                                          {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
-                                      </p>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="{{ route('alumnos.create') }}">
-                                      <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Registro</p>
-                                  </a>
-                              </li>
-
-                          </ul>
-                      </div>
-                  </li>
-                  <li class="{{request()->is('alumnos') ? 'active' : '' }}">
-                      <a  class="dropdown-btn">
-                          <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos
-                              {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
-                          </p>
-                      </a>
-                      <div class="dropdown-container">
-                          <ul style="padding-left: 20px !important;">
-                              <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
-                                  <a href="{{ route('grupos.index') }}">
-                                      <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos
-                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
-                                      </p>                                  </a>
-                              </li>
-                              <li class="{{request()->is('curso') ? 'active' : ''}}">
-                                  <a href="{{ route('curso.index') }}">
-                                      <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Asignaturas
-                                          {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
-                                      </p>
-                                  </a>
-                              </li>
-                              <li class="{{request()->is('admin/alumno/Act') ? 'active-sub' : '' }}">
-                                  <a href="{{route('calificaciones.index')}}">
-                                      <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Calificación</p>
-                                  </a>
-                              </li>
-
-                              
-                          </ul>
-                      </div>
-                  </li>
-
-
-                  <script>
-                      var dropdown = document.getElementsByClassName("dropdown-btn");
-                      var i;
-
-                      for (i = 0; i < dropdown.length; i++) {
-                          dropdown[i].addEventListener("click", function() {
-                              this.classList.toggle("active");
-                              var dropdownContent = this.nextElementSibling;
-                              if (dropdownContent.style.display === "block") {
-                                  dropdownContent.style.display = "none";
-                              } else {
-                                  dropdownContent.style.display = "block";
-                              }
-                          });
-                      }
-                  </script>
-            <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
-                <a href="{{ route('docentes.index') }}">
-                    <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
-                </a>
+            <li class="{{request()->is('periodo') ? 'active' : '' }}">
+              <a class="dropdown-btn">
+                <p class="slider-label "><i class="nc-icon nc-icon nc-calendar-60"></i>Periodos
+                  {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
+                </p>
+              </a>
+              <div class="dropdown-container">
+                <ul style="padding-left: 20px !important;">
+                  <li><a href="{{ route('app.period.page') }}">
+                      <p class="slider-label"><i class="nc-icon nc-calendar-60"></i>Configurar
+                        {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                      </p>
+                    </a></li>
+                  <li><a href="{{ route('rangos.index') }}">
+                      <p class="slider-label"><i class="nc-icon nc-calendar-60"></i>Rangos
+                        {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                      </p>
+                    </a></li>
+                </ul>
+              </div>
             </li>
-            <li class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/ndolares') ? 'active' : '' }}">
+            <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}
+                             {{request()->is('admin/alumno/*/info') ? 'active act' : '' }}">
+              <a class="dropdown-btn">
+                <p class="slider-label "><i class="nc-icon nc-icon nc-satisfied"></i>Alumnos
+                  {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
+                </p>
+              </a>
+              <div class="dropdown-container">
+                <ul style="padding-left: 20px !important;">
+                  <li>
+                    <a href="{{ route('alumnos.index') }}">
+                      <p class="slider-label "><i class="nc-icon nc-bullet-list-67"></i>Listas
+                        {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('alumnos.create') }}">
+                      <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Registro</p>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </li>
+            <li class="{{request()->is('alumnos') ? 'active' : '' }}">
+              <a class="dropdown-btn">
+                <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos
+                  {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                </p>
+              </a>
+              <div class="dropdown-container">
+                <ul style="padding-left: 20px !important;">
+                  <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
+                    <a href="{{ route('grupos.index') }}">
+                      <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos
+                        {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                      </p>
+                    </a>
+                  </li>
+                  <li class="{{request()->is('curso') ? 'active' : ''}}">
+                    <a href="{{ route('curso.index') }}">
+                      <p class="slider-label"><i class="nc-icon nc-ruler-pencil"></i>Asignaturas
+                        {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                      </p>
+                    </a>
+                  </li>
+
+
+
+                </ul>
+              </div>
+            </li>
+
+            
+            <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
+              <a href="{{ route('docentes.index') }}">
+                <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
+              </a>
+            </li>
+            <li
+              class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/ndolares') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
                 <p class="slider-label"><i class="nc-icon nc-money-coins"></i>Dolares
                   {{request()->is('admin/alumno/*/*/ndolares') ? '>historial' : ''}}
@@ -316,8 +312,46 @@
               </a>
             </li>
             @endif
+            @if(Auth::user()->hasRole('maestro'))
+            <li class="{{request()->is('m/calificacion/*') ? 'active' : '' }}{{request()->is('m/calificacion') ? 'active' : '' }}">
+              <a class="dropdown-btn">
+                <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Calificacion
+                  {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
+                </p>
+              </a>
+              <div class="dropdown-container">
+                <ul style="padding-left: 20px !important;">
+                  <li class="{{request()->is('m/calificaciones/') ? 'active' : '' }}">
+                    <a href="{{route('calificaciones.index')}}">
+                      <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Calificación</p>
+                    </a>
+                  </li>
+                  <li class="{{request()->is('m/calificacion/asignar') ? 'active' : ''}}">
+                    <a href="{{route('asignar.calificaciones.index')}}">
+                      <p class="slider-label"><i class="nc-icon nc-hat-3"></i>Asignar Calificación</p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            @endif
           </ul>
+          <script>
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+                    var i;
 
+                    for (i = 0; i < dropdown.length; i++) {
+                        dropdown[i].addEventListener("click", function() {
+                            this.classList.toggle("active");
+                            var dropdownContent = this.nextElementSibling;
+                            if (dropdownContent.style.display === "block") {
+                                dropdownContent.style.display = "none";
+                            } else {
+                                dropdownContent.style.display = "block";
+                            }
+                        });
+                    }
+          </script>
         </div>
       </div>
 
@@ -370,45 +404,47 @@
                     </form>
                     <ul class="navbar-nav">
                       @if(Auth::user()->hasRole('admin'))
-                        <div class=" nav-item btn-rotate dropdown">
-                            <a title="Seleccione un periodo" class="nav-link dropdown-toggle btn-periodo" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="periodo-cont" id="NombrePeriodo" style="font-weight: bold;">
-                                                                                  @if(\Session::has('periodo'))
-                                        {{ \Session::get('periodo') }}
-                                    @else
-                                        <?php
+                      <div class=" nav-item btn-rotate dropdown">
+                        <a title="Seleccione un periodo" class="nav-link dropdown-toggle btn-periodo" type="button"
+                          id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="periodo-cont" id="NombrePeriodo" style="font-weight: bold;">
+                            @if(\Session::has('periodo'))
+                            {{ \Session::get('periodo') }}
+                            @else
+                            <?php
                                         $defecto = App\periodo::select('nombre')->where('id',
                                             \Session::get('idPeriodo'))->first();
                                         ?>
-                                        @if(is_null($defecto))
-                                            Registre periódos
-                                        @else
-                                            {{ $defecto->nombre }}
-                                        @endif
-                                    @endif
-                                </span>
-                            </a>
-                            <div style="width: min-content" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                @foreach(App\periodo::orderBy('año_inicio','DESC')->get() as $periodo)
-                                    <a href="{{ route('app.set.periodo',$periodo->id) }}">
-                                        {{ $periodo->nombre }}
-                                    </a> </br>
-                                @endforeach
-                            </div>
+                            @if(is_null($defecto))
+                            Registre periódos
+                            @else
+                            {{ $defecto->nombre }}
+                            @endif
+                            @endif
+                          </span>
+                        </a>
+                        <div style="width: min-content" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          @foreach(App\periodo::orderBy('año_inicio','DESC')->get() as $periodo)
+                          <a href="{{ route('app.set.periodo',$periodo->id) }}">
+                            {{ $periodo->nombre }}
+                          </a> </br>
+                          @endforeach
                         </div>
-                        @endif
+                      </div>
+                      @endif
 
 
                       <li class="nav-item">
 
-                        <a title="Ir a información de usuario" class="nav-link btn-periodo pull-left" href="#"><i class="fas fa-grin-tongue"></i>{{ Auth::user()->name }} <span
-                            class="caret"></span></a>
+                        <a title="Ir a información de usuario" class="nav-link btn-periodo pull-left" href="#"><i
+                            class="fas fa-grin-tongue"></i>{{ Auth::user()->name }} <span class="caret"></span></a>
                       </li>
 
                       <li id="btn-per" class="nav-item">
 
                         <a title="Cerrar sesión" class="nav-link " href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();" alt="Cerrar sesión"><i class="nc-icon nc-button-power">
+                                document.getElementById('logout-form').submit();" alt="Cerrar sesión"><i
+                            class="nc-icon nc-button-power">
                           </i> {{ __('') }}</a>
                       </li>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -457,12 +493,18 @@
 
   <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
   <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')  }}"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
+  </script>
   <script src="{{ asset('js/core/popper.min.js')  }}"></script>
   <script src="{{ asset('js/plugins/bootstrap-notify.js')  }}"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
   <!--   Core JS Files   -->
   <script src="{{ asset('js/paper-dashboard.min.js')  }}" type="text/javascript"></script>

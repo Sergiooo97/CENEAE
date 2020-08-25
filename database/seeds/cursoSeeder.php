@@ -18,14 +18,23 @@ class cursoSeeder extends Seeder
         $periodo->grado  = '1';
         $periodo->grupo  = 'A';
         $periodo->periodo_id  = '1';
+        $periodo->docente_id  = '1';
         $periodo->save();
-
         $periodo = new curso();
         $periodo->nombre = 'MATEMÁTICAS';
         $periodo->clave  = 'MATE1A';
         $periodo->grado  = '1';
         $periodo->grupo  = 'A';
         $periodo->periodo_id  = '1';
+        $periodo->docente_id  = '1';
+        $periodo->save();
+        $periodo = new curso();
+        $periodo->nombre = 'GEOGRAFÍA';
+        $periodo->clave  = 'GEO2A';
+        $periodo->grado  = '2';
+        $periodo->grupo  = 'A';
+        $periodo->periodo_id  = '1';
+        $periodo->docente_id  = '2';
         $periodo->save();
     }
 }

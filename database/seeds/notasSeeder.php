@@ -23,5 +23,11 @@ class notasSeeder extends Seeder
         $periodo->descripcion  = 'gg';
         $periodo->curso_id  = '2';
         $periodo->save();
+
+        $periodo = new notas();
+        $periodo->nombre = 'Geografía';
+        $periodo->descripcion  = 'gg';
+        $periodo->curso_id  = '3';
+        $periodo->save();
     }
 }

@@ -358,7 +358,7 @@
                             <p>no hay promedio final aún :(</p>
                         @endforelse
                     </div>
-                    <a href="{{route('calificaciones.detalles', ['id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-hat-3"></i> Todas las calificaciones</a>
+                    <a href="{{route('admin.calificaciones.detalles', ['id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-hat-3"></i> Todas las calificaciones</a>
                 </div>
             </div>
             <div class="card card-user">

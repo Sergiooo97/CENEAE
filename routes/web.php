@@ -48,6 +48,14 @@ Route::group([
   'prefix'     =>   'm',
   'namespace'  =>   'maestro'], function () {
   Route::get('home', 'HomeController@index')->name('maestro.index'); //LISTA DE ALUMNOS
+  Route::get('{curso_id}/calificacion/registrar', 'calificacionesController@show')->name('calificaciones.show'); //CALIFICACIÓN DE ALUMNOS
+  Route::get('/calificacion', 'calificacionesController@index')->name('calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
+  Route::get('calificacion/asignaturas', 'calificacionesController@asignarIndex')->name('asignar.calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
+  Route::get('{id}/calificaciones/detalles', 'calificacionesController@detalles')->name('calificaciones.detalles'); //CALIFICACIÓN DE ALUMNOS
+  Route::get('{curso_id}/{nota_id}/{curso_grado}/{curso_grupo}/calificacion', 'calificacionesController@asignar')->name('asignar.create'); //CALIFICACIÓN DE ALUMNOS
+  Route::post('/value', 'calificacionesController@valueStore')->name('calificaciones.value.store'); //CALIFICACIÓN DE ALUMNOS
+  Route::post('/calificacion/registro', 'calificacionesController@store')->name('calificaciones.store'); //CALIFICACIÓN DE ALUMNOS
+  Route::post('/actividad/registro', 'calificacionesController@actividadStore')->name('actividad.store'); //CALIFICACIÓN DE ALUMNOS
 });
 
 
@@ -76,14 +84,8 @@ Route::group([
     Route::patch('{id}/actualizar', 'alumnosController@update')->name('alumnos.update'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
     Route::patch('{id}/orden', 'alumnosController@updateOrden')->name('alumnos.updateOrden'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
 
-    Route::get('{curso_id}/calificacion/registrar', 'calificacionesController@show')->name('calificaciones.show'); //CALIFICACIÓN DE ALUMNOS
-      Route::get('/calificacion', 'calificacionesController@index')->name('calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
-      Route::get('calificacion/asignaturas', 'calificacionesController@asignarIndex')->name('asignar.calificaciones.index'); //CALIFICACIÓN DE ALUMNOS
-      Route::get('{curso_id}/{nota_id}/{curso_grado}/{curso_grupo}/calificacion', 'calificacionesController@asignar')->name('asignar.create'); //CALIFICACIÓN DE ALUMNOS
-      Route::get('{id}/calificaciones/detalles', 'calificacionesController@detalles')->name('calificaciones.detalles'); //CALIFICACIÓN DE ALUMNOS
-      Route::post('/value', 'calificacionesController@valueStore')->name('calificaciones.value.store'); //CALIFICACIÓN DE ALUMNOS
-      Route::post('/calificacion/registro', 'calificacionesController@store')->name('calificaciones.store'); //CALIFICACIÓN DE ALUMNOS
-      Route::post('/actividad/registro', 'calificacionesController@actividadStore')->name('actividad.store'); //CALIFICACIÓN DE ALUMNOS
+    Route::get('{id}/calificaciones/detalles', 'alumnosController@calificacionDetalles')->name('admin.calificaciones.detalles'); //CALIFICACIÓN DE ALUMNOS
+
 
   //Nata-dolares
   Route::get('ndolares', 'natadolaresController@index')->name('ndolares.index');

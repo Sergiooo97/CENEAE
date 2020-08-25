@@ -26,6 +26,7 @@ class CreateDocentesTable extends Migration
             $table->string('municipio');
             $table->string('cp');
             $table->string('direccion');
+            $table->string('correo');
             $table->string('telefono');
             $table->timestamps();
         });

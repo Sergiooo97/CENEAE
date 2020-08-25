@@ -144,14 +144,7 @@ class ndolaresController extends Controller
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
-                    //validation
-                  /*  $request->validate([
-                        'cantidad' => 'required|integer'
-                    ],
-                    [
-                    'cantidad.required' => 'Es necesario escribir una cantidad',
-                    'cantidad.integer' => 'solo es posible escribir numeros para la cantiad',
-                    ]); */
+
         $ndolarActual = ndolar_lista::where('alumno_id', $request->input('id_alumno'))->first();
         $users = new ndolarTransacciones();
         $users ->lista_id       = $request->input('id_alumno');

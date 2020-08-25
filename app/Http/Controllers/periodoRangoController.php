@@ -11,7 +11,7 @@ class periodoRangoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('auth');
+    
         $period = periodo::select('id')->orderBy('año','DESC')->take(1)->first();
         if(!is_null($period))
             if(!(\Session::has('idPeriodo')))

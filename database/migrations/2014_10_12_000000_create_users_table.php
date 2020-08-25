@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('matricula')->unique();
             $table->unsignedBigInteger('alumno_id')->nullable();
+            $table->unsignedBigInteger('docente_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -31,7 +32,14 @@ class CreateUsersTable extends Migration
                 ->on('alumnos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+    
+            $table->foreign('docente_id')
+                ->references('id')
+                ->on('docentes')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
+
     }
 
     /**
