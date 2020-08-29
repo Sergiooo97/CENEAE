@@ -28,7 +28,14 @@ class CreateDocentesTable extends Migration
             $table->string('direccion');
             $table->string('correo');
             $table->string('telefono');
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->timestamps();
+             //Relaciones
+             $table->foreign('grupo_id')
+             ->references('id')
+             ->on('grupos')
+             ->onDelete('cascade')
+             ->onUpdate('cascade');
         });
     }
 

@@ -17,6 +17,7 @@ class CreateCursosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('clave');
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->enum('grado', ['1', '2', '3', '4', '5', '6']);
             $table->enum('grupo', ['A', 'B']);
             $table->unsignedBigInteger('docente_id')->nullable();
@@ -27,6 +28,12 @@ class CreateCursosTable extends Migration
                 ->onDelete('cascade');
             $table->timestamps();
 
+             //Relaciones
+             $table->foreign('grupo_id')
+             ->references('id')
+             ->on('grupos')
+             ->onDelete('cascade')
+             ->onUpdate('cascade');
         });
     }
 

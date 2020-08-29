@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Seeder;
@@ -17,6 +18,7 @@ class cursoSeeder extends Seeder
         $periodo->clave  = 'ESPAÑOL1A';
         $periodo->grado  = '1';
         $periodo->grupo  = 'A';
+        $periodo->grupo_id  = '1';
         $periodo->periodo_id  = '1';
         $periodo->docente_id  = '1';
         $periodo->save();
@@ -25,6 +27,8 @@ class cursoSeeder extends Seeder
         $periodo->clave  = 'MATE1A';
         $periodo->grado  = '1';
         $periodo->grupo  = 'A';
+        $periodo->grupo_id  = '1';
+
         $periodo->periodo_id  = '1';
         $periodo->docente_id  = '1';
         $periodo->save();
@@ -33,6 +37,7 @@ class cursoSeeder extends Seeder
         $periodo->clave  = 'GEO2A';
         $periodo->grado  = '2';
         $periodo->grupo  = 'A';
+        $periodo->grupo_id  = '2';
         $periodo->periodo_id  = '1';
         $periodo->docente_id  = '2';
         $periodo->save();

@@ -9,7 +9,7 @@ use App\notas_structures;
 use App\notas_values;
 use App\periodo;
 use App\periodos_rangos;
-use App\User;
+use App\grupo;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use App\alumno;
@@ -29,7 +29,8 @@ class HomeController extends Controller
                 \Session::put('idPeriodo',$period->id);
     }
     public function index()
-    {
+    { 
+        $grupo = grupo::all();
         $notas = $this->getNotasGrafica();
         $ns = notas_structures::select('nombre')
         ->where('nota_id', '1')
@@ -59,7 +60,7 @@ class HomeController extends Controller
         ->where('periodo_id',\Session::get('idPeriodo'))
         ->get();
         
-        return view('home', compact('results', 'alumnos', 'cursos', 'lista_cursos', 'listaRangos', 'users', 'notas', 'ns'));
+        return view('home', compact('results','grupo', 'alumnos', 'cursos', 'lista_cursos', 'listaRangos', 'users', 'notas', 'ns'));
     }
     public function configurarGrafico(Request $request)
     {

@@ -12,6 +12,54 @@
     }
 </style>
 @section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="notificationsss bounce ">
+                    <div class="container  ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card bounceInleft">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Rendimiento de los grupos</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="chart_alumno"></div>
+            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+            <div class="col-md-6">
+                <div class="notificationsss bounce ">
+                    <div class="container  ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card bounceInleft">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Grupos</h4>
+                                    </div>
+                                    <div class="card-body">
+                                    <u>
+                                        @foreach ($grupo as $grup)
+                                    <li>{{$grup->nombre}}</li>                                        
+                                        @endforeach             
+                                    </u>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
     <div class="notificationsss bounce ">
         <div class="container  ">
             <div class="row">

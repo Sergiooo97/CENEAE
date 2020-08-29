@@ -17,6 +17,7 @@ class CreateGruposTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('grado');
+            $table->string('grupo');
             $table->timestamps();
         });
     }

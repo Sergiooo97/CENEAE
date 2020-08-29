@@ -98,6 +98,18 @@
 <div class="content">
   <div class="row">
     <div class="col-md-4">
+      <a  style="padding: 5px" href="#" class="btn btn-warning col-md-12">Expediente <i class="nc-icon nc-cloud-download-93"></i></a>
+    </div>
+    <div class="col-md-4">
+      <a style="padding: 5px" href="{{route('exportar_ndolar_info',['id' => $alumno->id, 'nombre'=>$alumno->nombres])}}" class="btn btn-warning col-md-12">ndolares <i class="nc-icon nc-cloud-download-93"></i></a>
+    </div>
+    <div class="col-md-4">
+      <a style="padding: 5px" href="#" class="btn btn-warning col-md-12">calificaciones <i class="nc-icon nc-cloud-download-93"></i></a>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-4">
       <div class="card card-user">
         <div class="image">
           <img src="{{asset('img/ntcd.jpg')}}" width="" alt="...">
