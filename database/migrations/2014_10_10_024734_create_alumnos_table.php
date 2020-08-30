@@ -27,7 +27,14 @@ class CreateAlumnosTable extends Migration
             $table->string('municipio');
             $table->string('cp');
             $table->string('direccion');
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->timestamps();
+             //Relaciones
+             $table->foreign('grupo_id')
+             ->references('id')
+             ->on('grupos')
+             ->onDelete('cascade')
+             ->onUpdate('cascade');
         });
     }
 
