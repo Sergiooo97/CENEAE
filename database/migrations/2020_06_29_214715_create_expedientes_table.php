@@ -37,7 +37,7 @@ class CreateExpedientesTable extends Migration
             //Relaciones
             $table->foreign('alumno_id')
             ->references('id')
-            ->on('grupos')
+            ->on('alumnos')
             ->onDelete('cascade')
             ->onUpdate('cascade');            
             $table->timestamps();

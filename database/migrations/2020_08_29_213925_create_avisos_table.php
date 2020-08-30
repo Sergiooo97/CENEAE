@@ -8,7 +8,7 @@ class CreateAvisosTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *  
      * @return void
      */
     public function up()
@@ -20,12 +20,7 @@ class CreateAvisosTable extends Migration
             $table->string('asignatura')->nullable();
             $table->unsignedBigInteger('docente_id')->nullable();
             $table->unsignedBigInteger('grupo_id')->nullable();
-             //Relaciones
-             $table->foreign('grupo_id')
-             ->references('id')
-             ->on('grupos')
-             ->onDelete('cascade')
-             ->onUpdate('cascade');            
+                     
              $table->foreign('docente_id')
              ->references('id')
              ->on('docentes')
