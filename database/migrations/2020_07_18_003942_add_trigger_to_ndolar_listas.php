@@ -19,8 +19,8 @@ class AddTriggerToNdolarListas extends Migration
             AFTER INSERT ON alumnos
             FOR EACH ROW
 
-            INSERT INTO ndolar_listas(alumno_id, matricula, nombres, grado, grupo, cantidad)
-            VALUES(NEW.id, NEW.matricula, CONCAT(NEW.nombres, " ", NEW.apellido_paterno, " ",NEW.apellido_materno), NEW.grado, NEW.grupo, "0");
+            INSERT INTO ndolar_listas(alumno_id, matricula, nombres, grado, grupo_id, cantidad)
+            VALUES(NEW.id, NEW.matricula, CONCAT(NEW.nombres, " ", NEW.apellido_paterno, " ",NEW.apellido_materno), NEW.grado, NEW.grupo_id, "0");
 
             INSERT INTO ndolar_transacciones(alumno_id, matricula, nombre, accion, cantidad, antes, nuevo, comentario)
             VALUES(NEW.id, NEW.matricula, CONCAT(NEW.nombres, " ", NEW.apellido_paterno, " ",NEW.apellido_materno), "algo", 0, "0", "0", "sdd");

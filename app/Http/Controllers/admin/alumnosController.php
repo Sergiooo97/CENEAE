@@ -13,6 +13,7 @@ use App\periodos_rangos;
 use App\Role;
 use App\tutor;
 use App\User;
+use App\grupo;
 use Illuminate\Http\Request;
 use App\alumno;
 use Illuminate\Http\Response;
@@ -41,25 +42,29 @@ class alumnosController extends Controller
     public function index(Request $request)
     {
     
+
+        $grupo_id = grupo::where('id', $request->get('grupo'))
+        ->first();
         $nombres = $request->get('nombres');
         $grado = $request->get('grado');
         $grupo = $request->get('grupo');
+        $grupos = grupo::all();
         $alumnos = \App\alumno::select(
             'alumnos.id as id',
             'alumnos.matricula as matricula',
             DB::raw("CONCAT(alumnos.nombres, ' ', alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as nombres"),
-            DB::raw("CONCAT(alumnos.grado, '°', alumnos.grupo) as grado_grupo"),
             'alumnos.curp as curp',
             'alumnos.direccion as direccion',
-            'tutores.telefono as telefono')
+            'tutores.telefono as telefono',
+            'grupos.nombre as grupo_nombre')
         ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-        ->orderBy('grado', 'ASC')
+        ->join('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        ->orderBy('grupos.nombre', 'ASC')
         ->nombres($nombres)
-        ->grado($grado)
         ->grupo($grupo)
         ->paginate(6);
        
-        return view('role.admin.alumnos.index', compact('alumnos'));
+        return view('role.admin.alumnos.index', compact('alumnos', 'grupos', 'grupo_id'));
     }
     public function orden(Request $request){
         $nombres = $request->get('nombres');
@@ -138,7 +143,7 @@ class alumnosController extends Controller
         $alumno->fecha_de_nacimiento = $request->input('birthday');
         $alumno->curp = $request->input('curp');
         $alumno->grado = $request->input('grado');
-        $alumno->grupo = $request->input('grupo');
+        $alumno->grupo_id = $request->input('grupo');
         $alumno->direccion = $request->input('direccion');
         $alumno->municipio = $request->input('municipio');
         $alumno->cp = $request->input('cp');
@@ -250,8 +255,7 @@ class alumnosController extends Controller
             'alumnos.edad',
             'alumnos.fecha_de_nacimiento',
             'alumnos.curp',
-            'alumnos.grado',
-            'alumnos.grupo',
+            'grupos.nombre as grupo_nombre',
             'alumnos.municipio',
             'alumnos.cp',
             'alumnos.direccion',
@@ -266,6 +270,7 @@ class alumnosController extends Controller
             'tutores.correo as correo_tutor')
             ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
+            ->join('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
             ->where('alumnos.id', $id)
             ->first();
             return view('role.admin.alumnos.show', compact('alumno','users','cal','promedio', 'promedio_curso','promedioFIN','periodos', 'subcomponentes','nota_id', 'series', 'notas', 'ns', 'cursos','promedioCount', 'curso_grafica'));

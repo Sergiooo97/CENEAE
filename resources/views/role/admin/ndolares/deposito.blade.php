@@ -16,21 +16,16 @@
           <div class="card-body">
             <div class="table-responsive">
               <form action="{{route('ndolares.deposito')}}" method="GET" class="form-inline pull-right" role="search">
-                <label for="grado"> Grado: </label>
-                <select name="grado" class="form-control" id="grado" onchange="this.form.submit()">
-                  <option value="{{request('grado')}}">{{request('grado')}}</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <label for="grupo"> Grado: </label>
+                <label for="grupo"> Grupo: </label>
                 <select name="grupo" class="form-control" id="grupo" onchange="this.form.submit();  ">
-                  <option value="{{request('grupo')}}">{{request('grupo')}}</option>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-
+                  @foreach ($grupos as $grupo)
+                    @if ($grupo->id == request('grupo') )
+                    <option value="{{request('grupo')}}">{{$grupo->nombre}}</option>
+                    @endif      
+                  @endforeach
+                  @foreach ($grupos as $grupo)
+                    <option value="{{ $grupo->id }}">{{ $grupo->nombre }}</option>
+                  @endforeach
                 </select>
                 <label for="nombres">Nombre:</label>
                 <input value="{{ request('nombres')}}" name="nombres" id="nombres" class="form-control"

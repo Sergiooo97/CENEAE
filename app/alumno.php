@@ -42,7 +42,7 @@ class alumno extends Model
     }
     public function scopeGrupo($query, $grupo){
         if($grupo)
-        return $query->where('grupo', 'LIKE', "%$grupo%" );
+        return $query->where('grupo_id', 'LIKE', "%$grupo%" );
     }
 
 }

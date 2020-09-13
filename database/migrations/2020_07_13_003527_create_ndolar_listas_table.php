@@ -19,7 +19,7 @@ class CreateNdolarListasTable extends Migration
             $table->string('matricula');
             $table->string('nombres');
             $table->string('grado');
-            $table->string('grupo');
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->integer('cantidad');
 
 
@@ -27,6 +27,11 @@ class CreateNdolarListasTable extends Migration
             $table->foreign('alumno_id')
             ->references('id')
             ->on('alumnos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('grupo_id')
+            ->references('id')
+            ->on('grupos')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });

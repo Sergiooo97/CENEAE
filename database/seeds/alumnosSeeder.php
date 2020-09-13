@@ -5,7 +5,7 @@ use App\alumno;
 class alumnosSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeds
      *
      * @return void
      */
@@ -21,6 +21,7 @@ class alumnosSeeder extends Seeder
         $alumno->curp = 'EXGS971124HYNBLR01';
         $alumno->grado = '1';
         $alumno->grupo = 'A';
+        $alumno->grupo_id = '1';
         $alumno->municipio = 'Cacalchén';
         $alumno->cp = '97460';
         $alumno->direccion = 'Calle 16#94x17y19';
@@ -36,6 +37,7 @@ class alumnosSeeder extends Seeder
         $alumno->curp = 'AKGS971124HYNBLR01';
         $alumno->grado = '1';
         $alumno->grupo = 'A';
+        $alumno->grupo_id = '1';
         $alumno->municipio = 'Cacalchén';
         $alumno->cp = '97460';
         $alumno->direccion = 'Calle 16#94x17y19';
@@ -51,6 +53,7 @@ class alumnosSeeder extends Seeder
         $alumno->curp = 'EXGS971124HYNBLR01';
         $alumno->grado = '2';
         $alumno->grupo = 'A';
+        $alumno->grupo_id = '2';
         $alumno->municipio = 'Cacalchén';
         $alumno->cp = '97460';
         $alumno->direccion = 'Calle 16#94x17y19';

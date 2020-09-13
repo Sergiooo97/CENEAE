@@ -130,7 +130,7 @@
             </p>
           </div>
           <p  class="description text-center slider-label">
-            "{{$alumno->grado}}°{{$alumno->grupo}}"
+            "{{$alumno->grupo_nombre}}"
 
           </p>
           <p class="description text-center slider-label">

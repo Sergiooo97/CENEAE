@@ -20,6 +20,6 @@ class ndolar_lista extends Model
     }
     public function scopeGrupo($query, $grupo){
         if($grupo)
-        return $query->where('grupo', 'LIKE', "%$grupo%" );
+        return $query->where('ndolar_listas.grupo_id', 'LIKE', "%$grupo%" );
     }
 }

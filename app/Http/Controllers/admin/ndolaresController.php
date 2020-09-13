@@ -8,6 +8,7 @@ use ToSweetAlert;
 use App\ndolarTransacciones;
 use App\ndolar_lista;
 use App\alumno;
+use App\grupo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
@@ -25,26 +26,24 @@ class ndolaresController extends Controller
     {
 
         $nombres = $request->get('nombres');
-        $grado = $request->get('grado');
         $grupo = $request->get('grupo');
-
+        $grupos = grupo::all();
 
         $alumnos = \App\ndolar_lista::select(
             'alumnos.matricula as matricula',
             'alumnos.id as alumno_id',
              'ndolar_listas.nombres as nombres',
-             DB::raw("CONCAT(alumnos.grado, '°', alumnos.grupo) as grado_grupo"),
-             'ndolar_listas.cantidad as cantidad'
+             'ndolar_listas.cantidad as cantidad',
+             'grupos.nombre as grupo_nombre'
              )
-             ->join('alumnos', 'ndolar_listas.alumno_id', '=', 'alumnos.id')
-        ->orderBy('ndolar_listas.grado', 'ASC')
-        ->orderBy('ndolar_listas.grupo', 'ASC')
+        ->join('alumnos', 'ndolar_listas.alumno_id', '=', 'alumnos.id')
+        ->join('grupos', 'ndolar_listas.grupo_id', '=', 'grupos.id')
+        ->orderBy('alumnos.grupo_id', 'ASC')
         ->nombres($nombres)
-        ->grado($grado)
         ->grupo($grupo)
         ->paginate(5);
 
-        return view('role.admin.ndolares.index', compact('alumnos'));
+        return view('role.admin.ndolares.index', compact('alumnos', 'grupos'));
     }
 
 
@@ -55,30 +54,32 @@ class ndolaresController extends Controller
      */
     public function deposito(Request $request)
     {
+        $grupos = grupo::all();
         toast('Puedes depositar a un alumno o un grupo completo','info');
         $nombres = $request->get('nombres');
-        $grado = $request->get('grado');
         $grupo = $request->get('grupo');
         $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
         ->nombres($nombres)
-        ->grado($grado)
         ->grupo($grupo)
         ->paginate(5);
 
-        return view('role.admin.ndolares.deposito', compact('alumnos'));
+        return view('role.admin.ndolares.deposito', compact('alumnos', 'grupos'));
     }
     public function retiro(Request $request)
     {
+        $grupos = grupo::all();
+        $grupo_id = grupo::where('id', $request->get('grupo'))
+        ->first();
+        //$grupo_id = grupo::where('id' ,'>' ,0)
+        //->pluck('id')->toArray();
         toast('Puedes retirar a un alumno o un grupo completo','info');
                 $nombres = $request->get('nombres');
-        $grado = $request->get('grado');
         $grupo = $request->get('grupo');
         $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
         ->nombres($nombres)
-        ->grado($grado)
         ->grupo($grupo)
         ->paginate(5);
-        return view('role.admin.ndolares.retiro', compact('alumnos'));
+        return view('role.admin.ndolares.retiro', compact('alumnos', 'grupos', 'grupo_id'));
     }
     public function insertarDeposito(Request $request)
     {

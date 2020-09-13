@@ -12,7 +12,7 @@ class periodoRangoController extends Controller
     {
         $this->middleware('auth');
     
-        $period = periodo::select('id')->orderBy('año','DESC')->take(1)->first();
+        $period = periodo::select('id')->orderBy('año_inicio','DESC')->take(1)->first();
         if(!is_null($period))
             if(!(\Session::has('idPeriodo')))
                 \Session::put('idPeriodo',$period->id);
