@@ -15,7 +15,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <form id="form" method="POST" action="{{route('grupos.update',$grad->grado)}}">
+              <form id="form" method="POST" action="{{route('grupos.update',$grad->id)}}">
                 <div class="form-group form-inline pull-right">
                 </div>
                 <!-------------------------------------------empieza tabla ---------------------------------->
@@ -24,9 +24,9 @@
                     <th>No. lista</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
-                    <th>grado</th>
                     <th>grupo</th>
-                    <th></th>
+                    <th>Matricula</th>
+                    <th>Correo</th>
                   </thead>
               @foreach ($alumnos as $count=>$alumno)
                 @csrf @method('PATCH')
@@ -36,15 +36,19 @@
                   </div>
                   @endif
                   <input id="id[]" value="{{$alumno->id}}" name="id[]" class="form-control" hidden />
-                  <input value="{{ $alumno->matricula }}" name="matricula[]" class="form-control" hidden />
+                  <input value="{{ $alumno->curp }}" name="matricula[]" class="form-control" hidden />
                   <input value="{{ $alumno->nombres }}" name="nombres[]" class="form-control" hidden />
+                  <input value="{{ $alumno->grupo }}" name="grupo_id" class="form-control" hidden />
+
                   <tbody>
                     <tr>
                       <td style="width: 3em;"><input id="orden[]" value="{{++$count}}" name="orden[]" class="form-control" required maxlength="2" readonly /></td>
-                      <td>{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}</td>
+                      <td>{{ $alumno->apellidos }}</td>
                       <td>{{ $alumno->nombres }}</td>
-                      <td>{{ $alumno->grado }}</td>
                       <td>{{ $alumno->grupo }}</td>
+                      <td>{{ $alumno->matricula }}</td>
+                      <td>{{ $alumno->email }}</td>
+
                       <td></td>
                     </tr>
               @endforeach
@@ -59,13 +63,8 @@
           <i class="nc-icon nc-cloud-download-93"></i>
           Generar matricula y correos
         </button>
-
         <a class="btn btn-info" href="{{ URL::previous() }}"><i class="nc-icon nc-minimal-left"></i> Volver atrás</a>
-
-
-        </form>
-
-
+        </form>j
       </div>
     </div>
     @include('sweetalert::alert')

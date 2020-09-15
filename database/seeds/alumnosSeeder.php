@@ -12,7 +12,7 @@ class alumnosSeeder extends Seeder
     public function run()
     {
         $alumno = new alumno();
-        $alumno->matricula = 'EXGS971124H1A';
+        $alumno->matricula = 'XXEXGS971124HXXXXXX';
         $alumno->nombres = 'Sergio';
         $alumno->apellido_paterno = 'Eb';
         $alumno->apellido_materno = 'Gallegos';
@@ -25,10 +25,11 @@ class alumnosSeeder extends Seeder
         $alumno->municipio = 'Cacalchén';
         $alumno->cp = '97460';
         $alumno->direccion = 'Calle 16#94x17y19';
+        $alumno->correo = 'x.xxxxxx@ceneae.com';
         $alumno->save();
 
         $alumno = new alumno();
-        $alumno->matricula = 'GXGS951254HKA';
+        $alumno->matricula = 'XXGXGS951254HXXXXXX';
         $alumno->nombres = 'Jose';
         $alumno->apellido_paterno = 'Ake';
         $alumno->apellido_materno = 'Ek';
@@ -41,10 +42,11 @@ class alumnosSeeder extends Seeder
         $alumno->municipio = 'Cacalchén';
         $alumno->cp = '97460';
         $alumno->direccion = 'Calle 16#94x17y19';
+        $alumno->correo = 'x.xxxxxx@ceneae.com';
         $alumno->save();
 
         $alumno = new alumno();
-        $alumno->matricula = 'AXGS971124H1A';
+        $alumno->matricula = 'XXAXGS971124HXXXXXX';
         $alumno->nombres = 'Ana';
         $alumno->apellido_paterno = 'Gallegos';
         $alumno->apellido_materno = 'Eb';
@@ -57,6 +59,7 @@ class alumnosSeeder extends Seeder
         $alumno->municipio = 'Cacalchén';
         $alumno->cp = '97460';
         $alumno->direccion = 'Calle 16#94x17y19';
+        $alumno->correo = 'x.xxxxxx@ceneae.com'; 
         $alumno->save();
     }
 }

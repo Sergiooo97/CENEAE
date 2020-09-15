@@ -16,6 +16,7 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style.scss" rel="stylesheet/scss">
+  <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
 
   <!-- Scroll -->
   <script src="js/smooth-scroll.min.js"></script>
@@ -44,8 +45,20 @@
 font-family: "Northern";
 src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 }
+.mapa{
+  width: 100%;
+  height: 300px;
+}
 
-
+.btn-maps{
+  margin-top: 5px;
+  background: transparent !important;
+  border: 0px;
+  color: #ffffff;
+}
+.icon-maps{
+  font-size: 30px;
+}
 .titlemontessori{
   font-family: 'Anton', sans-serif;
   color: #ffffff;
@@ -117,6 +130,11 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
         </ul>
         <ul class="navbar-nav nav-flex-icons">
           
+          <li>
+            <button type="button"  class="btn-maps" data-toggle="modal" data-target="#basicExampleModal">
+              <i class="nc-icon nc-pin-3 icon-maps"> </i>
+            </button>
+          </li>
           
           <li class="nav-item">
               <img class="sunlogo" src="{!! asset('img/seegeey.png') !!}" height="45px" width="120px"> 
@@ -179,6 +197,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
           <a class="btn btn-outline-white btn-lg font-natacad btn-galery" href="{{ route('galeria') }}"> Galeria </a>
 
       </div>
+      
   @endif
 
     
@@ -200,6 +219,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
   <!--Main layout-->
   <main>
+    
     <div class="container">
 
       <!--Section: Main info-->
@@ -487,9 +507,69 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 </div>
 </section>
 <!--Section: Cards-->
+<div id ="map"> </div> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLpNqK3zpnhjRHThUwv7y5e5cdD1VNEB4" async defer></script>
+<script>
+  
+    var map;
+   function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 43.5293, lng: -5.6773},
+        zoom: 13,
+      });
+      var marker = new google.maps.Marker({
+        position: {lat: 43.542194, lng: -5.676875},
+        map: map,
+  title: 'Acuario de Gijón'
+      });
+    }
+
+    
+</script>
 
     </div>
     
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ubicación de ceneae</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="mapa" class="mapa"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyApf0hpGGppKTu5P7jVjpYr82e6rJgTaLE"></script>
+        <script>
+          google.maps.event.addDomListener(window, "load", function(){
+            var mapElement = document.getElementById('mapa');
+            var map = new google.maps.Map(mapElement, {
+              center:{
+                lat:20.982143,
+                lng:-89.233332
+              },
+              zoom:20
+            })
+            var marker = new google.maps.Marker({
+        position: {lat: 43.542194, lng: -5.676875},
+        map: map,
+  title: 'Acuario de Gijón'
+      });
+          })
+        </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
   </main>
   <!--Main layout-->
 
@@ -570,6 +650,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
     new WOW().init();
 
   </script>
+
 </body>
 
 </html>

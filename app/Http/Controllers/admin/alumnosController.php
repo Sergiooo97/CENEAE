@@ -84,8 +84,9 @@ class alumnosController extends Controller
      */
     public function create()
     {
+        $grupos = grupo::all();
         toast('Registro de alumnos :)','info');
-        return view('role.admin.alumnos.create');
+        return view('role.admin.alumnos.create', compact('grupos'));
     }
     /**
      * Store a newly created resource in storage.
@@ -103,7 +104,6 @@ class alumnosController extends Controller
             'age' => 'required|integer',
             'birthday' => 'required|date',
             'curp' => 'required|max:18|string',
-            'grado' => 'required|integer',
             'grupo' => 'required|string',
             'direccion' => 'required|max:25|string',
             'municipio' => 'required|max:10|string',
@@ -124,7 +124,6 @@ class alumnosController extends Controller
                 'birthday.date' => 'Solo el formato dd/mm/aaaa para la fecha de nacimiento',
                 'curp.required' => 'Es necesario escribir curp',
                 'curp.max' => 'El curp excede número maximo de caracteres',
-                'grado.required' => 'Es necesario escribir grado',
                 'grupo.required' => 'Es necesario escribir grupo',
                 'direccion.max' => 'Direccion excede numero de caracteres',
                 'direccion.required' => 'Es necesario escribir la dirección',
@@ -142,9 +141,11 @@ class alumnosController extends Controller
         $alumno->edad = $request->input('age');
         $alumno->fecha_de_nacimiento = $request->input('birthday');
         $alumno->curp = $request->input('curp');
-        $alumno->grado = $request->input('grado');
+        $alumno->grado = "0";
+        $alumno->grupo = "0";
         $alumno->grupo_id = $request->input('grupo');
         $alumno->direccion = $request->input('direccion');
+        $alumno->correo = "x.xxxxx@ceneae.com";
         $alumno->municipio = $request->input('municipio');
         $alumno->cp = $request->input('cp');
         $alumno->save();

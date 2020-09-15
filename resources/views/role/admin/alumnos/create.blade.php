@@ -91,26 +91,19 @@
                 </div>
                 <div class="col-sm">
                   <div class="row">
-                    <div class="col-sm">
-                      {!!Form::label('Grado','Grado',['class'=>'label'])!!}
-                      <select name="grado" class="form-control" id="grado">
-                        <option value="">Seleccionar</option>
-                        <option value="1">1°</option>
-                        <option value="2">2°</option>
-                        <option value="3">3°</option>
-                        <option value="4">4°</option>
-                        <option value="5">5°</option>
-                        <option value="6">6°</option>
-                      </select>
-
-                    </div>
+                   
                     <div class="col-sm">
                       {!!Form::label('Grupo','Grupo',['class'=>'label'])!!}
                       <select name="grupo" class="form-control" id="grupo">
-                        <option value="">Seleccionar</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
+                        @if (request('grupo') == "")
+                        <option value="">Seleccione</option>
+                        @else
+                        <option value="{{ $grupo_id->id }}">{{ $grupo_id->nombre }}</option>
+                        @endif
+                        @foreach ($grupos as $grupo)
+                          <option value="{{ $grupo->id }}">{{ $grupo->nombre }}</option>
+                        @endforeach
+      
                       </select>
                     </div>
                   </div>

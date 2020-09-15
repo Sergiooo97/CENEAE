@@ -55,6 +55,7 @@ class ndolaresController extends Controller
     public function deposito(Request $request)
     {
         $grupos = grupo::all();
+        $grupo_id = grupo::where('id', $request->get('grupo'));
         toast('Puedes depositar a un alumno o un grupo completo','info');
         $nombres = $request->get('nombres');
         $grupo = $request->get('grupo');
@@ -63,7 +64,7 @@ class ndolaresController extends Controller
         ->grupo($grupo)
         ->paginate(5);
 
-        return view('role.admin.ndolares.deposito', compact('alumnos', 'grupos'));
+        return view('role.admin.ndolares.deposito', compact('alumnos', 'grupos', 'grupo_id'));
     }
     public function retiro(Request $request)
     {

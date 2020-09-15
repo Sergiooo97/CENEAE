@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use RealRashid\SweetAlert\Facades\Alert;
+use App\grupo;
 use Illuminate\Http\Request;
 use App\alumno;
 use App\User;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Role;
 use Illuminate\Support\Str;
 use App\periodo;
+use Illuminate\Support\Facades\DB;
 
 use ToSweetAlert;
 
@@ -22,8 +24,8 @@ class grposController extends Controller
      */
     public function index()
     {
-
-        return view('role.admin.grupos.index');
+        $grupos = grupo::all();
+        return view('role.admin.grupos.index', compact('grupos'));
     }
 
     /**
@@ -64,19 +66,26 @@ class grposController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $grado, $grupo)
+    public function edit(Request $request, $grupo)
     {
         toast('Asigna un número de lista y periodo a los alumnos :)','info');
 
-        $grad = alumno::where('grado', $grado)->first();
+        $grad = alumno::where('grupo_id', $grupo)->first();
         if (! $grad) {
             return \Redirect::back()->with('flash_error', 'No se ha encontrado');
         }
-        $alumnos = alumno::find($grado);
         $alumnos = alumno::find($grupo);
 
-        $alumnos = \App\alumno::orderBy('apellido_paterno', 'ASC')
-        ->grado($grado)
+        $alumnos = \App\alumno::select(
+        'alumnos.id as id',
+        'alumnos.nombres as nombres',
+        DB::raw("CONCAT(alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as apellidos"),
+        'alumnos.curp as curp',
+        'alumnos.matricula as matricula',
+        'alumnos.correo as email',
+        'grupos.nombre as grupo')
+        ->join('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        ->orderBy('apellidos', 'ASC')
         ->grupo($grupo)
         ->paginate(5);
         return view('role.admin.grupos.edit', compact('alumnos', 'grad'));
@@ -104,17 +113,19 @@ class grposController extends Controller
             $periodos = periodo::where('id', \Session::get('idPeriodo'))->first();
             //
             $alumno = alumno::find($request->get('id')[$key]);
-            if($value <=9){
-                $alumno->matricula = "0".$value.$request
-                ->get('matricula')[$key].
+            if($value <=9){                                                                          //2    11        6
+                $alumno->matricula =  "0".$value.Str::substr($value.$request->get('matricula')[$key], 1, 11).
+                $request->get('grupo_id'). //XX EXGS971124H XXXXXX
                 Str::substr($periodos->año_inicio, -2, 2).
                 Str::substr($periodos->año_fin, -2, 2);
             }else {
-                $alumno->matricula = $value.$request
-                ->get('matricula')[$key].
+                
+                $alumno->matricula =  $value.Str::substr($value.$request->get('matricula')[$key], 0, 11).
+                $request->get('grupo_id').
                 Str::substr($periodos->año_inicio, -2, 2).
                 Str::substr($periodos->año_fin, -2, 2);
             }
+            $alumno->correo = $request->get('nombres')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
             $alumno->update();
             
             //User para inicio de sesión de los alumnos.
@@ -125,7 +136,7 @@ class grposController extends Controller
                 $user->matricula = $value.$request->get('matricula')[$key];
             }
             $user->name =$request->get('nombres')[$key];
-            $user->email = $request->get('nombres')[$key].".".Str::substr($value.$request->get('matricula')[$key], -9, 6)."@ceneae.com";
+            $user->email = $request->get('nombres')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
             $user->password = Hash::make('12345678');
             $user->alumno_id = $request->get('id')[$key];
             $user->save();

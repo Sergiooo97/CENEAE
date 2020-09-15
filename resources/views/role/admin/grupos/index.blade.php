@@ -34,18 +34,11 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <a href ="{{route('grupos.edit',['grado' => '1', 'grupo' => 'A'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
-                  <a href ="{{route('grupos.edit',['grado' => '1', 'grupo' => 'B'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
-                  <a href ="{{route('grupos.edit',['grado' => '2', 'grupo' => 'A'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 2°A</a>
-                  <a href ="{{route('grupos.edit',['grado' => '2', 'grupo' => 'B'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 2°B</a>
-                  <a href ="{{route('grupos.edit',['grado' => '3', 'grupo' => 'A'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 3°A</a>
-                  <a href ="{{route('grupos.edit',['grado' => '3', 'grupo' => 'B'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 3°B</a>
-                  <a href ="{{route('grupos.edit',['grado' => '4', 'grupo' => 'A'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 4°A</a>
-                  <a href ="{{route('grupos.edit',['grado' => '4', 'grupo' => 'B'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 4°B</a>
-                  <a href ="{{route('grupos.edit',['grado' => '5', 'grupo' => 'A'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 5°A</a>
-                  <a href ="{{route('grupos.edit',['grado' => '5', 'grupo' => 'B'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 5°B</a>
-                  <a href ="{{route('grupos.edit',['grado' => '6', 'grupo' => 'A'])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
-                  <a href ="{{route('grupos.edit',['grado' => '6', 'grupo' => 'B'])}}" class="btn btn-success"><<i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
+                  @forelse ($grupos as $grupo)
+                <a href ="{{route('grupos.edit',['grupo' => $grupo->id])}}" class="btn btn-success"><i class="nc-icon nc-cloud-download-93"></i>{{ $grupo->nombre}}</a>                      
+                  @empty
+                  <p>No hay grupos registrados</p>    
+                  @endforelse
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

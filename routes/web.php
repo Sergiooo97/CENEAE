@@ -105,7 +105,7 @@ Route::group([
 |*/
     Route::prefix('grupos')->group(function () {
     Route::get('/', 'grposController@index')->name('grupos.index'); //LISTA DE ALUMNOS
-    Route::get('{grado}/{grupo}/edit', 'grposController@edit')->name('grupos.edit'); //LISTA DE ALUMNOS
+    Route::get('{grupo}/edit', 'grposController@edit')->name('grupos.edit'); //LISTA DE ALUMNOS
     Route::patch('{id}/orden', 'grposController@update')->name('grupos.update'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
 });
 

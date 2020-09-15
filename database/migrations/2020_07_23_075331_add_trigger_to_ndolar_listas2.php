@@ -18,7 +18,7 @@ class AddTriggerToNdolarListas2 extends Migration
             CREATE TRIGGER insertar_ndolar_listas2
             AFTER UPDATE ON alumnos 
             FOR EACH ROW 
-            UPDATE ndolar_listas SET matricula=NEW.matricula, nombres=NEW.nombres, grado=NEW.grado, grupo=NEW.grupo
+            UPDATE ndolar_listas SET matricula=NEW.matricula, nombres=NEW.nombres, grado=NEW.grado, grupo_id=NEW.grupo_id
             WHERE matricula=OLD.matricula;            
         ');
         });

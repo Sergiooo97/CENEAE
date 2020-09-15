@@ -26,6 +26,7 @@ class CreateAlumnosTable extends Migration
             $table->string('grupo');
             $table->string('municipio');
             $table->string('cp');
+            $table->string('correo');
             $table->string('direccion');
             $table->unsignedBigInteger('grupo_id')->nullable();
             $table->timestamps();

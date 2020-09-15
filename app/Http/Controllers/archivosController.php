@@ -20,7 +20,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class archivosController extends Controller
 {
     public function index(){
-        return view('download.archivos.index');
+        return view('role.admin.download.archivos.index');
     }
 
     public function export_asistencia($grado, $grupo){
