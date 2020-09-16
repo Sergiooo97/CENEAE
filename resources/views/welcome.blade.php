@@ -535,17 +535,17 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 <!-- Modal -->
 <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ubicación de ceneae</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ubicación de ceneae Cacalchén </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div id="mapa" class="mapa"></div>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyApf0hpGGppKTu5P7jVjpYr82e6rJgTaLE"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhJeS1yPRBy7L69aacRlO-lCNXdoKC6OE"></script>
         <script>
           google.maps.event.addDomListener(window, "load", function(){
             var mapElement = document.getElementById('mapa');
@@ -554,22 +554,40 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                 lat:20.982143,
                 lng:-89.233332
               },
-              zoom:20
+              zoom:17
             })
             var marker = new google.maps.Marker({
-        position: {lat: 43.542194, lng: -5.676875},
+        position: {lat: 20.982143, lng: -89.233332},
         map: map,
-  title: 'Acuario de Gijón'
+  title: 'Centro Educativo Natanael'
       });
           })
         </script>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
+      
     </div>
   </div>
 </div>
+<div id ="map"> </div> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhJeS1yPRBy7L69aacRlO-lCNXdoKC6OE&callback=initMap" async defer></script>
+<script>
+  
+    var map;
+   function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 43.5293, lng: -5.6773},
+        zoom: 13,
+      });
+      var marker = new google.maps.Marker({
+        position: {lat: 43.542194, lng: -5.676875},
+        map: map,
+  title: 'Acuario de Gijón'
+      });
+    }
+
+    
+</script>
+
   </main>
   <!--Main layout-->
 
