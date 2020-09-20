@@ -71,6 +71,9 @@ Route::group([
 | Rutas de alumno
 |--------------------------------------------------------------------------
 |*/
+    Route::prefix('finanzas')->group(function (){
+      Route::get('/','finanzas\finanzasController@index')->name('finanzas.index');
+    });
 
   Route::prefix('alumno')->group(function () {
     Route::get('lista', 'alumnosController@index')->name('alumnos.index'); //LISTA DE ALUMNOS

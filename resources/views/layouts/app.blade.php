@@ -189,6 +189,11 @@
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
               </a>
             </li>
+            <li class="{{request()->is('admin/finanzas') ? 'active' : '' }}">
+            <a href="{{ route('finanzas.index')}}">
+              <p class="slider-label"><i class="nc-icon nc-bank"></i>Finanzas</p>
+            </a>
+            </li>
             <li class="{{request()->is('periodo') ? 'active' : '' }}">
               <a class="dropdown-btn">
                 <p class="slider-label "><i class="nc-icon nc-icon nc-calendar-60"></i>Periodos
