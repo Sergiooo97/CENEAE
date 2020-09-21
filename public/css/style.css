@@ -69,7 +69,6 @@ body,
       height: 150px !important;
       margin-top: 20% !important;
 
-      background: rgba(255, 255, 255, 0.527);
     }
     .EAE{
       display: block !important;
@@ -87,13 +86,13 @@ body,
     
   }
 
-  @media screen and (max-width: 500px) and (min-width: 00px) {
+  @media screen and (max-width: 500px) and (min-width: 200px) {
     
    
     .titleceneae{
       font-family:Northern;
       color: rgb(0, 251, 255);
-      font-size: 10px !important;
+      font-size: 20px !important;
     }
     
     .btn-galery{
@@ -101,7 +100,7 @@ body,
       display: none !important;
     }
     .btn-login{
-      width: 200px;
+      width: 100px;
 
     }
     .btn-home{
@@ -111,13 +110,11 @@ body,
     .sun{
       width: 250px !important;
       height: 150px !important;
-      margin-top: 20% !important;
 
-      background: rgba(255, 255, 255, 0.527);
     }
     .EAE{
       display: block !important;
-      font-size: 10px !important;
+      font-size: 12px !important;
       font-weight: bold;
 
     }
@@ -128,7 +125,9 @@ body,
       display: block !important;
     }
   
-    
+    .info-inscripcion{
+      font-size: 11px;
+    }
   }
 
   
