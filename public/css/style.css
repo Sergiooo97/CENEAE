@@ -42,7 +42,7 @@ body,
     padding: 10px;
   }
 
-  @media screen and (max-width: 1081px) {
+  @media screen and (max-width: 990px) {
    
     .titleceneae{
       font-family:Northern;
@@ -65,7 +65,7 @@ body,
     .sun{
       width: 250px !important;
       height: 150px !important;
-      margin-top: 30% !important;
+      margin-top: 20% !important;
 
     }
     .EAE{
@@ -76,6 +76,9 @@ body,
     }
     .descripcion-ceneae{
       display: none !important;
+    }
+    .aviso-inscripcion{
+      display: block !important;
     }
   
   }
