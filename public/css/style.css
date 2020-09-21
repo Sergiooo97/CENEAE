@@ -43,7 +43,7 @@ body,
     padding: 10px;
   }
 
-  @media screen and (max-width: 990px) {
+  @media screen and (max-width: 990px) and (min-width: 500px) {
     
    
     .titleceneae{
@@ -69,6 +69,7 @@ body,
       height: 150px !important;
       margin-top: 20% !important;
 
+      background: rgba(255, 255, 255, 0.527);
     }
     .EAE{
       display: block !important;
@@ -86,6 +87,49 @@ body,
     
   }
 
+  @media screen and (max-width: 500px) and (min-width: 00px) {
+    
+   
+    .titleceneae{
+      font-family:Northern;
+      color: rgb(0, 251, 255);
+      font-size: 10px !important;
+    }
+    
+    .btn-galery{
+      width: 200px;
+      display: none !important;
+    }
+    .btn-login{
+      width: 200px;
+
+    }
+    .btn-home{
+      width: 200px;
+
+    }
+    .sun{
+      width: 250px !important;
+      height: 150px !important;
+      margin-top: 20% !important;
+
+      background: rgba(255, 255, 255, 0.527);
+    }
+    .EAE{
+      display: block !important;
+      font-size: 10px !important;
+      font-weight: bold;
+
+    }
+    .descripcion-ceneae{
+      display: none !important;
+    }
+    .aviso-inscripcion{
+      display: block !important;
+    }
+  
+    
+  }
 
   
 
