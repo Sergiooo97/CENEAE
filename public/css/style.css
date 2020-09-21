@@ -43,7 +43,7 @@ body,
     padding: 10px;
   }
 
-  @media screen and (max-width: 990px) and (min-width: 500px) {
+  @media screen and (max-device-width: 990px) and (min-device-width : 48px)  {
     
    
     .titleceneae{
@@ -58,6 +58,7 @@ body,
     }
     .btn-login{
       width: 200px;
+      font-size: 11px;
 
     }
     .btn-home{
@@ -86,7 +87,7 @@ body,
     
   }
 
-  @media screen and (max-width: 480) and (min-width: 200px) {
+  @media screen and (max-device-width: 479px) and (min-device-width : 360px) {
     
    
     .titleceneae{
