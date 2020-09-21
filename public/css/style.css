@@ -42,7 +42,7 @@ body,
     text-align: center;
     padding: 10px;
   }
-  @media screen and (max-device-width: 480px)   and (orientation : portrait) {
+  @media screen and (max-width: 360px)   and (orientation : portrait) {
     
     .titleceneae{
       font-family:Northern;
@@ -85,7 +85,7 @@ body,
       font-size: 11px;
     }
   }
-  
+
   @media screen and (max-device-width: 990px) and (min-device-width : 481px) and (orientation : portrait)  {
     
    
@@ -112,7 +112,7 @@ body,
     .sun{
       width: 250px !important;
       height: 150px !important;
-      margin-top: 20% !important;
+      margin-top: 15% !important;
 
     }
     .EAE{
