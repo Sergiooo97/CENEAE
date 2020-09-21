@@ -15,7 +15,8 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
-  <link href="css/style.scss" rel="stylesheet/scss">
+  <link href="css/app.css" rel="stylesheet">
+  <link href="scss/style.scss" rel="stylesheet/scss">
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
 
   <!-- Scroll -->
@@ -30,7 +31,140 @@
     callback: function ( anchor, toggle ) {} // Function to run after scrolling
     });
   </script>
+  <style lang='scss'>
+    $base: 0.6rem;
+
+.container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+ height: 100vh;
+}
+
+.chevron {
+  position: absolute;
+  width: $base * 3.5;
+  height: $base * 0.8;
+  opacity: 0;
+  transform: scale(0.3);
+  animation: move-chevron 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move-chevron 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move-chevron 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+ content: '';
+ position: absolute;
+ top: 0;
+ height: 100%;
+ width: 50%;
+ background: #2c3e50;
+}
+
+.chevron:before {
+ left: 0;
+ transform: skewY(30deg);
+}
+
+.chevron:after {
+ right: 0;
+ width: 50%;
+ transform: skewY(-30deg);
+}
+
+@keyframes move-chevron {
+ 25% {
+  opacity: 1;
+	}
+ 33.3% {
+  opacity: 1;
+  transform: translateY($base * 3.8);
+ }
+ 66.6% {
+  opacity: 1;
+  transform: translateY($base * 5.2);
+ }
+ 100% {
+  opacity: 0;
+  transform: translateY($base * 8) scale(0.5);
+ }
+}
+  </style>
+
   <style type="text/css">
+  $base: 0.6rem;
+
+.container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+ height: 100vh;
+}
+
+.chevron {
+  position: absolute;
+  width: $base * 3.5;
+  height: $base * 0.8;
+  opacity: 0;
+  transform: scale(0.3);
+  animation: move-chevron 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move-chevron 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move-chevron 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+ content: '';
+ position: absolute;
+ top: 0;
+ height: 100%;
+ width: 50%;
+ background: #2c3e50;
+}
+
+.chevron:before {
+ left: 0;
+ transform: skewY(30deg);
+}
+
+.chevron:after {
+ right: 0;
+ width: 50%;
+ transform: skewY(-30deg);
+}
+
+@keyframes move-chevron {
+ 25% {
+  opacity: 1;
+	}
+ 33.3% {
+  opacity: 1;
+  transform: translateY($base * 3.8);
+ }
+ 66.6% {
+  opacity: 1;
+  transform: translateY($base * 5.2);
+ }
+ 100% {
+  opacity: 0;
+  transform: translateY($base * 8) scale(0.5);
+ }
+}
     @media (min-width: 800px) and (max-width: 850px) {
       .navbar:not(.top-nav-collapse) {
         background: #1C2331 !important;
@@ -199,21 +333,19 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       </div>
       
           @endif
-    <div style="display: none; margin-top:40%;"  class="aviso-inscripcion">
+        
+          
+    <div style="display: none;"  class="aviso-inscripcion">
+      
       <p>Inscripciones para alumnos de primaria, hasta el 28 de septiembre.</p>
-      <a href="#" style="border-radius: 15px;" class="btn btn-outline-success">Reservar lugar</a>
+      
     </div>
-
-    
+    <p>Mas información</p>
+    <div class="arrows"></div>
   </div>
     <!-- Content -->
 
-    <div class="container">
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-    </div>
-   
+
   </div>
 
   </div>

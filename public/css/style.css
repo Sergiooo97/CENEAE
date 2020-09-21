@@ -11,6 +11,7 @@ body,
 
 }
 
+
 .top-nav-collapse {
   background:rgb(168, 47, 6);  }
 
@@ -43,6 +44,7 @@ body,
   }
 
   @media screen and (max-width: 990px) {
+    
    
     .titleceneae{
       font-family:Northern;
@@ -81,6 +83,10 @@ body,
       display: block !important;
     }
   
+    
   }
+
+
+  
 
   
