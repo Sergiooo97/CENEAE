@@ -158,7 +158,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
   <!-- Full Page Intro -->
   <div id="inicio" class="view " style="background-image: url('../img/ntcd_blur.jpg'); background-repeat: no-repeat; background-size: cover; ">
 
-    <div style="margin-top:5em;" class="container-fluid">
+  <div style="margin-top:5em;" class="container-fluid cotainer-logo-welcome">
 
 
    <div style="height:30%; padding:1em;" class="container-fluid flex-center">
@@ -198,10 +198,10 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
       </div>
       
-  @endif
+          @endif
 
     
-    </div>
+  </div>
     <!-- Content -->
 
     <div class="container">
