@@ -144,7 +144,7 @@ body,
   
     
   }
-  @media screen and (max-device-width: 780px)  and (orientation : landscape)  {
+  @media screen and (max-device-width: 700px)  and (min-device-width : 481px) and (orientation : landscape)  {
     
     .mas-info{
       position: absolute; 
