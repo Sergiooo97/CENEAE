@@ -42,7 +42,13 @@ body,
     text-align: center;
     padding: 10px;
   }
-  @media screen and (max-width: 360px)   and (orientation : portrait) {
+  @media screen and (max-width: 380px)   and (orientation : portrait) {
+    
+    .mas-info{
+      position: absolute; 
+      top:85%; 
+      left:40%;
+    }
     
     .titleceneae{
       font-family:Northern;
@@ -88,7 +94,11 @@ body,
 
   @media screen and (max-device-width: 990px) and (min-device-width : 481px) and (orientation : portrait)  {
     
-   
+    .mas-info{
+      position: absolute; 
+      top:85%; 
+      left:42%;
+    }
     .titleceneae{
       font-family:Northern;
       color: rgb(0, 251, 255);
