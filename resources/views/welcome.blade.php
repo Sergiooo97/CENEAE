@@ -312,7 +312,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       </p>
 
       <p class="mb-4 d-none d-md-block wow fadeInUp descripcion-ceneae">
-        <strong >Somos una institución que empodera a sus estudiantes
+        <strong class="des" >Somos una institución que empodera a sus estudiantes
         para que persistan en su pasión por el arendizaje, 
         <br>procurando que lleven una vida basada en la integridad personal y un estilo de vida saludable</strong>
       </p>
