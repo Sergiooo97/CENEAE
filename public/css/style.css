@@ -86,7 +86,7 @@ body,
     
   }
 
-  @media screen and (max-width: 500px) and (min-width: 200px) {
+  @media screen and (max-width: 480) and (min-width: 200px) {
     
    
     .titleceneae{
@@ -100,7 +100,8 @@ body,
       display: none !important;
     }
     .btn-login{
-      width: 100px;
+      width: 200px;
+      font-size: 11px;
 
     }
     .btn-home{
