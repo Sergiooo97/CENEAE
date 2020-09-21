@@ -199,7 +199,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       </div>
       
           @endif
-    <div style="display: none; margin-top:20%;"  class="aviso-inscripcion">
+    <div style="display: none; margin-top:40%;"  class="aviso-inscripcion">
       <p>Inscripciones para alumnos de primaria, hasta el 28 de septiembre.</p>
       <a href="#" style="border-radius: 15px;" class="btn btn-outline-success">Reservar lugar</a>
     </div>
