@@ -144,7 +144,7 @@ body,
   
     
   }
-  @media screen and (max-device-width : 1080px) and (min-device-width : 780px) and (orientation : landscape){
+  @media screen and (max-device-width : 850px) and (min-device-width : 480px) and (orientation : landscape){
     
     .mas-info{
       position: absolute; 
@@ -199,7 +199,7 @@ body,
     
   }
 
-  @media screen and (max-device-width : 779px) and (orientation : landscape){
+  @media screen and (max-device-width : 479px) and (orientation : landscape){
     
     .mas-info{
       position: absolute; 
