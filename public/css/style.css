@@ -144,17 +144,19 @@ body,
   
     
   }
-  @media screen and (max-device-width : 850px) and (min-device-width : 480px) and (orientation : landscape){
+ 
+  @media screen and (max-device-width : 2280px) and (orientation : landscape){
     
     .mas-info{
       position: absolute; 
       top:83%; 
       left:44%;
+      display: none !important;
     }
     .titleceneae{
       font-family:Northern;
       color: rgb(0, 251, 255);
-      font-size: 17px !important;
+      font-size: 20px !important;
     }
     
     .btn-galery{
@@ -169,63 +171,7 @@ body,
       font-size: 7px !important;
       padding-left: 5px;
       scroll-padding-right: 5px;
-
-    }
-    .btn-home{
-      width: 200px;
-
-    }
-    .sun{
-      width: 155px !important;
-      height: 75px !important;
-
-    }
-    .EAE{
-      display: none !important;
-      font-size: 15px !important;
-      font-weight: bold;
-
-    }
-    .descripcion-ceneae{
-      display: none !important;
-    }
-    .des{
-      display: none !important;
-    }
-    .aviso-inscripcion{
-      display: none !important;
-    }
-  
-    
-  }
-
-  @media screen and (max-device-width : 479px) and (orientation : landscape){
-    
-    .mas-info{
-      position: absolute; 
-      top:83%; 
-      left:44%;
-      display: none !important;
-    }
-    .titleceneae{
-      font-family:Northern;
-      color: rgb(0, 251, 255);
-      font-size: 17px !important;
-    }
-    
-    .btn-galery{
-      width: 200px;
-      font-size: 9px;
-      padding-left: 5px;
-      scroll-padding-right: 5px;
-      display: none !important;
-    }
-    .btn-login{
-      width: 200px;
-      font-size: 7px !important;
-      padding-left: 5px;
-      scroll-padding-right: 5px;
-
+      
     }
     .btn-home{
       width: 200px;
