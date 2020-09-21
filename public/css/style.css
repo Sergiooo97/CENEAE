@@ -108,11 +108,15 @@ body,
     .btn-galery{
       width: 200px;
       font-size: 9px;
+      padding-left: 5px;
+      scroll-padding-right: 5px;
 
     }
     .btn-login{
       width: 200px;
       font-size: 9px;
+      padding-left: 5px;
+      scroll-padding-right: 5px;
 
     }
     .btn-home{
@@ -136,6 +140,57 @@ body,
     }
     .aviso-inscripcion{
       display: block !important;
+    }
+  
+    
+  }
+  @media screen and (max-device-width: 780px)  and (orientation : landscape)  {
+    
+    .mas-info{
+      position: absolute; 
+      top:85%; 
+      left:42%;
+    }
+    .titleceneae{
+      font-family:Northern;
+      color: rgb(0, 251, 255);
+      font-size: 15px !important;
+    }
+    
+    .btn-galery{
+      width: 200px;
+      font-size: 9px;
+      padding-left: 5px;
+      scroll-padding-right: 5px;
+      display: none !important;
+    }
+    .btn-login{
+      width: 200px;
+      font-size: 9px;
+      padding-left: 5px;
+      scroll-padding-right: 5px;
+
+    }
+    .btn-home{
+      width: 200px;
+
+    }
+    .sun{
+      width: 250px !important;
+      height: 150px !important;
+
+    }
+    .EAE{
+      display: none !important;
+      font-size: 15px !important;
+      font-weight: bold;
+
+    }
+    .descripcion-ceneae{
+      display: none !important;
+    }
+    .aviso-inscripcion{
+      display: none !important;
     }
   
     
