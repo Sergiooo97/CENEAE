@@ -43,7 +43,7 @@ body,
     padding: 10px;
   }
 
-  @media screen and (max-device-width: 990px) and (min-device-width : 48px)  {
+  @media screen and (max-device-width: 990px) and (min-device-width : 480px)  {
     
    
     .titleceneae{
@@ -54,12 +54,12 @@ body,
     
     .btn-galery{
       width: 200px;
-      font-size: 10px;
+      font-size: 9px;
 
     }
     .btn-login{
       width: 200px;
-      font-size: 10px;
+      font-size: 9px;
 
     }
     .btn-home{
@@ -90,7 +90,6 @@ body,
 
   @media screen and (max-device-width: 479px) and (min-device-width : 240px) {
     
-   
     .titleceneae{
       font-family:Northern;
       color: rgb(0, 251, 255);
