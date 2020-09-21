@@ -42,8 +42,51 @@ body,
     text-align: center;
     padding: 10px;
   }
+  @media screen and (max-device-width: 480px)   and (orientation : portrait) {
+    
+    .titleceneae{
+      font-family:Northern;
+      color: rgb(0, 251, 255) !important;
+      font-size: 16px !important;
+    }
+    
+    .btn-galery{
+      width: 200px;
+      display: none !important;
+    }
+    .btn-login{
+      width: 200px;
+      font-size: 11px;
 
-  @media screen and (max-device-width: 990px) and (min-device-width : 480px) and (orientation : portrait)  {
+    }
+    .btn-home{
+      width: 200px;
+
+    }
+    .sun{
+      width: 250px !important;
+      height: 150px !important;
+
+    }
+    .EAE{
+      display: block !important;
+      font-size: 12px !important;
+      font-weight: bold;
+
+    }
+    .descripcion-ceneae{
+      display: none !important;
+    }
+    .aviso-inscripcion{
+      display: block !important;
+    }
+  
+    .info-inscripcion{
+      font-size: 11px;
+    }
+  }
+  
+  @media screen and (max-device-width: 990px) and (min-device-width : 481px) and (orientation : portrait)  {
     
    
     .titleceneae{
@@ -88,49 +131,7 @@ body,
     
   }
 
-  @media screen and (max-device-width: 479px) and (min-device-width : 240px)  and (orientation : portrait) {
-    
-    .titleceneae{
-      font-family:Northern;
-      color: rgb(0, 251, 255) !important;
-      font-size: 16px !important;
-    }
-    
-    .btn-galery{
-      width: 200px;
-      display: none !important;
-    }
-    .btn-login{
-      width: 200px;
-      font-size: 11px;
 
-    }
-    .btn-home{
-      width: 200px;
-
-    }
-    .sun{
-      width: 250px !important;
-      height: 150px !important;
-
-    }
-    .EAE{
-      display: block !important;
-      font-size: 12px !important;
-      font-weight: bold;
-
-    }
-    .descripcion-ceneae{
-      display: none !important;
-    }
-    .aviso-inscripcion{
-      display: block !important;
-    }
-  
-    .info-inscripcion{
-      font-size: 11px;
-    }
-  }
 
   
 

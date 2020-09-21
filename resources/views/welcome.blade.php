@@ -342,7 +342,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       <p class="info-inscripcion">Inscripciones para alumnos de primaria, hasta el 28 de septiembre.</p>
       
     </div>
-    <p style="position: absolute; top:85%; left:40%;">Mas información</p>
+    <p style="position: absolute; top:85%; left:43%;">Mas información</p>
     <div class="arrows"></div>
   </div>
     <!-- Content -->
