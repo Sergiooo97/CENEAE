@@ -31,7 +31,9 @@ body,
     height: 100vh;
     text-align: center;
   }
-  
+  .container-logo-welcome{
+    margin-top: 20% !important;
+  }
 
   .footer{
     background: #444;
@@ -41,33 +43,36 @@ body,
   }
 
   @media screen and (max-width: 990px) {
-    .container-logo-welcome{
-      margin-top: 20% !important;
-    }
+   
     .titleceneae{
       font-family:Northern;
       color: rgb(0, 251, 255);
       font-size: 20px !important;
-      margin-top: 50% !important;
     }
     
     .btn-galery{
       width: 200px;
+
     }
     .btn-login{
       width: 200px;
+
     }
     .btn-home{
       width: 200px;
+
     }
     .sun{
       width: 250px !important;
       height: 150px !important;
+      margin-top: 20% !important;
+
     }
     .EAE{
       display: block !important;
       font-size: 15px !important;
       font-weight: bold;
+
     }
     .descripcion-ceneae{
       display: none !important;
