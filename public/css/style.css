@@ -144,7 +144,7 @@ body,
   
     
   }
-  @media screen and (min-device-width : 500px) and (max-device-width : 1080px) and (orientation : landscape){
+  @media screen and (max-device-width : 1080px) and (orientation : landscape){
     
     .mas-info{
       position: absolute; 
@@ -154,7 +154,7 @@ body,
     .titleceneae{
       font-family:Northern;
       color: rgb(0, 251, 255);
-      font-size: 15px !important;
+      font-size: 17px !important;
     }
     
     .btn-galery{
@@ -176,8 +176,8 @@ body,
 
     }
     .sun{
-      width: 250px !important;
-      height: 150px !important;
+      width: 175px !important;
+      height: 75px !important;
 
     }
     .EAE{
