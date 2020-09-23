@@ -24,7 +24,7 @@ class finanzasController extends Controller
      */
     public function create()
     {
-        //
+        return view('role.admin.finanzas.create');
     }
 
     /**

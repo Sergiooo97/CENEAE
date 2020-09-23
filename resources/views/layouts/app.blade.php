@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -46,44 +47,33 @@
       font-size: 30px;
       color: #ffffff;
     }
-
-
     tr:hover td {
       background: rgba(199, 212, 221, 0.6) !important;
       cursor: pointer !important;
-
     }
-
     .tbl {
       overflow: hidden;
     }
-
     .table-responsive:hover {
       overflow: scroll !important;
     }
-
     li {
       list-style: none;
     }
-
     .alumno-label-block {
       display: block !important;
     }
-
     .alumno-label-none {
       display: none !important;
     }
-
     .btn-volver-container a {
       font-size: 14px;
       text-decoration: none;
       margin: 0px;
     }
-
     .periodo-cont>a {
       color: #0b0b0b;
     }
-
     /* Fixed sidenav, full height */
     .sidenav {
       height: 100%;
@@ -96,7 +86,6 @@
       overflow-x: hidden;
       padding-top: 20px;
     }
-
     /* Style the sidenav links and the dropdown button */
     .sidenav a,
     .dropdown-btn {
@@ -112,13 +101,11 @@
       cursor: pointer;
       outline: none;
     }
-
     /* On mouse-over */
     .sidenav a:hover,
     .dropdown-btn:hover {
       color: #f1f1f1;
     }
-
     /* Main content */
     .main {
       margin-left: 200px;
@@ -127,34 +114,26 @@
       /* Increased text to enable scrolling */
       padding: 0px 10px;
     }
-
     /* Add an active class to the active dropdown button */
     .active .dropdown-btn {
       background-color: rgb(168, 47, 6);
       color: white;
     }
-
     .active-sub {
-
-
       color: #ffffff !important;
     }
-
     /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
     .dropdown-container {
       display: none;
       background-color: #e9e9e9;
-
       margin: 1em !important;
       border-radius: 10px;
     }
-
     /* Optional: Style the caret down icon */
     .fa-caret-down {
       float: right;
       padding-right: 8px;
     }
-
     .slider-label {
       font-family: 'Open Sans', sans-serif;
     }
@@ -344,7 +323,6 @@
           <script>
             var dropdown = document.getElementsByClassName("dropdown-btn");
                     var i;
-
                     for (i = 0; i < dropdown.length; i++) {
                         dropdown[i].addEventListener("click", function() {
                             this.classList.toggle("active");
@@ -460,7 +438,7 @@
 
                   </div>
                 </div>
-
+                <
             </div>
           </div>
         </nav>
@@ -471,11 +449,9 @@
         </main>
 
         <div>
-
           @yield('content_login')
-
-
         </div>
+
         <footer class="footer footer-black  footer-white ">
           <div class="container-fluid">
             <div class="row">
@@ -483,7 +459,7 @@
               <div class="credits ml-auto">
                 <span class="copyright">
                   ©CENEAE
-                  <script  type="application/javascript">
+                  <script>
                     document.write(new Date().getFullYear())
                   </script><i class="fa fa-heart heart"></i> by SERGIO EB
                 </span>

@@ -329,7 +329,7 @@ td{
 
                 </div>
                 </div>
-                <a href="#" class="btn btn-info pull-right">Administrar</a>
+            <a href="{{ route('finanzas.create')}}" class="btn btn-info pull-right">Administrar</a>
             </div>
         </div>
         <a href="#" class="btn btn-warning">Descargar informe</a>
