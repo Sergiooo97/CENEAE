@@ -158,7 +158,14 @@ body,
       display: none !important;
     }
  
+    .navbar{
+      padding-right: 10px !important;
+      padding-left: 10px !important;
+    }
   
+
+    .top-nav-collapse {
+      background:rgb(168, 47, 6);  }
     
   }
  
