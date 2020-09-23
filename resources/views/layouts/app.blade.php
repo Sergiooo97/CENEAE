@@ -483,7 +483,7 @@
               <div class="credits ml-auto">
                 <span class="copyright">
                   ©CENEAE
-                  <script>
+                  <script  type="application/javascript">
                     document.write(new Date().getFullYear())
                   </script><i class="fa fa-heart heart"></i> by SERGIO EB
                 </span>
