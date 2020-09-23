@@ -42,6 +42,24 @@ body,
     text-align: center;
     padding: 10px;
   }
+  .btn-galery{
+    padding: 10px !important;
+  }
+  .btn-home{
+    padding: 10px !important;
+  }
+  .btn-login{
+    padding: 10px !important;
+  }
+  .mas-info{
+    position: absolute;
+    top:85%;
+    left: 47%;
+  }
+  .titleceneae{
+    font-family:Northern;
+    color: rgb(0, 251, 255) !important;
+  }
   @media screen and (max-width: 380px)   and (orientation : portrait) {
     
     .mas-info{

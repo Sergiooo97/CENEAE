@@ -307,15 +307,15 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
         Centro Educativo Natanael
       </h1>
 
-      <p style="display: none;" class="mb-4 wow fadeInUp EAE">
+      <p style="display: block;" class="mb-4 wow fadeInUp EAE">
         <strong class="EAE" >Esperanza, Amor y Educación.</strong>
       </p>
 
-      <p class="mb-4 d-none d-md-block wow fadeInUp descripcion-ceneae">
+     <!-- <p class="mb-4 d-none d-md-block wow fadeInUp descripcion-ceneae">
         <strong class="des" >Somos una institución que empodera a sus estudiantes
         para que persistan en su pasión por el arendizaje, 
         <br>procurando que lleven una vida basada en la integridad personal y un estilo de vida saludable</strong>
-      </p>
+      </p> -->
       @if (Route::has('login'))
       <div style="margin-top:1em;" class="links">
 
