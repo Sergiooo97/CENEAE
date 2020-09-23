@@ -127,24 +127,25 @@ body,
     
     .btn-galery{
       font-size: 9px;
-      padding: 2px !important;
+      padding: 8px !important;
       scroll-padding-right: 5px;
 
     }
     .btn-login{
       font-size: 9px;
-      padding: 3px !important;
+      padding: 8px !important;
       scroll-padding-right: 5px;
 
     }
     .btn-home{
-      width: 200px;
+      font-size: 9px;
+      padding: 8px !important;px;
 
     }
     .sun{
       width: 250px !important;
       height: 150px !important;
-      margin-top: 15% !important;
+      margin-top: 18% !important;
 
     }
     .EAE{
@@ -156,9 +157,7 @@ body,
     .descripcion-ceneae{
       display: none !important;
     }
-    .aviso-inscripcion{
-      display: block !important;
-    }
+ 
   
     
   }
