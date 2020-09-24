@@ -366,7 +366,6 @@ td{
             <a href="{{ route('finanzas.create')}}" class="btn btn-info pull-right">Administrar</a>
             </div>
         </div>
-        <a href="#" class="btn btn-warning">Descargar informe</a>
     </div>
 <!------------------------Inicia card gráfica --------------------->
     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -377,6 +376,7 @@ td{
             </div>
         </div>
     </div>
+    <a href="#" class="btn btn-warning">Descargar informe</a>
 
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
