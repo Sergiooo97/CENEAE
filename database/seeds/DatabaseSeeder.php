@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ingresosSeeder::class);
         $this->call(salidasSeeder::class);
         $this->call(transaccionSeeder::class);
+        $this->call(finanzasSeeder::class);
 
 
 
