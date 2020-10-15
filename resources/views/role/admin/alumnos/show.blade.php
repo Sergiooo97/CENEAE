@@ -408,6 +408,7 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script type="text/javascript">
 
+
     var categoria =  <?php echo json_encode($subcomponentes) ?>;
     var series =  <?php echo json_encode($series) ?>;
     var notas =  <?php echo json_encode($notas) ?>;

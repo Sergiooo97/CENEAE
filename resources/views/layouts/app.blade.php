@@ -16,7 +16,7 @@
   <!--Styler  -->
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <!--<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> -->
 
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
   <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
@@ -29,8 +29,9 @@
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
   <!--Fonts  -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+ <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 
   <!-- web -->
   <!--<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -41,7 +42,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"> -->
 
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> -->
   <style>
     .curso-asignar a {
       font-size: 30px;
@@ -378,7 +379,6 @@
                       </button>
                     </div>
                   </div>
-
                   <div class="collapse navbar-collapse justify-content-end show" id="navigation">
                     <form>
                       <div class="input-group no-border">
@@ -479,17 +479,17 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
     integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
-  </script>
+  </script> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
     integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
-  </script>
+  </script> -->
   <script src="{{ asset('js/core/popper.min.js')  }}"></script>
   <script src="{{ asset('js/plugins/bootstrap-notify.js')  }}"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  
   <!--   Core JS Files   -->
   <script src="{{ asset('js/paper-dashboard.min.js')  }}" type="text/javascript"></script>
-  @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 
 

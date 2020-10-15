@@ -74,6 +74,9 @@ Route::group([
     Route::prefix('finanzas')->group(function (){
       Route::get('/asignar','finanzas\finanzasController@create')->name('finanzas.create');
       Route::get('/','finanzas\finanzasController@index')->name('finanzas.index');
+      Route::post('/ingreso','finanzas\finanzasController@ingresos')->name('finanzas.ingreso');
+      Route::post('/salida','finanzas\finanzasController@salidas')->name('finanzas.salida');
+
     });
 
   Route::prefix('alumno')->group(function () {

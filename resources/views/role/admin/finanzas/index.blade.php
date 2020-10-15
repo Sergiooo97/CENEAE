@@ -58,103 +58,15 @@ td{
             <div class="modal-body">
                 <ul style="padding-left: 20px !important;">
                     <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Nomina</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p style="font-weight: bold;" class="text-danger" class="slider-label ">$ 1,000.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Eventos</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p style="font-weight: bold;" class="text-danger">$ 3,000.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Varios</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p style="font-weight: bold;" class="text-danger">$ 6,000.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Mantenimiento</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p style="font-weight: bold;" class="text-danger">$ 600.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Utilidades</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p style="font-weight: bold;" class="text-danger">$ 900.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Salarios</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p  style="font-weight: bold;" class="text-danger">$ 0.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Corriente Eléctrica</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p  style="font-weight: bold;" class="text-danger">$ 0.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Entregado</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p  style="font-weight: bold;" class="text-danger">$ 0.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Insumo planta de agua</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p  style="font-weight: bold;" class="text-danger">$ 0.00</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="slider-label ">Gasto de planta de agua</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p  style="font-weight: bold;" class="text-danger">$ 0.00</p>
-                            </div>
+                        <div class="row">                                
+                            @foreach ($conceptos_salidas as $concepto)
+                                <div class="col-sm-6">
+                                    <p class="slider-label "> {{ $concepto->concepto}}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                <p style="font-weight: bold;" class="text-danger" class="slider-label ">$ {{ number_format($concepto->conceptos) }}</p>
+                                </div>
+                            @endforeach
                         </div>
                     </li>
                   </ul>
@@ -180,93 +92,15 @@ td{
         <div class="modal-body">
             <ul style="padding-left: 20px !important;">
                 <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">DONATIVOS CENEAE</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 1,000.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Coutas, examenes, copias</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 3,000.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Colegiaturas</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 6,000.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Desayunos</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 600.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Internet</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 900.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Renta local</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 0.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Renta de taxi</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 0.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Planta de agua</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 0.00</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="slider-label ">Devol. de prestamo</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p style="font-weight: bold;" class="text-success">$ 0.00</p>
-                        </div>
+                    <div class="row">                                
+                        @foreach ($conceptos_ingresos as $concepto)
+                            <div class="col-sm-6">
+                                <p class="slider-label "> {{ $concepto->concepto}}</p>
+                            </div>
+                            <div class="col-sm-6">
+                            <p style="font-weight: bold;" class="text-success" class="slider-label ">$ {{ number_format($concepto->conceptos) }}</p>
+                            </div>
+                        @endforeach
                     </div>
                 </li>
               </ul>
@@ -300,7 +134,7 @@ td{
                                             <p class="">PRESUPUESTO MENSUAL</p>
                                         </div>
                                         <div class="col-sm-6 text-success">
-                                            <p style="font-weight: bold;" class="">$ 21,000.00</p>
+                                            <p style="font-weight: bold;" class="">$ 0</p>
                                         </div>
                                     </div>                          
                                 </a>  
@@ -312,7 +146,7 @@ td{
                                             <p class="">INGRESOS DE LA ESCUELA</p>
                                         </div>
                                         <div class="col-sm-6 text-success">
-                                            <p style="font-weight: bold;" class="">$ 11,500.00</p>
+                                            <p style="font-weight: bold;" class="">$ {{ number_format($ingresos->total_ingreso) }}</p>
                                         </div>
                                     </div> 
                                   </button>
@@ -324,7 +158,8 @@ td{
                                             <p class="">MONTHLY DISCHARGE</p>
                                         </div>
                                         <div class="col-sm-6 text-danger">
-                                            <p style="font-weight: bold;" class="">$ 6,000.00</p>
+                                            <p style="font-weight: bold;" class="">$ {{ number_format($salidas->total_salida) }}</p>
+                                     
                                         </div>
                                     </div>                          
                                 </button>
@@ -336,7 +171,7 @@ td{
                                             <p class="">TOTAL</p>
                                         </div>
                                         <div class="col-sm-6 text-success">
-                                            <p style="font-weight: bold;" class="">$ 31,000.00</p>
+                                            <p style="font-weight: bold;" class="">$ {{ number_format($tot) }}</p>
                                         </div>
                                     </div>                          
                                 </a>  
@@ -344,22 +179,7 @@ td{
 
                         </ul>                   
                        
-                          <script  type="application/javascript">
-                            var dropdown = document.getElementsByClassName("dropdown-btn");
-                                    var i;
-                
-                                    for (i = 0; i < dropdown.length; i++) {
-                                        dropdown[i].addEventListener("click", function() {
-                                            this.classList.toggle("active");
-                                            var dropdownContent = this.nextElementSibling;
-                                            if (dropdownContent.style.display === "block") {
-                                                dropdownContent.style.display = "none";
-                                            } else {
-                                                dropdownContent.style.display = "block";
-                                            }
-                                        });
-                                    }
-                          </script> 
+              
 
                 </div>
                 </div>
@@ -379,12 +199,22 @@ td{
     <a href="#" class="btn btn-warning">Descargar informe</a>
 
 </div>
-<script src="https://code.highcharts.com/highcharts.js"></script>
+ <script src="{{asset('js/Highcharts/highcharts.js')}}"></script>
+<script src="{{asset('js/Highcharts/exporting.js')}}"></script>
+<script src="{{asset('js/Highcharts/export-data.js')}}"></script>
+<script src="{{asset('js/Highcharts/accessibility.js')}}"></script>
+
+<!-- <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
 <script>
 
+    var ingresos =  <?php echo json_encode($ingresos_grafica) ?>;
+    var salidas =  <?php echo json_encode($salidas_grafica) ?>;
+    var presupuesto =  <?php echo json_encode($presupuesto_grafica) ?>;
+    var mes =  <?php echo json_encode($mes_grafica) ?>;
+    var total =  <?php echo json_encode($total_grafica) ?>;
 
     Highcharts.chart('chart_alumno', {
         chart: {
@@ -397,20 +227,7 @@ td{
         text: 'CENTRO EDUCATIVO NATANAEL'
     },
     xAxis: {
-        categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-        ],
+        categories:mes,
         crosshair: true
     },
     yAxis: {
@@ -422,7 +239,7 @@ td{
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            '<td style="padding:0"><b>$ {point.y:.1f} </b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -433,19 +250,24 @@ td{
             borderWidth: 0
         }
     },
-    series: [{
-        name: 'Ingreso de la escuela',
-        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    series: [ {
+        name: 'Salidas',
+        data: salidas
 
     }, {
-        name: 'Salidas',
-        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+        name: 'Ingreso de la escuela',
+        data: ingresos
 
     }, {
         name: 'Presupuesto mensual',
-        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+        data: presupuesto
 
-    }]
+    }, {
+        name: 'Total disponible',
+        data: total
+
+    },
+    ]
     });
 </script>
 @endsection
