@@ -451,14 +451,14 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                   </div>
                 </div>
               </div>
-              <div  class=" conoce-grupo-buttons">
+              <div style="display: none"  class=" conoce-grupo-buttons">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12">
                     <a class="btn btn-info">ver galeria</a>
-                  </div>
-                  <div class="col-6">
                     <a class="btn btn-info">estadísticas</a>
+
                   </div>
+                
                 </div>
               </div>
             </div>
