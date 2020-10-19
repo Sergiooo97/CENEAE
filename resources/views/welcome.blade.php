@@ -383,13 +383,13 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
           <div class="container">
             <div class="row">
 
-              <div class="col-md-6">
-                <div style="height:100%; " class="card">
+              <div style="padding: 0;" class="col-md-6">
+                <div style="height:100%;" class="card">
 
                   <div style="background: rgb(168, 47, 6); color:#ffffff;border-top-right-radius: 10px;border-top-left-radius: 10px;"  class="card-header">
                     <h4>¡Reserva para este o el próximo ciclo escolar!</h4>
                   </div>
-                  <div style="margin: 0;" class="card-body">
+                  <div class="card-body">
 
                     <div class="row">
                       <div class="col-md-12">
