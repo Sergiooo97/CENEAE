@@ -21,14 +21,15 @@
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
 
   <!-- Scroll -->
-  <script src="js/smooth-scroll.min.js"></script>
+<script src="{{ asset('js/smooth-scroll.min.js')}}"></script>
+
   <script>
     smoothScroll.init({
     selector: '[data-scroll]', // Selector for links (must be a class, ID, data attribute, or element tag)
     selectorHeader: null, // Selector for fixed headers (must be a valid CSS selector) [optional]
     speed: 1000, // Integer. How fast to complete the scroll in milliseconds
     easing: 'easeInOutCubic', // Easing pattern to use
-    offset: 95, // Integer. How far to offset the scrolling anchor location in pixels
+    offset: 80, // Integer. How far to offset the scrolling anchor location in pixels
     callback: function ( anchor, toggle ) {} // Function to run after scrolling
     });
   </script>
@@ -358,9 +359,86 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
   <main>
     
     <div class="container">
+         <!--Section: Main info-->
+         <section class="mt-5 wow fadeIn">
+          <div class="container">
+            <div class="row">
+
+              <div class="col-md-6">
+                <div style="height:100%; " class="card">
+
+                  <div style="background: rgb(168, 47, 6); color:#ffffff;border-top-right-radius: 10px;border-top-left-radius: 10px;"  class="card-header">
+                    <h4>¡Reserva para este o el próximo ciclo escolar!</h4>
+                  </div>
+                  <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5>1°: <strong class="text-success">5 disponibles</strong></h5>                     
+                      </div>
+                      <div class="col-md-6">
+                        <a href="#" class="btn btn-info pull-right">Reservar | 1° Grado </a>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5>2°: <strong class="text-danger">0 disponibles</strong></h5>                      
+                      </div>
+                      <div class="col-md-6">
+                        <a  href="#" class="btn btn-info pull-right">Reservar | 2° Grado </a>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5>3°: <strong class="text-danger">0 disponibles</strong></h5>
+                      </div>
+                      <div class="col-md-6">
+                        <a  href="#" class="btn btn-info pull-right">Reservar | 3° Grado </a>                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div  style="height:100%; border-radius: 10px !important; " class="card">
+
+                  <div style="background: rgb(168, 47, 6); color:#ffffff;border-top-right-radius: 10px;border-top-left-radius: 10px;" class="card-header">
+                    <h4>¡Conoce sobre nuestros grupos!</h4>
+                  </div>
+                  <div style="background: rgb(168, 47, 6); color:#ffffff; border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;" class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p style="font-size: 18px;">Galeria de centro educativo natanael</p>
+                      </div>
+                      <div class="col-md-6">
+                        <a class="btn btn-info pull-right">ver galeria</a>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p style="font-size: 18px;">Puedes ver las estádisticas de promedio de los grupos.</p>
+                      </div>
+                      <div class="col-md-6">
+                        <a class="btn btn-info pull-right">ver estadísticas</a>
+                      </div>
+                
+
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        </section>
 
       <!--Section: Main info-->
-      <section class="mt-5 wow fadeIn">
+      <section id="Acerca" class="mt-5 wow fadeIn">
+        <h3  class="h3 text-center ">Acerca de Centro Educativo Natanael</h3>
 
         <!--Grid row-->
         <div class="row">
@@ -449,8 +527,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       <hr class="my-5">
 
       <!--Section: Main features & Quick Start-->
-      <section id="Acerca" >
-        <h3  class="h3 text-center ">Acerca de Centro Educativo Natanael</h3>
+      <section id="" >
 
         <!--Grid row-->
         <div class="row wow fadeIn">
@@ -460,12 +537,13 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
             <!--First row-->
             <div class="row">
-              <div class="col-1 mr-4">
+              <div style="padding: 0;"class="col-1 mr-4">
               <img src="{{asset('img/esperanzalogo_bn.png')}}" width="60px" height="40px">
               </div>
               <div class="col-10">
                 <h5 class="feature-title">Esperanza</h5>
-                <p class="grey-text">Thanks to MDB you can take advantage of all feature of newest Bootstrap 4.</p>
+                <p class="grey-text">afdskljññññññññññññdssdlkfajdlñfkajsdlñfkaj
+                </br>sdf09adfñoalskdjflñaskdjflñaskdfjlasñf...</p>
               </div>
             </div>
             <!--/First row-->
@@ -473,15 +551,13 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
             <div style="height:30px"></div>
 
             <!--Second row-->
-            <div class="row">
-              <div class="col-1 mr-4">
+            <div  class="row">
+              <div style="padding: 0;" class="col-1 mr-4">
                 <img src="{{asset('img/amorlogo_bn.png')}}" width="50px" height="50px">
               </div>
               <div class="col-10">
                 <h5 class="feature-title">Amor</h5>
-                <p class="grey-text">We give you detailed user-friendly documentation at your disposal. It will help
-                  you to implement your ideas
-                  easily.
+                <p class="grey-text">adjflaskjdflaskjdfñlaskdfjañlskdfjñasldkfjasldkfjasñklfdjasfasfsadfas...
                 </p>
               </div>
             </div>
@@ -491,14 +567,13 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
             <!--Third row-->
             <div class="row">
-              <div class="col-1 mr-4">
+              <div style="padding: 0;"  class="col-1 mr-4">
                 <img src="{{asset('img/educacionlogo_bn.png')}}" width="60px" height="40px">
               </div>
               <div class="col-10">
                 <h5 class="feature-title">Educación</h5>
-                <p class="grey-text">We care about the development of our users. We have prepared numerous tutorials,
-                  which allow you to learn
-                  how to use MDB as well as other technologies.</p>
+                <p class="grey-text">sdlfajslfajsfñlkasjfñlksjdfalñskdfjñalskfjdñlaksdfjñalksd</br>
+                  jñlakdfsjñlaksdfjñalskfjñasldkfjasñldkfjañlsdkfa.</p>
               </div>
             </div>
             <!--/Third row-->
@@ -509,7 +584,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
           <!--Grid column-->
           <div class="col-lg-6 col-md-12">
 
-            <p class="h5 text-center mb-4">¡Conoce mas acerca de nosotros!</p>
+            <p class="h5 text-center mb-4">¡Conoce más acerca de nosotros!</p>
             <div class="embed-responsive embed-responsive-16by9">
               <iframe width="560" height="315" src="https://www.youtube.com/embed/TBC8JYwBwRk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            </div>
           </div>

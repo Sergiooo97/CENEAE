@@ -218,7 +218,7 @@ td{
 
     Highcharts.setOptions({
        colors: ['#ef8157', '#6bd098', '#fbc658', '#51bcda',  '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
-});
+    });
 
     Highcharts.chart('chart_alumno', {
         chart: {
