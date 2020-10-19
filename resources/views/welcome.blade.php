@@ -392,33 +392,28 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                   <div class="card-body">
 
                     <div class="row">
-                      <div class="col-md-6">
-                        <h5>1°: <strong class="text-success">5 disponibles</strong></h5>    
-                        <a href="#" class="btn btn-info pull-right">Reservar | 1° Grado </a>
-                 
+                      <div class="col-md-12">
+                       <label><h5>1°: <strong class="text-success">5 disponibles  </strong></h5></label>
+                        <a  id="pro" href="#" class="btn btn-info ">Reservar</a>
                       </div>
-                      <div class="col-md-6">
-                      </div>
+                      
                     </div>
 
                     <div class="row">
-                      <div class="col-md-6">
-                        <h5>2°: <strong class="text-danger">0 disponibles</strong></h5>                      
-                      </div>
-                      <div class="col-md-6">
-                        <a  href="#" class="btn btn-info pull-right">Reservar | 2° Grado </a>
+                      <div class="col-md-12">
+                        <label><h5>2°: <strong class="text-danger">0 disponibles   </strong></h5> </label> 
+                        <a  href="#" class="btn btn-info ">Reservar</a>
                       </div>
                     </div>
 
 
                     <div class="row">
-                      <div class="col-md-6">
-                        <h5>3°: <strong class="text-danger">0 disponibles</strong></h5>
+                      <div class="col-md-12">
+                        <label><h5>3°: <strong class="text-danger">0 disponibles  </strong></h5></label>
+                        <a  href="#" class="btn btn-info">Reservar</a>        
                       </div>
-                      <div class="col-md-6">
-                        <a  href="#" class="btn btn-info pull-right">Reservar | 3° Grado </a>                      </div>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
