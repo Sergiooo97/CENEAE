@@ -216,6 +216,10 @@ td{
     var mes =  <?php echo json_encode($mes_grafica) ?>;
     var total =  <?php echo json_encode($total_grafica) ?>;
 
+    Highcharts.setOptions({
+       colors: ['#ED561B', '#50B432', '#DDDF00', '#058DC7',  '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+});
+
     Highcharts.chart('chart_alumno', {
         chart: {
         type: 'column'
