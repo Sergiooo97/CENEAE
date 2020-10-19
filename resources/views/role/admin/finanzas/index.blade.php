@@ -217,7 +217,7 @@ td{
     var total =  <?php echo json_encode($total_grafica) ?>;
 
     Highcharts.setOptions({
-       colors: ['#e45f5a', '#38c172', '#ffed4a', '#6cb2eb',  '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+       colors: ['#ef8157', '#6bd098', '#fbc658', '#51bcda',  '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
 });
 
     Highcharts.chart('chart_alumno', {
