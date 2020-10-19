@@ -175,7 +175,26 @@
                 align-items: center;
                 display: flex;
                 justify-content: center;
-            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            }                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    }
+
+    @media (max-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2331 !important;
+      }
+      .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }                        
+            .conoce-grupo{
+              display: none;
+            }   
+            .conoce-grupo-buttons{
+              display: block !important;
+
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     }
     @font-face {
 font-family: "Northern";
@@ -403,8 +422,9 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div  style="height:100%; border-radius: 10px !important; " class="card">
+              <div class="col-md-6 " >
+               
+                <div  style="height:100%; border-radius: 10px !important; " class="card conoce-grupo">
 
                   <div style="background: rgb(168, 47, 6); color:#ffffff;border-top-right-radius: 10px;border-top-left-radius: 10px;" class="card-header">
                     <h4>¡Conoce sobre nuestros grupos!</h4>
@@ -431,9 +451,22 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                   </div>
                 </div>
               </div>
-            
+              <div  class=" conoce-grupo-buttons">
+                <div class="row">
+                  <div class="col-6">
+                    <a class="btn btn-info">ver galeria</a>
+                  </div>
+                  <div class="col-6">
+                    <a class="btn btn-info">estadísticas</a>
+                  </div>
+                </div>
+              </div>
             </div>
+
+       
+
           </div>
+          
         </section>
 
       <!--Section: Main info-->
