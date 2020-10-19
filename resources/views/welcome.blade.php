@@ -393,10 +393,11 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
                     <div class="row">
                       <div class="col-md-6">
-                        <h5>1°: <strong class="text-success">5 disponibles</strong></h5>                     
+                        <h5>1°: <strong class="text-success">5 disponibles</strong></h5>    
+                        <a href="#" class="btn btn-info pull-right">Reservar | 1° Grado </a>
+                 
                       </div>
                       <div class="col-md-6">
-                        <a href="#" class="btn btn-info pull-right">Reservar | 1° Grado </a>
                       </div>
                     </div>
 
@@ -453,7 +454,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
               </div>
               <div style="display: none"  class=" conoce-grupo-buttons">
                 <div class="row">
-                  <div class="col-12 pull-right">
+                  <div class="pull-right">
                     <a class="btn btn-info">ver galeria</a>
                     <a class="btn btn-info">estadísticas</a>
                   </div>
