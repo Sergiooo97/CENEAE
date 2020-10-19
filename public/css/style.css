@@ -1,174 +1,171 @@
 /* Required height of parents of the Full Page Intro and Intro itself */
+
 html,
 body,
 .view {
-  height: 100%; }
-
-/* Navbar animation */
-.navbar {
-  background-color: rgba(87, 34, 22, 0.2);
- 
-
+    height: 100%;
 }
 
 
+/* Navbar animation */
+
+.navbar {
+    background-color: rgba(87, 34, 22, 0.2);
+}
+
 .top-nav-collapse {
-  background:rgb(168, 47, 6);  }
+    background: rgb(168, 47, 6);
+}
+
 
 /* Adding color to the Navbar on mobile */
+
 @media only screen and (max-width: 768px) {
-  .navbar {
-    background:rgb(168, 47, 6);  } }
+    .navbar {
+        background: rgb(168, 47, 6);
+    }
+}
+
 
 /* Footer color for sake of consistency with Navbar */
-.page-footer {
-  background:rgb(168, 47, 6);  }
 
-  .menu-1{
+.page-footer {
+    background: rgb(168, 47, 6);
+}
+
+.menu-1 {
     height: 60px;
     background: #444;
-  }
-  .slider-1, .slider-2, .slider-3, .slider-4{
+}
+
+.slider-1,
+.slider-2,
+.slider-3,
+.slider-4 {
     height: 100vh;
     text-align: center;
-  }
-  .container-logo-welcome{
-    margin-top: 20% !important;
-  }
+}
 
-  .footer{
+.container-logo-welcome {
+    margin-top: 20% !important;
+}
+
+.footer {
     background: #444;
-    color:#fff;
+    color: #fff;
     text-align: center;
     padding: 10px;
-  }
-  .btn-galery{
+}
+
+.btn-galery {
     padding: 10px !important;
-  }
-  .btn-home{
+}
+
+.btn-home {
     padding: 10px !important;
-  }
-  .btn-login{
+}
+
+.btn-login {
     padding: 10px !important;
-  }
-  .mas-info{
+}
+
+.mas-info {
     position: absolute;
-    top:85%;
+    top: 85%;
     left: 47%;
-  }
-  .titleceneae{
-    font-family:Northern;
+}
+
+.titleceneae {
+    font-family: Northern;
     color: rgb(0, 251, 255) !important;
-  }
-  @media screen and (max-width: 380px)   and (orientation : portrait) {
-    
-    .mas-info{
-      position: absolute; 
-      top:85%; 
-      left:40%;
-    }
-    
-    .titleceneae{
-      font-family:Northern;
-      color: rgb(0, 251, 255) !important;
-      font-size: 16px !important;
-    }
-    
-    .btn-galery{
-      width: 200px;
-      display: none !important;
-    }
-    .btn-login{
-      font-size: 9px;
-      padding: 3px !important;
-      scroll-padding-right: 5px;
+}
 
+@media screen and (max-width: 380px) and (orientation: portrait) {
+    .mas-info {
+        position: absolute;
+        top: 85%;
+        left: 40%;
+    }
+    .titleceneae {
+        font-family: Northern;
+        color: rgb(0, 251, 255) !important;
+        font-size: 16px !important;
+    }
+    .btn-galery {
+        width: 200px;
+        display: none !important;
+    }
+    .btn-login {
+        font-size: 9px;
+        padding: 3px !important;
+        scroll-padding-right: 5px;
+    }
+    .btn-home {
+        width: 200px;
+    }
+    .sun {
+        width: 250px !important;
+        height: 150px !important;
+    }
+    .EAE {
+        display: block !important;
+        font-size: 12px !important;
+        font-weight: bold;
+    }
+    .descripcion-ceneae {
+        display: none !important;
+    }
+    .aviso-inscripcion {
+        display: block !important;
+    }
+    .info-inscripcion {
+        font-size: 11px;
+    }
+}
 
+@media screen and (max-device-width: 990px) and (min-device-width: 481px) and (orientation: portrait) {
+    .mas-info {
+        position: absolute;
+        top: 85%;
+        left: 42%;
     }
-    .btn-home{
-      width: 200px;
-
+    .titleceneae {
+        font-family: Northern;
+        color: rgb(0, 251, 255);
+        font-size: 20px !important;
     }
-    .sun{
-      width: 250px !important;
-      height: 150px !important;
-
+    .btn-galery {
+        font-size: 9px;
+        padding: 8px !important;
+        scroll-padding-right: 5px;
     }
-    .EAE{
-      display: block !important;
-      font-size: 12px !important;
-      font-weight: bold;
-
+    .btn-login {
+        font-size: 9px;
+        padding: 8px !important;
+        scroll-padding-right: 5px;
     }
-    .descripcion-ceneae{
-      display: none !important;
+    .btn-home {
+        font-size: 9px;
+        padding: 8px !important;
     }
-    .aviso-inscripcion{
-      display: block !important;
+    .sun {
+        width: 250px !important;
+        height: 150px !important;
+        margin-top: 21% !important;
     }
-  
-    .info-inscripcion{
-      font-size: 11px;
+    .EAE {
+        display: block !important;
+        font-size: 15px !important;
+        font-weight: bold;
     }
-  }
-
-  @media screen and (max-device-width: 990px) and (min-device-width : 481px) and (orientation : portrait)  {
-    
-    .mas-info{
-      position: absolute; 
-      top:85%; 
-      left:42%;
+    .descripcion-ceneae {
+        display: none !important;
     }
-    .titleceneae{
-      font-family:Northern;
-      color: rgb(0, 251, 255);
-      font-size: 20px !important;
+    .navbar {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
     }
-    
-    .btn-galery{
-      font-size: 9px;
-      padding: 8px !important;
-      scroll-padding-right: 5px;
-
-    }
-    .btn-login{
-      font-size: 9px;
-      padding: 8px !important;
-      scroll-padding-right: 5px;
-
-    }
-    .btn-home{
-      font-size: 9px;
-      padding: 8px !important;
-
-    }
-    .sun{
-      width: 250px !important;
-      height: 150px !important;
-      margin-top: 21% !important;
-
-    }
-    .EAE{
-      display: block !important;
-      font-size: 15px !important;
-      font-weight: bold;
-
-    }
-    .descripcion-ceneae{
-      display: none !important;
-    }
- 
-    .navbar{
-      padding-right: 10px !important;
-      padding-left: 10px !important;
-    }
-  
-
     .top-nav-collapse {
-      background:rgb(168, 47, 6);  }
-    
-  }
- 
-  
-
-  
+        background: rgb(168, 47, 6);
+    }
+}
