@@ -453,12 +453,10 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
               </div>
               <div style="display: none"  class=" conoce-grupo-buttons">
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-12 pull-right">
                     <a class="btn btn-info">ver galeria</a>
                     <a class="btn btn-info">estadísticas</a>
-
                   </div>
-                
                 </div>
               </div>
             </div>
