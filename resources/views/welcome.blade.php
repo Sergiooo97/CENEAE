@@ -361,15 +361,26 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       <p class="info-inscripcion">Inscripciones para alumnos de primaria, hasta el 28 de septiembre.</p>
       
     </div>
-    <p class="mas-info" style="">Mas información</p>
-    <div class="arrows"></div>
+ 
+      
+ 
+
+      
+
+   
   </div>
     <!-- Content -->
 
-
+    
   </div>
 
   </div>
+  <div style="position: absolute; top:95% !important; width:100% !important; margin:0;" class="">
+      <div style="width:100% !important; " class="d-flex justify-content-center align-items-end">
+        <p style="color: #ffffff !important;" class="" style="">Deslizar hacia abajo para mas información</p>
+
+      </div>
+    </div>
 </div>
 
   <!-- Full Page Intro -->
@@ -415,6 +426,9 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                     </div>
 
                   </div>
+                  <div style="display: none"  class=" conoce-grupo-buttons pull-right">
+                        <a style="margin-right: 3.8em;" class="btn btn-info pull-right">estadísticas</a>
+                  </div>
                 </div>
               </div>
 
@@ -443,29 +457,79 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                         <a class="btn btn-info pull-right">ver estadísticas</a>
                       </div>
                 
-
+                      
                   </div>
                 </div>
               </div>
-              <div style="display: none"  class=" conoce-grupo-buttons">
-                <div class="row">
-                  <div class="pull-right">
-                    <a class="btn btn-info">ver galeria</a>
-                    <a class="btn btn-info">estadísticas</a>
-                  </div>
-                </div>
+              
+            </div>
+          </div>
+        </section>
+  <hr class="my-5">
+  <section>
+    <h3  class="h3 text-center ">Acerca de Centro Educativo Natanael</h3>
+    <div class="row wow fadeIn">
+      <div class="col-lg-6 col-md-12 px-4">
+              <!--First row-->
+            <div class="row">
+              <div style="padding: 0;"class="col-1 mr-4">
+              <img src="{{asset('img/esperanzalogo_bn.png')}}" width="60px" height="40px">
+              </div>
+              <div class="col-10">
+                <h5 class="feature-title">Esperanza</h5>
+                <p class="grey-text">afdskljññññññññññññdssdlkfajdlñfkajsdlñfkaj
+                </br>sdf09adfñoalskdjflñaskdjflñaskdfjlasñf...</p>
               </div>
             </div>
+            <!--/First row-->
 
-       
+            <div style="height:30px"></div>
 
+            <!--Second row-->
+            <div  class="row">
+              <div style="padding: 0;" class="col-1 mr-4">
+                <img src="{{asset('img/amorlogo_bn.png')}}" width="50px" height="50px">
+              </div>
+              <div class="col-10">
+                <h5 class="feature-title">Amor</h5>
+                <p class="grey-text">adjflaskjdflaskjdfñlaskdfjañlskdfjñasldkfjasldkfjasñklfdjasfasfsadfas...
+                </p>
+              </div>
+            </div>
+            <!--/Second row-->
+
+            <div style="height:30px"></div>
+
+            <!--Third row-->
+            <div class="row">
+              <div style="padding: 0;"  class="col-1 mr-4">
+                <img src="{{asset('img/educacionlogo_bn.png')}}" width="60px" height="40px">
+              </div>
+              <div class="col-10">
+                <h5 class="feature-title">Educación</h5>
+                <p class="grey-text">sdlfajslfajsfñlkasjfñlksjdfalñskdfjñalskfjdñlaksdfjñalksd</br>
+                  jñlakdfsjñlaksdfjñalskfjñasldkfjasñldkfjañlsdkfa.</p>
+              </div>
+            </div>
+            <!--/Third row-->
+
+        </div>
+          <!--/Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12">
+
+            <p class="h5 text-center mb-4">¡Conoce más acerca de nosotros!</p>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/TBC8JYwBwRk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            </div>
           </div>
-          
-        </section>
+          <!--/Grid column-->
+      </div>
+  </section>
 
-      <!--Section: Main info-->
-      <section id="Acerca" class="mt-5 wow fadeIn">
-        <h3  class="h3 text-center ">Acerca de Centro Educativo Natanael</h3>
+      <hr class="my-5">
+      <!--Section: Main features & Quick Start-->
+      <section id="" >
 
         <!--Grid row-->
         <div class="row">
@@ -527,10 +591,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
             </p>
             <!-- Main heading -->
 
-            <hr>
-
-           
-
+         
             <!-- CTA -->
        
 
@@ -539,7 +600,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
             <!--Grid column-->
             <div class="col-md-6 mb-4">
 
-              <img src="{{ asset('img/ceneae_2.jpg') }}" class="img-fluid z-depth-1-half"
+              <img src="{{ asset('img/ceneae_2.jpg') }}" class="img-fluid z-depth-1-half img-mision"
                 alt="">
   
             </div>
@@ -548,83 +609,11 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
         </div>
         <!--Grid row-->
 
-      </section>
-      <!--Section: Main info-->
-
-      <hr class="my-5">
-
-      <!--Section: Main features & Quick Start-->
-      <section id="" >
-
-        <!--Grid row-->
-        <div class="row wow fadeIn">
-
-          <!--Grid column-->
-          <div class="col-lg-6 col-md-12 px-4">
-
-            <!--First row-->
-            <div class="row">
-              <div style="padding: 0;"class="col-1 mr-4">
-              <img src="{{asset('img/esperanzalogo_bn.png')}}" width="60px" height="40px">
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Esperanza</h5>
-                <p class="grey-text">afdskljññññññññññññdssdlkfajdlñfkajsdlñfkaj
-                </br>sdf09adfñoalskdjflñaskdjflñaskdfjlasñf...</p>
-              </div>
-            </div>
-            <!--/First row-->
-
-            <div style="height:30px"></div>
-
-            <!--Second row-->
-            <div  class="row">
-              <div style="padding: 0;" class="col-1 mr-4">
-                <img src="{{asset('img/amorlogo_bn.png')}}" width="50px" height="50px">
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Amor</h5>
-                <p class="grey-text">adjflaskjdflaskjdfñlaskdfjañlskdfjñasldkfjasldkfjasñklfdjasfasfsadfas...
-                </p>
-              </div>
-            </div>
-            <!--/Second row-->
-
-            <div style="height:30px"></div>
-
-            <!--Third row-->
-            <div class="row">
-              <div style="padding: 0;"  class="col-1 mr-4">
-                <img src="{{asset('img/educacionlogo_bn.png')}}" width="60px" height="40px">
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Educación</h5>
-                <p class="grey-text">sdlfajslfajsfñlkasjfñlksjdfalñskdfjñalskfjdñlaksdfjñalksd</br>
-                  jñlakdfsjñlaksdfjñalskfjñasldkfjasñldkfjañlsdkfa.</p>
-              </div>
-            </div>
-            <!--/Third row-->
-
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-6 col-md-12">
-
-            <p class="h5 text-center mb-4">¡Conoce más acerca de nosotros!</p>
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/TBC8JYwBwRk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            </div>
-          </div>
-          <!--/Grid column-->
-
-        </div>
-        <!--/Grid row-->
-      </div>
-
       </section >
       <!--Section: Main features & Quick Start-->
-
       <hr class="my-5">
+
+     
 
 
       <!--Section: More-->

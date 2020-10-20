@@ -124,15 +124,17 @@ body,
 }
 
 @media screen and (max-device-width: 990px) and (min-device-width: 481px) and (orientation: portrait) {
+    .img-mision {
+        display: none !important;
+    }
     .mas-info {
         position: absolute;
-        top: 85%;
-        left: 42%;
+        top: 95%;
     }
     .titleceneae {
         font-family: Northern;
         color: rgb(0, 251, 255);
-        font-size: 20px !important;
+        font-size: 24px !important;
     }
     .btn-galery {
         font-size: 9px;
@@ -151,7 +153,7 @@ body,
     .sun {
         width: 250px !important;
         height: 150px !important;
-        margin-top: 21% !important;
+        margin-top: 35% !important;
     }
     .EAE {
         display: block !important;
