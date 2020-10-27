@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+ 
+
 
   <title>Centro Educativo Natanael</title>
   <!-- Font Awesome -->
@@ -19,8 +21,7 @@
   <link href="css/app.css" rel="stylesheet">
   <link href="scss/style.scss" rel="stylesheet/scss">
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
-
-  <!-- Scroll -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  <!-- Scroll -->
 <script src="{{ asset('js/smooth-scroll.min.js')}}"></script>
 
   <script>
@@ -241,6 +242,63 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 </head>
 
 <body>
+
+<!-- Modal -->
+<div class="modal fade" id="modalReservar" tabindex="-1" role="dialog" aria-labelledby="modalReservar"
+  aria-hidden="true">
+  <div class="modal-dialog modal-side modal-top-right" role="document">
+    <div style="border-top-right-radius: 10px;border-radius: 10px;" class="modal-content">
+      <div style="background: rgb(168, 47, 6); color:#ffffff;border-top-right-radius: 10px;border-top-left-radius: 10px;" class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Reserva para este o el próximo ciclo escolar!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div style="padding: 0;" class="col-md-12">
+            <div style="height:100%;" class="card">
+
+              <div   class="card-header">
+                
+              </div>
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-md-12">
+                   <label><h5>1°: <strong class="text-success">5 disponibles  </strong></h5></label>
+                    <a  style="position: absolute; left: 70% !important; margin:0;" id="pro" href="#" class="btn btn-info ">Reservar</a>
+                  </div>
+                  
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><h5>2°: <strong class="text-danger">0 disponibles   </strong></h5> </label> 
+                    <a style="position: absolute; left: 70% !important; margin:0;" href="#" class="btn btn-info ">Reservar</a>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><h5>3°: <strong class="text-danger">0 disponibles  </strong></h5></label>
+                    <a style="position: absolute; left: 70% !important; margin:0;"  href="#" class="btn btn-info">Reservar</a>        
+                  </div>
+                </div>
+
+              </div>
+              <div style="display: none"  class=" conoce-grupo-buttons pull-right">
+                    <a style="margin-right: 3.8em;" class="btn btn-info pull-right">estadísticas</a>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
   @include('sweetalert::alert')
   <!-- Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
@@ -250,7 +308,19 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
       <a class="navbar-brand" href="#inicio" target="_blank">
         <strong class="font-natacad">CENEAE</strong>
       </a>
+        
+      <a class="button-link titlemontessori" data-scroll href="{{route('montessori.index')}}" class="btn btn-danger" role="button" aria-pressed="true">MONTESSORI</a>
 
+      <a  class="button-link" href=" {{ route('galeria') }}">
+        GALERIA
+      </a>
+      <button type="button" class="button-link" data-toggle="modal" data-target="#modalReservar" target="_blank">
+        RESERVAR
+      </button>
+      
+      <button type="button"  class=" button-link" data-toggle="modal" data-target="#basicExampleModal">
+        <i class="nc-icon nc-pin-3 icon-maps"> </i>
+      </button>
       <!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -262,23 +332,8 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" class="">
-          <a class="nav-link titlemontessori" data-scroll href="{{route('montessori.index')}}" class="btn btn-danger" role="button" aria-pressed="true">MONTESSORI</a>
-          </li>
-          <!--<li class="nav-item active">
-            <a class="nav-link " data-scroll href="#inicio" class="btn btn-danger" role="button" aria-pressed="true">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li> -->
-          
-          <li class="nav-item">
-            <a class="nav-link" data-scroll href="#Acerca" class="btn btn-danger" role="button" aria-pressed="true">Acerca de CEN</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-scroll href="#eventosYMas" class="btn btn-danger" role="button" aria-pressed="true">Eventos y mas</a>
-          </li>
          
-        
+          
         </ul>
 
         
@@ -286,9 +341,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
         <ul class="navbar-nav nav-flex-icons">
           
           <li>
-            <button type="button"  class="btn-maps" data-toggle="modal" data-target="#basicExampleModal">
-              <i class="nc-icon nc-pin-3 icon-maps"> </i>
-            </button>
+            
           </li>
           
           <li class="nav-item">
@@ -349,7 +402,6 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                   <a class="btn btn-outline-white btn-lg" href="{{ route('register') }}">Registrar</a>
               @endif --->
           @endauth
-          <a class="btn btn-outline-white btn-lg font-natacad btn-galery" href="{{ route('galeria') }}"> Galeria </a>
 
       </div>
       
@@ -392,93 +444,24 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
          <!--Section: Main info-->
          <section class="mt-5 wow fadeIn">
           <div class="container">
-            <div class="row">
-
-              <div style="padding: 0;" class="col-md-6">
-                <div style="height:100%;" class="card">
-
-                  <div style="background: rgb(168, 47, 6); color:#ffffff;border-top-right-radius: 10px;border-top-left-radius: 10px;"  class="card-header">
-                    <h4>¡Reserva para este o el próximo ciclo escolar!</h4>
-                  </div>
-                  <div class="card-body">
-
-                    <div class="row">
-                      <div class="col-md-12">
-                       <label><h5>1°: <strong class="text-success">5 disponibles  </strong></h5></label>
-                        <a  style="position: absolute; left: 70% !important; margin:0;" id="pro" href="#" class="btn btn-info ">Reservar</a>
-                      </div>
-                      
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label><h5>2°: <strong class="text-danger">0 disponibles   </strong></h5> </label> 
-                        <a style="position: absolute; left: 70% !important; margin:0;" href="#" class="btn btn-info ">Reservar</a>
-                      </div>
-                    </div>
-
-
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label><h5>3°: <strong class="text-danger">0 disponibles  </strong></h5></label>
-                        <a style="position: absolute; left: 70% !important; margin:0;"  href="#" class="btn btn-info">Reservar</a>        
-                      </div>
-                    </div>
-
-                  </div>
-                  <div style="display: none"  class=" conoce-grupo-buttons pull-right">
-                        <a style="margin-right: 3.8em;" class="btn btn-info pull-right">estadísticas</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 " >
-               
-                <div  style="height:100%; border-radius: 10px !important; " class="card conoce-grupo">
-
-                  <div style="background: rgb(168, 47, 6); color:#ffffff;border-top-right-radius: 10px;border-top-left-radius: 10px;" class="card-header">
-                    <h4>¡Conoce sobre nuestros grupos!</h4>
-                  </div>
-                  <div style="background: rgb(168, 47, 6); color:#ffffff; border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;" class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <p style="font-size: 18px;">Galeria de centro educativo natanael</p>
-                      </div>
-                      <div class="col-md-6">
-                        <a class="btn btn-info pull-right">ver galeria</a>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6">
-                        <p style="font-size: 18px;">Puedes ver las estádisticas de promedio de los grupos.</p>
-                      </div>
-                      <div class="col-md-6">
-                        <a class="btn btn-info pull-right">ver estadísticas</a>
-                      </div>
-                
-                      
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
+           
         </section>
   <hr class="my-5">
   <section>
     <h3  class="h3 text-center ">Acerca de Centro Educativo Natanael</h3>
     <div class="row wow fadeIn">
-      <div class="col-lg-6 col-md-12 px-4">
+      <div class="col-lg-6 col-md-12 px-4 EAE-acerca">
               <!--First row-->
-            <div class="row">
+            <div class="row EAE-acerca">
               <div style="padding: 0;"class="col-1 mr-4">
-              <img src="{{asset('img/esperanzalogo_bn.png')}}" width="60px" height="40px">
+              <img src="{{asset('img/esperanzalogo_bn.png')}}" width="80px" height="40px">
               </div>
               <div class="col-10">
                 <h5 class="feature-title">Esperanza</h5>
-                <p class="grey-text">afdskljññññññññññññdssdlkfajdlñfkajsdlñfkaj
-                </br>sdf09adfñoalskdjflñaskdjflñaskdfjlasñf...</p>
+                <p class="grey-text">
+                  El niño es una esperanza y una promesa para la humanidad. Si la ayuda y la salvación han de llegar sólo puede ser a través de los niños,
+                  Porque los niños son los creadores de la humanidad.
+                </p>
               </div>
             </div>
             <!--/First row-->
@@ -486,13 +469,14 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
             <div style="height:30px"></div>
 
             <!--Second row-->
-            <div  class="row">
+            <div  class="row EAE-acerca">
               <div style="padding: 0;" class="col-1 mr-4">
-                <img src="{{asset('img/amorlogo_bn.png')}}" width="50px" height="50px">
+                <img src="{{asset('img/amorlogo_bn.png')}}" width="60px" height="50px">
               </div>
               <div class="col-10">
                 <h5 class="feature-title">Amor</h5>
-                <p class="grey-text">adjflaskjdflaskjdfñlaskdfjañlskdfjñasldkfjasldkfjasñklfdjasfasfsadfas...
+                <p class="grey-text">Amar, para Montessori es despertar el espíritu del niño y después 
+                  proporcionarle los medios para desarrollar ese despertar. 
                 </p>
               </div>
             </div>
@@ -501,14 +485,13 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
             <div style="height:30px"></div>
 
             <!--Third row-->
-            <div class="row">
+            <div class="row EAE-acerca">
               <div style="padding: 0;"  class="col-1 mr-4">
-                <img src="{{asset('img/educacionlogo_bn.png')}}" width="60px" height="40px">
+                <img src="{{asset('img/educacionlogo_bn.png')}}" width="70px" height="40px">
               </div>
               <div class="col-10">
                 <h5 class="feature-title">Educación</h5>
-                <p class="grey-text">sdlfajslfajsfñlkasjfñlksjdfalñskdfjñalskfjdñlaksdfjñalksd</br>
-                  jñlakdfsjñlaksdfjñalskfjñasldkfjasñldkfjañlsdkfa.</p>
+                <p class="grey-text">La educación busca formar al niño de manera integral: crecimiento físico, social, emocional y cognitivo. Además de ayudar al niño a ser un aprendiz independiente.
               </div>
             </div>
             <!--/Third row-->
@@ -518,6 +501,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
           <!--Grid column-->
           <div class="col-lg-6 col-md-12">
+            <hr style="display: none;" class="my-5 linea">
 
             <p class="h5 text-center mb-4">¡Conoce más acerca de nosotros!</p>
             <div class="embed-responsive embed-responsive-16by9">
@@ -526,98 +510,112 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
           <!--/Grid column-->
       </div>
   </section>
-
       <hr class="my-5">
       <!--Section: Main features & Quick Start-->
       <section id="" >
-
         <!--Grid row-->
         <div class="row">
-
           <!--Grid column-->
-          <div class="col-md-6 mb-4">
-
-            <img src="{{ asset('img/natt.jpg') }}" class="img-fluid z-depth-1-half"
-              alt="">
-
-          </div>
           <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-6 mb-4">
-
-            <!-- Main heading -->
-            <h3 class="h3 mb-3">VISIÓN</h3>
-            <p>
-
-            </p>
-            <p>Ser una comunidad educativa, lider e innovadora que responde eficiente y eficazmente a las necesidades de nuestro entorno
-              y el mundo globalizado, lo cual garantiza que su alumnado tendrá éxito en sus proyectos de vida.
-            </p>
-            <!-- Main heading -->
-
-            <hr>
-
-           
-
-            <!-- CTA -->
-            
-           <!-- <a target="_blank" href="https://www.facebook.com/centroeducativonatanael/" class="btn btn-grey btn-md">
-              ceneae
-              <i class="fab fa-facebook-f ml-1"></i>
-            </a> -->
-
-          </div>
-          <!--Grid column-->
-          
-
-        </div>
-        <!--Grid row-->
-         <!--Grid row-->
-         <div class="row">
-
-        
-
-          <!--Grid column-->
-          <div class="col-md-6 mb-4">
-
-            <!-- Main heading -->
-            <h3 class="h3 mb-3">MISIÓN</h3>
-            <p>
-
-            </p>
-            <p>Somos una institución que empodera a nuestros estudiantes para que persistan en su pasión por el aprendizaje, contribuyendo en la formación de todos ellos mediante una educación cristiana de excelencia,
-               procurando que lleven una vida basada en la integridad personal y un estilo de vida saludable dispuestos a servir a Dios y a la sociedad.
-            </p>
-            <!-- Main heading -->
-
-         
-            <!-- CTA -->
-       
-
-          </div>
-          <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-6 mb-4">
-
-              <img src="{{ asset('img/ceneae_2.jpg') }}" class="img-fluid z-depth-1-half img-mision"
-                alt="">
-  
+          <div class="col-md-12 mb-4">
+            <div class="row EAE-acerca">
+              <div style="padding: 0;"class="col-6 mr-4">
+                <h3 class="h3 mb-3">MISIÓN</h3>
+                <p class="mision-vision">Somos una institución que empodera a nuestros estudiantes para que persistan en su pasión por el aprendizaje, contribuyendo en la formación de todos ellos mediante una educación cristiana de excelencia,
+                  procurando que lleven una vida basada en la integridad personal y un estilo de vida saludable dispuestos a servir a Dios y a la sociedad.
+               </p>
+              </div>
+              <div class="col-5">
+                <h3 class="h3 mb-3">VISIÓN</h3>
+                <p class="mision-vision">Ser una comunidad educativa, lider e innovadora que responde eficiente y eficazmente a las necesidades de nuestro entorno
+                  y el mundo globalizado, lo cual garantiza que su alumnado tendrá éxito en sus proyectos de vida.
+                </p>
+              </div>
             </div>
-            <!--Grid column-->
-
+          </div>
         </div>
-        <!--Grid row-->
-
+         <div class="row">
       </section >
       <!--Section: Main features & Quick Start-->
       <hr class="my-5">
 
-     
+      <section>
+        <h3  class="h3 text-center ">Galeria Centro Educativo Natanael</h3>
 
+        <!--Carousel Wrapper-->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <div class="view">
+      <img class="d-block w-100" src="{{ asset('img/galeria/6.jpg') }}"
+          alt="First slide">
+        <div class="mask rgba-black-light"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive"></h3>
+        <p>Instalaciones del centro educativos</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="{{ asset('img/galeria/1.jpg') }}"
+          alt="Second slide">
+        <div class="mask rgba-black-strong"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive"></h3>
+        <p>Instalaciones del centro educativos</p>
 
-      <!--Section: More-->
-     
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="{{ asset('img/galeria/3.jpg') }}"
+          alt="Third slide">
+        <div class="mask rgba-black-slight"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive"></h3>
+        <p>Cero aburrimiento</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="{{ asset('img/galeria/8.jpg') }}"
+          alt="Third slide">
+        <div class="mask rgba-black-slight"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive"></h3>
+        <p>Eventos con muchas sorpresas</p>
+      </div>
+    </div>
+  </div>
+  <!--/.Slides-->
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+      </section>
 <!--Section: Cards-->
 <section id="eventosYMas" class="text-center">
   <div id="" class="container "> 

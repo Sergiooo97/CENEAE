@@ -91,6 +91,16 @@ onload=function()
 
 </script>
 <style>
+
+@media screen and (max-device-width: 990px) and (min-device-width: 481px) and (orientation: portrait) {
+   .login-logos{
+     display: block !important;
+   }
+}
+.img-login-logo{
+    filter: contrast(40%) sepia(1) hue-rotate(20deg) saturate(1000%);
+}
+
      @font-face {
 font-family: "Northern";
 src: url("../fonts/NorthernTerritories.ttf") format("truetype");

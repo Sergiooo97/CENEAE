@@ -8,6 +8,7 @@
         <div class="container-login100">
             <div style="padding-top:5em;" class="wrap-login100">
                 <div style="padding-top:5em;" class="login100-pic js-tilt " data-tilt>
+                    
                     <div class="notificationss bounceInDown">
 
                     <a href="" id="link"><img src="{{asset('img/sunlogos.png')}}"></a>
@@ -30,7 +31,21 @@
 
                     </div>
                 </div>
-
+                <div style="display: none;" class="container login-logos">
+                    <div class="row">
+                        <div class="col-4">
+                            <img class="img-login-logo" src="{{asset('img/esperanzalogo_bn.png')}}" width="100px" height="60px">
+                        </div>
+                        <div class="col">
+                            <img class="img-login-logo" src="{{asset('img/amorlogo_bn.png')}}" width="100px" height="80px">    
+                        </div>
+                        <div class="col">
+                            <img class="img-login-logo" src="{{asset('img/educacionlogo_bn.png')}}" width="100px" height="80px">
+                        </div>
+                    </div>
+                  
+                </div>
+                
 
                 <form style="padding-top:5em;" class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                     @csrf
@@ -69,10 +84,7 @@
                                     {{ __('Login') }}
                                 </button>
                     </div>
-                    @if (Route::has('password.request'))
-                  
-                    <a id="register"class="btn btn-link" href="{{ route('alumnos.create') }}"> ¿No tienes cuenta? registrate aquí</a>
-                @endif
+                   
                     <div class="text-center p-t-12">
                         <span class="txt1">
                             Forgot

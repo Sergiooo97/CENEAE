@@ -4,6 +4,7 @@ html,
 body,
 .view {
     height: 100%;
+    overflow-x: hidden;
 }
 
 
@@ -15,6 +16,19 @@ body,
 
 .top-nav-collapse {
     background: rgb(168, 47, 6);
+}
+
+.button-link {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: #ffffff;
 }
 
 
@@ -81,6 +95,9 @@ body,
 }
 
 @media screen and (max-width: 380px) and (orientation: portrait) {
+    .EAE-acerca {
+        padding: 1em !important;
+    }
     .mas-info {
         position: absolute;
         top: 85%;
@@ -124,6 +141,15 @@ body,
 }
 
 @media screen and (max-device-width: 990px) and (min-device-width: 481px) and (orientation: portrait) {
+    .linea {
+        display: block !important;
+    }
+    .mision-vision {
+        font-size: 13px;
+    }
+    .EAE-acerca {
+        padding-left: 2em !important;
+    }
     .img-mision {
         display: none !important;
     }
