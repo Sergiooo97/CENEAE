@@ -134,7 +134,7 @@ class alumnosController extends Controller
 
             ]);
         $alumno = new alumno();
-        $alumno->matricula = $request->input('matricula');
+        $alumno->matricula = "************";
         $alumno->nombres = $request->input('nombres');
         $alumno->apellido_paterno = $request->input('apellido_paterno');
         $alumno->apellido_materno = $request->input('apellido_materno');
@@ -149,6 +149,20 @@ class alumnosController extends Controller
         $alumno->municipio = $request->input('municipio');
         $alumno->cp = $request->input('cp');
         $alumno->save();
+
+        $tutor = new tutor();
+        $tutor->alumno_id = $alumno->id;
+        $tutor->nombres = $request->input('nombres_tutor');
+        $tutor->apellido_paterno = $request->input('apellido_paterno_tutor');
+        $tutor->apellido_materno = $request->input('apellido_materno_tutor');
+        $tutor->curp = "s";
+        $tutor->direccion = $request->input('direccion_tutor');
+        $tutor->correo = $request->input('direccion_tutor');
+        $tutor->telefono = "991107455546";
+        $tutor->escolaridad = "ocupacion";
+
+        $tutor->save();
+
         $cursos = curso::where('id' ,'>' ,0)
             ->where('grado', $request->input('grado'))
             ->where('grupo', $request->input('grupo'))
@@ -156,6 +170,7 @@ class alumnosController extends Controller
         foreach($cursos as $curso){
             $alumno->courses()->attach($curso);
         }
+        return($tutor);
         return redirect()->route('home')->withSuccess('Se realizó el retiro correctamente!');
     }
 

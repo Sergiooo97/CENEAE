@@ -79,6 +79,8 @@ class grposController extends Controller
         $alumnos = \App\alumno::select(
         'alumnos.id as id',
         'alumnos.nombres as nombres',
+        'alumnos.apellido_paterno as apellido_paterno',
+        'alumnos.apellido_materno as apellido_materno',
         DB::raw("CONCAT(alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as apellidos"),
         'alumnos.curp as curp',
         'alumnos.matricula as matricula',
@@ -125,7 +127,7 @@ class grposController extends Controller
                 Str::substr($periodos->año_inicio, -2, 2).
                 Str::substr($periodos->año_fin, -2, 2);
             }
-            $alumno->correo = $request->get('nombres')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
+            $alumno->correo = $request->get('apellido_paterno')[$key].".".$request->get('apellido_materno')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
             $alumno->update();
             
             //User para inicio de sesión de los alumnos.
@@ -136,12 +138,12 @@ class grposController extends Controller
                 $user->matricula = $value.$request->get('matricula')[$key];
             }
             $user->name =$request->get('nombres')[$key];
-            $user->email = $request->get('nombres')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
+            $user->email = $request->get('apellido_paterno')[$key].".".$request->get('apellido_materno')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
             $user->password = Hash::make('12345678');
             $user->alumno_id = $request->get('id')[$key];
             $user->save();
             $user->roles()->attach(Role::where('name', 'user')->first());
-        }
+            }
         return redirect(route('alumnos.index'));
     }
     /**

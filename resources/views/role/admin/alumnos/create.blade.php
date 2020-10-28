@@ -31,24 +31,19 @@
 
 
               <div class="row">
-                <div class="col-sm">
-
-                  {!!Form::label('id','id',['class'=>'label'])!!}
-                  <input name="matricula"id="id_al" class="form-control" placeholder="matricula" readonly>
-
-                </div>
-                <div class="col-sm">
+                
+                <div class="col-sm-6">
                   {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
                   <input name="nombres"id="nombres" class="form-control" placeholder="nombres" >
 
 
                 </div>
-                <div class="col-sm">
+                <div class="col-sm-3">
                   {!!Form::label('Apellido_P','apellido Paterno',['class'=>'label'])!!}
                   {!!Form::text('apellido_paterno',null, ['class'=>'form-control','placeholder'=>'apellido Paterno',
                   'autocomplete'=>'off'])!!}
                 </div>
-                <div class="col-sm">
+                <div class="col-sm-3">
                   {!!Form::label('Apellido_M','apellido Materno',['class'=>'label'])!!}
                   {!!Form::text('apellido_materno',null, ['class'=>'form-control','placeholder'=>'apellido Materno',
                   'autocomplete'=>'off'])!!}
@@ -130,6 +125,67 @@
               </div>
               </div>
             </div>
+            <div class="form-group">
+              <h3>Datos del tutor</h3>
+              <div class="container">
+  
+  
+                <div class="row">
+                  
+                  <div class="col-sm-6">
+                    {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
+                    <input name="nombres_tutor"id="nombres_tutor" class="form-control" placeholder="nombres" >
+  
+  
+                  </div>
+                  <div class="col-sm-3">
+                    {!!Form::label('Apellido_P','apellido Paterno',['class'=>'label'])!!}
+                    {!!Form::text('apellido_paterno_tutor',null, ['class'=>'form-control','placeholder'=>'apellido Paterno',
+                    'autocomplete'=>'off'])!!}
+                  </div>
+                  <div class="col-sm-3">
+                    {!!Form::label('Apellido_M','apellido Materno',['class'=>'label'])!!}
+                    {!!Form::text('apellido_materno_tutor',null, ['class'=>'form-control','placeholder'=>'apellido Materno',
+                    'autocomplete'=>'off'])!!}
+                  </div>
+                </div>
+  
+
+                <div class="row">
+                  <div class="col-sm">
+                    {!!Form::label('direccion','Dirección',['class'=>'label'])!!}
+                    {!!Form::text('direccion_tutor',null, ['class'=>'form-control','placeholder'=>'direccion', 'autocomplete'=>'off'])!!}
+                  </div>
+                  <div class="col-sm">
+                    {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
+                    <input name="cp_tutor" id="cp_tutor" type="number" class="form-control" placeholder="Código postal" maxlength="5">
+                  </div>
+                  <div class="col-sm">
+                    {!!Form::label('municipio','Municipio',['class'=>'label'])!!}
+                    <input name="municipio_tutor" id="municipio_tutor" class="form-control" placeholder="Municipio" autocomplete="off" maxlength="11"
+                      required>
+                  </div>
+                  <div class="col-sm">
+                    {!!Form::label('ocupacion','ocupación',['class'=>'label'])!!}
+                    <input name="ocupacion" id="ocupacion" class="form-control" placeholder="ocupación" autocomplete="off">
+                  </div>
+                </div>
+
+            <div class="row">
+                  <div class="col-sm-6">
+                    {!!Form::label('Correo','Correo',['class'=>'label'])!!}
+                    <input name="correo_tutor" id="correo_tutor" type="email" class="form-control" placeholder="Correo" >
+                  </div>
+                  <div class="col-sm-6">
+                    {!!Form::label('telefono','Teléfono',['class'=>'label'])!!}
+                    <input name="telefono" id="telefono" type="number" class="form-control" placeholder="Teléfono" maxlength="5">
+                  </div>
+                  
+                </div>
+
+            
+                </div>
+              </div>
           </div>
         </div>
         <div class="form-group container">

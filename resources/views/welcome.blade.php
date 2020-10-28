@@ -446,7 +446,6 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
           <div class="container">
            
         </section>
-  <hr class="my-5">
   <section>
     <h3  class="h3 text-center ">Acerca de Centro Educativo Natanael</h3>
     <div class="row wow fadeIn">

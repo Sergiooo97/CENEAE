@@ -38,6 +38,9 @@
                   <input id="id[]" value="{{$alumno->id}}" name="id[]" class="form-control" hidden />
                   <input value="{{ $alumno->curp }}" name="matricula[]" class="form-control" hidden />
                   <input value="{{ $alumno->nombres }}" name="nombres[]" class="form-control" hidden />
+                  <input value="{{ $alumno->apellido_paterno }}" name="apellido_paterno[]" class="form-control" hidden />
+                  <input value="{{ $alumno->apellido_materno }}" name="apellido_materno[]" class="form-control" hidden />
+
                   <input value="{{ $alumno->grupo }}" name="grupo_id" class="form-control" hidden />
 
                   <tbody>
