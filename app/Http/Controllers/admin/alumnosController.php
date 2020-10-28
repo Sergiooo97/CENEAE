@@ -170,7 +170,6 @@ class alumnosController extends Controller
         foreach($cursos as $curso){
             $alumno->courses()->attach($curso);
         }
-        return($tutor);
         return redirect()->route('home')->withSuccess('Se realizó el retiro correctamente!');
     }
 
