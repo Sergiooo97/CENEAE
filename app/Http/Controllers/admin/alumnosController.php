@@ -164,8 +164,7 @@ class alumnosController extends Controller
         $tutor->save();
 
         $cursos = curso::where('id' ,'>' ,0)
-            ->where('grado', $request->input('grado'))
-            ->where('grupo', $request->input('grupo'))
+            ->where('grupo_id', $request->input('grupo'))
             ->pluck('id')->toArray();
         foreach($cursos as $curso){
             $alumno->courses()->attach($curso);
