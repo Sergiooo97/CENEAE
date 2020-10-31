@@ -167,7 +167,7 @@ body,
     }
 }
 
-@media screen and (max-device-width: 990px) and (min-device-width: 481px) and (orientation: portrait) {
+@media screen and (max-device-width: 1024px) and (min-device-width: 480px) and (orientation: portrait) {
     .linea {
         display: block !important;
     }
