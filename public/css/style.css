@@ -89,6 +89,18 @@ body,
     left: 47%;
 }
 
+@media screen and ( max-height: 600px) {
+    .sun {
+        width: 150px !important;
+        height: 100px !important;
+    }
+    .titleceneae {
+        font-family: Northern;
+        color: rgb(0, 251, 255) !important;
+        font-size: 12px !important;
+    }
+}
+
 .titleceneae {
     font-family: Northern;
     color: rgb(0, 251, 255) !important;
@@ -123,10 +135,6 @@ body,
     }
     .btn-home {
         width: 200px;
-    }
-    .sun {
-        width: 250px !important;
-        height: 150px !important;
     }
     .EAE {
         display: block !important;

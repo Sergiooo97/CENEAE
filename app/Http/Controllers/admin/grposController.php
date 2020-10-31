@@ -103,7 +103,8 @@ class grposController extends Controller
      */
     public function update(Request $request, $id)
     {
-                    //validation
+        
+             //validation
                     $request->validate([
                         'orden.*' => 'required|numeric'
                     ],
@@ -112,6 +113,8 @@ class grposController extends Controller
                     'numeric' => 'solo es posible escribir numeros',
                     ]);
         foreach ($request->get('orden') as $key => $value) {
+
+            
             $periodos = periodo::where('id', \Session::get('idPeriodo'))->first();
             //
             $alumno = alumno::find($request->get('id')[$key]);
@@ -144,6 +147,8 @@ class grposController extends Controller
             $user->save();
             $user->roles()->attach(Role::where('name', 'user')->first());
             }
+            
+                   
         return redirect(route('alumnos.index'));
     }
     /**
