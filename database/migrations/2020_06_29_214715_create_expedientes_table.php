@@ -14,25 +14,44 @@ class CreateExpedientesTable extends Migration
     public function up()
     {
         Schema::create('expedientes', function (Blueprint $table) {
-            $table->id();
-            $table->string('Nombre');
-            $table->string('Apellido_paterno');
-            $table->string('Apellido_materno');
-            $table->string('peso');
-            $table->date('fecha_de_nacimiento');
-            $table->string('sexo');
-            $table->integer('edad');
-            $table->string('estatura');
-            $table->string('lugar_de_nacimiento');
-            $table->string('domicilio_actual');
-            $table->string('telefono_tutor');
-            $table->string('codigo_postal');
-            $table->string('email_tutor');
-            $table->string('num_personas_vivienda');
-            $table->string('nombre_de_padre');
-            $table->string('nombre_de_madre');
-            $table->integer('edad_padre');
-            $table->integer('edad_madre');
+          $table->id();
+
+        //Datos escolares
+            $table->string('matricula')->nullable();
+            $table->string('fecha_ingreso')->nullable();
+            $table->string('regularidad')->nullable();
+            $table->string('escuela_procedencia')->nullable();
+            $table->string('activo')->nullable();
+
+        // Datos personales
+            $table->string('Nombre')->nullable();
+            $table->string('Apellido_paterno')->nullable();
+            $table->string('Apellido_materno')->nullable();
+            $table->string('peso')->nullable();
+            $table->date('fecha_de_nacimiento')->nullable();
+            $table->string('sexo')->nullable();
+            $table->integer('edad')->nullable();
+            $table->string('estatura')->nullable();
+            $table->string('lugar_de_nacimiento')->nullable();
+            $table->string('domicilio_actual')->nullable();
+        // datos del tutor
+            $table->string('telefono_tutor')->nullable();
+            $table->string('codigo_postal_tutor')->nullable();
+            $table->string('municipio')->nullable();
+            $table->string('email_tutor')->nullable();
+            $table->string('domicilio_actual_tutor');
+            $table->string('ocupacion_tutor')->nullable();
+            $table->string('edad_tutor')->nullable();
+            
+        //Datos del hogar
+            $table->string('num_personas_vivienda')->nullable();
+            $table->string('Apellido_paterno_padre')->nullable();
+            $table->string('Apellido_materno_padre')->nullable();
+            $table->string('Apellido_paterno_madre')->nullable();
+            $table->string('Apellido_materno_madre')->nullable();
+            $table->string('nombre_de_padre');->nullable()  
+            $table->integer('edad_padre')->nullable();
+            $table->integer('edad_madre')->nullable();
             $table->unsignedBigInteger('alumno_id')->nullable();
             //Relaciones
             $table->foreign('alumno_id')

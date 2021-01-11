@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\periodo;
+luse App\periodo;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+cass IndexController extends Controller
 {
     public function setPeriodo($id)
     {

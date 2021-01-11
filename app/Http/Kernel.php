@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \RealRashid\SweetAlert\ToSweetAlert::class,
+            \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
 
         'api' => [
@@ -68,6 +69,6 @@ class Kernel extends HttpKernel
         'role'=> \App\Http\Middleware\roleMIddleware::class,
         'esAdmin'=> \App\Http\Middleware\esAdmin::class,
         'role' => \App\Http\Middleware\CheckRole::class,
-    
+        'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
     ];
 }

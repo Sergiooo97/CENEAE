@@ -4,6 +4,7 @@
 //use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Exports\ndolarExport;
+use App\Http\Controllers\admin\grposController;
 use RealRashid\SweetAlert\Facades\Alert;
 //use App\Exports;
   /*
@@ -114,6 +115,7 @@ Route::group([
     Route::get('/', 'grposController@index')->name('grupos.index'); //LISTA DE ALUMNOS
     Route::get('{grupo}/edit', 'grposController@edit')->name('grupos.edit'); //LISTA DE ALUMNOS
     Route::patch('{id}/orden', 'grposController@update')->name('grupos.update'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
+    Route::patch('{id}/email', 'grposController@email')->name('grupos.email');
 });
 
  /*
@@ -165,8 +167,8 @@ Route::group([
     Route::prefix('download')->group(function () {
 
       Route::get('ndolarTransacciones/{id}', 'infoNdolarController@export')->name('info_ndolar.export');
-      Route::get("exportar_asistencia/{grado}/{grupo}","archivosController@export_asistencia")->name("exportar_asistencia");
-      Route::get("exportar_lista/{grado}/{grupo}","archivosController@export_lista")->name("exportar_lista");
+      Route::get("exportar_asistencia/{grupo}","archivosController@export_asistencia")->name("exportar_asistencia");
+      Route::get("exportar_lista/{grupo}","archivosController@export_lista")->name("exportar_lista");
       Route::get("exportar_ndolar_info/{id}/{nombre}","archivosController@export_ndolar_info")->name("exportar_ndolar_info");
       Route::get("exportar_calificacion/{id}","archivosController@export_calificacion")->name("exportar_calificacion");
       //DESCARGAS DE ARCHIVOS

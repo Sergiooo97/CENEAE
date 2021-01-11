@@ -12,7 +12,7 @@ use App\Role;
 use Illuminate\Support\Str;
 use App\periodo;
 use Illuminate\Support\Facades\DB;
-
+use SweetAlert;
 use ToSweetAlert;
 
 class grposController extends Controller
@@ -68,8 +68,6 @@ class grposController extends Controller
      */
     public function edit(Request $request, $grupo)
     {
-        toast('Asigna un número de lista y periodo a los alumnos :)','info');
-
         $grad = alumno::where('grupo_id', $grupo)->first();
         if (! $grad) {
             return \Redirect::back()->with('flash_error', 'No se ha encontrado');
@@ -84,13 +82,14 @@ class grposController extends Controller
         DB::raw("CONCAT(alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as apellidos"),
         'alumnos.curp as curp',
         'alumnos.matricula as matricula',
-        'alumnos.correo as email',
-        'grupos.nombre as grupo')
-        ->join('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        'grupos.nombre as grupo',
+        'users.email as email')
+        ->leftJoin('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        ->leftJoin('users', 'alumnos.id', '=', 'users.alumno_id')
         ->orderBy('apellidos', 'ASC')
         ->grupo($grupo)
         ->paginate(5);
-        return view('role.admin.grupos.edit', compact('alumnos', 'grad'));
+        return view('role.admin.grupos.edit', compact('alumnos', 'grad'))->with('success','sdfsfsd');
 
     }
 
@@ -130,26 +129,54 @@ class grposController extends Controller
                 Str::substr($periodos->año_inicio, -2, 2).
                 Str::substr($periodos->año_fin, -2, 2);
             }
-            $alumno->correo = $request->get('apellido_paterno')[$key].".".$request->get('apellido_materno')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
-            $alumno->update();
+         $alumno->update();
             
-            //User para inicio de sesión de los alumnos.
-            $user = new User();
-            if($value <=9){
-                $user->matricula = "0".$value.$request->get('matricula')[$key];
-            }else {
-                $user->matricula = $value.$request->get('matricula')[$key];
-            }
-            $user->name =$request->get('nombres')[$key];
-            $user->email = $request->get('apellido_paterno')[$key].".".$request->get('apellido_materno')[$key].".".Str::substr($value.$request->get('matricula')[$key], 5, 6)."@ceneae.com";
-            $user->password = Hash::make('12345678');
-            $user->alumno_id = $request->get('id')[$key];
-            $user->save();
-            $user->roles()->attach(Role::where('name', 'user')->first());
             }
             
-                   
-        return redirect(route('alumnos.index'));
+         return back();
+         
+           }
+    public function email(Request $request, $id){
+     
+        $periodos = periodo::where('id', \Session::get('idPeriodo'))->first();
+
+        foreach ($request->get('orden') as $key => $value) {
+ 
+          if (User::where('email', '=', strtolower($request->get('apellido_paterno')[$key]).".".
+                                        strtolower($request->get('apellido_materno')[$key]).".".
+                                        (string)$request->get('id')[$key]."@ceneae.com")->exists()) {
+
+                                        alert()->error('No se puede crear de nuevo algunos email');
+
+            }else{
+                $user = new User();
+                if($value <=9){
+                  $user->matricula = "0".$value.$request->get('matricula')[$key].
+                    Str::substr($periodos->año_inicio, -2, 2).
+                    Str::substr($periodos->año_fin, -2, 2);                 
+                }else {
+
+                  $user->matricula = $value.$request->get('matricula')[$key].
+                    Str::substr($periodos->año_inicio, -2, 2).
+                    Str::substr($periodos->año_fin, -2, 2);
+                }
+                $user->name =$request->get('nombres')[$key];
+
+                $user->email = strtolower($request->get('apellido_paterno')[$key]).".".
+                               strtolower($request->get('apellido_materno')[$key]).".".
+                               (string)$request->get('id')[$key]."@ceneae.com";
+
+                $user->password = Hash::make('12345678');
+                $user->alumno_id = $request->get('id')[$key];
+                $user->save();
+
+                $user->roles()->attach(Role::where('name', 'user')->first()); 
+                
+                alert()->success('Si se pudo');
+
+          }
+        }
+        return back();
     }
     /**
      * Remove the specified resource from storage.

@@ -20,6 +20,8 @@ class CreateTutoresTable extends Migration
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
             $table->string('direccion');
+            $table->string('municipio');
+            $table->string('codigo_postal');
             $table->string('escolaridad')->nullable();
             $table->string('curp')->nullable();
             $table->string('telefono');

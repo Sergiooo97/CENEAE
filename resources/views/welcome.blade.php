@@ -641,7 +641,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
               <!--Card image-->
               <div class="view overlay">
               <img src="{{asset('img/suh_1.png')}}" class="card-img-top" alt="">
-                  <a href="https://mdbootstrap.com/angular/" target="_blank">
+                  <a href="#" target="_blank">
                       <div class="mask rgba-white-slight"></div>
                   </a>
               </div>
@@ -652,7 +652,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                   <h4 class="card-title">Cursos Matemáticas</h4>
                   <!--Text-->
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem libero, malesuada ut sem a, vehicula sodales lorem. Sed vel magna varius, venenatis ante eget, sagittis turpis. </p>
-                  <a href="https://mdbootstrap.com/angular/" target="_blank" class="btn btn-primary btn-md">Mas información.
+                  <a href="#" target="_blank" class="btn btn-primary btn-md">Mas información.
                       <i class="fa fa-info ml-2"></i>
                   </a>
               </div>
@@ -672,7 +672,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
               <!--Card image-->
               <div class="view overlay">
                 <img src="{{asset('img/ignite_1.png')}}" class="card-img-top" alt="">
-                <a href="https://mdbootstrap.com/react/" target="_blank">
+                <a href="#" target="_blank">
                       <div class="mask rgba-white-slight"></div>
                   </a>
               </div>
@@ -683,7 +683,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                   <h4 class="card-title">IGNITE</h4>
                   <!--Text-->
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem libero, malesuada ut sem a, vehicula sodales lorem. Sed vel magna varius, venenatis ante eget, sagittis turpis. </p>
-                  <a href="https://mdbootstrap.com/angular/" target="_blank" class="btn btn-primary btn-md">Mas información.
+                  <a href="#" target="_blank" class="btn btn-primary btn-md">Mas información.
                     <i class="fa fa-info ml-2"></i>
                 </a>
               </div>
@@ -703,7 +703,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
               <!--Card image-->
               <div class="view overlay">
                   <img src="{{ asset('img/montesori_1.png') }}" class="card-img-top" alt="">
-                  <a href="https://mdbootstrap.com/vue/" target="_blank">
+                  <a href="#" target="_blank">
                       <div class="mask rgba-white-slight"></div>
                   </a>
               </div>
@@ -714,7 +714,7 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
                   <h4 class="card-title  ">Montessori</h4>
                   <!--Text-->
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem libero, malesuada ut sem a, vehicula sodales lorem. Sed vel magna varius, venenatis ante eget, sagittis turpis. </p>
-                  <a href="https://mdbootstrap.com/angular/" target="_blank" class="btn btn-primary btn-md">Mas información.
+                  <a href="#" target="_blank" class="btn btn-primary btn-md">Mas información.
                     <i class="fa fa-info ml-2"></i>
                 </a>
               </div>
@@ -821,11 +821,8 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
     <!--Call to action-->
     <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
-        role="button">Descargar convocatorias (pdf)
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Mas información
+      
+      <a class="btn btn-outline-white" href="#" target="_blank" role="button">Mas información
         <i class="fas fa-graduation-cap ml-2"></i>
       </a>
     </div>
@@ -835,37 +832,23 @@ src: url("../fonts/NorthernTerritories.ttf") format("truetype");
 
     <!-- Social icons -->
     <div class="pb-4">
-      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
-        <i class="fab fa-facebook-f mr-3"></i>
+      <a href="https://www.facebook.com/centroeducativonatanael" target="_blank">
+        <i class="fa fa-facebook mr-3"></i>
       </a>
 
-      <a href="https://twitter.com/MDBootstrap" target="_blank">
-        <i class="fab fa-twitter mr-3"></i>
+      <a href="#" target="_blank">
+        <i class="fa fa-twitter mr-3"></i>
       </a>
 
       <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
-        <i class="fab fa-youtube mr-3"></i>
+        <i class="fa fa-youtube mr-3"></i>
       </a>
-
-      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
-        <i class="fab fa-google-plus-g mr-3"></i>
-      </a>
-
-      <a href="https://dribbble.com/mdbootstrap" target="_blank">
-        <i class="fab fa-dribbble mr-3"></i>
-      </a>
-
-      <a href="https://pinterest.com/mdbootstrap" target="_blank">
-        <i class="fab fa-pinterest mr-3"></i>
-      </a>
-
+      
       <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
-        <i class="fab fa-github mr-3"></i>
+        <i class="fa fa-github mr-3"></i>
       </a>
 
-      <a href="http://codepen.io/mdbootstrap/" target="_blank">
-        <i class="fab fa-codepen mr-3"></i>
-      </a>
+      
     </div>
     <!-- Social icons -->
 

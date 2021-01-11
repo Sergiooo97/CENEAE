@@ -62,9 +62,9 @@
             <td style="background-color: #c4eee7;  width:15px;">{{ $alumno->matricula }}</td>
             <td style="border:1px dashed #ccc;  width:15px;  font-size: 10px;" >{{ $alumno->nombres }}&nbsp;{{ $alumno->apellido_paterno }}&nbsp;{{ $alumno->apellido_materno }}</td>
             <td style="border:1px dashed #ccc; width:18px;  font-size: 10px;" >{{ $alumno->curp }}</td>
-            <td style="border:1px dashed #ccc; width:5px; font-size: 10px">{{ $alumno->grado }}°{{ $alumno->grupo }}</td>
+            <td style="border:1px dashed #ccc; width:5px; font-size: 10px">{{ $alumno->grupo }}</td>
             <td style="border:1px dashed #ccc; width:15px;  font-size: 10px;" >{{ $alumno->direccion }}</td>
-            <td style="border:1px dashed #ccc; width:15px; font-size: 10px;" >{{ $alumno->nombres_tutor }}&nbsp;{{ $alumno->apellido_paterno_tutor }}</td>
+            <td style="border:1px dashed #ccc; width:15px; font-size: 10px;" >{{ $alumno->nombres_tutor }}&nbsp;{{ $alumno->apellido_paterno_tutor }} &nbsp;{{ $alumno->apellido_materno_tutor }}</td>
             <td style="border:1px dashed #ccc; width:15px;  font-size: 10px;" >{{ $alumno->telefono_tutor }}</td>
 
 

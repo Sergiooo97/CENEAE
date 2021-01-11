@@ -24,10 +24,10 @@ class CreateAlumnosTable extends Migration
             $table->string('curp');
             $table->integer('grado');
             $table->string('grupo');
-            $table->string('municipio');
+            $table->string('municipio')->nullable();
             $table->string('cp');
-            $table->string('correo');
-            $table->string('direccion');
+           // $table->string('correo');
+            $table->string('direccion')->nullable();
             $table->unsignedBigInteger('grupo_id')->nullable();
             $table->timestamps();
              //Relaciones

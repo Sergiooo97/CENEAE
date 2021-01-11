@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\curso;
@@ -11,6 +10,7 @@ use App\notas_values;
 use App\periodos_rangos;
 use Illuminate\Http\Request;
 use App\alumno;
+use App\grupo;
 use App\ndolarTransacciones;
 use App\Exports\sheets\asistenciaExport;
 use App\Exports\sheets\listaAlumnoExport;
@@ -23,18 +23,33 @@ class archivosController extends Controller
         return view('role.admin.download.archivos.index');
     }
 
-    public function export_asistencia($grado, $grupo){
-        $alumnos=alumno::where("grado",$grado)
-        ->where("grupo",$grupo)
+    public function export_asistencia($grupo){
+      $grupos = grupo::where('id', $grupo)->first();
+        $alumnos=alumno::where("grupo_id",$grupo)
         ->get();
-        return Excel::download(new asistenciaExport($alumnos), $grado.$grupo." ASISTENCIA.xlsx");
+        return Excel::download(new asistenciaExport($alumnos), $grupos->nombre." ASISTENCIA.xlsx");
 }
 
-    public function export_lista($grado, $grupo){
-        $alumnos=alumno::where("grado",$grado)
-        ->where("grupo",$grupo)
+    public function export_lista($grupo){
+      $grupos = grupo::where('id', $grupo)->first(); 
+      $alumnos=alumno::select(
+        'alumnos.nombres as nombres',
+        'alumnos.matricula as matricula',
+        'alumnos.apellido_paterno as apellido_paterno',
+        'alumnos.apellido_materno as apellido_materno',
+        'alumnos.curp as curp',
+        'alumnos.direccion as direccion', 
+        'grupos.nombre as grupo',
+        'tutores.nombres as nombres_tutor',
+        'tutores.apellido_paterno as apellido_paterno_tutor',
+        'tutores.apellido_materno as apellido_materno_tutor',
+        'tutores.telefono as telefono_tutor'
+      )
+        ->Join('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        ->Join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+        ->where("grupo_id",$grupo)
         ->get();
-        return Excel::download(new listaAlumnoExport($alumnos), $grado.$grupo." LISTA.xlsx");
+        return Excel::download(new listaAlumnoExport($alumnos), $grupos->nombre." LISTA.xlsx");
     }
     public function export_calificacion($id){
 

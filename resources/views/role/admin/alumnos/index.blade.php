@@ -66,9 +66,7 @@
               </form>
               <table id="example" class="table table-striped table-hover " style="width:100%">
                 <thead class=" text-info">
-                  <th>
-                    Clave
-                  </th>
+                 
                   <th>
                     Nombres
                   </th>
@@ -76,21 +74,23 @@
                     CURP
                   </th>
                   <th>
+                    Grado
+                  </th>
+                  <th>
                     Dirección
                   </th>
                   <th>
-                    Grado
+                    Municipio
                   </th>
                   <th>
                     Teléfono
                   </th>
+                  
                 </thead>
                 <tbody>
                   @foreach ($alumnos as $alumno)
                   <tr url="{{route('alumnos.show', ['id' => $alumno->id])}}">
-                    <td>
-                      {{ $alumno->matricula }}
-                    </td>
+                  
                     <td>
                       {{ $alumno->nombres }}&nbsp
                     </td>
@@ -98,14 +98,18 @@
                       {{ $alumno->curp }}
                     </td>
                     <td>
+                      {{ $alumno->grupo_nombre }}
+                    </td>
+                    <td>
                       {{ $alumno->direccion }}
                     </td>
                     <td>
-                      {{ $alumno->grupo_nombre }}
+                      {{ $alumno->municipio }}
                     </td>
                     <td>
                         {{$alumno->telefono}}
                     </td>
+                   
 
                   </tr>
                         <input id="id_alumno[]" value="{{$alumno->id}}" name="id_alumno[]" class="form-control" hidden>
@@ -141,20 +145,11 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <a href ="{{route('exportar_asistencia',['grado' => '1', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '1', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '2', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 2°A</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '2', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 2°B</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '3', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 3°A</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '3', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 3°B</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '4', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 4°A</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '4', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 4°B</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '5', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 5°A</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '5', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 5°B</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '6', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
-                <a href ="{{route('exportar_asistencia',['grado' => '6', 'grupo' => 'B'])}}" class="btn btn-warning"><<i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
-              </div>
+             <div class="modal-body">
+                @foreach($grupos as $grupo)
+                  <a href ="{{route('exportar_asistencia',['grupo' => $grupo->id])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i>{{ $grupo->nombre }}</a>
+                @endforeach
+            </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               </div>
@@ -173,20 +168,9 @@
                 </button>
               </div>
               <div class="modal-body">
-                <a href ="{{route('exportar_lista',['grado' => '1', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 1°A</a>
-                <a href ="{{route('exportar_lista',['grado' => '1', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 1°B</a>
-                <a href ="{{route('exportar_lista',['grado' => '2', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 2°A</a>
-                <a href ="{{route('exportar_lista',['grado' => '2', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 2°B</a>
-                <a href ="{{route('exportar_lista',['grado' => '3', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 3°A</a>
-                <a href ="{{route('exportar_lista',['grado' => '3', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 3°B</a>
-                <a href ="{{route('exportar_lista',['grado' => '4', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 4°A</a>
-                <a href ="{{route('exportar_lista',['grado' => '4', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 4°B</a>
-                <a href ="{{route('exportar_lista',['grado' => '5', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 5°A</a>
-                <a href ="{{route('exportar_lista',['grado' => '5', 'grupo' => 'B'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 5°B</a>
-                <a href ="{{route('exportar_lista',['grado' => '6', 'grupo' => 'A'])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> 6°A</a>
-                <a href ="{{route('exportar_lista',['grado' => '6', 'grupo' => 'B'])}}" class="btn btn-warning"><<i class="nc-icon nc-cloud-download-93"></i> 6°B</a>
-                <a href="{{url('admin/download/lista-todos')}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> Todos (Sin formato)</a>
-              </div>
+                @foreach($grupos as $grupo)
+                  <a href ="{{route('exportar_lista',['grupo' => $grupo->id])}}" class="btn btn-warning"><i class="nc-icon nc-cloud-download-93"></i> {{ $grupo->nombre }}</a>
+                @endforeach
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               </div>

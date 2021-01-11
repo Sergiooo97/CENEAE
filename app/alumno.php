@@ -2,7 +2,7 @@
 
 namespace App;
 use App\curso;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model; 
 
 class alumno extends Model
 {
@@ -34,15 +34,15 @@ class alumno extends Model
 
     public function scopeNombres($query, $nombres){
         if($nombres)
-        return $query->where('nombres', 'LIKE', "%$nombres%" );
+        return $query->where('alumnos.nombres', 'LIKE', "%$nombres%" );
     }
     public function scopeGrado($query, $grado){
         if($grado)
-        return $query->where('grado', 'LIKE', "%$grado%" );
+        return $query->where('alumnos.grado', 'LIKE', "%$grado%" );
     }
     public function scopeGrupo($query, $grupo){
         if($grupo)
-        return $query->where('grupo_id', 'LIKE', "%$grupo%" );
+        return $query->where('alumnos.grupo_id', 'LIKE', "%$grupo%" );
     }
 
 }

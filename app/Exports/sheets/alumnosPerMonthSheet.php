@@ -64,7 +64,7 @@ class alumnosPerMonthSheet implements FromQuery, WithTitle, WithHeadings,ShouldA
                 'tutores.telefono as telefono'
                 )
             ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-            ->where('alumnos.grado', $this->grado);
+            ->where('alumnos.grado_id', $this->grado);
     }
 
     /**

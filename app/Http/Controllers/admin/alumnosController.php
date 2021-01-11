@@ -14,6 +14,7 @@ use App\Role;
 use App\tutor;
 use App\User;
 use App\grupo;
+use App\cPostal;
 use Illuminate\Http\Request;
 use App\alumno;
 use Illuminate\Http\Response;
@@ -41,10 +42,7 @@ class alumnosController extends Controller
      */ 
     public function index(Request $request)
     {
-    
-
-        $grupo_id = grupo::where('id', $request->get('grupo'))
-        ->first();
+        $grupo_id = grupo::where('id', $request->get('grupo'))->first();
         $nombres = $request->get('nombres');
         $grado = $request->get('grado');
         $grupo = $request->get('grupo');
@@ -52,16 +50,17 @@ class alumnosController extends Controller
         $alumnos = \App\alumno::select(
             'alumnos.id as id',
             'alumnos.matricula as matricula',
+           'alumnos.municipio as municipio',
             DB::raw("CONCAT(alumnos.nombres, ' ', alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as nombres"),
             'alumnos.curp as curp',
             'alumnos.direccion as direccion',
             'tutores.telefono as telefono',
             'grupos.nombre as grupo_nombre')
-        ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-        ->join('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+        ->leftJoin('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
         ->orderBy('grupos.nombre', 'ASC')
         ->nombres($nombres)
-        ->grupo($grupo)
+       ->grupo($grupo)
         ->paginate(6);
        
         return view('role.admin.alumnos.index', compact('alumnos', 'grupos', 'grupo_id'));
@@ -105,9 +104,10 @@ class alumnosController extends Controller
             'birthday' => 'required|date',
             'curp' => 'required|max:18|string',
             'grupo' => 'required|string',
-            'direccion' => 'required|max:25|string',
-            'municipio' => 'required|max:10|string',
             'cp' => 'required|integer',
+            'calle-num' =>'required|integer',
+            'calle-entre' =>'required|integer',
+            'calle-y' =>'required|integer',
 
 
         ],
@@ -125,51 +125,75 @@ class alumnosController extends Controller
                 'curp.required' => 'Es necesario escribir curp',
                 'curp.max' => 'El curp excede número maximo de caracteres',
                 'grupo.required' => 'Es necesario escribir grupo',
-                'direccion.max' => 'Direccion excede numero de caracteres',
-                'direccion.required' => 'Es necesario escribir la dirección',
-                'municipio.max' => 'municipio excede numero de caracteres',
-                'municipio.required' => 'Es necesario escribir la municipio',
+         
                 'cp.required' => 'El código postal es necesario',
                 'cp.integer' => 'El código postal solo puede ser numeros',
+                'calle-entre.integer' => 'El cruzamiento de la calle solo puede ser numeros',
+                'calle-entre.required' => 'Es necesario escribir el cruzamiento de la calle',
+                'calle-y.integer' => 'El cruzamiento de la calle solo puede ser numeros',
+                'calle-y.required' => 'Es necesario escribir el cruzamiento de la calle',
+                'calle-num.integer' => 'La calle solo puede ser numeros',
+                'calle-num.required' => 'Es necesario escribir la calle',
+
 
             ]);
-        $alumno = new alumno();
-        $alumno->matricula = "************";
-        $alumno->nombres = $request->input('nombres');
-        $alumno->apellido_paterno = $request->input('apellido_paterno');
-        $alumno->apellido_materno = $request->input('apellido_materno');
-        $alumno->edad = $request->input('age');
-        $alumno->fecha_de_nacimiento = $request->input('birthday');
-        $alumno->curp = $request->input('curp');
-        $alumno->grado = "0";
-        $alumno->grupo = "0";
-        $alumno->grupo_id = $request->input('grupo');
-        $alumno->direccion = $request->input('direccion');
-        $alumno->correo = "x.xxxxx@ceneae.com";
-        $alumno->municipio = $request->input('municipio');
-        $alumno->cp = $request->input('cp');
-        $alumno->save();
 
-        $tutor = new tutor();
-        $tutor->alumno_id = $alumno->id;
-        $tutor->nombres = $request->input('nombres_tutor');
-        $tutor->apellido_paterno = $request->input('apellido_paterno_tutor');
-        $tutor->apellido_materno = $request->input('apellido_materno_tutor');
-        $tutor->curp = "s";
-        $tutor->direccion = $request->input('direccion_tutor');
-        $tutor->correo = $request->input('direccion_tutor');
-        $tutor->telefono = "991107455546";
-        $tutor->escolaridad = "ocupacion";
-
-        $tutor->save();
-
-        $cursos = curso::where('id' ,'>' ,0)
-            ->where('grupo_id', $request->input('grupo'))
-            ->pluck('id')->toArray();
-        foreach($cursos as $curso){
-            $alumno->courses()->attach($curso);
-        }
-        return redirect()->route('home')->withSuccess('Se realizó el retiro correctamente!');
+               
+        
+                $alumno = new alumno();
+                $alumno->matricula = "************";
+                $alumno->nombres = $request->input('nombres');
+                $alumno->apellido_paterno = $request->input('apellido_paterno');
+                $alumno->apellido_materno = $request->input('apellido_materno');
+                $alumno->edad = $request->input('age');
+                $alumno->fecha_de_nacimiento = $request->input('birthday');
+                $alumno->curp = $request->input('curp');
+                $alumno->grado = "0";
+                $alumno->grupo = "0";
+                $alumno->grupo_id = $request->input('grupo');
+                $alumno->direccion ="Calle ".$request->input('calle-num')." x ".$request->input('calle-entre')." y ".$request->input('calle-y').".";
+               // $alumno->correo = "x.xxxxx@ceneae.com";
+                if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
+                    $municipio = cPostal::where('codigo',$request->input('cp'))->first();
+                    $muni = $municipio->municipio;
+                    $estado = $municipio->estado;
+                    $alumno->municipio = $muni.", ".$estado.".";
+                }else{
+                    $alumno->municipio = "pendiente...";
+                }
+                $alumno->cp = $request->input('cp');
+                $alumno->save();
+        
+                $tutor = new tutor();
+                $tutor->alumno_id = $alumno->id;
+                $tutor->nombres = $request->input('nombres_tutor');
+                $tutor->apellido_paterno = $request->input('apellido_paterno_tutor');
+                $tutor->apellido_materno = $request->input('apellido_materno_tutor');
+                $tutor->curp = "s";
+                $tutor->direccion ="Calle ".$request->input('calle-num')." x ".$request->input('calle-entre')." y ".$request->input('calle-y').".";
+                if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
+                    $municipio = cPostal::where('codigo',$request->input('cp'))->first();
+                    $muni = $municipio->municipio;
+                    $estado = $municipio->estado;
+                    $tutor->municipio = $muni.", ".$estado.".";
+                }else{
+                  $tutor->municipio = "pendiente...";
+                }
+                $tutor->codigo_postal = $request->input('cp_tutor');
+ 
+                $tutor->correo = $request->input('direccion_tutor');
+                $tutor->telefono = $request->input('telefono');
+                $tutor->escolaridad = $request->input('ocupacion');
+                $tutor->save();
+        
+                $cursos = curso::where('id' ,'>' ,0)
+                    ->where('grupo_id', $request->input('grupo'))
+                    ->pluck('id')->toArray();
+                foreach($cursos as $curso){
+                    $alumno->courses()->attach($curso);
+                    return back();
+                } 
+              return redirect()->route('home')->withError('El registro falló correctamente!');
     }
 
     /**

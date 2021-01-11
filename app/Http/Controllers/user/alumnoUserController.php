@@ -22,6 +22,20 @@ class alumnoUserController extends Controller
         if(!is_null($period))
             if(!(\Session::has('idPeriodo')))
                 \Session::put('idPeriodo',$period->id);
+   
+    }
+   public function ndolarDetalles()
+    {
+        $alumnos = alumno::find(auth()->user()->alumno_id);
+        $id_alumno = alumno::find(auth()->user()->alumno_id);
+            $alumnos = \App\ndolarTransacciones::orderBy('created_at','desc')
+            ->where('lista_id', '=', auth()->user()->alumno_id)
+            ->paginate(5);
+        $this->middleware('auth');
+        $period = periodo::select('id')->orderBy('año_inicio','DESC')->take(1)->first();
+        if(!is_null($period))
+            if(!(\Session::has('idPeriodo')))
+                \Session::put('idPeriodo',$period->id);
     }
     public function ndolarDetalles()
     {

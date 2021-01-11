@@ -11,7 +11,7 @@
             <h4 class="card-title btn-volver-container">Grupos del CENEAE <a
                 class="topic btn btn-info form-inline pull-right" href="{{ URL::previous() }}">
                 <i class="nc-icon nc-minimal-left"></i> Volver atrás</a></h4>
-            <h5>Generar matricula y usuario para plataforma.</h5>
+            <h5>Generar matricula y usuario para la plataforma.</h5>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -27,6 +27,7 @@
                     <th>grupo</th>
                     <th>Matricula</th>
                     <th>Correo</th>
+
                   </thead>
               @foreach ($alumnos as $count=>$alumno)
                 @csrf @method('PATCH')
@@ -62,20 +63,41 @@
           </div>
         </div>
         <!-- Button trigger modal -->
-        <button type="submit" class="btn btn-primary" onclick="confirmAlert()">
+        <button style="float: left;" type="submit" class="btn btn-primary" onclick="confirmAlert()">
           <i class="nc-icon nc-cloud-download-93"></i>
-          Generar matricula y correos
+          Generar matricula
         </button>
-        <a class="btn btn-info" href="{{ URL::previous() }}"><i class="nc-icon nc-minimal-left"></i> Volver atrás</a>
-        </form>j
+        </form>
+        <form  id="forms" method="POST" action="{{route('grupos.email',$grad->id)}}">
+          @foreach ($alumnos as $count=>$alumno)
+                @csrf @method('PATCH')
+                  @if ($errors->has('orden.*'))
+                  <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+                    {{ $errors->first('orden.*') }}
+                  </div>
+                  @endif
+                  <input id="orden[]" value="{{++$count}}" name="orden[]" class="form-control" required maxlength="2" hidden/>
+                  <input id="id[]" value="{{$alumno->id}}" name="id[]" class="form-control" hidden />
+                  <input value="{{ $alumno->curp }}" name="matricula[]" class="form-control" hidden />
+                  <input value="{{ $alumno->nombres }}" name="nombres[]" class="form-control" hidden />
+                  <input value="{{ $alumno->apellido_paterno }}" name="apellido_paterno[]" class="form-control" hidden />
+                  <input value="{{ $alumno->apellido_materno }}" name="apellido_materno[]" class="form-control" hidden />
+                  <input value="{{ $alumno->grupo }}" name="grupo_id" class="form-control" hidden />
+              @endforeach
+              <button type="submit" class="btn btn-primary" onclick="confirmAlerts()">
+                <i class="nc-icon nc-cloud-download-93"></i>
+                Generar usuario
+              </button>
+        </form>
       </div>
     </div>
+
     @include('sweetalert::alert')
     <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
     <script>
-      var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
+      /*var has_errors = {{$errors->count() > 0 ? 'true' : 'false'}};
   
         if( has_errors ){
           Swal.fire({
@@ -113,6 +135,6 @@
                       
                     }
                   })         
-         }
+         } */
     </script>
     @endsection

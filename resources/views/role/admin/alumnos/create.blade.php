@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-sm">
                   {!!Form::label('CURP','CURP',['class'=>'label'])!!}
-                  <input name="curp" id="curp_al" class="form-control" placeholder="CURP" autocomplete="off" maxlength="11"
+                  <input name="curp" id="curp_al" class="form-control" placeholder="CURP" autocomplete="off" maxlength="18"
                     required>
                 </div>
                 <div class="col-sm">
@@ -106,21 +106,32 @@
               </div>
               <div class="row">
                 <div class="col-sm">
-                  {!!Form::label('direccion','Dirección',['class'=>'label'])!!}
-                  {!!Form::text('direccion',null, ['class'=>'form-control','placeholder'=>'direccion', 'autocomplete'=>'off'])!!}
+                  <div class="row">
+                    <div class="col">
+                      {!!Form::label('calle-num','calle',['class'=>'label'])!!}
+                      <input name="calle-num" id="calle" type="number" class="form-control" placeholder="#" maxlength="3">
+                    </div>
+                    <div class="col">
+                      {!!Form::label('calle-entre','entre',['class'=>'label'])!!}
+                      <input name="calle-entre" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3">
+                    </div>
+                    <div class="col-sm">
+                      {!!Form::label('calle-y','Y',['class'=>'label'])!!}
+                      <input name="calle-y" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3">
+                    </div>
+                  </div>
+                  
+                  
                 </div>
                 <div class="col-sm">
                   {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
                   <input name="cp" id="cp" type="number" class="form-control" placeholder="Código postal" maxlength="5">
                 </div>
                 <div class="col-sm">
-                  {!!Form::label('municipio','Municipio',['class'=>'label'])!!}
-                  <input name="municipio" id="municipio" class="form-control" placeholder="Municipio" autocomplete="off" maxlength="11"
-                    required>
+                 
                 </div>
                 <div class="col-sm">
-                  {!!Form::label('quiero_ser','De grande quiero ser...',['class'=>'label'])!!}
-                  <input name="quiero_ser" id="quiero_ser" class="form-control" placeholder="De grande quiero ser" autocomplete="off">
+                 
                 </div>
               </div>
               </div>
@@ -153,9 +164,22 @@
 
                 <div class="row">
                   <div class="col-sm">
-                    {!!Form::label('direccion','Dirección',['class'=>'label'])!!}
-                    {!!Form::text('direccion_tutor',null, ['class'=>'form-control','placeholder'=>'direccion', 'autocomplete'=>'off'])!!}
+                  <div class="row">
+                    <div class="col">
+                      {!!Form::label('calle-num','calle',['class'=>'label'])!!}
+                      <input name="calle-num" id="calle" type="number" class="form-control" placeholder="#" maxlength="3">
+                    </div>
+                    <div class="col">
+                      {!!Form::label('calle-entre','entre',['class'=>'label'])!!}
+                      <input name="calle-entre" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3">
+                    </div>
+                    <div class="col-sm">
+                      {!!Form::label('calle-y','Y',['class'=>'label'])!!}
+                      <input name="calle-y" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3">
+                    </div>
                   </div>
+ 
+                 </div>
                   <div class="col-sm">
                     {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
                     <input name="cp_tutor" id="cp_tutor" type="number" class="form-control" placeholder="Código postal" maxlength="5">
@@ -228,19 +252,19 @@ function confirmAlert() {
 event.preventDefault();
  let form = event.target;
         Swal.fire({
-              title: '¡Está seguro de realizar el retiro?',
+              title: '¡Está seguro de realizar el registro?',
               text: "Estás a tiempo de cancelar!",
               icon: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Si, retirar!'
+              confirmButtonText: 'Si, registrar!'
             }).then((result) => {
               if (result.value) {
                 document.getElementById("form").submit();
                 if(form.submit()){
                   Swal.fire(
-                  'Retiro con éxito!',
+                  'Registro con éxito!',
                   'Ahora te mandaré a la lista :).',
                   'success'
                 )
