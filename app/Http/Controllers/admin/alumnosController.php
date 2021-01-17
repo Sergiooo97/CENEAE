@@ -338,21 +338,12 @@ class alumnosController extends Controller
             ->first();
             return view('role.admin.alumnos.edit', compact('alumno'));
         }    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
-     */
-   
     public function update(Request $request, $id)
     {
         $alumnos = alumno::find($id);
         $alumnos->update($request->all());
         return redirect(route('alumnos.show', $id));
     }
-
     public function updateOrden(Request $request, $id)
     {
         foreach ($request->get('orden') as $key => $value) {
@@ -360,7 +351,6 @@ class alumnosController extends Controller
             $asistencia = alumno::find($request->get('id')[$key]);
             $asistencia->matricula = $value.$request->get('matricula')[$key];
             $asistencia->update();
-
         }
         return redirect(route('role.admin.alumnos.index'));
     }
@@ -368,12 +358,6 @@ class alumnosController extends Controller
     {
         return redirect()->back();
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function calificacionDetalles($id)
     {
                //Muestra la tabla de caLificaciones

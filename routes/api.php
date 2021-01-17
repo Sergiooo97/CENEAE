@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/', function () {
+    return response()->json(["nombre"=>"Rafael Eb Gallegos"]);
+});
+Route::resource('/alumnos','api\alumnos');
+//Route::resource('/cursos','api\cursos');
+//Route::get('/cursos','api\cursosController@index');
+Route::get('/cursos/{id}','api\cursosController@show');
