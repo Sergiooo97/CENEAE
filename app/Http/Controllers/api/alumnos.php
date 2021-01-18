@@ -26,7 +26,7 @@ class alumnos extends Controller
             )
             ->leftJoin('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
             ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-            ->orderBy("created_at","desc")->get();
+            ->orderBy("alumnos.apellido_paterno","asc")->get();
             return response()->json($p, 200);
     }
 
