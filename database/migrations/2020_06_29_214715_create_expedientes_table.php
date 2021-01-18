@@ -49,7 +49,7 @@ class CreateExpedientesTable extends Migration
             $table->string('Apellido_materno_padre')->nullable();
             $table->string('Apellido_paterno_madre')->nullable();
             $table->string('Apellido_materno_madre')->nullable();
-            $table->string('nombre_de_padre');->nullable()  
+            $table->string('nombre_de_padre')->nullable();
             $table->integer('edad_padre')->nullable();
             $table->integer('edad_madre')->nullable();
             $table->unsignedBigInteger('alumno_id')->nullable();
