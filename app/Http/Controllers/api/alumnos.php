@@ -17,7 +17,15 @@ class alumnos extends Controller
      */
     public function index()
     {
-            $p=alumno::orderBy("created_at","desc")->get();
+            $p=alumno::select(
+                DB::raw("CONCAT(alumnos.nombres, ' ', alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as nombres"),
+                'alumnos.edad as edad',
+                'grupos.nombre as grupo',
+                'tutores.telefono as telefono'
+            )
+            ->leftJoin('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+            ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+            ->orderBy("created_at","desc")->get();
             return response()->json($p, 200);
     }
 
