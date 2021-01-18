@@ -17,7 +17,6 @@ class alumnos extends Controller
      */
     public function index()
     {
-        public function index(){
             $p=alumno::orderBy("created_at","desc")->get();
             return response()->json($p, 200);
     }
