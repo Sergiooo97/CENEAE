@@ -22,6 +22,9 @@ Route::get('/', function () {
     return response()->json(["nombre"=>"Rafael Eb Gallegos"]);
 });
 Route::resource('/alumnos','api\alumnos');
+
 //Route::resource('/cursos','api\cursos');
 //Route::get('/cursos','api\cursosController@index');
 Route::get('/cursos/{id}','api\cursosController@show');
+Route::post('/alumnoss','api\alumnos@store');
+
