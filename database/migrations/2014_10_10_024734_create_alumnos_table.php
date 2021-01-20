@@ -15,17 +15,17 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id();
-            $table->string('matricula');
-            $table->string('nombres');
-            $table->string('apellido_paterno');
-            $table->string('apellido_materno');
-            $table->integer('edad');
-            $table->date('fecha_de_nacimiento');
-            $table->string('curp');
-            $table->integer('grado');
-            $table->string('grupo');
+            $table->string('matricula')->nullable();
+            $table->string('nombres')->nullable();
+            $table->string('apellido_paterno')->nullable();
+            $table->string('apellido_materno')->nullable();
+            $table->integer('edad')->nullable();
+            $table->date('fecha_de_nacimiento')->nullable();
+            $table->string('curp')->nullable();
+            $table->integer('grado')->nullable();
+            $table->string('grupo')->nullable();
             $table->string('municipio')->nullable();
-            $table->string('cp');
+            $table->string('cp')->nullable();
            // $table->string('correo');
             $table->string('direccion')->nullable();
             $table->unsignedBigInteger('grupo_id')->nullable();
