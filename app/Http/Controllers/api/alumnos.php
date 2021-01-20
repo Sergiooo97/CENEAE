@@ -51,7 +51,6 @@ class alumnos extends Controller
 
         $alumnos = new alumno;
         $alumnos->nombres = $request('nombres');
-        $alumnos->matricula = "sdfsdfsdfsd";
         $alumnos->save();
         return response()->json($alumnos, 200);
 
