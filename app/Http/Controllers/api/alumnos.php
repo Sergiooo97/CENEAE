@@ -48,9 +48,13 @@ class alumnos extends Controller
      */
     public function store(Request $request)
     {
-        $p=new alumno($request->all());
-        $p->save();
-        return response()->json($p, 200);
+
+        $alumnos = new alumno;
+        $alumnos->nombres = $request('nombres');
+        $alumnos->matricula = "sdfsdfsdfsd";
+        $alumnos->save();
+        return response()->json($alumnos, 200);
+
     }
 
     /**
