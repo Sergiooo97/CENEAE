@@ -81,7 +81,7 @@
                           hidden />
                       </td>
                       <td>
-                        {{ $alumno->grado }}&nbsp;{{ $alumno->grupo }} </td>
+                        {{ $alumno->grupo }} </td>
 
                       <td>
                         {{ $alumno->cantidad }}

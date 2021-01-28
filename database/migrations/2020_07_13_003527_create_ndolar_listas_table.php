@@ -16,9 +16,9 @@ class CreateNdolarListasTable extends Migration
         Schema::create('ndolar_listas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('alumno_id')->index();
-            $table->string('matricula');
-            $table->string('nombres');
-            $table->string('grado');
+            $table->string('matricula')->nullable();
+            $table->string('nombres')->nullable();
+            $table->string('grado')->nullable();
             $table->unsignedBigInteger('grupo_id')->nullable();
             $table->integer('cantidad');
 

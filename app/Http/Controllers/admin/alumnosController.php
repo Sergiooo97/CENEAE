@@ -57,7 +57,8 @@ class alumnosController extends Controller
             'tutores.telefono as telefono',
             'grupos.nombre as grupo_nombre')
         ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-        ->leftJoin('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+        ->join('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
         ->orderBy('grupos.nombre', 'ASC')
         ->nombres($nombres)
        ->grupo($grupo)
@@ -148,19 +149,16 @@ class alumnosController extends Controller
                 $alumno->edad = $request->input('age');
                 $alumno->fecha_de_nacimiento = $request->input('birthday');
                 $alumno->curp = $request->input('curp');
-                $alumno->grado = "0";
-                $alumno->grupo = "0";
-                $alumno->grupo_id = $request->input('grupo');
                 $alumno->direccion ="Calle ".$request->input('calle-num')." x ".$request->input('calle-entre')." y ".$request->input('calle-y').".";
-               // $alumno->correo = "x.xxxxx@ceneae.com";
-                if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
-                    $municipio = cPostal::where('codigo',$request->input('cp'))->first();
-                    $muni = $municipio->municipio;
-                    $estado = $municipio->estado;
-                    $alumno->municipio = $muni.", ".$estado.".";
-                }else{
-                    $alumno->municipio = "pendiente...";
-                }
+                 // $alumno->correo = "x.xxxxx@ceneae.com";
+                        if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
+                            $municipio = cPostal::where('codigo',$request->input('cp'))->first();
+                            $muni = $municipio->municipio;
+                            $estado = $municipio->estado;
+                            $alumno->municipio = $muni.", ".$estado.".";
+                        }else{
+                            $alumno->municipio = "pendiente...";
+                        }
                 $alumno->cp = $request->input('cp');
                 $alumno->save();
         
@@ -171,14 +169,14 @@ class alumnosController extends Controller
                 $tutor->apellido_materno = $request->input('apellido_materno_tutor');
                 $tutor->curp = "s";
                 $tutor->direccion ="Calle ".$request->input('calle-num')." x ".$request->input('calle-entre')." y ".$request->input('calle-y').".";
-                if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
-                    $municipio = cPostal::where('codigo',$request->input('cp'))->first();
-                    $muni = $municipio->municipio;
-                    $estado = $municipio->estado;
-                    $tutor->municipio = $muni.", ".$estado.".";
-                }else{
-                  $tutor->municipio = "pendiente...";
-                }
+                     if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
+                         $municipio = cPostal::where('codigo',$request->input('cp'))->first();
+                         $muni = $municipio->municipio;
+                         $estado = $municipio->estado;
+                         $tutor->municipio = $muni.", ".$estado.".";
+                     }else{
+                       $tutor->municipio = "pendiente...";
+                     }
                 $tutor->codigo_postal = $request->input('cp_tutor');
  
                 $tutor->correo = $request->input('direccion_tutor');
@@ -191,8 +189,12 @@ class alumnosController extends Controller
                     ->pluck('id')->toArray();
                 foreach($cursos as $curso){
                     $alumno->courses()->attach($curso);
-                    return back();
                 } 
+
+              
+                
+                    $alumno->grupos()->attach(grupo::where('id', $request->input('grupo'))->first()); 
+
               return redirect()->route('home')->withError('El registro falló correctamente!');
     }
 
@@ -308,7 +310,8 @@ class alumnosController extends Controller
             'tutores.correo as correo_tutor')
             ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
-            ->join('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+            ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+            ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
             ->where('alumnos.id', $id)
             ->first();
             return view('role.admin.alumnos.show', compact('alumno','users','cal','promedio', 'promedio_curso','promedioFIN','periodos', 'subcomponentes','nota_id', 'series', 'notas', 'ns', 'cursos','promedioCount', 'curso_grafica'));
@@ -329,6 +332,14 @@ class alumnosController extends Controller
     }
     public function edit($id)
     {
+        $grupo_id = alumno::select('grupos.id as id', 'grupos.nombre as nombre')
+            ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+            ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
+            ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+            ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
+            ->where('alumnos.id', $id)
+            ->first();        
+        $grupos = grupo::all();
         $alumnos = alumno::find($id);
         if ($alumnos==null){
          return view('errors.404');
@@ -336,7 +347,7 @@ class alumnosController extends Controller
             $alumno = alumno::find($id)
             ->where('id', '=', $id)
             ->first();
-            return view('role.admin.alumnos.edit', compact('alumno'));
+            return view('role.admin.alumnos.edit', compact('alumno', 'grupos','grupo_id'));
         }    }
     public function update(Request $request, $id)
     {

@@ -2,6 +2,7 @@
 
 namespace App;
 use App\curso;
+
 use Illuminate\Database\Eloquent\Model; 
 
 class alumno extends Model
@@ -10,6 +11,12 @@ class alumno extends Model
     public function courses()
     {
         return $this->belongsToMany(\App\curso::class, cursos_alumnos::class)->withTimestamps();
+
+    }
+
+    public function grupos()
+    {
+        return $this->belongsToMany(\App\grupo::class, grupos_alumnos::class)->withTimestamps();
 
     }
 
@@ -42,7 +49,7 @@ class alumno extends Model
     }
     public function scopeGrupo($query, $grupo){
         if($grupo)
-        return $query->where('alumnos.grupo_id', 'LIKE', "%$grupo%" );
+        return $query->where('grupos_alumnos.grupo_id', 'LIKE', "%$grupo%" );
     }
 
 }

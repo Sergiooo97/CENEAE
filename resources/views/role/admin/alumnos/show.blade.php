@@ -295,7 +295,7 @@
             </div>
             <div class="row">
               <div class="update ml-auto mr-auto">
-                <a href="{{route('alumnos.edit', $alumno->id)}}"  class="btn btn-primary btn-round">Actualizar datos</a>
+                <a href="{{route('alumnos.edit', ['grupo' => $alumno->grupo_nombre, 'id' => $alumno->id])}}"  class="btn btn-primary btn-round">Actualizar datos</a>
               </div>
             </div>
 

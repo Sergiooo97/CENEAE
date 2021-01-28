@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\api;
 
 use App\alumno;
+use App\tutor;
 use App\curso;
 use App\Http\Controllers\Controller;
+use App\ndolarTransacciones;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -22,38 +24,44 @@ class alumnos extends Controller
                 DB::raw("CONCAT(alumnos.nombres, ' ', alumnos.apellido_paterno, ' ', alumnos.apellido_materno) as nombres"),
                 'alumnos.edad as edad',
                 'grupos.nombre as grupo',
-                'tutores.telefono as telefono'
+                'tutores.telefono as telefono',
+                'ndolar_listas.cantidad as ndolar_cantidad'
             )
             ->leftJoin('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+            ->leftJoin('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
             ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
             ->orderBy("alumnos.apellido_paterno","asc")->get();
             return response()->json($p, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
-        $alumnos = new alumno;
-        $alumnos->nombres = $request('nombres');
-        $alumnos->save();
-        return response()->json($alumnos, 200);
+        $p=new alumno($request->all());
+        $p->save();
+        $tutor = new tutor();
+        $tutor->alumno_id = $p->id;
+        $tutor->nombres = $request->get('nombre_tutor');
+        $tutor->apellido_paterno = $request->get('apellido_paterno_t');
+        $tutor->apellido_materno = $request->get('apellido_materno_t');
+        $tutor->direccion = $request->get('direccion_t');
+        $tutor->codigo_postal = $request->get('cp_t');
+        $tutor->telefono = $request->get('telefono');
+        $tutor->correo = $request->get('correo_t');
+        $tutor->save();
+        return response()->json($p, 200);
 
+    }
+
+    public function ndolarStore(Request $request)
+    {
+        $ndolar = new ndolarTransacciones();
+     $ndolar->lista_id = $request->get('lista_id');
+        $ndolar->cantidad = $request->get('cantidad');
+        $ndolar->accion = $request->get('accion');
+        $ndolar->save();
+        return $ndolar;
+        return response()->json($ndolar, 200);
     }
 
     /**
@@ -96,37 +104,4 @@ class alumnos extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

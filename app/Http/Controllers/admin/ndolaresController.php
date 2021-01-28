@@ -32,20 +32,20 @@ class ndolaresController extends Controller
         $alumnos = \App\ndolar_lista::select(
             'alumnos.matricula as matricula',
             'alumnos.id as alumno_id',
-             'ndolar_listas.nombres as nombres',
+             'alumnos.nombres as nombres',
              'ndolar_listas.cantidad as cantidad',
              'grupos.nombre as grupo_nombre'
              )
-        ->join('alumnos', 'ndolar_listas.alumno_id', '=', 'alumnos.id')
-        ->join('grupos', 'ndolar_listas.grupo_id', '=', 'grupos.id')
-        ->orderBy('alumnos.grupo_id', 'ASC')
+        ->leftJoin('alumnos', 'ndolar_listas.alumno_id', '=', 'alumnos.id')
+        ->join('grupos_alumnos', 'ndolar_listas.alumno_id', '=', 'grupos_alumnos.alumno_id')
+        ->join('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
+        ->orderBy('grupos_alumnos.grupo_id', 'ASC')
         ->nombres($nombres)
         ->grupo($grupo)
         ->paginate(5);
 
         return view('role.admin.ndolares.index', compact('alumnos', 'grupos'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -59,7 +59,15 @@ class ndolaresController extends Controller
         toast('Puedes depositar a un alumno o un grupo completo','info');
         $nombres = $request->get('nombres');
         $grupo = $request->get('grupo');
-        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
+        $alumnos = \App\ndolar_lista::select(
+            'alumnos.nombres as nombres',
+            'grupos.nombre as grupo',
+            'ndolar_listas.cantidad as cantidad'
+        )
+        ->join('grupos_alumnos', 'ndolar_listas.alumno_id', '=', 'grupos_alumnos.alumno_id')
+        ->join('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
+        ->join('alumnos', 'ndolar_listas.alumno_id', '=', 'alumnos.id')
+        ->orderBy('apellido_paterno', 'ASC')
         ->nombres($nombres)
         ->grupo($grupo)
         ->paginate(5);
@@ -76,7 +84,15 @@ class ndolaresController extends Controller
         toast('Puedes retirar a un alumno o un grupo completo','info');
                 $nombres = $request->get('nombres');
         $grupo = $request->get('grupo');
-        $alumnos = \App\ndolar_lista::orderBy('grado', 'ASC')
+        $alumnos = \App\ndolar_lista::select(
+            'alumnos.nombres as nombres',
+            'grupos.nombre as grupo',
+            'ndolar_listas.cantidad as cantidad'
+        )
+        ->join('grupos_alumnos', 'ndolar_listas.alumno_id', '=', 'grupos_alumnos.alumno_id')
+        ->join('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
+        ->join('alumnos', 'ndolar_listas.alumno_id', '=', 'alumnos.id')
+        ->orderBy('apellido_paterno', 'ASC')
         ->nombres($nombres)
         ->grupo($grupo)
         ->paginate(5);
@@ -96,9 +112,7 @@ class ndolaresController extends Controller
         foreach ($request->get('cantidad') as $key => $value) {
             $ndolarActual = ndolar_lista::where('alumno_id', $request->input('id_alumno'))->first();
             $asistencia = new ndolarTransacciones;
-            $asistencia->lista_id =  $request->get('id_alumno')[$key];
-            $asistencia->matricula= $request->get('matricula')[$key];
-            $asistencia->nombre= $request->get('nombre')[$key];
+            $asistencia->alumno_id =  $request->get('id_alumno')[$key];
             $asistencia->accion= 'deposito';
             $asistencia->nuevo= $ndolarActual->cantidad + $value;
             $asistencia->cantidad = $value;
@@ -119,9 +133,7 @@ class ndolaresController extends Controller
         foreach ($request->get('cantidad') as $key => $value) {
             $ndolarActual = ndolar_lista::where('alumno_id', $request->input('id_alumno'))->first();
             $asistencia = new ndolarTransacciones;
-            $asistencia->lista_id =  $request->get('id_alumno')[$key];
-            $asistencia->matricula= $request->get('matricula')[$key];
-            $asistencia->nombre= $request->get('nombre')[$key];
+            $asistencia->alumno_id =  $request->get('id_alumno')[$key];
             $asistencia->accion= 'retiro';
             $asistencia->nuevo= $ndolarActual->cantidad - $value;
             $asistencia->cantidad = $value;
@@ -138,20 +150,16 @@ class ndolaresController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'cantidad' => 'required|integer'
+        $validator = Validator::make($request->all(), ['cantidad' => 'required|integer'
         ],['cantidad.required' => 'Debe ingresar una cantidad',
            'cantidad.integer' => 'Solo se permite numeros como cantidad']);
 
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
-
         $ndolarActual = ndolar_lista::where('alumno_id', $request->input('id_alumno'))->first();
         $users = new ndolarTransacciones();
-        $users ->lista_id       = $request->input('id_alumno');
-        $users ->matricula       = $request->input('matricula');
-        $users ->nombre   = $request->input('nombre');
+        $users ->alumno_id       = $request->input('id_alumno');
         $users ->accion        = $request->input('accion');
         $users ->cantidad        = $request->input('cantidad');
         if($request->input('accion') == "deposito"){
@@ -174,8 +182,15 @@ class ndolaresController extends Controller
     {
         $alumnos = alumno::find($id);
         $id_alumno = alumno::find($id);
-            $alumnos = \App\ndolarTransacciones::orderBy('created_at','desc')
-            ->where('lista_id', '=', $id)
+            $alumnos = \App\ndolarTransacciones::select(
+                'ndolar_transacciones.cantidad as cantidad',
+                'ndolar_transacciones.accion as accion',
+                'ndolar_transacciones.created_at',
+                'alumnos.id as alumno_id'
+            )
+            ->join('alumnos', 'ndolar_transacciones.alumno_id', '=', 'alumnos.id')
+            ->orderBy('created_at','desc')
+            ->where('alumnos.id', '=', $id)
             ->paginate(5);
         $alumno_matricula = alumno::find($id)->first();
 

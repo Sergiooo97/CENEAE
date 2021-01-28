@@ -15,9 +15,9 @@ class CreateNdolarTransaccionesTable extends Migration
     {
         Schema::create('ndolar_transacciones', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lista_id')->index();
-            $table->string('matricula');
-            $table->string('nombre');
+            $table->unsignedBigInteger('lista_id');
+            $table->string('matricula')->nullable();
+            $table->string('nombre')->nullable();
             $table->enum('accion',['DEPOSITO', 'RETIRO'])->default('DEPOSITO');
             $table->integer('cantidad');
             $table->string('nuevo')->nullable();

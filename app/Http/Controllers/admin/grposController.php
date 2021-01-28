@@ -68,7 +68,10 @@ class grposController extends Controller
      */
     public function edit(Request $request, $grupo)
     {
-        $grad = alumno::where('grupo_id', $grupo)->first();
+        $grad = alumno::select('alumnos.id as id')
+        ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+        ->join('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
+        ->where('grupos_alumnos.grupo_id', $grupo)->first();
         if (! $grad) {
             return \Redirect::back()->with('flash_error', 'No se ha encontrado');
         }
@@ -84,7 +87,8 @@ class grposController extends Controller
         'alumnos.matricula as matricula',
         'grupos.nombre as grupo',
         'users.email as email')
-        ->leftJoin('grupos', 'alumnos.grupo_id', '=', 'grupos.id')
+        ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+        ->join('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
         ->leftJoin('users', 'alumnos.id', '=', 'users.alumno_id')
         ->orderBy('apellidos', 'ASC')
         ->grupo($grupo)
