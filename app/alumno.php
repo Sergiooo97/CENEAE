@@ -20,6 +20,12 @@ class alumno extends Model
 
     }
 
+    public function status()
+    {
+        return $this->belongsToMany(\App\status::class, status_alumnos::class)->withTimestamps();
+
+    }
+
     public function grades_values()
     {
         return $this->hasMany('App\notas_values');

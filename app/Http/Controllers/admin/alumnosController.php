@@ -15,6 +15,8 @@ use App\tutor;
 use App\User;
 use App\grupo;
 use App\cPostal;
+use App\status;
+
 use Illuminate\Http\Request;
 use App\alumno;
 use Illuminate\Http\Response;
@@ -194,6 +196,7 @@ class alumnosController extends Controller
               
                 
                     $alumno->grupos()->attach(grupo::where('id', $request->input('grupo'))->first()); 
+                    $alumno->status()->attach(status::where('id', '1')->first()); 
 
               return redirect()->route('home')->withError('El registro falló correctamente!');
     }
@@ -242,9 +245,15 @@ class alumnosController extends Controller
             /*-----------------------------------------------------------------------------------------------------*/
 
         $alumnos_grado_grupo = alumno::find($id);  //Se busca en la tabla alumnos el id que es recibido como parametro de la url
-        $cursos = curso::where('id' ,'>' ,0)
-            ->where('grado', $alumnos_grado_grupo->grado)
-            ->where('grupo', $alumnos_grado_grupo->grupo)->get();
+        $cursos = curso::select(
+            'cursos.nombre as nombre',
+            'cursos.id as id'
+        )
+        ->Join('grupos', 'cursos.grupo_id', '=', 'grupos.id')
+        ->Join('cursos_alumnos', 'cursos.id', '=', 'cursos_alumnos.id')
+        ->Join('alumnos', 'cursos_alumnos.alumno_id', '=', 'alumnos.id')
+        ->where('cursos.id' ,'>' ,0)
+        ->get();
         $nota_id = notas::select('id')->where('curso_id', $request->input('n_id'))->first();//El request se envia desde un formulario en la vista[Alumnos.show]
 
         /* --------------------------Configuración para la gráfica--------------------------*/
@@ -333,7 +342,7 @@ class alumnosController extends Controller
     public function edit($id)
     {
         $grupo_id = alumno::select('grupos.id as id', 'grupos.nombre as nombre')
-            ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+            ->join('tutores', 'alumno-s.id', '=', 'tutores.alumno_id')
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
             ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
             ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')

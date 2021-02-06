@@ -22,13 +22,13 @@ class AddTriggerToAlumnos extends Migration
             THEN
 
             UPDATE ndolar_listas SET cantidad=cantidad + NEW.cantidad
-            WHERE alumno_id=NEW.lista_id;
+            WHERE alumno_id=NEW.alumno_id;
 
 
             ELSE
 
             UPDATE ndolar_listas SET cantidad=cantidad - NEW.cantidad
-            WHERE alumno_id=NEW.lista_id;
+            WHERE alumno_id=NEW.alumno_id;
             END IF;
         ');
         });

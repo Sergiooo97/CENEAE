@@ -15,9 +15,7 @@ class CreateNdolarTransaccionesTable extends Migration
     {
         Schema::create('ndolar_transacciones', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lista_id');
-            $table->string('matricula')->nullable();
-            $table->string('nombre')->nullable();
+            $table->unsignedBigInteger('alumno_id');
             $table->enum('accion',['DEPOSITO', 'RETIRO'])->default('DEPOSITO');
             $table->integer('cantidad');
             $table->string('nuevo')->nullable();
@@ -25,9 +23,9 @@ class CreateNdolarTransaccionesTable extends Migration
             $table->timestamps();
 
             //Relaciones
-            $table->foreign('lista_id')
+            $table->foreign('alumno_id')
                 ->references('id')
-                ->on('ndolar_listas')
+                ->on('alumnos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

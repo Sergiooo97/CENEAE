@@ -16,10 +16,6 @@ class CreateNdolarListasTable extends Migration
         Schema::create('ndolar_listas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('alumno_id')->index();
-            $table->string('matricula')->nullable();
-            $table->string('nombres')->nullable();
-            $table->string('grado')->nullable();
-            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->integer('cantidad');
 
 
@@ -27,11 +23,6 @@ class CreateNdolarListasTable extends Migration
             $table->foreign('alumno_id')
             ->references('id')
             ->on('alumnos')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->foreign('grupo_id')
-            ->references('id')
-            ->on('grupos')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
