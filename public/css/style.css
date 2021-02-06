@@ -90,6 +90,9 @@ body,
 }
 
 @media screen and ( max-height: 600px) {
+    .login-link {
+        display: block !important;
+    }
     .sun {
         width: 150px !important;
         height: 100px !important;
@@ -165,6 +168,9 @@ body,
     .info-inscripcion {
         font-size: 11px;
     }
+    .login-link {
+        display: block !important;
+    }
 }
 
 @media screen and (max-device-width: 1024px) and (min-device-width: 480px) and (orientation: portrait) {
@@ -222,5 +228,8 @@ body,
     }
     .top-nav-collapse {
         background: rgb(168, 47, 6);
+    }
+    .login-link {
+        display: none !important;
     }
 }
