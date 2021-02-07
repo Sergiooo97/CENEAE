@@ -347,9 +347,9 @@
             <a class="button-link" href=" {{ route('galeria') }}">
                 GALERIA
             </a>
-            <button type="button" class="button-link" data-toggle="modal" data-target="#modalReservar" target="_blank">
+           <!-- <button type="button" class="button-link" data-toggle="modal" data-target="#modalReservar" target="_blank">
               Reservar
-          </button>
+          </button> -->
             @if (Route::has('login'))
 
                 @auth
