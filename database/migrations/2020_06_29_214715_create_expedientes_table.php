@@ -31,7 +31,6 @@ class CreateExpedientesTable extends Migration
             $table->date('fecha_de_nacimiento')->nullable();
             $table->string('sexo')->nullable();
             $table->integer('edad')->nullable();
-            $table->string('estatura')->nullable();
             $table->string('lugar_de_nacimiento')->nullable();
             $table->string('domicilio_actual')->nullable();
         // datos del tutor
@@ -42,16 +41,18 @@ class CreateExpedientesTable extends Migration
             $table->string('domicilio_actual_tutor');
             $table->string('ocupacion_tutor')->nullable();
             $table->string('edad_tutor')->nullable();
-            
-        //Datos del hogar
-            $table->string('num_personas_vivienda')->nullable();
+            $table->string('parentesco_con_tutor')->nullable();            
+            $table->string('quiero_ser')->nullable();            
+        
+            //Datos del hogar
+           /* $table->string('num_personas_vivienda')->nullable();
             $table->string('Apellido_paterno_padre')->nullable();
             $table->string('Apellido_materno_padre')->nullable();
             $table->string('Apellido_paterno_madre')->nullable();
             $table->string('Apellido_materno_madre')->nullable();
             $table->string('nombre_de_padre')->nullable();
             $table->integer('edad_padre')->nullable();
-            $table->integer('edad_madre')->nullable();
+            $table->integer('edad_madre')->nullable(); */
             $table->unsignedBigInteger('alumno_id')->nullable();
             //Relaciones
             $table->foreign('alumno_id')

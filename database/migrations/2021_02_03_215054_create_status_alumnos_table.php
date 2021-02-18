@@ -13,7 +13,7 @@ class CreateStatusAlumnosTable extends Migration
      */
     public function up()
     {
-        Schema::create('status_alumnos', function (Blueprint $table) {
+       /* Schema::create('status_alumnos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('status_id')->nullable();
             $table->foreign('status_id')->references('id')->on('statuses')
@@ -22,7 +22,7 @@ class CreateStatusAlumnosTable extends Migration
             $table->foreign('alumno_id')->references('id')->on('alumnos')
                 ->onDelete('cascade');
             $table->timestamps();
-        });
+        }); */
     }
 
     /**

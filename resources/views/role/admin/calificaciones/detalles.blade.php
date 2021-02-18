@@ -67,6 +67,7 @@
                                                <td  style="color: #d29216; border:1px dashed #ccc; font-size: 20px; padding: 10px;">{{$prom->nota}}</td>
                                            @elseif($prom->nota <=5 )
                                                <td  style="color: #ff0000; border:1px dashed #ccc; font-size: 20px; padding: 10px;">{{$prom->nota}}</td>
+                                              
                                            @endif
                                        @endif
                                @empty

@@ -295,7 +295,7 @@
             </div>
             <div class="row">
               <div class="update ml-auto mr-auto">
-                <a href="{{route('alumnos.edit', ['grupo' => $alumno->grupo_nombre, 'id' => $alumno->id])}}"  class="btn btn-primary btn-round">Actualizar datos</a>
+                <a href="{{route('alumnos.edit', ['grupo' => $alumno->grupo_nombre, 'id' => $alumno->id])}}"  class="btn btn-primary btn-round">Completar / Actualizar datos</a>
               </div>
             </div>
 
@@ -399,6 +399,7 @@
 
     </div>
   <a href="{{route('calificaciones.show', ['curso_id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-bullet-list-67"></i> Asistencia</a>
+  <a href="{{route('calificaciones.show', ['curso_id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-bullet-list-67"></i> Registrar expediente</a>
 
 </div>
 </div>

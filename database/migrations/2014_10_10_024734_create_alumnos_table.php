@@ -19,21 +19,29 @@ class CreateAlumnosTable extends Migration
             $table->string('nombres');
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
-            $table->integer('edad')->nullable();
-            $table->date('fecha_de_nacimiento')->nullable();
             $table->string('curp')->nullable();
             $table->string('municipio')->nullable();
             $table->string('cp')->nullable();
            // $table->string('correo');
             $table->string('direccion')->nullable();
             //$table->unsignedBigInteger('grupo_id');
+            $table->date('fecha_de_nacimiento')->nullable();
+            $table->integer('edad')->nullable();
+            $table->string('sexo')->nullable();
+            $table->string('estatura')->nullable();
+            $table->string('peso')->nullable();
+            $table->string('escuela_procedencia')->nullable();
+            $table->string('quiero_ser')->nullable();            
+            $table->string('regularidad')->nullable();
+            $table->string('fecha_ingreso')->nullable();
+            $table->unsignedBigInteger('status_id');
             $table->timestamps();
-             /*Relaciones
-             $table->foreign('grupo_id')
+             //Relaciones
+             $table->foreign('status_id')
              ->references('id')
-             ->on('grupos')
+             ->on('statuses')
              ->onDelete('cascade')
-             ->onUpdate('cascade'); */
+             ->onUpdate('cascade'); 
         });
     }
 

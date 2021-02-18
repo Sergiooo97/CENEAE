@@ -37,7 +37,8 @@ class alumno extends Model
         'curp','grado','municipio','cp','direccion','grupo_id','grupo',
         'quiero_ser','ndolares', 'nombres_tutor','apellido_paterno_tutor',
         'apellido_materno_tutor','direccion_tutor','escolaridad_tutor',
-        'curp_tutor','telefono_tutor',
+        'curp_tutor','telefono_tutor','status_id','estatura', 'peso','quiero_ser','escuela_procedencia','fecha_ingreso',
+        'sexo','regularidad',
     ];
     //Query Scope
     /**

@@ -78,12 +78,19 @@ class calificacionesController
             ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
             ->groupBy('curso_id')
             ->get();
-        $alumno = alumno::where('id', $id)->first();
-        $cursos = curso::where('grado', $alumno->grado)
-            ->where('grupo', $alumno->grupo)
+        $alumno = alumno::select(
+            'alumnos.id as id',
+            'alumnos.nombres as nombres',
+            'alumnos.apellido_paterno as apellido_paterno',
+            'alumnos.apellido_materno as apellido_materno',
+            'grupos.id as grupo'
+        )
+        ->leftjoin('grupos_alumnos', 'alumnos.id', '=','grupos_alumnos.alumno_id')
+        ->leftJoin('grupos', 'grupos_alumnos.grupo_id', '=', 'grupos.id')
+        ->where('alumnos.id', $id)->first();
+        $cursos = curso::where('grupo_id', $alumno->grupo)
             ->pluck('id', 'nombre')->toArray();
-        $cursos_nombre = curso::where('grado', $alumno->grado)
-            ->where('grupo', $alumno->grupo)
+        $cursos_nombre = curso::where('grupo_id', $alumno->grupo)
             ->get();
         $ns = notas_structures::select('notas_structures.nombre as structure_nombre')
             ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
@@ -131,9 +138,16 @@ class calificacionesController
     {
         //View en la que se asigna la calificación a una actividad por bimestre.
         $cursos = curso::where('id', $curso_id)->get();
-        $alumnos = \App\alumno::orderBy('apellido_paterno', 'ASC')
-            ->where('grado', $curso_grado)
-            ->where('grupo', $curso_grupo)
+        $alumnos = \App\alumno::select(
+            'alumnos.id as id',
+            'alumnos.nombres as nombres',
+            'alumnos.apellido_paterno as apellido_paterno',
+            'alumnos.apellido_materno as apellido_materno'
+        )
+        ->leftjoin('grupos_alumnos', 'alumnos.id', '=','grupos_alumnos.alumno_id')
+        ->leftJoin('grupos', 'grupos_alumnos.grupo_id', '=', 'grupos.id')
+        ->orderBy('alumnos.apellido_paterno', 'ASC')
+            ->where('grupos_alumnos.grupo_id', $curso_grado)
             ->paginate(5);
         $notas = notas::where('id', $nota_id)->get();
         $actividades = notas_structures::where('nota_id', $nota_id)->get();

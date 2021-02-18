@@ -20,7 +20,7 @@
                 <div class="col-sm">
 
                   {!!Form::label('id','id',['class'=>'label'])!!}
-                <input name="matricula"id="id_al" class="form-control" value="{{$alumno->matricula}}"  >
+                <input name="matricula"id="id_al" class="form-control" value="{{$alumno->matricula}}"  readonly>
 
                 </div>
                 <div class="col-sm">
@@ -41,6 +41,28 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-sm">
+                  {!!Form::label('sexo','sexo',['class'=>'label'])!!}
+                  <select name="sexo" class="form-control" id="grupo">
+                    <option value="H">Masculino</option>
+                    <option value="F">Femenino</option>
+                  </select>
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('estatura',' Estatura',['class'=>'label'])!!}
+                  <input name="estatura" id="estatura" type="number" class="form-control" placeholder="00 Kg" value="{{$alumno->estatura}}" maxlength="5">
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('peso','Peso',['class'=>'label'])!!}
+                  <input name="peso" id="peso" class="form-control" type="number" placeholder="Peso" autocomplete="off" value="{{$alumno->peso}}" maxlength="11"
+                    required>
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('Edad','Edad',['class'=>'label'])!!}
+                  <input type="text" name="age" id="age"  class="form-control" value="{{$alumno->edad}}" autocomplete="off">
+                </div>
+              </div>
               <div class="row">
 
                 <div class="col-sm">
@@ -67,8 +89,9 @@
                 </script>
                 </div>
                 <div class="col-sm">
-                  {!!Form::label('Edad','Edad',['class'=>'label'])!!}
-                  <input type="text" name="age" id="age"  class="form-control" value="{{$alumno->edad}}" autocomplete="off">
+                  {!!Form::label('escuela_procedencia','Escuela de procedencia',['class'=>'label'])!!}
+                  <input name="escuela_procedencia" id="escuela_procedencia" class="form-control" placeholder="Escuela de procedencia" autocomplete="off" value="{{$alumno->escuela_procedencia}}" maxlength="11"
+                    required>
                 </div>
                 <div class="col-sm">
                   {!!Form::label('CURP','CURP',['class'=>'label'])!!}
@@ -79,21 +102,15 @@
                   <div class="row">
                     <div class="col-sm">
                       {!!Form::label('Grupo','Grupo',['class'=>'label'])!!}
-                      <select name="grupo" class="form-control" id="grupo">
-                        @if (request('grupo') == "")
-                        <option value="">Seleccione</option>
-                        @else
-                        <option value="{{ $grupo_id->id }}">{{ $grupo_id->nombre }}</option>
-                        @endif
-                        @foreach ($grupos as $grupo)
-                          <option value="{{ $grupo->id }}">{{ $grupo->nombre }}</option>
-                        @endforeach
-      
-                      </select>
+                      <input name="" id="" class="form-control" autocomplete="off" value="{{ $grupo_id->nombre }}" maxlength="11"
+                      required readonly>
+                    
+                       
                     </div>
                   </div>
                 </div>
               </div>
+              
               <div class="row">
                 <div class="col-sm">
                   {!!Form::label('direccion','Dirección',['class'=>'label'])!!}
@@ -108,6 +125,26 @@
                   {!!Form::label('municipio','Municipio',['class'=>'label'])!!}
                   <input name="municipio" id="municipio" class="form-control" placeholder="Municipio" autocomplete="off" value="{{$alumno->municipio}}" maxlength="11"
                     required>
+                </div>
+                <div class="col-sm">
+                  
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-sm">
+                  {!!Form::label('fecha_ingreso','Fecha de ingreso',['class'=>'label'])!!}
+                  <input name="fecha_ingreso" id="fecha_ingreso" class="form-control" type="date" autocomplete="off" value="{{$alumno->fecha_ingreso}}" maxlength="11"
+                    required readonly>
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('regularidad',' Regularidad',['class'=>'label'])!!}
+                  <input name="regularidad" id="regularidad" type="number" class="form-control"  value="{{$alumno->regularidad}}" maxlength="5" readonly>
+                </div>
+                <div class="col-sm">
+                  {!!Form::label('status','Status',['class'=>'label'])!!}
+                  <input name="status_id" id="status_id" class="form-control" autocomplete="off" value="{{$alumno->status_id}}" maxlength="11"
+                    required readonly>
                 </div>
                 <div class="col-sm">
 

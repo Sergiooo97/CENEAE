@@ -57,6 +57,9 @@ Route::group([
   Route::post('/value', 'calificacionesController@valueStore')->name('calificaciones.value.store'); //CALIFICACIÓN DE ALUMNOS
   Route::post('/calificacion/registro', 'calificacionesController@store')->name('calificaciones.store'); //CALIFICACIÓN DE ALUMNOS
   Route::post('/actividad/registro', 'calificacionesController@actividadStore')->name('actividad.store'); //CALIFICACIÓN DE ALUMNOS
+
+  Route::get('{grupo}/{id}/edit', 'alumnosController@edit')->name('alumnos.edit'); //VENTANA DE ACTUALIZACIÓN DE DATOS
+
 });
 
 
@@ -66,6 +69,8 @@ Route::group([
   'middleware' =>  ['auth', 'role:admin'],
   'prefix'     =>   'admin',
   'namespace'  =>   'admin'], function () {
+
+
 
     /*
 |--------------------------------------------------------------------------
@@ -86,6 +91,7 @@ Route::group([
     Route::get('inscripcion', 'alumnosController@create')->name('alumnos.create'); //REGISTRO
     Route::post('inscripcion', 'alumnosController@store')->name('alumnos.store'); //GUARDAR DATOS EN LA BASE DE DATOS
       Route::post('asignar', 'alumnosController@asignarCursos')->name('alumnos.asignarCursos'); //GUARDAR DATOS EN LA BASE DE DATOS
+      Route::get('expediente', 'alumnosController@expediente_index')->name('alumnos.expediente'); //REGISTRO
 
       Route::get('{id}/info', 'alumnosController@show')->where('id','[0-9]+')->name('alumnos.show'); //INFORMACIÓN DE ALUMNO
     Route::get('{grupo}/{id}/edit', 'alumnosController@edit')->name('alumnos.edit'); //VENTANA DE ACTUALIZACIÓN DE DATOS
@@ -179,6 +185,9 @@ Route::group([
       Route::get('lista-todos', function () {
         return (new UsersExport(2020))->download('lista2020.xlsx');
         });
+
+        Route::get('/exp/{id}/{nombre}', 'archivosController@expedientePdf')->name('exp');
+
     });
 
 

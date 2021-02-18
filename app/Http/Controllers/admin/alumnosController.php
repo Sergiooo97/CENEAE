@@ -19,6 +19,7 @@ use App\status;
 
 use Illuminate\Http\Request;
 use App\alumno;
+use App\expediente;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -64,6 +65,7 @@ class alumnosController extends Controller
         ->orderBy('grupos.nombre', 'ASC')
         ->nombres($nombres)
        ->grupo($grupo)
+       ->where('alumnos.status_id', '1')
         ->paginate(6);
        
         return view('role.admin.alumnos.index', compact('alumnos', 'grupos', 'grupo_id'));
@@ -145,12 +147,12 @@ class alumnosController extends Controller
         
                 $alumno = new alumno();
                 $alumno->matricula = "************";
-                $alumno->nombres = $request->input('nombres');
-                $alumno->apellido_paterno = $request->input('apellido_paterno');
-                $alumno->apellido_materno = $request->input('apellido_materno');
+                $alumno->nombres = ucwords($request->input('nombres'));
+                $alumno->apellido_paterno = ucwords($request->input('apellido_paterno'));
+                $alumno->apellido_materno = ucwords($request->input('apellido_materno'));
                 $alumno->edad = $request->input('age');
                 $alumno->fecha_de_nacimiento = $request->input('birthday');
-                $alumno->curp = $request->input('curp');
+                $alumno->curp = strtoupper($request->input('curp'));
                 $alumno->direccion ="Calle ".$request->input('calle-num')." x ".$request->input('calle-entre')." y ".$request->input('calle-y').".";
                  // $alumno->correo = "x.xxxxx@ceneae.com";
                         if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
@@ -161,7 +163,9 @@ class alumnosController extends Controller
                         }else{
                             $alumno->municipio = "pendiente...";
                         }
+
                 $alumno->cp = $request->input('cp');
+                $alumno->status_id = "1";
                 $alumno->save();
         
                 $tutor = new tutor();
@@ -181,7 +185,7 @@ class alumnosController extends Controller
                      }
                 $tutor->codigo_postal = $request->input('cp_tutor');
  
-                $tutor->correo = $request->input('direccion_tutor');
+                $tutor->correo = $request->input('correo_tutor');
                 $tutor->telefono = $request->input('telefono');
                 $tutor->escolaridad = $request->input('ocupacion');
                 $tutor->save();
@@ -196,7 +200,6 @@ class alumnosController extends Controller
               
                 
                     $alumno->grupos()->attach(grupo::where('id', $request->input('grupo'))->first()); 
-                    $alumno->status()->attach(status::where('id', '1')->first()); 
 
               return redirect()->route('home')->withError('El registro falló correctamente!');
     }
@@ -342,7 +345,7 @@ class alumnosController extends Controller
     public function edit($id)
     {
         $grupo_id = alumno::select('grupos.id as id', 'grupos.nombre as nombre')
-            ->join('tutores', 'alumno-s.id', '=', 'tutores.alumno_id')
+            ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
             ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
             ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
@@ -387,13 +390,20 @@ class alumnosController extends Controller
                ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
                ->groupBy('curso_id')
                ->get();
-           $alumno = alumno::where('id', $id)->first();
-           $cursos = curso::where('grado', $alumno->grado)
-               ->where('grupo', $alumno->grupo)
-               ->pluck('id', 'nombre')->toArray();
-           $cursos_nombre = curso::where('grado', $alumno->grado)
-               ->where('grupo', $alumno->grupo)
-               ->get();
+               $alumno = alumno::select(
+                'alumnos.id as id',
+                'alumnos.nombres as nombres',
+                'alumnos.apellido_paterno as apellido_paterno',
+                'alumnos.apellido_materno as apellido_materno',
+                'grupos.id as grupo'
+            )
+            ->leftjoin('grupos_alumnos', 'alumnos.id', '=','grupos_alumnos.alumno_id')
+            ->leftJoin('grupos', 'grupos_alumnos.grupo_id', '=', 'grupos.id')
+            ->where('alumnos.id', $id)->first();
+            $cursos = curso::where('grupo_id', $alumno->grupo)
+                ->pluck('id', 'nombre')->toArray();
+            $cursos_nombre = curso::where('grupo_id', $alumno->grupo)
+                ->get();
            $ns = notas_structures::select('notas_structures.nombre as structure_nombre')
                ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
                ->leftJoin('cursos', 'notas.curso_id', '=', 'cursos.id')
@@ -406,7 +416,8 @@ class alumnosController extends Controller
                    'notas_structures.id as ns_id',
                    'notas_values.periodos_rangos_id as per.id',
                    'notas_structures.nombre as ns_nombre',
-                   'cursos.id as curso_id')
+                   'cursos.id as curso_id',
+                   \DB::raw('count(*) as Total'))
                    ->leftJoin('notas', 'cursos.id', '=', 'notas.curso_id')
                    ->leftJoin('notas_structures', 'notas.id', '=', 'notas_structures.nota_id')
                    ->leftJoin('notas_values', 'notas_structures.id', '=', 'notas_values.nota_structures_id')
@@ -437,5 +448,12 @@ class alumnosController extends Controller
            return view('role.admin.calificaciones.detalles', compact('periodos','promedioFIN','bimestres_total', 'promedioFINAL', 'ns', 'promedio','cursos', 'cursos_nombre', 'alumno'));
     
     }
+
+    public function expediente_index()
+    {
+        return view ('role.admin.alumnos.expediente');
+        
+    }
 }
+
 

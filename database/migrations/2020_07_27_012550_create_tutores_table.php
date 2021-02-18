@@ -26,6 +26,8 @@ class CreateTutoresTable extends Migration
             $table->string('curp')->nullable();
             $table->string('telefono')->nullable();
             $table->string('correo')->nullable();
+            $table->string('parentesco_con_alumno')->nullable();            
+
             $table->timestamps();
 
             //Relaciones

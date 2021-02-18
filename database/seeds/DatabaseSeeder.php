@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(peridodoSeeder::class);
         $this->call(peridoRangoSeeder::class);
         $this->call(cursoSeeder::class);
+        $this->call(statusSeeder::class);
+        
         //$this->call(alumnosSeeder::class);
         //$this->call(curso_alumnosSeeder::class);
         //$this->call(notasSeeder::class);
