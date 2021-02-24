@@ -399,7 +399,7 @@
 
     </div>
   <a href="{{route('calificaciones.show', ['curso_id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-bullet-list-67"></i> Asistencia</a>
-  <a href="{{route('calificaciones.show', ['curso_id'=> $alumno->id])}}" class="btn btn-info"><i class="nc-icon nc-bullet-list-67"></i> Registrar expediente</a>
+  <a href="{{route('exp', ['id'=> $alumno->id, 'nombre' => $alumno->nombres])}}" class="btn btn-info"><i class="nc-icon nc-bullet-list-67"></i> Registrar expediente</a>
 
 </div>
 </div>

@@ -17,30 +17,32 @@
             <h3>Datos del Alumno</h3>
             <div class="container">
               <div class="row">
-                <div class="col-sm">
+                <div class="col-sm-3">
 
                   {!!Form::label('id','id',['class'=>'label'])!!}
                 <input name="matricula"id="id_al" class="form-control" value="{{$alumno->matricula}}"  readonly>
 
                 </div>
-                <div class="col-sm">
-                  {!!Form::label('Nombres','Nombres',['class'=>'label'])!!}
-                  <input name="nombres"id="nombres" class="form-control" value="{{$alumno->nombres}}" >
-
-
-                </div>
-                <div class="col-sm">
-                  {!!Form::label('Apellido_P','apellido Paterno',['class'=>'label'])!!}
+               
+              </div>
+              <div class="row">
+               
+                <div class="col-sm-3">
+                  {!!Form::label('Apellido_P','A. Paterno',['class'=>'label'])!!}
                   <input name="apellido_paterno" id="apellido_paterno" class="form-control" value="{{$alumno->apellido_paterno}}" >
 
                 </div>
-                <div class="col-sm">
-                  {!!Form::label('Apellido_M','apellido Materno',['class'=>'label'])!!}
+                <div class="col-sm-3">
+                  {!!Form::label('Apellido_M','A. materno',['class'=>'label'])!!}
                   <input name="apellido_materno" id="apellido_materno" class="form-control" value="{{$alumno->apellido_materno}}" >
 
                 </div>
-              </div>
+                <div class="col-sm-6">
+                  {!!Form::label('Nombres','Nombre (s) del alumno',['class'=>'label'])!!}
+                  <input name="nombres"id="nombres" class="form-control" value="{{$alumno->nombres}}" >
+                </div>
 
+              </div>
               <div class="row">
                 <div class="col-sm">
                   {!!Form::label('sexo','sexo',['class'=>'label'])!!}

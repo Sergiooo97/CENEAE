@@ -185,19 +185,30 @@ class archivosController extends Controller
         ->first();
         $alumnos = alumno::select(
             'alumnos.id',
-            'alumnos.matricula as matricula',
-            'alumnos.nombres as nombres',
-            'alumnos.apellido_paterno as apellido_paterno',
-            'alumnos.apellido_materno as apellido_materno',
+            'alumnos.matricula',
+            'alumnos.nombres',
+            'alumnos.apellido_paterno',
+            'alumnos.apellido_materno',
             'alumnos.edad',
             'alumnos.fecha_de_nacimiento as nacimiento',
-            'alumnos.curp',
+            'alumnos.curp as curp',
             'grupos.nombre as grupo_nombre',
             'alumnos.municipio',
             'alumnos.cp',
             'alumnos.direccion',
+            'alumnos.created_at',
+            'grupos.nombre as grupo',
+            'alumnos.sexo',
+            'alumnos.peso',
+            'alumnos.estatura',
+            'statuses.nombre as status_id',
+            'alumnos.regularidad',
+            'alumnos.escuela_procedencia',
             'tutores.nombres as nombres_tutor',
             'tutores.telefono as telefono_tutor',
+            'tutores.edad as edad_tutor',
+            'tutores.fecha_de_nacimiento as fecha_nacimiento_tutor',
+            'tutores.codigo_postal as cp_tutor',
             'tutores.direccion as direccion_tutor',
             'tutores.apellido_paterno as apellido_paterno_tutor',
             'tutores.apellido_materno as apellido_materno_tutor',
@@ -205,7 +216,8 @@ class archivosController extends Controller
             'tutores.curp as curp_tutor',
             'ndolar_listas.cantidad as ndolar_cantidad',
             'tutores.correo as correo_tutor')
-            ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+            ->join('statuses', 'alumnos.status_id', '=','statuses.id')
+            ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
             ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
             ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
@@ -213,6 +225,8 @@ class archivosController extends Controller
             ->first();
 
         $pdf = \PDF::loadView('role.admin.download.pdf.expediente', compact('periodos','promedioFIN','bimestres_total', 'promedioFINAL', 'ns', 'promedio','cursos', 'cursos_nombre','alumno','ndolar', 'ndolar_t', 'alumnos'));
-        return $pdf->stream('exp de '.$id.'.pdf');
+        return $pdf->stream('exp de '.$id.'.pdf')->download('exp de '.$id.'.pdf'); 
+    
+
     }
 }

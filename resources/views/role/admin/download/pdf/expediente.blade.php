@@ -138,35 +138,35 @@
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >edad:</td>
                 <td height="60px" class="linea"><span class="text">{{ $alumnos->edad}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >CURP:</td>
-                <td height="60px" class="linea"><span class="text">EXGS971124HYNBLR01</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->curp) }}</span></td>
     
             </tr>
             <tr>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Sexo:</td>
-                <td height="60px" class="linea"><span class="text">MASCULINO</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->sexo) }}</span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Peso:</td>
-                <td height="60px" class="linea"><span class="text">60kg</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->peso) }}</span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >altura:</td>
-                <td height="60px" class="linea"><span class="text">1.70m</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->estatura) }}</span></td>
                
             </tr>
             <tr>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Dirección:</td>
-                <td height="60px" class="linea"><span class="text">CALLE 16 X 17 Y 19.</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->direccion) }}</span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Código postal:</td>
                 <td height="60px" class="linea"><span class="text">{{ $alumnos->cp}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Municipio:</td>
-                <td height="60px" class="linea"><span class="text">CACALCHÉN, YUCATÁN.</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->municipio) }}</span></td>
               
             </tr>
             <tr>
                
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Escuela de procedencia:</td>
-                <td  height="60px" class="linea"><span class="text">CHAC-MOOL</span></td>
+                <td  height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->escuela_procedencia) }}</span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Grupo:</td>
-                <td height="60px" class="linea"><span class="text">1A</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->grupo) }}</span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Regularidad:</td>
-                <td height="60px" class="linea"><span class="text">Regular</span></td>
+                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->regularidad) }}</span></td>
 
                
             </tr>
@@ -174,9 +174,9 @@
            
             <tr>
                 <td height="50px" style="font-size: 12px !important; font-weight:bold;" >Fecha de ingreso:</td>
-                <td height="50px" class="linea"><span class="text">24/11/2019</span></td>
+                <td height="50px" class="linea"><span class="text">{{ $alumnos->created_at->isoFormat('D-M-Y') }}</span></td>
                 <td height="50px" style="font-size: 12px !important; font-weight:bold;" >Estatus:</td>
-                <td height="50px" class="linea"><span class="text">ACTIVO</span></td>
+                <td height="50px" class="linea"><span class="text">{{ $alumnos->status_id }}</span></td>
    
             </tr>
            
@@ -186,35 +186,35 @@
            
             <tr style="padding: 2em;">
                 <td  height="60px" style="font-size: 12px !important; font-weight:bold;" width="15%">Nombre (s):</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumno->nombres)}} &nbsp;{{ strtoupper($alumno->apellido_paterno)}} &nbsp;{{ strtoupper($alumno->apellido_materno)}} </span></td>
+                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumnos->nombres_tutor)}} &nbsp;{{ strtoupper($alumnos->apellido_paterno_tutor)}} &nbsp;{{ strtoupper($alumnos->apellido_materno_tutor)}} </span></td>
                
             
             </tr>
             <tr style="padding: 2em;">
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Fecha de nacimiento</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ $alumnos->nacimiento}} </span></td>
+                <td height="60px"  width="33%" class="linea"><span class="text">{{ $alumnos->nacimiento_tutor}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >edad:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->edad}} </span></td>
+                <td height="60px" class="linea"><span class="text">{{ $alumnos->edad_tutor}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >CURP:</td>
-                <td height="60px" class="linea"><span class="text">EXGS971124HYNBLR01</span></td>
+                <td height="60px" class="linea"><span class="text">{{ $alumnos->edad_tutor}} </span></td>
     
             </tr>
             <tr>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Sexo:</td>
-                <td height="60px" class="linea"><span class="text">MASCULINO</span></td>
+                <td height="60px" class="linea"><span class="text">{{ $alumnos->sexo_tutor}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Peso:</td>
-                <td height="60px" class="linea"><span class="text">60kg</span></td>
+                <td height="60px" class="linea"><span class="text">{{ $alumnos->peso_tutor}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >altura:</td>
-                <td height="60px" class="linea"><span class="text">1.70m</span></td>
+                <td height="60px" class="linea"><span class="text">{{ $alumnos->estatura_tutor}} </span></td>
                
             </tr>
             <tr>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Dirección:</td>
-                <td height="60px" class="linea"><span class="text">CALLE 16 X 17 Y 19.</span></td>
+            <td height="60px" class="linea"><span class="text">{{ $alumnos->direccion_tutor}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Código postal:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->cp}} </span></td>
+                <td height="60px" class="linea"><span class="text">{{ $alumnos->cp_tutor}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Municipio:</td>
-                <td height="60px" class="linea"><span class="text">CACALCHÉN, YUCATÁN.</span></td>
+                <td height="60px" class="linea"><span class="text">{{ $alumnos->municipio_tutor}} </span></td>
               
             </tr>
             <tr>
@@ -339,7 +339,7 @@
                 <td style="line-height: 2px;" align="center">CENTRO EDUCATIVO NATANAEL</td>
                 <td  rowspan="3" width="20%" align="center"><img id="logo" src="{{ public_path('img/segeey.png') }}" alt="" width="120" height="100"></td>
             </tr>
-            <tr>
+            <tr>  
 
                 <td style="line-height: 2px;" align="center">C.C.T 31PPR0032N, ZONA 029</td>
             </tr>
@@ -362,6 +362,7 @@
             </tr>
 
         </table>
+               
 
                             <table id="example" class="table table-striped table-hover tabla3 " style="width:100%">
                                 <tr class="fondo" style=" border:1px dashed #ccc;" class="text-primary">
@@ -391,23 +392,40 @@
                                         <p>No hay registros</p>
                                     @endforelse
                                 <!--================= Mostrar la fina de las actividades ================================-->
+                                @if(count($promedioFINAL)) 
                                     @forelse($promedioFINAL as $prom)
-                                        @if($prom->curso_id == $crs) <!-- solo cuando el id del curso sea igual al id que recibe del forelse de cursos-->
-                                        <td rowspan="2"   style="border:1px dashed #ccc; font-size: 20px; padding: 10px;"><small>final: </small>{{round($prom->prom)}}</td>
-                                        @endif
-                                    @empty
-                                        <p>No hay registros</p>
-                                    @endforelse
+                                    @if($prom->curso_id == $crs) <!-- solo cuando el id del curso sea igual al id que recibe del forelse de cursos-->
+                                    <td rowspan="2"   style="border:1px dashed #ccc; font-size: 20px; padding: 10px;"><small>final: </small>{{round($prom->prom)}}</td>
+                                 
+                                    @endif
+                                        @empty
+                                            <p>No hay registros</p>
+                                        @endforelse
+                               
+                                @endif
+
+                                 
                                 </tr>
                                 <tr>
                                     <!--================= Mostrar la fina de las calificaciones ================================-->
-                                @forelse($promedioFIN as $prom)
-                                    @if($prom->curso_id == $crs) <!-- solo cuando el id del curso sea igual al id que recibe del forelse de cursos-->
-                                        <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">{{round($prom->prom)}}</td>
-                                        @endif
-                                    @empty
-                                        <p>No hay registros</p>
-                                    @endforelse
+                                    @if(count($promedioFIN)) 
+                                        @forelse($promedioFIN as $prom)
+                                            @if($prom->curso_id == $crs) <!-- solo cuando el id del curso sea igual al id que recibe del forelse de cursos-->
+                                                <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">{{round($prom->prom)}}</td>
+                                                @endif
+                                            @empty
+                                                <p>No hay registros</p>
+                                            @endforelse
+                                    @else
+                                    <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">0</td>
+                                    <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">0</td>
+                                    <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">0</td>
+                                    <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">0</td>
+                                    <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">0</td>
+                                    <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">0</td>
+                                    <td  style="border:1px dashed #ccc; font-size: 20px; padding: 10px;">0</td>
+
+                                    @endif
                                 </tr>
                                 @empty
                                     <p>No hay registros</p>

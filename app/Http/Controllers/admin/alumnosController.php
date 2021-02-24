@@ -184,6 +184,9 @@ class alumnosController extends Controller
                        $tutor->municipio = "pendiente...";
                      }
                 $tutor->codigo_postal = $request->input('cp_tutor');
+                $tutor->fecha_de_nacimiento = $request->input('birthday_tutor');
+                $tutor->edad = $request->input('age_tutor');
+                $tutor->curp = strtoupper($request->input('curp_tutor'));
  
                 $tutor->correo = $request->input('correo_tutor');
                 $tutor->telefono = $request->input('telefono');
@@ -388,7 +391,7 @@ class alumnosController extends Controller
                ->pluck('id')->toArray();
            $bimestres_total = notas_structures::select('notas.curso_id as curso_id',\DB::raw('count(*) as Total'))
                ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
-               ->groupBy('curso_id')
+               ->groupBy('curso_i   d')
                ->get();
                $alumno = alumno::select(
                 'alumnos.id as id',
