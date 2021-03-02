@@ -108,26 +108,30 @@
                   <div class="row">
                     <div class="col">
                       {!!Form::label('calle-num','calle',['class'=>'label'])!!}
-                      <input name="calle-num" id="calle" type="number" class="form-control" placeholder="#" maxlength="3">
+                      <input name="calle-num" id="calle" type="number" class="form-control" placeholder="#" maxlength="3" required>
                     </div>
                     <div class="col">
                       {!!Form::label('calle-entre','entre',['class'=>'label'])!!}
-                      <input name="calle-entre" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3">
+                      <input name="calle-entre" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3" required>
                     </div>
                     <div class="col-sm">
                       {!!Form::label('calle-y','Y',['class'=>'label'])!!}
                       <input name="calle-y" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3">
+
                     </div>
                   </div>
                   
                   
                 </div>
                 <div class="col-sm">
-                  {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
-                  <input name="cp" id="cp" type="number" class="form-control" placeholder="Código postal" maxlength="5">
+                  {!!Form::label('num','Número',['class'=>'label'])!!}
+                  <input name="num" id="num"  class="form-control" placeholder="#" required>
+
+
                 </div>
                 <div class="col-sm">
-                 
+                  {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
+                  <input name="cp" id="cp" type="number" class="form-control" placeholder="Código postal" maxlength="5">
                 </div>
                 <div class="col-sm">
                  

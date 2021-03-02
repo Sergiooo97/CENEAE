@@ -190,7 +190,7 @@ class archivosController extends Controller
             'alumnos.apellido_paterno',
             'alumnos.apellido_materno',
             'alumnos.edad',
-            'alumnos.fecha_de_nacimiento as nacimiento',
+            'alumnos.fecha_de_nacimiento',
             'alumnos.curp as curp',
             'grupos.nombre as grupo_nombre',
             'alumnos.municipio',

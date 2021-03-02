@@ -22,9 +22,11 @@ class CreateTutoresTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('municipio')->nullable();
             $table->string('codigo_postal')->nullable();
+            $table->string('sexo')->nullable();
             $table->integer('edad')->nullable();
             $table->date('fecha_de_nacimiento')->nullable();
             $table->string('escolaridad')->nullable();
+            $table->string('ocupacion')->nullable();
             $table->string('curp')->nullable();
             $table->string('telefono')->nullable();
             $table->string('correo')->nullable();

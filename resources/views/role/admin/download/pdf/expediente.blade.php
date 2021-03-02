@@ -134,7 +134,7 @@
             </tr>
             <tr style="padding: 2em;">
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Fecha de nacimiento</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ $alumnos->nacimiento}} </span></td>
+                <td height="60px"  width="33%" class="linea"><span class="text">{{ $alumnos->fecha_de_nacimiento}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >edad:</td>
                 <td height="60px" class="linea"><span class="text">{{ $alumnos->edad}} </span></td>
                 <td height="60px" style="font-size: 12px !important; font-weight:bold;" >CURP:</td>
