@@ -186,7 +186,7 @@ Route::group([
         return (new UsersExport(2020))->download('lista2020.xlsx');
         });
 
-        Route::get('/exp/{id}/{nombre}', 'archivosController@expedientePdf')->name('exp');
+        Route::get('/exp/{id}/{nombre}/{a}', 'archivosController@expedientePdf')->name('exp');
 
     });
 

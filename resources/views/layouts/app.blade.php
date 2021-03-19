@@ -205,7 +205,7 @@
               <div class="dropdown-container">
                 <ul style="padding-left: 20px !important;">
                   <li>
-                    <a href="{{ route('alumnos.index') }}">
+                    <a href="{{ route('alumnos.index',['grupo' => '1']) }}">
                       <p class="slider-label "><i class="nc-icon nc-bullet-list-67"></i>Listas
                         {{request()->is('admin/alumno/*/info') ? '>info' : ''}}
                       </p>
@@ -438,7 +438,7 @@
 
                   </div>
                 </div>
-                <
+                
             </div>
           </div>
         </nav>

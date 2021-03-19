@@ -11,7 +11,7 @@
         border-collapse: collapse;
     }
     td{
-        padding: 6px 5px;
+        padding: 2px 2px;
         font-size: 15px;
     }
     .h1{
@@ -90,191 +90,253 @@
    .text{
        font-size: 12px !important;
    }
-  
+   .text2{
+       font-size: 13px !important;
+   }
+   body{
+      font-family: sans-serif;
+    }
+    @page {
+      margin: 180px 10px;
+    }
+    header { position: fixed;
+      left: 0px;
+      top: -150px;
+      right: 0px;
+      height: 100px;
+      background-color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 0;
+    }
+    header h1{
+      margin: 10px 0;
+    }
+    header h2{
+      margin: 0 0 10px 0;
+    }
+    footer {
+      position: fixed;
+      left: 0px;
+      bottom: -170px;
+      right: 0px;
+      height: 200px;
+      border-bottom: 2px solid rgb(255, 255, 255);
+    }
+    footer .page:after {
+      content: counter(page);
+    }
+    footer table {
+      width: 100%;
+    }
+    footer p {
+      text-align: right;
+    }
+    footer .izq {
+      text-align: left;
+    }
+    .content{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    #footer .page:after { content: counter(page, upper-roman); }
+
 </style>
 </head>
 <body>
-    <div>
-        <table width="100%" class="tabla1">
-            <tr>
+    <header>
+        <table style="padding: 0;">
+            <tr style="padding: 0;">
+              <td style="padding: 0;" width="100%" height="100%">
+                <img id="logo" src="{{ public_path('img/hed.png') }}" alt="" width="100%" height="200">
+              </td>
+            
+            </tr>
+          </table>
+      </header>
+      <footer>
+        <table style="padding: 0;">
+            <tr style="padding: 0;">
+              <td style="padding: 0;" width="100%" height="100%">
+                <img id="logo" src="{{ public_path('img/he.png') }}" alt="" width="100%" height="200">
+              </td>
+            
+            </tr>
+          </table>
+      </footer>
+    <div class="content">
+       <table style="margin-bottom: 34px;">
+           <tr>
+               <td width="56%"></td>
+               <td width="44%"> <p style="position: fixed">Cacalchén, Yucatán a 2 de Marzo del 2021</p></td>
+
+           </tr>
+       </table>
+        <h3 style="text-align: center;">INFORMACION DEL ALUMNO</h3>
+        <table width="100%" class="tabla2">
+           
+            <tr style="padding: 2em;">
+                <td  height="30px"  width="15%"> <span class="text2">Nombre (s):</span></td>
+                <td  colspan="1" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumno->nombres)}} &nbsp;{{ strtoupper($alumno->apellido_paterno)}} &nbsp;{{ strtoupper($alumno->apellido_materno)}} </span></td>
+
+                <td  height="30px"  width="7%"> <span class="text2">Curp:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->curp)}} </span></td>
                
+            
+            </tr>
+            <tr style="padding: 1em;">
+                <td  height="30px"  width="15%"> <span class="text2">Fecha de nacimiento:</span></td>
+                <td  colspan="1" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->fecha_de_nacimiento)}}</span></td>
+
+                <td  height="30px"  width="7%"> <span class="text2">edad:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->edad)}} </span></td>
+
+
+    
+            </tr>
+            <tr>
+                <td  height="30px"  width="15%"> <span class="text2">Sexo:</span></td>
+                <td  height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->sexo)}}</span></td>
+
+                <td  height="30px"  width="7%"> <span class="text2">Peso:</span></td>
+                <td  height="10px"  width="17%" class="linea"><span class="text">{{ strtoupper($alumnos->peso)}} </span></td>
+
+
+                <td  height="30px"  width="7%"> <span class="text2">Estatura:</span></td>
+                <td  height="10px"  width="15%" class="linea"><span class="text">{{ strtoupper($alumnos->estatura)}} </span></td>
+
+
+               
+            </tr>
+            <tr>
+                <td  height="30px"  width="15%"> <span class="text2">Domicilio:</span></td>
+                <td  colspan="5" height="10px"  width="85%" class="linea"><span class="text">{{ strtoupper($alumnos->direccion)}}&nbsp; &nbsp; {{ $alumnos->cp}},  &nbsp; {{ strtoupper($alumnos->municipio) }}</span></td>
+
+            </tr>
+            <tr>
+                <td  height="30px"  width="15%"> <span class="text2">Escuela de procedencia:</span></td>
+                <td  colspan="5" height="10px"  width="85%" class="linea"><span class="text">{{ strtoupper($alumnos->escuela_procedencia)}}</span></td>
+
+
+               
+            </tr>
+          
+           
+            <tr>
+                <td  height="30px"  width="15%"> <span class="text2">Fecha de ingreso:</span></td>
+                <td  colspan="1" height="10px"  width="35%" class="linea"><span class="text">{{ $alumnos->created_at->isoFormat('D-M-Y') }} </span></td>
+
+                <td  height="30px"  width="7%"> <span class="text2">Estatus:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ $alumnos->status_id }} </span></td>
+
+            </tr>
+           
+        </table>
+        <br/>
+        <h3 style="text-align: center;">INFORMACION DEL TUTOR</h3>
+        <table width="100%" class="tabla2">
+           
+            <tr style="padding: 2em;">
+                <td  height="30px"  width="15%"> <span class="text2">Nombre (s):</span></td>
+                <td  colspan="1" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->nombres_tutor)}} &nbsp;{{ strtoupper($alumnos->apellido_paterno_tutor)}} &nbsp;{{ strtoupper($alumnos->apellido_materno_tutor)}} </span></td>
+
+                <td  height="30px"  width="7%"> <span class="text2">Curp:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->curp_tutor)}} </span></td>
+               
+            
+            </tr>
+            <tr style="padding: 1em;">
+                <td  height="30px"  width="15%"> <span class="text2">Fecha de nacimiento:</span></td>
+                <td  colspan="1" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->fecha_nacimiento_tutor)}}</span></td>
+
+                <td  height="30px"  width="7%"> <span class="text2">edad:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->edad_tutor)}} </span></td>
+
+
+    
+            </tr>
+            <tr>
+                <td  height="30px"  width="15%"> <span class="text2">Sexo:</span></td>
+                <td  colspan="5" height="10px"  width="85%" class="linea"><span class="text">{{ strtoupper($alumnos->sexo)}}</span></td>
+
+            </tr>
+            <tr>
+                <td  height="30px"  width="15%"> <span class="text2">Domicilio:</span></td>
+                <td  colspan="5" height="10px"  width="85%" class="linea"><span class="text">{{ strtoupper($alumnos->direccion_tutor)}}&nbsp; &nbsp; {{ $alumnos->cp_tutor}},  &nbsp; {{ strtoupper($alumnos->municipio_tutor) }}</span></td>
+
+            </tr>
+            <tr>
+                <td  height="30px"  width="15%"> <span class="text2">Parentezco con el alumno:</span></td>
+                <td  colspan="5" height="10px"  width="85%" class="linea"><span class="text">{{ strtoupper($alumnos->parentesco_con_alumno)}}</span></td>
+
+
+               
+            </tr>
+            <tr>
                 
+                <td  height="30px"  width="15%"> <span class="text2">Escolaridad:</span></td>
+                <td  colspan="5" height="10px"  width="85%" class="linea"><span class="text">{{ $alumnos->escolaridad }} </span></td>
             </tr>
             <tr>
-                <td rowspan="3" width="25%" align="center"><img id="logo" src="{{ public_path('img/logo_centro_educativo.png') }}" alt="" width="150" height="120"></td>
-                <td style="line-height: 2px;" align="center">CENTRO EDUCATIVO NATANAEL</td>
-                <td width="25%" rowspan="3" align="center" style="padding-right:0">
-                    <table width="90">
-                        
-                        <tr>
-                            <td width="90" height="auto" align="center" class="border "><span class="h1"><img id="logo" src="{{ public_path('img/u.jpeg') }}" alt="" width="90" height="100"></span></td>
-                        </tr>
-                        
-                    </table>
-                </td>
+                <td  height="30px"  width="15%"> <span class="text2">Ocupacion:</span></td>
+                <td  colspan="5" height="10px"  width="85%" class="linea"><span class="text">{{ $alumnos->ocupacion }} </span></td>
             </tr>
-            <tr>
-                <td style="line-height: 2px;" align="center">C.C.T 31PPR0032N, ZONA 029</td>
-            </tr>
-            <tr>
-                <td style="line-height: 2px;" align="center">CACALCHÉN, YUCATÁN</td>
-            </tr>
+            <tr style="padding: 2em;">
+                <td  height="30px"  width="15%"> <span class="text2">Correo:</span></td>
+                <td  colspan="1" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->correo)}} </span></td>
+
+                <td  height="30px"  width="7%"> <span class="text2">Cel:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->telefono_tutor)}} </span></td>
             
-
-        </table>
-
-        <h3 style="text-align: center;">Información del alumno</h3>
-        <table width="100%" class="tabla2">
+            </tr>
            
-            <tr style="padding: 2em;">
-                <td  height="60px" style="font-size: 12px !important; font-weight:bold;" width="15%">Nombre (s):</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumno->nombres)}} &nbsp;{{ strtoupper($alumno->apellido_paterno)}} &nbsp;{{ strtoupper($alumno->apellido_materno)}} </span></td>
-               
             
-            </tr>
-            <tr style="padding: 2em;">
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Fecha de nacimiento</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ $alumnos->fecha_de_nacimiento}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >edad:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->edad}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >CURP:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->curp) }}</span></td>
+           
+        </table>
+        <!--SALTO DE PÁGINA ---->
+        <!--SALTO DE PÁGINA ---->
+        <!--SALTO DE PÁGINA ---->
+        <!--SALTO DE PÁGINA ---->
+    </div>
     
-            </tr>
-            <tr>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Sexo:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->sexo) }}</span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Peso:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->peso) }}</span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >altura:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->estatura) }}</span></td>
-               
-            </tr>
-            <tr>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Dirección:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->direccion) }}</span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Código postal:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->cp}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Municipio:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->municipio) }}</span></td>
-              
-            </tr>
-            <tr>
-               
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Escuela de procedencia:</td>
-                <td  height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->escuela_procedencia) }}</span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Grupo:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->grupo) }}</span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Regularidad:</td>
-                <td height="60px" class="linea"><span class="text">{{ strtoupper($alumnos->regularidad) }}</span></td>
-
-               
-            </tr>
-          
-           
-            <tr>
-                <td height="50px" style="font-size: 12px !important; font-weight:bold;" >Fecha de ingreso:</td>
-                <td height="50px" class="linea"><span class="text">{{ $alumnos->created_at->isoFormat('D-M-Y') }}</span></td>
-                <td height="50px" style="font-size: 12px !important; font-weight:bold;" >Estatus:</td>
-                <td height="50px" class="linea"><span class="text">{{ $alumnos->status_id }}</span></td>
-   
-            </tr>
-           
-        </table>
-        <h3 style="text-align: center;">Información del Tutor</h3>
-        <table width="100%" class="tabla2">
-           
-            <tr style="padding: 2em;">
-                <td  height="60px" style="font-size: 12px !important; font-weight:bold;" width="15%">Nombre (s):</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumnos->nombres_tutor)}} &nbsp;{{ strtoupper($alumnos->apellido_paterno_tutor)}} &nbsp;{{ strtoupper($alumnos->apellido_materno_tutor)}} </span></td>
-               
-            
-            </tr>
-            <tr style="padding: 2em;">
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Fecha de nacimiento</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ $alumnos->nacimiento_tutor}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >edad:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->edad_tutor}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >CURP:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->edad_tutor}} </span></td>
-    
-            </tr>
-            <tr>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Sexo:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->sexo_tutor}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Peso:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->peso_tutor}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >altura:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->estatura_tutor}} </span></td>
-               
-            </tr>
-            <tr>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Dirección:</td>
-            <td height="60px" class="linea"><span class="text">{{ $alumnos->direccion_tutor}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Código postal:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->cp_tutor}} </span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Municipio:</td>
-                <td height="60px" class="linea"><span class="text">{{ $alumnos->municipio_tutor}} </span></td>
-              
-            </tr>
-            <tr>
-               
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Escuela de procedencia:</td>
-                <td  height="60px" class="linea"><span class="text">CHAC-MOOL</span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Grupo:</td>
-                <td height="60px" class="linea"><span class="text">1A</span></td>
-                <td height="60px" style="font-size: 12px !important; font-weight:bold;" >Regularidad:</td>
-                <td height="60px" class="linea"><span class="text">Regular</span></td>
-
-               
-            </tr>
-          
-           
-            <tr>
-                <td height="50px" style="font-size: 12px !important; font-weight:bold;" >Fecha de ingreso:</td>
-                <td height="50px" class="linea"><span class="text">24/11/2019</span></td>
-                <td height="50px" style="font-size: 12px !important; font-weight:bold;" >Estatus:</td>
-                <td height="50px" class="linea"><span class="text">ACTIVO</span></td>
-   
-            </tr>
-           
-        </table>
-        <!--SALTO DE PÁGINA ---->
-        <!--SALTO DE PÁGINA ---->
-        <!--SALTO DE PÁGINA ---->
-        <!--SALTO DE PÁGINA ---->
-       
         <div style="page-break-after:always;"></div>
-        <table width="100%" class="tabla1">
-            <tr>
-             
+        <header style="">
+            <table style="padding: 0;">
+                <tr style="padding: 0;">
+                  <td style="padding: 0;" width="100%" height="100%">
+                    <img id="logo" src="{{ public_path('img/hed.png') }}" alt="" width="100%" height="200">
+                  </td>
                 
-            </tr>
-            <tr>
-                <td  rowspan="3" width="20%" align="center"><img id="logo" src="{{ public_path('img/logo_centro_educativo.png') }}" alt="" width="120" height="100"></td>
-                <td style="line-height: 2px;" align="center">CENTRO EDUCATIVO NATANAEL</td>
-                <td  rowspan="3" width="20%" align="center"><img id="logo" src="{{ public_path('img/segeey.png') }}" alt="" width="120" height="100"></td>
-            </tr>
-            <tr>
+                </tr>
+              </table>
+          </header>
+          <footer>
 
-                <td style="line-height: 2px;" align="center">C.C.T 31PPR0032N, ZONA 029</td>
-            </tr>
-            <tr>
-
-                <td style="line-height: 2px;" align="center">CACALCHÉN, YUCATÁN</td>
-            </tr>
-            
-
-        </table>
-        <h3 style="text-align: center;">Historial de Natadolares de {{ $alumno->nombres }}</h3>
+            <table style="padding: 0;">
+                <tr style="padding: 0;">
+                  <td style="padding: 0;" width="100%" height="100%">
+                    <img id="logo" src="{{ public_path('img/he.png') }}" alt="" width="100%" height="200">
+                  </td>
+                
+                </tr>
+              </table>
+          </footer>
+          <div class="content">
+            <table style="margin-bottom: 34px;">
+                <tr>
+                    <td width="56%"></td>
+                    <td width="44%"> <p style="position: fixed">Cacalchén, Yucatán a 2 de Marzo del 2021</p></td>
+     
+                </tr>
+            </table>
+        <h3 style="text-align: center;">HISTORIAL DE NATA DOLARES DE {{ strtoupper($alumno->nombres) }}</h3>
         <table width="100%" class="tabla2">
            
             <tr style="padding: 2em;">
-                <td  height="60px" style="font-size: 12px !important; font-weight:bold;" width="15%">Nombre (s):</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumno->nombres)}} &nbsp;{{ strtoupper($alumno->apellido_paterno)}} &nbsp;{{ strtoupper($alumno->apellido_materno)}} </span></td>
-               
-                <td  height="60px" style="font-size: 12px !important; font-weight:bold;" width="15%">Matricula</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumnos->matricula)}}</span></td>
+                <td  height="30px"  width="15%"> <span class="text2">Nombre (s):</span></td>
+                <td  colspan="1" height="10px"  width="30%" class="linea"><span class="text">{{ strtoupper($alumnos->nombres)}} &nbsp;{{ strtoupper($alumnos->apellido_paterno)}} &nbsp;{{ strtoupper($alumnos->apellido_materno)}} </span></td>
+
+                <td  height="30px"  width="10%"> <span class="text2">Matricula:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->matricula)}} </span></td>d>
             </tr>
 
         </table>
@@ -315,12 +377,13 @@
                 <td align="right"><strong>TOTAL S/.</strong></td>
                 <td align="right"><span class="text">$ &nbsp;{{ $ndolar_t->cantidad}}</span></td>
             </tr>
+            <tr></tr>
             <tr>
                 <td style="border:0;">&nbsp;</td>
                 <td align="center" style="border:0;">
                     <table width="200" border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td align="center" class="cancelado">CANCELADO</td>
+                            <td align="center" class="cancelado">Firma del director</td>
                         </tr>
                     </table>
                 </td>
@@ -328,37 +391,39 @@
                 <td align="center" style="border:0;" class="emisor"><strong>EMISOR</strong></td>
             </tr>
         </table>
+    </div>
         <div style="page-break-after:always;"></div>
-        <table width="100%" class="tabla1">
-            <tr>
-             
+        <header style="">
+            <table style="padding: 0;">
+                <tr style="padding: 0;">
+                  <td style="padding: 0;" width="100%" height="100%">
+                    <img id="logo" src="{{ public_path('img/hed.png') }}" alt="" width="100%" height="200">
+                  </td>
                 
-            </tr>
-            <tr>
-                <td  rowspan="3" width="20%" align="center"><img id="logo" src="{{ public_path('img/logo_centro_educativo.png') }}" alt="" width="120" height="100"></td>
-                <td style="line-height: 2px;" align="center">CENTRO EDUCATIVO NATANAEL</td>
-                <td  rowspan="3" width="20%" align="center"><img id="logo" src="{{ public_path('img/segeey.png') }}" alt="" width="120" height="100"></td>
-            </tr>
-            <tr>  
+                </tr>
+              </table>
+          </header>
+          <footer>
 
-                <td style="line-height: 2px;" align="center">C.C.T 31PPR0032N, ZONA 029</td>
-            </tr>
-            <tr>
-
-                <td style="line-height: 2px;" align="center">CACALCHÉN, YUCATÁN</td>
-            </tr>
-            
-
-        </table>
-        <h3 style="text-align: center;">promedios de {{ $alumno->nombres }}</h3>
+            <table style="padding: 0;">
+                <tr style="padding: 0;">
+                  <td style="padding: 0;" width="100%" height="100%">
+                    <img id="logo" src="{{ public_path('img/he.png') }}" alt="" width="100%" height="200">
+                  </td>
+                
+                </tr>
+              </table>
+          </footer>
+        <div class="content">
+            <h3 style="text-align: center;">PROMEDIOS DE {{ strtoupper($alumno->nombres) }}</h3>
         <table width="100%" class="tabla2">
            
             <tr style="padding: 2em;">
-                <td  height="60px" style="font-size: 12px !important; font-weight:bold;" width="15%">Nombre (s):</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumno->nombres)}} &nbsp;{{ strtoupper($alumno->apellido_paterno)}} &nbsp;{{ strtoupper($alumno->apellido_materno)}} </span></td>
-               
-                <td  height="60px" style="font-size: 12px !important; font-weight:bold;" width="15%">Matricula</td>
-                <td height="60px"  width="33%" class="linea"><span class="text">{{ strtoupper($alumnos->matricula)}}</span></td>
+                <td  height="30px"  width="15%"> <span class="text2">Nombre (s):</span></td>
+                <td  colspan="1" height="10px"  width="30%" class="linea"><span class="text">{{ strtoupper($alumnos->nombres)}} &nbsp;{{ strtoupper($alumnos->apellido_paterno)}} &nbsp;{{ strtoupper($alumnos->apellido_materno)}} </span></td>
+
+                <td  height="30px"  width="10%"> <span class="text2">Matricula:</span></td>
+                <td  colspan="3" height="10px"  width="35%" class="linea"><span class="text">{{ strtoupper($alumnos->matricula)}} </span></td>d>
             </tr>
 
         </table>
@@ -434,5 +499,7 @@
                             </table>
         
     </div>
+</div>
+
 </body>
 </html>

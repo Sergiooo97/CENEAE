@@ -61,15 +61,15 @@ class alumnosController extends Controller
             'tutores.telefono as telefono',
             'grupos.nombre as grupo_nombre')
         ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-        ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
-        ->join('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
+        ->leftJoin('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+        ->leftJoin('grupos', 'grupos.id', '=', 'grupos_alumnos.grupo_id')
         ->orderBy('grupos.nombre', 'ASC')
         ->nombres($nombres)
        ->grupo($grupo)
        ->where('alumnos.status_id', '1')
         ->paginate(6);
-       
-        return view('role.admin.alumnos.index', compact('alumnos', 'grupos', 'grupo_id'));
+        $curso = curso::where('grupo_id',$request->get('grupo'))->first();
+        return view('role.admin.alumnos.index', compact('alumnos', 'grupos', 'grupo_id', 'curso'));
     }
     public function orden(Request $request){
         $nombres = $request->get('nombres');
@@ -341,13 +341,14 @@ class alumnosController extends Controller
             'tutores.curp as curp_tutor',
             'ndolar_listas.cantidad as ndolar_cantidad',
             'tutores.correo as correo_tutor')
-            ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-            ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
-            ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
-            ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
+            ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+            ->leftJoin('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
+            ->leftJoin('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+            ->leftJoin('grupos', 'grupos_alumnos.grupo_id', '=', 'grupos.id')
             ->where('alumnos.id', $id)
             ->first();
-            return view('role.admin.alumnos.show', compact('alumno','users','cal','promedio', 'promedio_curso','promedioFIN','periodos', 'subcomponentes','nota_id', 'series', 'notas', 'ns', 'cursos','promedioCount', 'curso_grafica'));
+
+           return view('role.admin.alumnos.show', compact('alumno','users','cal','promedio', 'promedio_curso','promedioFIN','periodos', 'subcomponentes','nota_id', 'series', 'notas', 'ns', 'cursos','promedioCount', 'curso_grafica'));
         }
 
 
@@ -363,13 +364,13 @@ class alumnosController extends Controller
      
 
     }
-    public function edit($id)
+    public function edit($grupo, $id)
     {
         $grupo_id = alumno::select('grupos.id as id', 'grupos.nombre as nombre')
             ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
-            ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
-            ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
+            ->leftJoin('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+            ->leftJoin('grupos', 'grupos_alumnos.grupo_id', '=', 'grupos.id')
             ->where('alumnos.id', $id)
             ->first();        
         $grupos = grupo::all();
@@ -394,24 +395,28 @@ class alumnosController extends Controller
             'alumnos.direccion',
             'alumnos.quiero_ser',
             'alumnos.created_at',
+            'alumnos.escuela_procedencia',
             'tutores.fecha_de_nacimiento as fecha_de_nacimiento_tutor',
             'tutores.edad as edad_tutor',
             'tutores.parentesco_con_alumno',
             'tutores.nombres as nombres_tutor',
             'tutores.telefono as telefono_tutor',
             'tutores.direccion as direccion_tutor',
+            'tutores.municipio as municipio_tutor',    
+            'tutores.codigo_postal as cp_tutor',
             'tutores.apellido_paterno as apellido_paterno_tutor',
             'tutores.apellido_materno as apellido_materno_tutor',
             'tutores.escolaridad as escolaridad_tutor',
             'tutores.curp as curp_tutor',
+            'tutores.ocupacion',
             'ndolar_listas.cantidad as ndolar_cantidad',
             'tutores.correo',
             'tutores.telefono')
             
-            ->join('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-            ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
-            ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
-            ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
+            ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
+            ->leftJoin('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
+            ->leftJoin('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+            ->leftJoin('grupos', 'grupos_alumnos.grupo_id', '=', 'grupos.id')
             ->where('alumnos.id', $id)
             ->first();
             return view('role.admin.alumnos.edit', compact('alumno', 'grupos','grupo_id'));
@@ -423,7 +428,7 @@ class alumnosController extends Controller
         $alumno->apellido_paterno = ucwords($request->input('apellido_paterno'));
         $alumno->apellido_materno = ucwords($request->input('apellido_materno'));
         $alumno->edad = $request->input('age');
-        $alumno->cp = $request->input('age');
+        $alumno->cp = $request->input('cp');
         $alumno->fecha_de_nacimiento = $request->input('birthday');
         $alumno->curp = strtoupper($request->input('curp'));
         $alumno->municipio = strtoupper($request->input('municipio'));
@@ -434,7 +439,7 @@ class alumnosController extends Controller
         $alumno->quiero_ser = ucwords($request->input('quiero_ser'));
         $alumno->update();
 
-        $tutor = tutor::where('alumno_id', $id)->first();
+        $tutor = tutor::where('alumno_id' , $id)->first();
         $tutor->apellido_paterno = ucwords($request->input('apellido_paterno_tutor'));
         $tutor->apellido_materno = ucwords($request->input('apellido_materno_tutor'));
         $tutor->edad = $request->input('age_tutor');
@@ -442,13 +447,13 @@ class alumnosController extends Controller
         $tutor->curp = strtoupper($request->input('curp_tutor'));
         $tutor->codigo_postal = strtoupper($request->input('cp_tutor'));
         $tutor->direccion = strtoupper($request->input('direccion_tutor'));
-
         $tutor->municipio = ucwords($request->input('municipio_tutor'));
         $tutor->sexo = strtoupper($request->input('sexo_tutor'));
         $tutor->escolaridad = strtoupper($request->input('escolaridad'));
+        $tutor->ocupacion = strtoupper($request->input('ocupacion'));
         $tutor->parentesco_con_alumno = strtoupper($request->input('parentesco_con_alumno'));
         $tutor->correo = strtoupper($request->input('correo'));
-        $tutor->telefono = strtoupper($request->input('telefono'));
+        $tutor->telefono =  Str::substr($request->get('telefono'), 0, 3). " ".Str::substr($request->get('telefono'), 3, 3). " ".Str::substr($request->get('telefono'), 6, 4) ;
         
         $tutor->update();
          
@@ -476,7 +481,7 @@ class alumnosController extends Controller
                ->pluck('id')->toArray();
            $bimestres_total = notas_structures::select('notas.curso_id as curso_id',\DB::raw('count(*) as Total'))
                ->leftJoin('notas', 'notas_structures.nota_id', '=', 'notas.id')
-               ->groupBy('curso_i   d')
+               ->groupBy('curso_id')
                ->get();
             $alumno = alumno::select(
                 'alumnos.id as id',

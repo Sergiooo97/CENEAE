@@ -14,7 +14,7 @@
 
           {!! Form::open(['route' => 'alumnos.store', 'method'=>'POST', 'id'=>'form']) !!}
 
-          @if (count($errors)>0))
+          @if (count($errors)>0)
           <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
             @foreach ($errors->all() as $error)
             <ul>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-sm-6">
                   {!!Form::label('Nombres','Nombre (s) del alumno',['class'=>'label'])!!}
-                  <input name="nombres"id="nombres" class="form-control" placeholder="nombres" >
+                  <input name="nombres"id="nombres" class="form-control" placeholder="nombres" value="{{ old('nombres')}}" >
                 </div>
 
               </div>
@@ -53,7 +53,7 @@
 
                 <div class="col-sm">
                   {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
-                  <input type="date" name="birthday" id="birthday" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento">
+                  <input type="date" name="birthday" id="birthday" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento" required>
                 <script>
                   $(function(){
             $('#birthday').on('change', calcularEdad);
@@ -76,19 +76,19 @@
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Edad','Edad',['class'=>'label'])!!}
-                  <input type="text" name="age" id="age" value="" class="form-control" placeholder="Edad" autocomplete="off">
+                  <input type="number" name="age" id="age" value="" class="form-control" placeholder="Edad"  maxlength="2" value="{{ old('age') }}">
                 </div>
                 <div class="col-sm">
                   {!!Form::label('CURP','CURP',['class'=>'label'])!!}
                   <input name="curp" id="curp_al" class="form-control" placeholder="CURP" autocomplete="off" maxlength="18"
-                    required>
+                    required value="{{ old('curp') }}">
                 </div>
                 <div class="col-sm">
                   <div class="row">
                    
                     <div class="col-sm">
                       {!!Form::label('Grupo','Grupo',['class'=>'label'])!!}
-                      <select name="grupo" class="form-control" id="grupo">
+                      <select name="grupo" class="form-control" id="grupo" value="{{ old('grupo') }}">
                         @if (request('grupo') == "")
                         <option value="">Seleccione</option>
                         @else
@@ -108,30 +108,27 @@
                   <div class="row">
                     <div class="col">
                       {!!Form::label('calle-num','calle',['class'=>'label'])!!}
-                      <input name="calle-num" id="calle" type="number" class="form-control" placeholder="#" maxlength="3" required>
+                      <input name="calle-num" id="calle" type="number" class="form-control" placeholder="#" maxlength="3" required value="{{ old('calle-num') }}">
                     </div>
                     <div class="col">
                       {!!Form::label('calle-entre','entre',['class'=>'label'])!!}
-                      <input name="calle-entre" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3" required>
+                      <input name="calle-entre" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3" required value="{{ old('calle-entre') }}">
                     </div>
                     <div class="col-sm">
                       {!!Form::label('calle-y','Y',['class'=>'label'])!!}
-                      <input name="calle-y" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3">
-
+                      <input name="calle-y" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3" value="{{ old('calle-y') }}">
                     </div>
                   </div>
-                  
-                  
                 </div>
                 <div class="col-sm">
                   {!!Form::label('num','Número',['class'=>'label'])!!}
-                  <input name="num" id="num"  class="form-control" placeholder="#" required>
+                  <input name="num" id="num"  class="form-control" placeholder="#" required value="{{ old('num') }}">
 
 
                 </div>
                 <div class="col-sm">
                   {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
-                  <input name="cp" id="cp" type="number" class="form-control" placeholder="Código postal" maxlength="5">
+                  <input name="cp" id="cp" type="number" class="form-control" placeholder="Código postal" maxlength="5" value="{{ old('cp') }}">
                 </div>
                 <div class="col-sm">
                  
@@ -158,7 +155,7 @@
                   </div>
                   <div class="col-sm-6">
                     {!!Form::label('Nombres','Nombre (s) del tutor ',['class'=>'label'])!!}
-                    <input name="nombres_tutor"id="nombres_tutor" class="form-control" placeholder="nombres" >
+                    <input name="nombres_tutor"id="nombres_tutor" class="form-control" placeholder="nombres" value="{{ old('nombres_tutor') }}" >
                   </div>
 
                 </div>
@@ -167,7 +164,7 @@
 
                   <div class="col-sm">
                     {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
-                    <input type="date" name="birthday_tutor" id="birthday_tutor" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento">
+                    <input type="date" name="birthday_tutor" id="birthday_tutor" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento" value="{{ old('birthday_tutor') }}">
                   <script>
                     $(function(){
               $('#birthday').on('change', calcularEdad);
@@ -190,12 +187,12 @@
                   </div>
                   <div class="col-sm">
                     {!!Form::label('Edad','Edad',['class'=>'label'])!!}
-                    <input type="text" name="age_tutor" id="age_tutor" value="" class="form-control" placeholder="Edad" autocomplete="off">
+                    <input type="number" name="age_tutor" id="age_tutor" value="" class="form-control" placeholder="Edad"  value="{{ old('age_tutor') }}">
                   </div>
                   <div class="col-sm">
                     {!!Form::label('CURP','CURP',['class'=>'label'])!!}
                     <input name="curp_tutor" id="curp_tutor" class="form-control" placeholder="CURP" autocomplete="off" maxlength="18"
-                      required>
+                      required value="{{ old('curp_tutor') }}">
                   </div>
                   <div class="col-sm">
                     
@@ -207,42 +204,42 @@
                   <div class="row">
                     <div class="col">
                       {!!Form::label('calle-num','calle',['class'=>'label'])!!}
-                      <input name="calle-num" id="calle" type="number" class="form-control" placeholder="#" maxlength="3">
+                      <input name="calle-num_tutor" id="calle" type="number" class="form-control" placeholder="#" maxlength="3" value="{{ old('calle-num_tutor') }}">
                     </div>
                     <div class="col">
                       {!!Form::label('calle-entre','entre',['class'=>'label'])!!}
-                      <input name="calle-entre" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3">
+                      <input name="calle-entre_tutor" id="calle-entre" type="number" class="form-control" placeholder="#" maxlength="3" value="{{ old('calle-entre_tutor') }}">
                     </div>
                     <div class="col-sm">
                       {!!Form::label('calle-y','Y',['class'=>'label'])!!}
-                      <input name="calle-y" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3">
+                      <input name="calle-y_tutor" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3" value="{{ old('calle-y_tutor') }}">
                     </div>
                   </div>
  
                  </div>
                   <div class="col-sm">
                     {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
-                    <input name="cp_tutor" id="cp_tutor" type="number" class="form-control" placeholder="Código postal" maxlength="5">
+                    <input name="cp_tutor" id="cp_tutor" type="number" class="form-control" placeholder="Código postal" maxlength="5" value="{{ old('cp_tutor') }}">
                   </div>
                   <div class="col-sm">
                     {!!Form::label('municipio','Municipio',['class'=>'label'])!!}
                     <input name="municipio_tutor" id="municipio_tutor" class="form-control" placeholder="Municipio" autocomplete="off" maxlength="11"
-                      required>
+                      required value="{{ old('mucicipio_tutor') }}">
                   </div>
                   <div class="col-sm">
                     {!!Form::label('ocupacion','ocupación',['class'=>'label'])!!}
-                    <input name="ocupacion" id="ocupacion" class="form-control" placeholder="ocupación" autocomplete="off">
+                    <input name="ocupacion" id="ocupacion" class="form-control" placeholder="ocupación" autocomplete="off" value="{{ old('ocupacion_tutor') }}">
                   </div>
                 </div>
 
             <div class="row">
                   <div class="col-sm-6">
                     {!!Form::label('Correo','Correo',['class'=>'label'])!!}
-                    <input name="correo_tutor" id="correo_tutor" type="email" class="form-control" placeholder="Correo" >
+                    <input name="correo_tutor" id="correo_tutor" type="email" class="form-control" placeholder="Correo" value="{{ old('correo_tutor') }}">
                   </div>
                   <div class="col-sm-6">
                     {!!Form::label('telefono','Teléfono',['class'=>'label'])!!}
-                    <input name="telefono" id="telefono" type="number" class="form-control" placeholder="Teléfono" maxlength="5">
+                    <input name="telefono" id="telefono" type="number" class="form-control" placeholder="Teléfono" maxlength="5" value="{{ old('telefono') }}">
                   </div>
                   
                 </div>

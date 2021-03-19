@@ -43,6 +43,8 @@ class CreateAlumnosTable extends Migration
              ->onDelete('cascade')
              ->onUpdate('cascade'); 
         });
+        DB::update("ALTER TABLE alumnos AUTO_INCREMENT = 10001;");
+
     }
 
     /**

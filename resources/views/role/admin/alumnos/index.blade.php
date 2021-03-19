@@ -89,7 +89,7 @@
                 </thead>
                 <tbody>
                   @foreach ($alumnos as $alumno)
-                  <tr url="{{route('alumnos.show', ['id' => $alumno->id])}}">
+                  <tr url="{{route('alumnos.show', ['id' => $alumno->id, 'n_id' => $curso->id])}}">
                   
                     <td>
                       {{ $alumno->nombres }}&nbsp

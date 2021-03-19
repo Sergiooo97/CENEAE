@@ -57,7 +57,7 @@
                                             {!! Form::label('peso', 'Peso', ['class' => 'label']) !!}
                                             <input name="peso" id="peso" class="form-control" type="number"
                                                 placeholder="Peso" autocomplete="off" value="{{ $alumno->peso }}"
-                                                maxlength="11" >
+                                                maxlength="11">
                                         </div>
                                         <div class="col-sm">
                                             {!! Form::label('Edad', 'Edad', ['class' => 'label']) !!}
@@ -97,7 +97,7 @@
                                             {!! Form::label('escuela_procedencia', 'Escuela de procedencia', ['class' => 'label']) !!}
                                             <input name="escuela_procedencia" id="escuela_procedencia" class="form-control"
                                                 placeholder="Escuela de procedencia" autocomplete="off"
-                                                value="{{ $alumno->escuela_procedencia }}" maxlength="11" >
+                                                value="{{ $alumno->escuela_procedencia }}" maxlength="11">
                                         </div>
                                         <div class="col-sm">
                                             {!! Form::label('CURP', 'CURP', ['class' => 'label']) !!}
@@ -109,7 +109,7 @@
                                                 <div class="col-sm">
                                                     {!! Form::label('Grupo', 'Grupo', ['class' => 'label']) !!}
                                                     <input name="" id="" class="form-control" autocomplete="off"
-                                                        value="{{ $grupo_id->nombre }}" maxlength="11"  readonly>
+                                                        value="{{ $grupo_id->nombre }}" maxlength="11" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,26 +129,26 @@
                                             {!! Form::label('municipio', 'Municipio', ['class' => 'label']) !!}
                                             <input name="municipio" id="municipio" class="form-control"
                                                 placeholder="Municipio" autocomplete="off"
-                                                value="{{ $alumno->municipio }}" maxlength="11" >
+                                                value="{{ $alumno->municipio }}">
                                         </div>
                                         <div class="col-sm"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm">
                                             {!! Form::label('fecha_ingreso', 'Fecha de ingreso', ['class' => 'label']) !!}
-                                            <input name="fecha_ingreso" id="fecha_ingreso" class="form-control" 
-                                                autocomplete="off" value="{{ $alumno->created_at->isoFormat('D-M-Y') }}" maxlength="11"
-                                                readonly>
+                                            <input name="fecha_ingreso" id="fecha_ingreso" class="form-control"
+                                                autocomplete="off" value="{{ $alumno->created_at->isoFormat('D-M-Y') }}"
+                                                maxlength="11" readonly>
                                         </div>
-                                        <div class="col-sm">
-                                            {!! Form::label('regularidad', ' Regularidad', ['class' => 'label']) !!}
-                                            <input name="regularidad" id="regularidad" type="number" class="form-control"
-                                                value="Irregular" maxlength="5" readonly>
-                                        </div>
+                                        <!-- <div class="col-sm">
+                                                {!! Form::label('regularidad', ' Regularidad', ['class' => 'label']) !!}
+                                                <input name="regularidad" id="regularidad" type="number" class="form-control"
+                                                    value="Irregular" maxlength="5" readonly>
+                                            </div> -->
                                         <div class="col-sm">
                                             {!! Form::label('status', 'Quiero ser de grande...', ['class' => 'label']) !!}
                                             <input name="quiero_ser" id="quiero_ser" class="form-control"
-                                               value="{{ $alumno->quiero_ser }}" autocomplete="off">
+                                                value="{{ $alumno->quiero_ser }}" autocomplete="off">
                                         </div>
                                         <div class="col-sm"></div>
                                     </div>
@@ -158,17 +158,17 @@
                             <div class="form-group">
                                 <h3>Datos del tutor</h3>
                                 <div class="container">
-                                    
-                                      <div class="row">
+
+                                    <div class="row">
                                         <div class="col-sm-3">
                                             {!! Form::label('Apellido_P', 'A. Paterno', ['class' => 'label']) !!}
-                                            <input name="apellido_paterno_tutor" id="apellido_paterno_tutor" class="form-control"
-                                                value="{{ $alumno->apellido_paterno_tutor }}">
+                                            <input name="apellido_paterno_tutor" id="apellido_paterno_tutor"
+                                                class="form-control" value="{{ $alumno->apellido_paterno_tutor }}">
                                         </div>
                                         <div class="col-sm-3">
                                             {!! Form::label('Apellido_M', 'A. materno', ['class' => 'label']) !!}
-                                            <input name="apellido_materno_tutor" id="apellido_materno_tutor" class="form-control"
-                                                value="{{ $alumno->apellido_materno_tutor }}">
+                                            <input name="apellido_materno_tutor" id="apellido_materno_tutor"
+                                                class="form-control" value="{{ $alumno->apellido_materno_tutor }}">
                                         </div>
                                         <div class="col-sm-6">
                                             {!! Form::label('Nombres', 'Nombre (s) del tutor', ['class' => 'label']) !!}
@@ -184,7 +184,7 @@
                                                 <option value="F">Femenino</option>
                                             </select>
                                         </div>
-                                        
+
                                         <div class="col-sm">
                                             {!! Form::label('Fecha_de_nacimiento', 'Fecha de nacimiento', ['class' => 'label']) !!}
                                             <input id="birthday" name="birthday_tutor" type="date" class="form-control"
@@ -208,7 +208,8 @@
                                                     }
                                                 }
 
-                                                    $('#age').val(edad);
+                                                $('#age').val(edad);
+
                                             </script>
                                         </div>
                                         <div class="col-sm">
@@ -219,45 +220,46 @@
                                         <div class="col-sm">
                                             {!! Form::label('CURP', 'CURP', ['class' => 'label']) !!}
                                             <input name="curp_tutor" id="curp_tutor" class="form-control"
-                                                value="{{ $alumno->curp_tutor }}" autocomplete="off" maxlength="11" >
+                                                value="{{ $alumno->curp_tutor }}" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="row">
 
-                                        
+
                                         <div class="col-sm-3">
                                             {!! Form::label('parentezco', 'Parentezco con el alumno', ['class' => 'label']) !!}
-                                            <input name="parentesco_con_alumno" id="parentesco_con_alumno" class="form-control"
-                                                placeholder="Parentezco con el alumno" autocomplete="off"
-                                                value="{{ $alumno->parentesco_con_alumno }}"  >
+                                            <input name="parentesco_con_alumno" id="parentesco_con_alumno"
+                                                class="form-control" placeholder="Parentezco con el alumno"
+                                                autocomplete="off" value="{{ $alumno->parentesco_con_alumno }}">
                                         </div>
                                         <div class="col-sm-3">
                                             {!! Form::label('escolaridad', 'escolaridad', ['class' => 'label']) !!}
                                             <input name="escolaridad" id="escolaridad" class="form-control"
-                                                value="{{ $alumno->escolaridad_tutor }}" autocomplete="off" >
+                                                value="{{ $alumno->escolaridad_tutor }}" autocomplete="off">
                                         </div>
                                         <div class="col-sm-6">
                                             {!! Form::label('ocupacion', 'ocupacion', ['class' => 'label']) !!}
                                             <input name="ocupacion" id="ocupacion" class="form-control"
-                                                value="{{ $alumno->curp_tutor }}" autocomplete="off" >
+                                                value="{{ $alumno->ocupacion }}" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             {!! Form::label('direccion', 'Dirección', ['class' => 'label']) !!}
-                                            <input name="direccion" id="direccion" class="form-control"
-                                                value="{{ $alumno->direccion_tutor }}" autocomplete="off" maxlength="11">
+                                            <input name="direccion_tutor" id="direccion" class="form-control"
+                                                value="{{ $alumno->direccion_tutor }}" autocomplete="off">
                                         </div>
                                         <div class="col-sm-3">
                                             {!! Form::label('cp', ' Código postal', ['class' => 'label']) !!}
-                                            <input name="cp" id="cp" type="number" class="form-control"
-                                                placeholder="Código postal" value="{{ $alumno->cp_tutor }}" maxlength="5">
+                                            <input name="cp_tutor" id="cp_tutor" type="number" class="form-control"
+                                                placeholder="Código postal" value="{{ $alumno->cp_tutor }}"
+                                                maxlength="5">
                                         </div>
                                         <div class="col-sm-3">
                                             {!! Form::label('municipio', 'Municipio', ['class' => 'label']) !!}
-                                            <input name="municipio_tutor" id="municipio" class="form-control"
+                                            <input name="municipio_tutor" id="municipio_tutor" class="form-control"
                                                 placeholder="Municipio" autocomplete="off"
-                                                value="{{ $alumno->municipio_tutor }}" maxlength="11" >
+                                                value="{{ $alumno->municipio_tutor }}">
                                         </div>
                                         <div class="col-sm"></div>
                                     </div>
@@ -265,14 +267,13 @@
                                         <div class="col-sm-6">
                                             {!! Form::label('correo', 'correo', ['class' => 'label']) !!}
                                             <input name="correo" id="correo" class="form-control" type="email"
-                                                autocomplete="off" value="{{ $alumno->correo }}" 
-                                                 >
+                                                autocomplete="off" value="{{ $alumno->correo }}">
                                         </div>
-                                      
+
                                         <div class="col-sm-6">
                                             {!! Form::label('telefono', 'Teléfono', ['class' => 'label']) !!}
-                                            <input name="telefono" id="telefono" class="form-control" type="number"  maxlength="10" value="{{ $alumno->telefono }}" 
-                                                autocomplete="off">
+                                            <input name="telefono" id="telefono" class="form-control" type="text"
+                                                maxlength="12" value="{{ $alumno->telefono }}" autocomplete="off">
                                         </div>
                                         <div class="col-sm"></div>
                                     </div>
@@ -290,7 +291,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
 

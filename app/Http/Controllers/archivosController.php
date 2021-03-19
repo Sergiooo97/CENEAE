@@ -93,7 +93,7 @@ class archivosController extends Controller
         return Excel::download(new calificacionesExport($promedio, $periodos, $ns, $cursos, $cursos_nombre), $id." LISTA.xlsx");
     }                                                 // 'periodos','promedioFIN','bimestres_total', 'promedioFINAL', 'ns', 'promedio','cursos', 'cursos_nombre', 'alumno'
     public function export_ndolar_info($id, $nombre){
-        $alumnos=ndolarTransacciones::where("lista_id",$id)
+        $alumnos=ndolarTransacciones::where("alumno_id",$id)
         ->get();
         $alumno_n = alumno::select('alumnos.matricula as matricula', 'alumnos.nombres as nombres', 'ndolar_listas.cantidad as total')
             ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
@@ -102,7 +102,7 @@ class archivosController extends Controller
 
         return Excel::download(new ndolarInfoExport($alumnos, $alumno_n), $nombre." Ndolares.xlsx");
     }
-    public function expedientePdf($id, $nombre)
+    public function expedientePdf($id, $nombre, $a)
     {
         
                //Muestra la tabla de caLificaciones
@@ -207,25 +207,35 @@ class archivosController extends Controller
             'tutores.nombres as nombres_tutor',
             'tutores.telefono as telefono_tutor',
             'tutores.edad as edad_tutor',
+            'tutores.parentesco_con_alumno',
             'tutores.fecha_de_nacimiento as fecha_nacimiento_tutor',
             'tutores.codigo_postal as cp_tutor',
             'tutores.direccion as direccion_tutor',
+            'tutores.municipio as municipio_tutor',
             'tutores.apellido_paterno as apellido_paterno_tutor',
             'tutores.apellido_materno as apellido_materno_tutor',
-            'tutores.escolaridad as escolaridad_tutor',
+            'tutores.escolaridad',
+            'tutores.ocupacion',
             'tutores.curp as curp_tutor',
             'ndolar_listas.cantidad as ndolar_cantidad',
-            'tutores.correo as correo_tutor')
-            ->join('statuses', 'alumnos.status_id', '=','statuses.id')
+            'tutores.correo')
+            ->leftJoin('statuses', 'alumnos.status_id', '=','statuses.id')
             ->leftJoin('tutores', 'alumnos.id', '=', 'tutores.alumno_id')
-            ->join('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
-            ->join('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
-            ->join('grupos', 'alumnos.id', '=', 'grupos_alumnos.grupo_id')
+            ->leftJoin('ndolar_listas', 'alumnos.id', '=', 'ndolar_listas.alumno_id')
+            ->leftJoin('grupos_alumnos', 'alumnos.id', '=', 'grupos_alumnos.alumno_id')
+            ->leftJoin('grupos', 'grupos_alumnos.grupo_id', '=', 'grupos.id')
             ->where('alumnos.id', $id)
             ->first();
+        if($a == 1){
 
-        $pdf = \PDF::loadView('role.admin.download.pdf.expediente', compact('periodos','promedioFIN','bimestres_total', 'promedioFINAL', 'ns', 'promedio','cursos', 'cursos_nombre','alumno','ndolar', 'ndolar_t', 'alumnos'));
-        return $pdf->stream('exp de '.$id.'.pdf')->download('exp de '.$id.'.pdf'); 
+            $pdf = \PDF::loadView('role.admin.download.pdf.expediente', compact('periodos','promedioFIN','bimestres_total', 'promedioFINAL', 'ns', 'promedio','cursos', 'cursos_nombre','alumno','ndolar', 'ndolar_t', 'alumnos'));
+            return $pdf->stream('exp de '.$id.'.pdf')->download('exp de '.$id.'.pdf'); 
+       
+        }else if($a == 2){
+
+            $pdf = \PDF::loadView('role.admin.download.pdf.expediente', compact('periodos','promedioFIN','bimestres_total', 'promedioFINAL', 'ns', 'promedio','cursos', 'cursos_nombre','alumno','ndolar', 'ndolar_t', 'alumnos'));
+            return $pdf->download($alumno->apellido_paterno.'_'.$alumno->apellido_materno.'(EXPEDIENTE)'.'.pdf')->download('exp de '.$id.'.pdf'); 
+        }
     
 
     }
