@@ -11,68 +11,60 @@
         </div>
         <div class="card-body">
           <script src="{{asset('js/generarMatricula.js')}}" type="text/javascript"> </script>
-
           {!! Form::open(['route' => 'alumnos.store', 'method'=>'POST', 'id'=>'form']) !!}
-
-          @if (count($errors)>0)
-          <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-            <ul>
-              <li>
-                {{ $error }}
-              </li>
-            </ul>
-            @endforeach
-          </div>
-      @endif
-          <div class="form-group">
+            @if (count($errors)>0)
+                <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <ul>
+                            <li>
+                                {{ $error }}
+                            </li>
+                        </ul>
+                    @endforeach
+                </div>    
+            @endif
+          
+        <div class="form-group">
             <h3>Datos del Alumno</h3>
             <div class="container">
-
-
               <div class="row">
-                
                 <div class="col-sm-3">
-                  {!!Form::label('Apellido_P','A.Paterno',['class'=>'label'])!!}
-                  {!!Form::text('apellido_paterno',null, ['class'=>'form-control','placeholder'=>'apellido Paterno',
-                  'autocomplete'=>'off'])!!}
+                  {!!Form::label('Apellido_P','Apellido Paterno',['class'=>'label'])!!}
+                  <input name="apellido_paterno" id="apellido_paterno" class="form-control" placeholder="Apellido Paterno" value="{{ old('apellido_paterno')}}" .>
                 </div>
                 <div class="col-sm-3">
-                  {!!Form::label('Apellido_M','A.materno',['class'=>'label'])!!}
-                  {!!Form::text('apellido_materno',null, ['class'=>'form-control','placeholder'=>'apellido Materno',
-                  'autocomplete'=>'off'])!!}
-                </div>
+                  {!!Form::label('Apellido_M','Apellido Materno',['class'=>'label'])!!}
+                  <input name="apellido_materno" id="apellido_materno" class="form-control" placeholder="Apellido Materno" value="{{ old('apellido_materno')}}" >
+               </div>
                 <div class="col-sm-6">
                   {!!Form::label('Nombres','Nombre (s) del alumno',['class'=>'label'])!!}
-                  <input name="nombres"id="nombres" class="form-control" placeholder="nombres" value="{{ old('nombres')}}" >
+                  <input name="nombres"id="nombres" class="form-control" placeholder="Nombre (s) del alumno" value="{{ old('nombres')}}" >
                 </div>
-
               </div>
-
               <div class="row">
-
                 <div class="col-sm">
                   {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
-                  <input type="date" name="birthday" id="birthday" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento" required>
-                <script>
-                  $(function(){
-            $('#birthday').on('change', calcularEdad);
-        });
-
-        function calcularEdad() {
-
-            fecha = $(this).val();
-            var hoy = new Date();
-            var cumpleanos = new Date(fecha);
-            var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-            var m = hoy.getMonth() - cumpleanos.getMonth();
-
-            if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-                edad--;
-            }
-            $('#age').val(edad);
-        }
-                </script>
+                  <input type="date" name="birthday" id="birthday" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="Fecha de nacimiento" required>
+                    <script>
+                        
+                        var today = new Date().toISOString().split('T')[0];
+                        document.getElementsByName("birthday")[0].setAttribute('max', today);
+                        
+                        $(function(){
+                            $('#birthday').on('change', calcularEdad);
+                        });
+                        function calcularEdad() {
+                            fecha = $(this).val();
+                            var hoy = new Date();
+                            var cumpleanos = new Date(fecha);
+                            var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+                            var m = hoy.getMonth() - cumpleanos.getMonth();
+                            if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+                                edad--;
+                            }
+                            $('#age').val(edad);
+                        }
+                    </script>
                 </div>
                 <div class="col-sm">
                   {!!Form::label('Edad','Edad',['class'=>'label'])!!}
@@ -85,19 +77,17 @@
                 </div>
                 <div class="col-sm">
                   <div class="row">
-                   
                     <div class="col-sm">
                       {!!Form::label('Grupo','Grupo',['class'=>'label'])!!}
                       <select name="grupo" class="form-control" id="grupo" value="{{ old('grupo') }}">
                         @if (request('grupo') == "")
-                        <option value="">Seleccione</option>
+                            <option value="">Seleccione</option>
                         @else
-                        <option value="{{ $grupo_id->id }}">{{ $grupo_id->nombre }}</option>
+                            <option value="{{ $grupo_id->id }}">{{ $grupo_id->nombre }}</option>
                         @endif
                         @foreach ($grupos as $grupo)
-                          <option value="{{ $grupo->id }}">{{ $grupo->nombre }}</option>
+                            <option value="{{ $grupo->id }}">{{ $grupo->nombre }}</option>
                         @endforeach
-      
                       </select>
                     </div>
                   </div>
@@ -123,26 +113,20 @@
                 <div class="col-sm">
                   {!!Form::label('num','Número',['class'=>'label'])!!}
                   <input name="num" id="num"  class="form-control" placeholder="#" required value="{{ old('num') }}">
-
-
                 </div>
                 <div class="col-sm">
                   {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
                   <input name="cp" id="cp" type="number" class="form-control" placeholder="Código postal" maxlength="5" value="{{ old('cp') }}">
                 </div>
                 <div class="col-sm">
-                 
                 </div>
               </div>
               </div>
             </div>
             <div class="form-group">
               <h3>Datos del tutor</h3>
-              <div class="container">
-  
-  
+              <div class="container">  
                 <div class="row">
-                  
                   <div class="col-sm-3">
                     {!!Form::label('Apellido_P','A. Paterno',['class'=>'label'])!!}
                     {!!Form::text('apellido_paterno_tutor',null, ['class'=>'form-control','placeholder'=>'apellido Paterno',
@@ -155,34 +139,28 @@
                   </div>
                   <div class="col-sm-6">
                     {!!Form::label('Nombres','Nombre (s) del tutor ',['class'=>'label'])!!}
-                    <input name="nombres_tutor"id="nombres_tutor" class="form-control" placeholder="nombres" value="{{ old('nombres_tutor') }}" >
+                    <input name="nombres_tutor"id="nombres_tutor" class="form-control" placeholder="Nombre (s) del tutor" value="{{ old('nombres_tutor') }}" >
                   </div>
-
                 </div>
- 
                 <div class="row">
-
-                  <div class="col-sm">
-                    {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
-                    <input type="date" name="birthday_tutor" id="birthday_tutor" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="fecha de nacimiento" value="{{ old('birthday_tutor') }}">
-                  <script>
-                    $(function(){
-              $('#birthday').on('change', calcularEdad);
-          });
-  
-          function calcularEdad() {
-  
-              fecha = $(this).val();
-              var hoy = new Date();
-              var cumpleanos = new Date(fecha);
-              var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-              var m = hoy.getMonth() - cumpleanos.getMonth();
-  
-              if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-                  edad--;
-              }
-              $('#age').val(edad);
-          }
+                    <div class="col-sm">
+                        {!!Form::label('Fecha_de_nacimiento','Fecha de nacimiento',['class'=>'label'])!!}
+                    <input type="date" name="birthday_tutor" id="birthday_tutor" value=""  id="fecha_de_nacimiento" class="form-control" placeholder="Fecha de nacimiento" value="{{ old('birthday_tutor') }}">
+                    <script>
+                        $(function(){
+                            $('#birthday').on('change', calcularEdad);
+                        });
+                        function calcularEdad() {
+                            fecha = $(this).val();
+                            var hoy = new Date();
+                            var cumpleanos = new Date(fecha);
+                            var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+                            var m = hoy.getMonth() - cumpleanos.getMonth();
+                            if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+                                edad--;
+                            }
+                            $('#age').val(edad);
+                        }
                   </script>
                   </div>
                   <div class="col-sm">
@@ -195,10 +173,8 @@
                       required value="{{ old('curp_tutor') }}">
                   </div>
                   <div class="col-sm">
-                    
                   </div>
                 </div> 
-
                 <div class="row">
                   <div class="col-sm">
                   <div class="row">
@@ -215,7 +191,6 @@
                       <input name="calle-y_tutor" id="calle-y" type="number" class="form-control" placeholder="#" maxlength="3" value="{{ old('calle-y_tutor') }}">
                     </div>
                   </div>
- 
                  </div>
                   <div class="col-sm">
                     {!!Form::label('cp',' Código postal',['class'=>'label'])!!}
@@ -231,7 +206,6 @@
                     <input name="ocupacion" id="ocupacion" class="form-control" placeholder="ocupación" autocomplete="off" value="{{ old('ocupacion_tutor') }}">
                   </div>
                 </div>
-
             <div class="row">
                   <div class="col-sm-6">
                     {!!Form::label('Correo','Correo',['class'=>'label'])!!}
@@ -241,10 +215,7 @@
                     {!!Form::label('telefono','Teléfono',['class'=>'label'])!!}
                     <input name="telefono" id="telefono" type="number" class="form-control" placeholder="Teléfono" maxlength="5" value="{{ old('telefono') }}">
                   </div>
-                  
                 </div>
-
-            
                 </div>
               </div>
           </div>
@@ -253,7 +224,6 @@
           {!!Form::submit('Registrar',['class'=>'btn btn-primary', 'onclick' => 'confirmAlert()'])!!}
         </div>
       </div>
-
     </div>
   </div>
 </div>

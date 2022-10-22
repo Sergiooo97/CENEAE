@@ -49,24 +49,21 @@
               <form action="{{route('alumnos.index')}}" method="GET" class="form-inline pull-right" role="search">
                 <label for="grupo"> Grupo: </label>
                 <select name="grupo" class="form-control" id="grupo" onchange="this.form.submit();  ">
-                  @if (request('grupo') == "")
-                  <option value="">Seleccione</option>
-                  @else
-                  <option value="{{ $grupo_id->id }}">{{ $grupo_id->nombre }}</option>
-                  @endif
-                  @foreach ($grupos as $grupo)
-                    <option value="{{ $grupo->id }}">{{ $grupo->nombre }}</option>
-                  @endforeach
+                    @if (request('grupo') == "")
+                        <option value="">Seleccione</option>
+                    @else
+                        <option value="{{ $grupo_id->id }}">{{ $grupo_id->nombre }}</option>
+                    @endif
+                    @foreach ($grupos as $grupo)
+                        <option value="{{ $grupo->id }}">{{ $grupo->nombre }}</option>
+                    @endforeach
                 </select>
                 <label for="nombres">Nombre:</label>
-                <input value="{{ request('nombres')}}" name="nombres" id="nombres" class="form-control"
-                  onkeydown="document.ready = document.getElementById('grado').value = '0';document.ready = document.getElementById('grupo').value = '0';" />
-
+                <input value="{{ request('nombres')}}" name="nombres" id="nombres" class="form-control" onkeydown="document.ready = document.getElementById('grado').value = '0';document.ready = document.getElementById('grupo').value = '0';" />
                 <button type="submit" class="btn btn-info"><i  class="nc-icon nc-zoom-split"></i> Buscar</button>
               </form>
               <table id="example" class="table table-striped table-hover " style="width:100%">
                 <thead class=" text-info">
-                 
                   <th>
                     Nombres
                   </th>
@@ -90,7 +87,6 @@
                 <tbody>
                   @foreach ($alumnos as $alumno)
                   <tr url="{{route('alumnos.show', ['id' => $alumno->id, 'n_id' => $curso->id])}}">
-                  
                     <td>
                       {{ $alumno->nombres }}&nbsp
                     </td>
@@ -109,8 +105,6 @@
                     <td>
                         {{$alumno->telefono}}
                     </td>
-                   
-
                   </tr>
                         <input id="id_alumno[]" value="{{$alumno->id}}" name="id_alumno[]" class="form-control" hidden>
                   @endforeach
@@ -177,21 +171,14 @@
             </div>
           </div>
         </div>
-
-
                   </div>
               </div>
           </div>
           <!-- /.tab-pane -->
-
-
-
       </div>
     </div>
     @include('sweetalert::alert')
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
-
-
       <script>
           $('#FormAlumno').bootstrapValidator({
               message: 'Este valor no es valido',
