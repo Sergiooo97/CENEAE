@@ -15,7 +15,7 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id();
-            $table->string('matricula');
+            $table->string('matricula')->nullable();
             $table->string('nombres');
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
@@ -43,7 +43,7 @@ class CreateAlumnosTable extends Migration
              ->onDelete('cascade')
              ->onUpdate('cascade'); 
         });
-        DB::update("ALTER TABLE alumnos AUTO_INCREMENT = 10001;");
+        DB::update("ALTER TABLE alumnos AUTO_INCREMENT = 10;");
 
     }
 

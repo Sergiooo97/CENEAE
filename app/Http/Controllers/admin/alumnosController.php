@@ -16,18 +16,17 @@ use App\User;
 use App\grupo;
 use App\cPostal;
 use App\status;
-
 use Illuminate\Http\Request;
 use App\alumno;
 use App\expediente;
-use Illuminate\Http\Response;
+//use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use RealRashid\SweetAlert\Facades\Alert;
 use ToSweetAlert;
 use Mpdf\Tag\Input;
 use Illuminate\Support\Str;
-
+use Response;
 class alumnosController extends Controller
 {
     public function __construct()
@@ -38,12 +37,7 @@ class alumnosController extends Controller
             if(!(\Session::has('idPeriodo')))
                 \Session::put('idPeriodo',$period->id);
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */ 
+    
     public function index(Request $request)
     {
         $grupo_id = grupo::where('id', $request->get('grupo'))->first();
@@ -82,16 +76,18 @@ class alumnosController extends Controller
         ->paginate(5);
         return view('role.admin.alumnos.listaOrden', compact('alumnos'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
+
     public function create()
     {
         $grupos = grupo::all();
         toast('Registro de alumnos :)','info');
         return view('role.admin.alumnos.create', compact('grupos'));
+    }
+
+    public function RegistroDatosAlumno(){
+
+        $this->store();
+        return redirect()->route('home')->withError('El registro falló correctamente!'); 
     }
     /**
      * Store a newly created resource in storage.
@@ -114,114 +110,92 @@ class alumnosController extends Controller
             'calle-num' =>'required|integer',
             'calle-entre' =>'required|integer',
             'calle-y' =>'required|integer',
-
-
         ],
-            [
-                'nombres.required' => 'Nombres del alumno vacio :(',
-                'nombres.max' => 'Nombres del alumno demaciado largo',
-                'apellido_paterno.required' => 'Apellido paterno del alumno vacio :(',
-                'apellido_paterno.max' => 'Apellido paterno excede número de caractares :(',
-                'apellido_materno.required' => 'Apellido materno del alumno vacio :(',
-                'apellido_materno.max' => 'Apellido materno excede número de caractares :(',
-                'age.integer' => 'solo es posible escribir numeros para la edad',
-                'age.required' => 'Campo edad vacio',
-                'birthday.required' => 'Es necesario escribir la fecha de nacimiento',
-                'birthday.date' => 'Solo el formato dd/mm/aaaa para la fecha de nacimiento',
-                'curp.required' => 'Es necesario escribir curp',
-                'curp.max' => 'El curp excede número maximo de caracteres',
-                'grupo.required' => 'Es necesario escribir grupo',
-         
-                'cp.required' => 'El código postal es necesario',
-                'cp.integer' => 'El código postal solo puede ser numeros',
-                'calle-entre.integer' => 'El cruzamiento de la calle solo puede ser numeros',
-                'calle-entre.required' => 'Es necesario escribir el cruzamiento de la calle',
-                'calle-y.integer' => 'El cruzamiento de la calle solo puede ser numeros',
-                'calle-y.required' => 'Es necesario escribir el cruzamiento de la calle',
-                'calle-num.integer' => 'La calle solo puede ser numeros',
-                'calle-num.required' => 'Es necesario escribir la calle',
+        [
+            'nombres.required' => 'Es necesario escribir el nombre :(',
+            'nombres.max' => 'El nombre es demasiado largo :(',
+            'apellido_paterno.required' => 'Es necesario escribir el apellido paterno :(',
+            'apellido_paterno.max' => 'El apellido paterno es demasiado largo :(',
+            'apellido_materno.required' => 'Es necesario escribir el apellido materno :(',
+            'apellido_materno.max' => 'El apellido materno es demasiado largo :(',
+            'age.integer' => 'solo es posible escribir numeros para la edad',
+            'age.required' => 'Es necesario llenar el campo de edad',
+            'birthday.required' => 'Es necesario escribir la fecha de nacimiento',
+            'birthday.date' => 'Solo el formato dd/mm/aaaa para la fecha de nacimiento',
+            'curp.required' => 'Es necesario escribir curp',
+            'curp.max' => 'El curp excede número maximo de caracteres',
+            'grupo.required' => 'Es necesario escribir grupo',
+            'cp.required' => 'El código postal es necesario',
+            'cp.integer' => 'El código postal solo puede ser numeros',
+            'calle-entre.integer' => 'El cruzamiento de la calle solo puede ser numeros',
+            'calle-entre.required' => 'Es necesario escribir el cruzamiento de la calle',
+            'calle-y.integer' => 'El cruzamiento de la calle solo puede ser numeros',
+            'calle-y.required' => 'Es necesario escribir el cruzamiento de la calle',
+            'calle-num.integer' => 'La calle solo puede ser numeros',
+            'calle-num.required' => 'Es necesario escribir la calle',
+        ]);
 
-
-            ]);
-
-               
+        $alumno = new alumno();
+        $alumno->matricula = "************";
+        $alumno->nombres = ucwords($request->input('nombres'));
+        $alumno->apellido_paterno = ucwords($request->input('apellido_paterno'));
+        $alumno->apellido_materno = ucwords($request->input('apellido_materno'));
+        $alumno->edad = $request->input('age');
+        $alumno->fecha_de_nacimiento = $request->input('birthday');
+        $alumno->curp = strtoupper($request->input('curp'));
+        $num = $request->input('num') == true ? " #".$request('num') : " S/N";
+        $alumno->direccion ="Calle "
+                .$request->input('calle-num')
+                .$num
+                ." x ".$request->input('calle-entre')
+                ." y ".$request->input('calle-y').".";
+        if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
+            $municipio = cPostal::where('codigo',$request->input('cp'))->first();
+            $muni = $municipio->municipio;
+            $estado = $municipio->estado;
+            $alumno->municipio = $muni.", ".$estado.".";
+        }else{
+            $alumno->municipio = "pendiente...";
+        }
+        $alumno->cp = $request->input('cp');
+        $alumno->status_id = "1";
+        $alumno->save(); 
+    /*END REGISTRO ALUMNO */
         
-                $alumno = new alumno();
-                $alumno->matricula = "************";
-                $alumno->nombres = ucwords($request->input('nombres'));
-                $alumno->apellido_paterno = ucwords($request->input('apellido_paterno'));
-                $alumno->apellido_materno = ucwords($request->input('apellido_materno'));
-                $alumno->edad = $request->input('age');
-                $alumno->fecha_de_nacimiento = $request->input('birthday');
-                $alumno->curp = strtoupper($request->input('curp'));
-                if($request->input('num')){
-                    $alumno->direccion ="Calle "
-                            .$request->input('calle-num')
-                            ." #"
-                            .$request->input('num')
-                            ." x ".$request->input('calle-entre')
-                            ." y ".$request->input('calle-y').".";
-                }else{
-                    $alumno->direccion ="Calle "
-                            .$request->input('calle-num')
-                            ." S/N"
-                            ." x ".$request->input('calle-entre')
-                            ." y ".$request->input('calle-y').".";
-                }
-                 // $alumno->correo = "x.xxxxx@ceneae.com";
-                        if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
-                            $municipio = cPostal::where('codigo',$request->input('cp'))->first();
-                            $muni = $municipio->municipio;
-                            $estado = $municipio->estado;
-                            $alumno->municipio = $muni.", ".$estado.".";
-                        }else{
-                            $alumno->municipio = "pendiente...";
-                        }
+        $tutor = new tutor();
+        $tutor->alumno_id = $alumno->id;
+        $tutor->nombres = $request->input('nombres_tutor');
+        $tutor->apellido_paterno = $request->input('apellido_paterno_tutor');
+        $tutor->apellido_materno = $request->input('apellido_materno_tutor');
+        $tutor->curp = "s";
+        $tutor->direccion ="Calle ".$request->input('calle-num_tutor')
+            ." x ".$request->input('calle-entre_tutor')
+            ." y ".$request->input('calle-y_tutor').".";
+        if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
+            $municipio = cPostal::where('codigo',$request->input('cp'))->first();
+            $muni = $municipio->municipio;
+            $estado = $municipio->estado;
+            $tutor->municipio = $muni.", ".$estado.".";
+        }else{
+            $tutor->municipio = "pendiente...";
+        }
+        $tutor->codigo_postal = $request->input('cp_tutor');
+        $tutor->fecha_de_nacimiento = $request->input('birthday_tutor');
+        $tutor->edad = $request->input('age_tutor');
+        $tutor->curp = strtoupper($request->input('curp_tutor'));
+        $tutor->correo = $request->input('correo_tutor');
+        $tutor->telefono =  Str::substr($request->get('telefono'), 0, 3). " ".Str::substr($request->get('telefono'), 3, 3). " ".Str::substr($request->get('telefono'), 6, 4) ;
+        // $tutor->telefono = $request->input('telefono');
+        $tutor->escolaridad = $request->input('ocupacion');
+        $tutor->save(); /* END REGISTRO TUTOR */
 
-                $alumno->cp = $request->input('cp');
-                $alumno->status_id = "1";
-                $alumno->save();
+        $cursos = curso::where('id' ,'>' ,0)->where('grupo_id', $request->input('grupo'))->pluck('id')->toArray();
+        foreach($cursos as $curso){
+            $alumno->courses()->attach($curso);
+        }           
+        $alumno->grupos()->attach(grupo::where('id', $request->input('grupo'))->first());
+       return Response::json($alumno); 
         
-                $tutor = new tutor();
-                $tutor->alumno_id = $alumno->id;
-                $tutor->nombres = $request->input('nombres_tutor');
-                $tutor->apellido_paterno = $request->input('apellido_paterno_tutor');
-                $tutor->apellido_materno = $request->input('apellido_materno_tutor');
-                $tutor->curp = "s";
-                $tutor->direccion ="Calle ".$request->input('calle-num_tutor')
-                        ." x ".$request->input('calle-entre_tutor')
-                        ." y ".$request->input('calle-y_tutor').".";
-                if($municipio = cPostal::where('codigo',$request->input('cp'))->exists()){
-                    $municipio = cPostal::where('codigo',$request->input('cp'))->first();
-                    $muni = $municipio->municipio;
-                    $estado = $municipio->estado;
-                    $tutor->municipio = $muni.", ".$estado.".";
-                }else{
-                $tutor->municipio = "pendiente...";
-                }
-                $tutor->codigo_postal = $request->input('cp_tutor');
-                $tutor->fecha_de_nacimiento = $request->input('birthday_tutor');
-                $tutor->edad = $request->input('age_tutor');
-                $tutor->curp = strtoupper($request->input('curp_tutor'));
- 
-                $tutor->correo = $request->input('correo_tutor');
-                $tutor->telefono =  Str::substr($request->get('telefono'), 0, 3). " ".Str::substr($request->get('telefono'), 3, 3). " ".Str::substr($request->get('telefono'), 6, 4) ;
-               // $tutor->telefono = $request->input('telefono');
-                $tutor->escolaridad = $request->input('ocupacion');
-                $tutor->save();
-        
-                $cursos = curso::where('id' ,'>' ,0)
-                    ->where('grupo_id', $request->input('grupo'))
-                    ->pluck('id')->toArray();
-                foreach($cursos as $curso){
-                    $alumno->courses()->attach($curso);
-                } 
-
-              
-                
-                    $alumno->grupos()->attach(grupo::where('id', $request->input('grupo'))->first()); 
-
-              return redirect()->route('home')->withError('El registro falló correctamente!');
     }
 
     /**

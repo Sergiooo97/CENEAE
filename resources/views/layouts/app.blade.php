@@ -169,7 +169,7 @@
                 <p class="slider-label"><i class="nc-icon nc-bank"></i>Inicio</p>
               </a>
             </li>
-            <li class="{{request()->is('admin/finanzas') ? 'active' : '' }}">
+            <!--li class="{{request()->is('admin/finanzas') ? 'active' : '' }}">
             <a href="{{ route('finanzas.index')}}">
               <p class="slider-label"><i class="nc-icon nc-bank"></i>Finanzas</p>
             </a>
@@ -194,7 +194,7 @@
                     </a></li>
                 </ul>
               </div>
-            </li>
+            </li-->
             <li class="{{request()->is('admin/alumno/lista') ? 'active' : '' }}
                              {{request()->is('admin/alumno/*/info') ? 'active act' : '' }}">
               <a class="dropdown-btn">
@@ -220,7 +220,7 @@
                 </ul>
               </div>
             </li>
-            <li class="{{request()->is('alumnos') ? 'active' : '' }}">
+            <!--li class="{{request()->is('alumnos') ? 'active' : '' }}">
               <a class="dropdown-btn">
                 <p class="slider-label"><i class="nc-icon nc-book-bookmark"></i>Grupos
                   {{request()->is('admin/grupos/*/*/edit') ? '>orden' : ''}}
@@ -247,7 +247,7 @@
 
                 </ul>
               </div>
-            </li>
+            <--/li>
 
             
             <li class="{{request()->is('admin/docente/lista') ? 'active' : '' }}">
@@ -255,7 +255,7 @@
                 <p class="slider-label"><i class="nc-icon nc-single-02"></i>Docentes</p>
               </a>
             </li>
-            <li
+            <!--li
               class="{{request()->is('admin/alumno/ndolares') ? 'active' : '' }}{{request()->is('admin/alumno/ndolares/*') ? 'active' : '' }}{{request()->is('admin/alumno/*/*/ndolares') ? 'active' : '' }}">
               <a href="{{route('ndolares.index')}}">
                 <p class="slider-label"><i class="nc-icon nc-money-coins"></i>Dolares
@@ -271,7 +271,7 @@
               <a href="{{ route('archivosD.index') }}">
                 <p class="slider-label"><i class="nc-icon nc-cloud-download-93"></i>Archivos</p>
               </a>
-            </li>
+            </li-->
             @endif
 
             @if(Auth::user()->hasRole('user'))
