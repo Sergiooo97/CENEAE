@@ -321,7 +321,7 @@
             </li>
             @endif
           </ul>
-          <script>
+          <script type="application/javascript">
             var dropdown = document.getElementsByClassName("dropdown-btn");
                     var i;
                     for (i = 0; i < dropdown.length; i++) {
@@ -459,7 +459,7 @@
               <div class="credits ml-auto">
                 <span class="copyright">
                   ©CENEAE
-                  <script>
+                  <script type="application/javascript">
                     document.write(new Date().getFullYear())
                   </script><i class="fa fa-heart heart"></i> by SERGIO EB
                 </span>

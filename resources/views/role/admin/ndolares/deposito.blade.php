@@ -30,17 +30,14 @@
                 <label for="nombres">Nombre:</label>
                 <input value="{{ request('nombres')}}" name="nombres" id="nombres" class="form-control"
                   onkeydown="document.ready = document.getElementById('grado').value = '0';document.ready = document.getElementById('grupo').value = '0';" />
-
                 <button type="submit" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i> Buscar</button>
               </form>
               <form id="form" method="POST" action="{{route('ndolares.deposito.store')}}">
                 <div class="form-group form-inline pull-right">
-
                 </div>
                 <!-------------------------------------------empieza tabla ---------------------------------->
                 <table id="example" class="table table-striped table-hover " style="width:100%">
                   <thead class=" text-info">
-
                     <th>
                       Nombres
                     </th>
@@ -56,17 +53,11 @@
                     <th></th>
                     @foreach ($alumnos as $count=>$alumno)
                     @csrf @method('PATCH')
-
-
-
-                    @if ($errors->has('cantidad.*'))
-                    <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
-
-                      {{ $errors->first('cantidad.*') }}
-                    </div>
-                @endif
-
-
+                        @if ($errors->has('cantidad.*'))
+                            <div id="ERROR_COPY" style="display: none;" class="alert alert-danger">
+                                {{ $errors->first('cantidad.*') }}
+                            </div>
+                        @endif
                     <tbody>
 
                       <tr>
