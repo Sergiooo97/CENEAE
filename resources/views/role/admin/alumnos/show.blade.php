@@ -5,6 +5,46 @@
 @section('content')
     <!-- Button trigger modal -->
     <!-- Button trigger modal -->
+<!-- Modal -->
+    <div class="modal fade" id="ModalPago"  role="dialog">
+        <form  action="{{ route('pago.store') }}" method="POST">
+            @csrf
+
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pago de mensualidad para {{$alumno->nombres}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                        <div class="form-group">
+                                    <label for="accion-para" class="col-form-label ">Pago del alumno:</label>
+                                    <input name="nombre" type="text" class="form-control" id="accion-para" value="{{ $alumno->nombres }}" readonly>
+                                    <input name="id_alumno" type="text" class="form-control" id="alumno_id" value="{{ $alumno->id }}" hidden>
+                                    <label for="recipient-name" class="col-form-label titulo-accion">Cantidad</label>
+                                    <input name="cantidad" type="text" class="form-control" id="cantidad" id="recipient-name">
+                                </div>
+                                <select name="concepto" class="form-control" id="concepto" value="{{ old('concepto') }}">
+                                    <option value="MENSUALIDAD">Mensualidad</option>
+                                </select>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Obervaciones:</label>
+                                    <textarea name="observaciones" class="form-control" id="message-text"></textarea>
+                                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" >Pagar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+    </div>
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="depositoRetiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -55,7 +95,7 @@
                             <textarea name="comentario" class="form-control" id="message-text"></textarea>
                         </div>
 
-                        <script>
+                        <script type="application/javascript">
                             $('document').ready(function() {
                                 $('#enviar').click(function() {
                                     var actual = $("#actual").val();
@@ -77,13 +117,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="enviar" type="submit" class="btn btn-primary" onclick="confirmAlert()">Enviar</button>
+                    <button id="enviar" type="submit" class="btn btn-primary">Enviar</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
-    <script>
+    <script type="application/javascript">
         $('#depositoRetiro').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('whatever')
@@ -175,30 +215,30 @@
 
                                     <div class="col-sm-9 mr-auto">
                                         <button style="font-size: 23px; padding: 10px;" type="button"
-                                            class="btn btn-success" data-toggle="modal" data-target="#depositoRetiro"
+                                            class="btn btn-success" data-toggle="modal" data-target="#ModalPago"
                                             data-whatever="deposito">
                                             +$
                                         </button>
-                                        <button id="retiro" style="font-size: 23px; padding: 10px;" type="button"
+                                        <!--button id="retiro" style="font-size: 23px; padding: 10px;" type="button"
                                             class="btn btn-danger" data-toggle="modal" data-target="#depositoRetiro"
                                             data-whatever="retiro">
                                             -$
-                                        </button>
+                                        </button-->
                                         <a data-role="button" id="detalles"
-                                            href="{{ route('ndolares.show', ['id' => $alumno->id, 'nombres' => $alumno->nombres]) }}"
+                                            href="{{ route('mensualidades.show', ['id' => $alumno->id, 'nombres' => $alumno->nombres]) }}"
                                             style="font-size: 23px; padding: 10px;" class="btn btn-primary" hidden> <i
                                                 style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></a>
                                         <button id="boton" class="enlace btn btn-primary" role="link"
-                                            onclick="window.location='{{ route('ndolares.show', ['id' => $alumno->id, 'nombres' => $alumno->nombres]) }}'"
+                                            onclick="window.location='{{ route('pago.show', ['id' => $alumno->id, 'nombres' => $alumno->nombres]) }}'"
                                             style="font-size: 23px; padding: 10px;"><i style="padding: 0px;"
                                                 class="nc-icon nc-alert-circle-i"></i></button>
 
-                                        <script>
-                                            if (document.getElementById('ndolarTransacciones-d').value <= 0) {
-                                                document.getElementById('boton').disabled = true;
-                                                document.getElementById('retiro').disabled = true;
+                                        <script type="application/javascript">
+                                            //if (document.getElementById('ndolarTransacciones-d').value <= 0) {
+                                              //  document.getElementById('boton').disabled = true;
+                                                //document.getElementById('retiro').disabled = true;
 
-                                            }
+                                            //}
 
                                         </script>
 
@@ -455,11 +495,11 @@
 
         </div>
     </div>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script type="text/javascript">
+    <script src="http://code.highcharts.com/highcharts.js" type="application/javascript"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"type="application/javascript"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"type="application/javascript"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"type="application/javascript"></script>
+    <script type="application/javascript">
         var categoria = <?php echo json_encode($subcomponentes); ?>;    var series = <?php echo json_encode($series); ?>;    var notas = <?php echo json_encode($notas); ?>;    var users = <?php echo json_encode($users); ?>;    var ns = <?php echo json_encode($ns); ?>;    var curso = <?php echo json_encode($curso_grafica); ?>;
         Highcharts.chart('chart_alumno', {
             chart: {
@@ -491,14 +531,11 @@
             series: notas
         });
 
-    </script>
+    </script type="application/javascript">
     @include('sweetalert::alert')
-    <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.1.0.min.js') }}"type="application/javascript"></script>
 
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
-    <script>
 
-
-    </script>
 @endsection

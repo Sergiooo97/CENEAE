@@ -35,7 +35,7 @@
           <div class="col-md-12">
             <div class="card bounceInleft">
               <div class="card-header">
-                <h4 class="card-title">Banco de CENEAE</h4>
+                <h4 class="card-title">Ban CENEAE</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">

@@ -99,8 +99,7 @@ Route::group([
     Route::patch('{id}/orden', 'alumnosController@updateOrden')->name('alumnos.updateOrden'); //ACTUALIZAR DATOS EN LA BASE DE DATOS
 
     Route::get('{id}/calificaciones/detalles', 'alumnosController@calificacionDetalles')->name('admin.calificaciones.detalles'); //CALIFICACIÓN DE ALUMNOS
-
-
+    
   //Nata-dolares
   Route::get('ndolares', 'natadolaresController@index')->name('ndolares.index');
     Route::post('ndolares', 'ndolaresController@store')->name('ndolares.store'); //ALMACENAR DATOS EN LA BASE DE DATOS
@@ -189,6 +188,9 @@ Route::group([
         Route::get('/exp/{id}/{nombre}/{a}', 'archivosController@expedientePdf')->name('exp');
 
     });
+    //Pago de mensuallidades 
+    Route::post('mensualidad', 'pagoController@store')->name('pago.store'); //ALMACENAR DATOS EN LA BASE DE DATOS
+    Route::get('{id}/pagos',   'pagoController@show')->name('pago.show'); //MOSTRAR LISTA DE NDOLARES
 
 
 

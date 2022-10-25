@@ -105,6 +105,9 @@
                     <td>
                         {{$alumno->telefono}}
                     </td>
+                    <td>
+                    <Button class="btn btn-info">Pagar</Button>
+                    </td>  
                   </tr>
                         <input id="id_alumno[]" value="{{$alumno->id}}" name="id_alumno[]" class="form-control" hidden>
                   @endforeach

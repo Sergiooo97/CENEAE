@@ -19,14 +19,14 @@ use App\status;
 use Illuminate\Http\Request;
 use App\alumno;
 use App\expediente;
-//use Illuminate\Http\Response;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use RealRashid\SweetAlert\Facades\Alert;
 use ToSweetAlert;
 use Mpdf\Tag\Input;
 use Illuminate\Support\Str;
-use Response;
+
 class alumnosController extends Controller
 {
     public function __construct()
@@ -83,12 +83,7 @@ class alumnosController extends Controller
         toast('Registro de alumnos :)','info');
         return view('role.admin.alumnos.create', compact('grupos'));
     }
-
-    public function RegistroDatosAlumno(){
-
-        $this->store();
-        return redirect()->route('home')->withError('El registro falló correctamente!'); 
-    }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -193,9 +188,9 @@ class alumnosController extends Controller
         foreach($cursos as $curso){
             $alumno->courses()->attach($curso);
         }           
-        $alumno->grupos()->attach(grupo::where('id', $request->input('grupo'))->first());
-       return Response::json($alumno); 
+        $alumno->grupos()->attach(grupo::where('id', $request->input('grupo'))->first()); 
         
+        return redirect()->route('home')->withError('El registro falló correctamente!');
     }
 
     /**

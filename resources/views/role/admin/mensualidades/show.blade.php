@@ -62,17 +62,31 @@
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <div class="modal-body" id="areaImprimir">
+                              <div style="margin-top: 1em;" class="modal-body" id="areaImprimir">
                                     <!-- REPORTE DE PAGO DE MENSUALIDAD -->
-                                        <div class="row">
+                                        <div class="row container">
                                             <div class="col-2">
                                                <img width="90" class="" src="{{ asset('img/logo_centro_educativo.png') }}" alt="...">
                                             </div>
-                                            <div class="col-8 d-flex justify-content-center">
-                                                <p>SECRETARÍA DE EDUCACIÓN DEL ESTADO DE YUCATÁN</p>
+                                            <div class="col-8 ">
+                                             
+                                                <div style="line-height: 5px;" class="row d-flex justify-content-center"><p></p></div>
+                                                <div style="line-height: 5px;"  class="row d-flex justify-content-center"><p>SECRETARÍA DE EDUCACIÓN DEL ESTADO DE YUCATÁN</p></div>
+                                                <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>"CENTRO EDUCATIVO NATANAEL"</p></div>
+                                                <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>C.C.T 31PPR0032N, ZONA 029</p></div>
+                                                <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>ACUERDO 2285, 2 DE JULIO DEL 2019</p></div>
+                                                <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>CACALCHÉN, YUCATÁN</p></div>
+                                                                                               
+                                                
                                             </div>
                                             <div class="col-2 pull-right">
                                                <img width="90" class="pull-right" src="{{ asset('img/segeey.png') }}" alt="...">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row container">
+                                            <div class="col col-4">
+                                                <p style="font-size:16px">Folio</p>
                                             </div>
                                         </div>      
 

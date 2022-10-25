@@ -22,11 +22,11 @@
   <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
   <!--Scripts  -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
-  <script src="{{ asset('js/popper.min.js') }}"></script>
-  <script src="{{ asset('js/popper.min.js.map') }}"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}" type="text/javascript"defer></script>
+  <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"type="text/javascript"></script>
+  <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
+  
+  <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 
   <!--Fonts  -->
 
@@ -321,7 +321,7 @@
             </li>
             @endif
           </ul>
-          <script>
+          <script type="application/javascript">
             var dropdown = document.getElementsByClassName("dropdown-btn");
                     var i;
                     for (i = 0; i < dropdown.length; i++) {
@@ -459,7 +459,7 @@
               <div class="credits ml-auto">
                 <span class="copyright">
                   ©CENEAE
-                  <script>
+                  <script type="application/javascript">
                     document.write(new Date().getFullYear())
                   </script><i class="fa fa-heart heart"></i> by SERGIO EB
                 </span>
@@ -472,21 +472,21 @@
   </div>
   @include('sweetalert::alert')
 
-  <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
-  <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')  }}"></script>
+  <script src="{{asset('js/jquery-3.1.0.min.js')}}"type="application/javascript"></script>
+  <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')  }}" type="application/javascript"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" type="application/javascript">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"type="application/javascript">
   </script> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
+    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"type="application/javascript">
   </script> -->
-  <script src="{{ asset('js/core/popper.min.js')  }}"></script>
-  <script src="{{ asset('js/plugins/bootstrap-notify.js')  }}"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <script src="{{ asset('js/core/popper.min.js')  }}"type="application/javascript"></script>
+  <script src="{{ asset('js/plugins/bootstrap-notify.js')  }}"type="application/javascript"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"type="application/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"type="application/javascript"></script>
   
   <!--   Core JS Files   -->
   <script src="{{ asset('js/paper-dashboard.min.js')  }}" type="text/javascript"></script>
