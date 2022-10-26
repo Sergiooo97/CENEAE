@@ -54,7 +54,22 @@ class pagoController extends Controller
      */
     public function show($id)
     {
-        $pagos = pago::where('alumno_id', $id)->paginate(5);;
+        $pagos = pago::select(
+            'pagos.id as pago_id',
+            'pagos.alumno_id as pago_alumno_id',
+            'pagos.cantidad',
+            'pagos.concepto',
+            'pagos.observaciones',
+            'pagos.status_id as status_pago',
+            'pagos.created_at',
+            'alumnos.nombres',
+            'alumnos.matricula',
+            'alumnos.id as alumno_id',
+            'alumnos.curp',
+            'alumnos.direccion'
+        )
+        ->join('alumnos', 'pagos.alumno_id', '=', 'alumnos.id')
+        ->where('alumno_id', $id)->paginate(5);
         $id_alumno = alumno::find($id); 
         $alumno_matricula = alumno::find($id)->first();
         return view('role.admin.mensualidades.show', compact('pagos', 'id_alumno', 'alumno_matricula'));

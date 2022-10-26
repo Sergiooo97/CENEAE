@@ -69,26 +69,84 @@
                                                <img width="90" class="" src="{{ asset('img/logo_centro_educativo.png') }}" alt="...">
                                             </div>
                                             <div class="col-8 ">
-                                             
                                                 <div style="line-height: 5px;" class="row d-flex justify-content-center"><p></p></div>
                                                 <div style="line-height: 5px;"  class="row d-flex justify-content-center"><p>SECRETARÍA DE EDUCACIÓN DEL ESTADO DE YUCATÁN</p></div>
                                                 <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>"CENTRO EDUCATIVO NATANAEL"</p></div>
                                                 <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>C.C.T 31PPR0032N, ZONA 029</p></div>
                                                 <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>ACUERDO 2285, 2 DE JULIO DEL 2019</p></div>
                                                 <div style="line-height: 5px;" class="row d-flex justify-content-center"><p>CACALCHÉN, YUCATÁN</p></div>
-                                                                                               
-                                                
                                             </div>
                                             <div class="col-2 pull-right">
                                                <img width="90" class="pull-right" src="{{ asset('img/segeey.png') }}" alt="...">
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="row container">
-                                            <div class="col col-4">
-                                                <p style="font-size:16px">Folio</p>
+                                        <div style="margin-left:0px" class="row container">
+                                            <div class="col-6 pull-left">
+                                                <div class="form-group">
+                                                    <label for="Folio">FOLIO</label>
+                                                    <input readonly style="border:0" type="number"  value="{{ $pago->pago_id }}" class="form-control" id="Folio">
+                                                </div>
+                                                
                                             </div>
-                                        </div>      
+                                            <div style="float:right !important;" class="col-6 pull-right">
+                                              <div class="form-group pull-right">
+                                                    <label for="Fecha">FECHA</label>
+                                                    <input readonly style="border:0" type="text"  value="{{ date_format($pago->created_at,"Y/m/d") }}" class="form-control" id="Feche">
+                                                </div>
+
+                                            </div>
+                                        </div>     
+                                        <hr>
+                                        <div style="margin-left:0px" class="row container">
+                                            <div class="col-3 pull-left">
+                                                <div class="form-group">
+                                                    <label for="Matricula">MATRICULA</label>
+                                                    <input readonly style="border:0" type="text"  value="{{ $pago->matricula }}" class="form-control" id="Matricula">
+                                                </div>
+                                            </div>
+                                            <div style="float:right !important;" class="col-6">
+                                                <div class="form-group pull-right">
+                                                    <label for="Folio">NOMBRE DEL ALUMNO</label>
+                                                    <input readonly style="border:0"  value="{{ strtoupper($pago->nombres)}}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div style="float:right !important;" class="col-3 pull-right">
+                                                <div class="form-group pull-right">
+                                                    <label for="Folio">CURP</label>
+                                                    <input readonly style="border:0"  value="{{ $pago->curp }}" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>   
+                                        <hr>
+                                        <div style="margin-left:0px" class="row container">
+                                            <div class="col-3 pull-left">
+                                                <div class="form-group">
+                                                    <?php  
+                                                        setlocale(LC_TIME, 'es_ES');
+                                                        setlocale(LC_ALL, 'es_CO.UTF-8');
+                                                        $MonthNum = date_format($pago->created_at,"m");
+                                                        $dateObj  = DateTime::createFromFormat('!m', $MonthNum);
+                                                        $monthName = strftime('%B', $dateObj->getTimestamp());
+                                                    ?>
+                                                    <label for="Matricula">MES DE PAGO</label>
+                                                    <input readonly style="border:0" type="text"  value="{{ strtoupper($monthName) }}" class="form-control" id="Matricula">
+                                                </div>
+                                            </div>
+                                            <div style="float:right !important;" class="col-3">
+                                                <div class="form-group pull-right">
+                                                    <label for="Folio">NOMBRE DEL ALUMNO</label>
+                                                    <input readonly style="border:0"  value="{{ $pago->nombres}}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div style="float:right !important;" class="col-3 pull-right">
+                                                <div class="form-group pull-right">
+                                                    <label for="Folio">CURP</label>
+                                                    <input readonly style="border:0"  value="{{ $pago->curp }}" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>     
 
                                   <script type="text/javascript">
                                         function printDiv(nombreDiv) {

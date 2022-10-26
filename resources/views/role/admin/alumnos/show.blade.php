@@ -225,7 +225,7 @@
                                             -$
                                         </button-->
                                         <a data-role="button" id="detalles"
-                                            href="{{ route('mensualidades.show', ['id' => $alumno->id, 'nombres' => $alumno->nombres]) }}"
+                                            href="{{ route('pago.show', ['id' => $alumno->id, 'nombres' => $alumno->nombres]) }}"
                                             style="font-size: 23px; padding: 10px;" class="btn btn-primary" hidden> <i
                                                 style="padding: 0px;" class="nc-icon nc-alert-circle-i"></i></a>
                                         <button id="boton" class="enlace btn btn-primary" role="link"
